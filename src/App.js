@@ -20,23 +20,57 @@ class App extends Component {
      );
      }
      }*/
+    static defaultProps = {
+        notLoggedIn: "Not logged in"
+    };
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            name: "",
+            imgurl: "",
+            email: "",
+            link: ""
+        }
     };
 
     responseFacebook = (response) => {
         console.log(response);
+        if (response.status != "unknown"){
+            this.setState({
+                name: response.name,
+                email: response.email,
+                imgurl: response.picture.data.url,
+                link: response.link
+            });
+        }else {
+            this.setState({
+                name: this.props.notLoggedIn,
+                email: this.props.notLoggedIn,
+                imgurl: this.props.notLoggedIn
+            });
+        }
+
+
     };
+
+
 
     render() {
         return (
+            <div>
+                <p>Name: <a href={this.state.link} target="_blank">{this.state.name}</a></p>
+                <p>Email: {this.state.email}</p>
+                <p>Picture: <img src={this.state.imgurl} alt="Not logged in"/></p>
+
+
             <FacebookLoginHandler
-                appId="<app id her>"
+                appId="<app-id-her>"
                 autoLoad={true}
-                fields="name,email,picture"
+                fields="name,email,picture,link"
                 callback={this.responseFacebook}
-            />
+            /></div>
         )
     }
 }

@@ -25,7 +25,7 @@ class FacebookLoginHandler extends React.Component {
     static defaultProps = {
         textButton: 'Login with Facebook',
         typeButton: 'button',
-        scope: 'public_profile',
+        scope: 'public_profile, email',
         xfbml: false,
         cookie: false,
         reAuthenticate: false,
@@ -48,7 +48,7 @@ class FacebookLoginHandler extends React.Component {
         }
         window.fbAsyncInit = () => {
             window.FB.init({
-                version: `v${version}`,
+                version: `${version}`,
                 appId,
                 xfbml,
                 cookie,
@@ -133,6 +133,10 @@ class FacebookLoginHandler extends React.Component {
         window.FB.login(this.checkLoginState, {scope, auth_type: params.auth_type});
     };
 
+    clickout = () => {
+        window.FB.logout()
+    };
+
     render(){
         const {icon, textButton} = this.props;
         const isIconString = typeof icon === 'string';
@@ -143,6 +147,11 @@ class FacebookLoginHandler extends React.Component {
                     className="fb-login-button"
                     onClick={this.click}
                 >{textButton}
+                </button>
+                <button
+                    className="fb-logout-button"
+                    onClick={this.clickout}
+                >Logout
                 </button>
             </span>
         );
