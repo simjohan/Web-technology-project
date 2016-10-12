@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import NavBar from './navbar'
 
 import FacebookLoginHandler from './facebookhandler';
 
@@ -31,12 +32,13 @@ class App extends Component {
 
     render() {
         return (
-            <FacebookLoginHandler
+            <NavBar />
+            /*<FacebookLoginHandler
                 appId="<app id her>"
                 autoLoad={true}
                 fields="name,email,picture"
                 callback={this.responseFacebook}
-            />
+            />*/
         )
     }
 }
