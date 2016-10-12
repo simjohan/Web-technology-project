@@ -19,7 +19,7 @@ class App extends Component {
           <Movie />
           <Movie />
           <Movie />
-          <Movie />
+          <Movie /> 
         </ul>
       </div>
 
