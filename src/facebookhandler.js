@@ -24,8 +24,10 @@ class FacebookLoginHandler extends React.Component {
 
     static defaultProps = {
         textButton: 'Login with Facebook',
+        loginButton: 'Login with Facebook',
+        logoutButton: 'Logout',
         typeButton: 'button',
-        scope: 'public_profile, email, user_friends',
+        scope: 'public_profile',
         xfbml: false,
         cookie: false,
         reAuthenticate: false,
@@ -139,20 +141,19 @@ class FacebookLoginHandler extends React.Component {
     };
 
     render(){
-        const {icon, textButton} = this.props;
-        const isIconString = typeof icon === 'string';
+        const {logoutButton, loginButton} = this.props;
 
         return (
             <span>
                 <button
                     className="fb-login-button"
                     onClick={this.click}
-                >{textButton}
+                >{loginButton}
                 </button>
                 <button
                     className="fb-logout-button"
                     onClick={this.clickout}
-                >Logout
+                >{logoutButton}
                 </button>
             </span>
         );

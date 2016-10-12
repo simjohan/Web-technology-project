@@ -33,13 +33,16 @@ class App extends Component {
             email: "",
             link: "",
             friends: "",
-            indents: []
+            indents: [],
+            loggedIn: ""
         }
     };
 
     responseFacebook = (response) => {
-        console.log(response);
-        if (response.status !== "unknown"){
+        //console.log(response);
+        this.setState({loggedIn: response.status});
+        console.log("status: " + this.state.loggedIn);
+        if (this.state.loggedIn !== 'unknown'){
             this.setState({
                 name: response.name,
                 email: response.email,
@@ -47,6 +50,14 @@ class App extends Component {
                 link: response.link,
                 friends: response.taggable_friends,
             });
+            console.log("lengde: " + this.state.friends.data.length);
+            for (var i = 0; i < this.state.friends.data.length; i++){
+                /*console.log(i);
+                 console.log(this.state.friends.data[i].name);*/
+                this.state.indents.push(<span className="indent" key={i}>{this.state.friends.data[i].name}</span>)
+            }
+            //console.log("friends: " + this.state.friends.data);
+            //console.log("indents: " + this.state.indents);
         }else {
             this.setState({
                 name: this.props.notLoggedIn,
@@ -54,14 +65,7 @@ class App extends Component {
                 imgurl: this.props.notLoggedIn
             });
         }
-        console.log("lengde: " + this.state.friends.data.length);
-        for (var i = 0; i < this.state.friends.data.length; i++){
-            console.log(i);
-            console.log(this.state.friends.data[i].name);
-            this.state.indents.push(<span className="indent" key={i}>{this.state.friends.data[i].name}</span>)
-        }
-        console.log("friends: " + this.state.friends.data);
-        console.log("indents: " + this.state.indents);
+
 
 
     };
@@ -69,15 +73,28 @@ class App extends Component {
 
 
     render() {
+        let pageLink;
+        console.log("render status: " + this.state.loggedIn);
+        if (this.state.loggedIn === 'unknown'){
+            pageLink = (
+                <span></span>
+            )
+        }
+        else {
+            pageLink = (
+                <a href={this.state.link} target="_blank">Link to Facebook page</a>
+            )
+        }
         return (
             <div>
-                <p>Name: <a href={this.state.link} target="_blank">{this.state.name}</a></p>
+                <p>Name: {this.state.name} {pageLink}</p>
                 <p>Email: {this.state.email}</p>
                 <p>Picture: <img src={this.state.imgurl} alt="Not logged in"/></p>
             <FacebookLoginHandler
                 appId="1623658607931496"
                 autoLoad={true}
                 fields="name,email,picture,link,taggable_friends"
+                scope="email, user_friends"
                 callback={this.responseFacebook}
             /></div>
         )
