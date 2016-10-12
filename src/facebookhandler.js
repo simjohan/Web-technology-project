@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 
 class FacebookLoginHandler extends React.Component {
@@ -25,7 +25,7 @@ class FacebookLoginHandler extends React.Component {
     static defaultProps = {
         textButton: 'Login with Facebook',
         typeButton: 'button',
-        scope: 'public_profile, email',
+        scope: 'public_profile, email, user_friends',
         xfbml: false,
         cookie: false,
         reAuthenticate: false,
@@ -134,7 +134,8 @@ class FacebookLoginHandler extends React.Component {
     };
 
     clickout = () => {
-        window.FB.logout()
+        window.FB.logout();
+        window.location.href = "http://localhost:3000";
     };
 
     render(){

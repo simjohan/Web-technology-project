@@ -31,18 +31,21 @@ class App extends Component {
             name: "",
             imgurl: "",
             email: "",
-            link: ""
+            link: "",
+            friends: "",
+            indents: []
         }
     };
 
     responseFacebook = (response) => {
         console.log(response);
-        if (response.status != "unknown"){
+        if (response.status !== "unknown"){
             this.setState({
                 name: response.name,
                 email: response.email,
                 imgurl: response.picture.data.url,
-                link: response.link
+                link: response.link,
+                friends: response.taggable_friends,
             });
         }else {
             this.setState({
@@ -51,6 +54,14 @@ class App extends Component {
                 imgurl: this.props.notLoggedIn
             });
         }
+        console.log("lengde: " + this.state.friends.data.length);
+        for (var i = 0; i < this.state.friends.data.length; i++){
+            console.log(i);
+            console.log(this.state.friends.data[i].name);
+            this.state.indents.push(<span className="indent" key={i}>{this.state.friends.data[i].name}</span>)
+        }
+        console.log("friends: " + this.state.friends.data);
+        console.log("indents: " + this.state.indents);
 
 
     };
@@ -63,12 +74,10 @@ class App extends Component {
                 <p>Name: <a href={this.state.link} target="_blank">{this.state.name}</a></p>
                 <p>Email: {this.state.email}</p>
                 <p>Picture: <img src={this.state.imgurl} alt="Not logged in"/></p>
-
-
             <FacebookLoginHandler
-                appId="<app-id-her>"
+                appId="1623658607931496"
                 autoLoad={true}
-                fields="name,email,picture,link"
+                fields="name,email,picture,link,taggable_friends"
                 callback={this.responseFacebook}
             /></div>
         )
