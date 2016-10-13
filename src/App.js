@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import NavBar from './navbar'
 
+import NavBar from './navbar'
+import Title from "./components/app/Title"
+import Movie from "./components/app/Movie"
 import FacebookLoginHandler from './facebookhandler';
 
 class App extends Component {
@@ -93,6 +95,37 @@ class App extends Component {
                 <p>Picture: <img src={this.state.imgurl} alt="Not logged in"/></p>
             <FacebookLoginHandler
                 appId="1623658607931496"
+            <div className="app">
+            <NavBar />
+            <div className="newest-reviews">
+              <Title title="Nyeste Anmeldelser"/>
+              <ul className="movie-container">
+                <Movie />
+                <Movie />
+                <Movie />
+                <Movie />
+                <Movie />
+                <Movie />
+                <Movie />
+              </ul>
+            </div>
+
+            <div className="newly-visited">
+              <Title title="Nylig Besøkte"/>
+              <ul className="movie-container">
+                <Movie />
+                <Movie />
+                <Movie />
+                <Movie />
+                <Movie />
+                <Movie />
+                <Movie />
+              </ul>
+            </div>
+
+            </div>
+            /*<FacebookLoginHandler
+                appId="<app id her>"
                 autoLoad={true}
                 fields="name,email,picture,link,taggable_friends"
                 scope="email, user_friends"
