@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import SearchField from "./search_field"
 import Button from "./navbar_button"
+import UserData from './userdata';
 
 
 export default class NavBar extends Component {
@@ -11,6 +12,7 @@ export default class NavBar extends Component {
         return (
             <div id="navbar">
                 <SearchField />
+                <UserData/>
                 <Button btn_text="Login" />
             </div>
         );

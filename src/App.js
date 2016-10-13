@@ -53,6 +53,8 @@ class App extends Component {
                 link: response.link,
                 friends: response.taggable_friends,
             });
+            localStorage.setItem('loggedIn', '');
+            localStorage.setItem('userData', [this.state.name, this.state.imgurl]);
             console.log("lengde: " + this.state.friends.data.length);
             for (var i = 0; i < this.state.friends.data.length; i++){
                 /*console.log(i);
@@ -67,6 +69,7 @@ class App extends Component {
                 email: this.props.notLoggedIn,
                 imgurl: this.props.notLoggedIn
             });
+            localStorage.setItem('loggedIn', 'unknown');
         }
 
 
@@ -76,7 +79,7 @@ class App extends Component {
 
 
     render() {
-        let pageLink;
+        /*let pageLink;
         console.log("render status: " + this.state.loggedIn);
         if (this.state.loggedIn === 'unknown'){
             pageLink = (
@@ -87,15 +90,21 @@ class App extends Component {
             pageLink = (
                 <a href={this.state.link} target="_blank">Link to Facebook page</a>
             )
-        }
+        }*/
+        /*<p>Name: {this.state.name} {pageLink}</p>
+        <p>Email: {this.state.email}</p>
+        <p>Picture: <img src={this.state.imgurl} alt="Not logged in"/></p>*/
+
         return (
-            <div>
-                <p>Name: {this.state.name} {pageLink}</p>
-                <p>Email: {this.state.email}</p>
-                <p>Picture: <img src={this.state.imgurl} alt="Not logged in"/></p>
-            <FacebookLoginHandler
-                appId="1623658607931496"
             <div className="app">
+                <FacebookLoginHandler
+                    appId="1623658607931496"
+                    autoLoad={true}
+                    fields="name,email,picture,link,taggable_friends"
+                    scope="email, user_friends"
+                    callback={this.responseFacebook}
+                    loggedInStatus={this.state.loggedIn}
+                />
             <NavBar />
             <div className="newest-reviews">
               <Title title="Nyeste Anmeldelser"/>
@@ -124,14 +133,7 @@ class App extends Component {
             </div>
 
             </div>
-            /*<FacebookLoginHandler
-                appId="<app id her>"
-                autoLoad={true}
-                fields="name,email,picture,link,taggable_friends"
-                scope="email, user_friends"
-                callback={this.responseFacebook}
-                loggedInStatus={this.state.loggedIn}
-            /></div>
+
         )
     }
 }
