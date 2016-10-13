@@ -97,6 +97,7 @@ class App extends Component {
                 fields="name,email,picture,link,taggable_friends"
                 scope="email, user_friends"
                 callback={this.responseFacebook}
+                loggedInStatus={this.state.loggedIn}
             /></div>
         )
     }
