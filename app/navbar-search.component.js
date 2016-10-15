@@ -14,6 +14,7 @@ var NavbarSearchComponent = (function () {
     }
     NavbarSearchComponent = __decorate([
         core_1.Component({
+            //Selector "nav-search" lets other components use the template into their own template.
             selector: "nav-search",
             template: "\n    <input type =\"text\" placeholder=\"search\"/>\n    <label><input type=\"checkbox\"/>Person search</label>\n    \n    "
         }), 
