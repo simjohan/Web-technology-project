@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'my-app',
     template:`
-        <h1>{{title}}</h1>`
+        <navigation-bar></navigation-bar>
+    `
 })
 export class AppComponent {
     title = 'Index-page!';

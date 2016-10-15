@@ -9,18 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Index-page!';
+var NavbarSearchComponent = (function () {
+    function NavbarSearchComponent() {
     }
-    AppComponent = __decorate([
+    NavbarSearchComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "\n        <h1>{{title}}</h1>\n        <navigation-bar></navigation-bar>\n    "
+            selector: "nav-search",
+            template: "\n    <input type =\"text\" placeholder=\"search\"/>\n    <label><input type=\"checkbox\"/>Person search</label>\n    \n    "
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], NavbarSearchComponent);
+    return NavbarSearchComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.NavbarSearchComponent = NavbarSearchComponent;
+//# sourceMappingURL=navbar-search.component.js.map
