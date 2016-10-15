@@ -9,15 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+/**
+ * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
+ * how the component should be processed, instantiated and used at runtime.
+ */
 var FrontPageComponent = (function () {
     function FrontPageComponent() {
+        //Add variables with the following content. These variables can now be used by for example the template
         this.newlyReviews = "Nyeste Anmeldelser";
         this.newlyVisited = "Nylig Besøkte";
     }
     FrontPageComponent = __decorate([
         core_1.Component({
+            //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
             moduleId: module.id,
+            // Selector "front-page" lets other components use the template into their own template
             selector: "front-page",
+            //TemplateUrl tells the component where it can find the HTML-code it is going to show
             templateUrl: 'front-page.component.html',
         }), 
         __metadata('design:paramtypes', [])
