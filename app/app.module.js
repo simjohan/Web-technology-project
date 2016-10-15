@@ -11,12 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+/**
+ * Imports the components we need to show the application
+ */
 var app_component_1 = require('./app.component');
 var navbar_component_1 = require("./navbar.component");
 var navbar_search_component_1 = require("./navbar-search.component");
 var front_page_component_1 = require("./front-page.component");
 var movie_component_1 = require("./movie.component");
 var movie_title_component_1 = require("./movie-title.component");
+/**
+ * @NgModule contains the list of external modules used by the application.
+ * Imports: what kind of modules are imported from the angular library
+ * Declarations: declare the components used from the rest of the program
+ * Bootstrap: this choose how the application is going to be compiled
+ */
 var AppModule = (function () {
     function AppModule() {
     }

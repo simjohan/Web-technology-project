@@ -11,11 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = 'Index-page!';
     }
     AppComponent = __decorate([
         core_1.Component({
+            /**
+             * Selector "my-app" lets other components use the template into their own templates
+             */
             selector: 'my-app',
+            /**
+             * "navigation-bar" and "front-page" are selectors of other components
+             */
             template: "\n        <navigation-bar></navigation-bar>\n        <front-page></front-page>\n    "
         }), 
         __metadata('design:paramtypes', [])
