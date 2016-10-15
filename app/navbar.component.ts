@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     template:`
     <div id="navbar">
         <nav-search></nav-search>
-        <button class="button">heyo</button>
+        <button class="button">Log in</button>
     </div>
     `
 })
