@@ -14,7 +14,9 @@ var NavbarComponent = (function () {
     }
     NavbarComponent = __decorate([
         core_1.Component({
+            //Selector "navigation-bar" lets other components use the template into their own template.
             selector: "navigation-bar",
+            //"nav-search" is a selector of another component.
             template: "\n    <div id=\"navbar\">\n        <nav-search></nav-search>\n        <button class=\"button\">Log in</button>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])

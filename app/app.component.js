@@ -9,18 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+/**
+ * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
+ * how the component should be processed, instantiated and used at runtime.
+ */
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
-            /**
-             * Selector "my-app" lets other components use the template into their own templates
-             */
+            //Selector "my-app" lets other components use the template into their own template.
             selector: 'my-app',
-            /**
-             * "navigation-bar" and "front-page" are selectors of other components
-             */
+            //"navigation-bar" and "front-page" are selectors of other components
             template: "\n        <navigation-bar></navigation-bar>\n        <front-page></front-page>\n    "
         }), 
         __metadata('design:paramtypes', [])
