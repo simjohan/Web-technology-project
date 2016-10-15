@@ -1,9 +1,13 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
+
 import { AppComponent }  from './app.component';
 import { NavbarComponent } from "./navbar.component";
 import { NavbarSearchComponent } from "./navbar-search.component";
+import { FrontPageComponent } from "./front-page.component";
+import { MovieComponent } from "./movie.component";
+import { MovieTitleComponent } from "./movie-title.component";
 
 @NgModule({
     imports: [
@@ -13,7 +17,10 @@ import { NavbarSearchComponent } from "./navbar-search.component";
     declarations: [
         AppComponent,
         NavbarComponent,
-        NavbarSearchComponent
+        NavbarSearchComponent,
+        FrontPageComponent,
+        MovieComponent,
+        MovieTitleComponent
     ],
     bootstrap: [ AppComponent ]
 })

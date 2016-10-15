@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
     selector: 'my-app',
     template:`
         <navigation-bar></navigation-bar>
+        <front-page></front-page>
     `
 })
 export class AppComponent {

@@ -14,6 +14,9 @@ var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var navbar_component_1 = require("./navbar.component");
 var navbar_search_component_1 = require("./navbar-search.component");
+var front_page_component_1 = require("./front-page.component");
+var movie_component_1 = require("./movie.component");
+var movie_title_component_1 = require("./movie-title.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -26,7 +29,10 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 navbar_component_1.NavbarComponent,
-                navbar_search_component_1.NavbarSearchComponent
+                navbar_search_component_1.NavbarSearchComponent,
+                front_page_component_1.FrontPageComponent,
+                movie_component_1.MovieComponent,
+                movie_title_component_1.MovieTitleComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

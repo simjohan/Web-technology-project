@@ -15,7 +15,7 @@ var NavbarComponent = (function () {
     NavbarComponent = __decorate([
         core_1.Component({
             selector: "navigation-bar",
-            template: "\n    <div id=\"navbar\">\n        <nav-search></nav-search>\n        <button class=\"button\">heyo</button>\n    </div>\n    "
+            template: "\n    <div id=\"navbar\">\n        <nav-search></nav-search>\n        <button class=\"button\">Log in</button>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], NavbarComponent);
