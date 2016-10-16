@@ -28,7 +28,10 @@ class App extends Component {
     };
 
 
-    // We have the response (json) from the API, and here we choose what to do with it, e.g. save it to states.
+    /**
+     * We have the response (json) from the API, and here we choose what to do with it, e.g. save it to states.
+     * @param response
+     */
     responseFacebook = (response) => {
         //console.log(response);
         this.setState({loggedIn: response.status});
@@ -64,7 +67,7 @@ class App extends Component {
 
     };
 
-    /*
+    /**
         The main render function, which renders:
         - Facebook login: <FacebookLoginHandler/> component
         - Navigation bar: <NavBar/> component
@@ -72,7 +75,8 @@ class App extends Component {
         - Movies: <Movie/> component
      */
     render() {
-        /*let pageLink;
+        /*  CODE THAT MIGHT WILL BE NEEDED LATER, BUT NOT NOW:
+        let pageLink;
         console.log("render status: " + this.state.loggedIn);
         if (this.state.loggedIn === 'unknown'){
             pageLink = (

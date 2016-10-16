@@ -1,8 +1,4 @@
-/**
- * Created by Mats on 13.10.2016.
- */
 import React, { Component} from 'react';
-
 
 export default class UserData extends Component {
 
@@ -14,10 +10,10 @@ export default class UserData extends Component {
 
     };
 
-    /*
-        Renders the userdata with JSX. This is the data we will use in the navbar:
-        - Name of the user (from facebook api)
-        - Picture of the user (from facebook api)
+    /**
+     *   Renders the userdata with JSX. This is the data we will use in the navbar:
+     *   - Name of the user (from facebook api)
+     *   - Picture of the user (from facebook api)
      */
     render() {
         this.state.loggedIn = localStorage.getItem('loggedIn');
