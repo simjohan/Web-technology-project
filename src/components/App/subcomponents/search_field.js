@@ -1,6 +1,3 @@
-/**
- * Created by simenjohansen on 12/10/16.
- */
 import React, { Component } from 'react';
 
 export default class SearchField extends Component {

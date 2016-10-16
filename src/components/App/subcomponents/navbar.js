@@ -1,6 +1,3 @@
-/**
- * Created by simenjohansen on 12/10/16.
- */
 import React, { Component } from 'react';
 import SearchField from "./search_field"
 import Button from "./navbar_button"

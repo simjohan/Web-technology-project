@@ -9,8 +9,8 @@ class FacebookLoginHandler extends React.Component {
         loginStatus: ""
     };
 
-    /*
-        Sets the type of the props to be used
+    /**
+     * Sets the type of the props to be used
      */
     static propTypes = {
         callback: PropTypes.func.isRequired,
@@ -32,8 +32,8 @@ class FacebookLoginHandler extends React.Component {
         loggedInStatus: PropTypes.string,
     };
 
-    /*
-        Default props to be used with JSX, e.g. <button>{textButton}</button>
+    /**
+     * Default props to be used with JSX, e.g. <button>{textButton}</button>
      */
     static defaultProps = {
         textButton: 'Login with Facebook',
@@ -74,17 +74,19 @@ class FacebookLoginHandler extends React.Component {
                 xfbml,
                 cookie,
             });
-            // Now that we've initialized the JavaScript SDK, we call
-            // FB.getLoginStatus().  This function gets the state of the
-            // person visiting this page and can return one of three states to
-            // the callback you provide.  They can be:
-            //
-            // 1. Logged into your app ('connected')
-            // 2. Logged into Facebook, but not your app ('not_authorized')
-            // 3. Not logged into Facebook and can't tell if they are logged into
-            //    your app or not.
-            //
-            // These three cases are handled in the callback function.
+
+            /** Now that we've initialized the JavaScript SDK, we call
+             *  FB.getLoginStatus().  This function gets the state of the
+             * person visiting this page and can return one of three states to
+             * the callback you provide.  They can be:
+             *
+             * 1. Logged into your app ('connected')
+             * 2. Logged into Facebook, but not your app ('not_authorized')
+             * 3. Not logged into Facebook and can't tell if they are logged into
+             *    your app or not.
+             *
+             * These three cases are handled in the callback function.
+             */
 
             if (autoLoad || window.location.search.includes('facebookdirect')) {
                 window.FB.getLoginStatus(this.checkLoginState);
@@ -102,7 +104,10 @@ class FacebookLoginHandler extends React.Component {
         })(document, 'script', 'facebook-jssdk');
     }
 
-    // Check the login state of the facebook api session, and sets the response callback from the api
+    /**
+     * Check the login state of the facebook api session, and sets the response callback from the api
+     * @param response
+     */
     checkLoginState = (response) => {
         if (response.authResponse) {
             this.responseApi(response.authResponse);
@@ -119,10 +124,10 @@ class FacebookLoginHandler extends React.Component {
         }
     };
 
-    /*
-        This is the call to and the response from the facebook api.
-        Uses the fields in props to call the api:
-        A typical facebook login api call is fb/me?fields=email,picture,friends
+    /**
+     *   This is the call to and the response from the facebook api.
+     *   Uses the fields in props to call the api:
+     *   A typical facebook login api call is fb/me?fields=email,picture,friends
      */
     responseApi = (authResponse) => {
         window.FB.api('/me', {fields: this.props.fields}, (me) => {
@@ -131,14 +136,17 @@ class FacebookLoginHandler extends React.Component {
         });
     };
 
-    // Handles the click function of the login button
+    /**
+     * Handles the click function of the login button
+     */
     click = () => {
         const {scope, appId, onClick, reAuthenticate} = this.props;
 
         if (typeof onClick === 'function') {
             onClick();
         }
-        /*
+
+        /* CODE THAT MIGHT WILL BE NEEDED LATER, BUT NOT NOW:
          let isMobile = false;
 
          try {
@@ -157,7 +165,7 @@ class FacebookLoginHandler extends React.Component {
         if (reAuthenticate) {
             params.auth_type = 'reauthenticate';
         }
-        /*
+        /* CODE THAT MIGHT WILL BE NEEDED LATER, BUT NOT NOW:
          if (isMobile) {
          window.location.href = `https://www.facebook.com/dialog/oauth?${objectToParams(params)}`;
          } else {
@@ -168,7 +176,9 @@ class FacebookLoginHandler extends React.Component {
     };
 
 
-    // Handles the click function of the logout button
+    /**
+     * Handles the click function of the logout button
+     */
     clickout = () => {
         window.FB.logout();
         window.location.href = "http://localhost:3000";
@@ -179,7 +189,10 @@ class FacebookLoginHandler extends React.Component {
     };
 
 
-    // The react render function which renders the login/logout buttons and returns them to the component call
+    /**
+     * The react render function which renders the login/logout buttons and returns them to the component call
+     * @returns {XML}
+     */
     render(){
         const {logoutButton, loginButton} = this.props;
         let theButton;
