@@ -4,8 +4,6 @@
 import React, { Component } from 'react';
 import SearchField from "./search_field"
 import Button from "./navbar_button"
-import UserData from './userdata';
-
 
 export default class NavBar extends Component {
     render() {

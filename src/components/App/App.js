@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-import NavBar from './navbar'
-import Title from "./components/app/Title"
-import Movie from "./components/app/Movie"
-import FacebookLoginHandler from './facebookhandler';
+import './App.css';
+import NavBar from './subcomponents/navbar'
+import Home from "./../Home/Home"
+import FacebookLoginHandler from './../../facebookhandler';
 
 class App extends Component {
 
@@ -100,33 +98,8 @@ class App extends Component {
                     callback={this.responseFacebook}
                     loggedInStatus={this.state.loggedIn}
                 />
-            <NavBar />
-            <div className="newest-reviews">
-              <Title title="Nyeste Anmeldelser"/>
-              <ul className="movie-container">
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-              </ul>
-            </div>
-
-            <div className="newly-visited">
-              <Title title="Nylig Besøkte"/>
-              <ul className="movie-container">
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-                <Movie />
-              </ul>
-            </div>
-
+               <NavBar />
+               <Home />
             </div>
 
         )
