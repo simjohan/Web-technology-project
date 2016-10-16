@@ -18,6 +18,6 @@ import { Component } from '@angular/core';
  */
 export class FrontPageComponent {
     //Add variables with the following content. These variables can now be used by for example the template
-    newlyReviews = "Nyeste Anmeldelser";
-    newlyVisited = "Nylig Besøkte";
+    newlyReviews = "Newly Reviewed";
+    newlyVisited = "Newly Visisted";
 }
