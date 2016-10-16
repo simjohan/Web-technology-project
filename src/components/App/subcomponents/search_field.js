@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/*
+Creates the search field. This will be used to search for movies or users.
+ */
+
 export default class SearchField extends Component {
 
     constructor(props) {
@@ -13,6 +17,10 @@ export default class SearchField extends Component {
 
     }
 
+    /*
+    Event handler for changes in the inputfield.
+    Current problem: is "one" behind, meaning the input is printet one char after it should. This is because the call is not async. Will be fixed.
+     */
     handleChange(event) {
         var value = event.target.value;
         console.log(this.state.searchValue)
