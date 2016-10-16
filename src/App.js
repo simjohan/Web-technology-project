@@ -8,21 +8,8 @@ import Movie from "./components/app/Movie"
 import FacebookLoginHandler from './facebookhandler';
 
 class App extends Component {
-    /*  render() {
-     <FacebookLoginHandler />
-     return (
-     <div className="App">
-     <div className="App-header">
-     <img src={logo} className="App-logo" alt="logo" />
-     <h2>Welcome to React</h2>
-     </div>
-     <p className="App-intro">
-     To get started, edit <code>src/App.js</code> and save to reload.
-     </p>
-     </div>
-     );
-     }
-     }*/
+
+    // Default props to be used in other functions
     static defaultProps = {
         notLoggedIn: "Not logged in"
     };
@@ -30,6 +17,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
+        // The state of this component
         this.state = {
             name: "",
             imgurl: "",
@@ -41,6 +29,8 @@ class App extends Component {
         }
     };
 
+
+    // We have the response (json) from the API, and here we choose what to do with it, e.g. save it to states.
     responseFacebook = (response) => {
         //console.log(response);
         this.setState({loggedIn: response.status});
@@ -76,8 +66,13 @@ class App extends Component {
 
     };
 
-
-
+    /*
+        The main render function, which renders:
+        - Facebook login: <FacebookLoginHandler/> component
+        - Navigation bar: <NavBar/> component
+        - Titles: <Title/> component
+        - Movies: <Movie/> component
+     */
     render() {
         /*let pageLink;
         console.log("render status: " + this.state.loggedIn);

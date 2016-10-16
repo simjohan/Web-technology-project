@@ -9,6 +9,9 @@ class FacebookLoginHandler extends React.Component {
         loginStatus: ""
     };
 
+    /*
+        Sets the type of the props to be used
+     */
     static propTypes = {
         callback: PropTypes.func.isRequired,
         appId: PropTypes.string.isRequired,
@@ -29,6 +32,9 @@ class FacebookLoginHandler extends React.Component {
         loggedInStatus: PropTypes.string,
     };
 
+    /*
+        Default props to be used with JSX, e.g. <button>{textButton}</button>
+     */
     static defaultProps = {
         textButton: 'Login with Facebook',
         loginButton: 'Login with Facebook',
@@ -96,6 +102,7 @@ class FacebookLoginHandler extends React.Component {
         })(document, 'script', 'facebook-jssdk');
     }
 
+    // Check the login state of the facebook api session, and sets the response callback from the api
     checkLoginState = (response) => {
         if (response.authResponse) {
             this.responseApi(response.authResponse);
@@ -112,6 +119,11 @@ class FacebookLoginHandler extends React.Component {
         }
     };
 
+    /*
+        This is the call to and the response from the facebook api.
+        Uses the fields in props to call the api:
+        A typical facebook login api call is fb/me?fields=email,picture,friends
+     */
     responseApi = (authResponse) => {
         window.FB.api('/me', {fields: this.props.fields}, (me) => {
             Object.assign(me, authResponse);
@@ -119,6 +131,7 @@ class FacebookLoginHandler extends React.Component {
         });
     };
 
+    // Handles the click function of the login button
     click = () => {
         const {scope, appId, onClick, reAuthenticate} = this.props;
 
@@ -154,6 +167,8 @@ class FacebookLoginHandler extends React.Component {
         window.FB.login(this.checkLoginState, {scope, auth_type: params.auth_type});
     };
 
+
+    // Handles the click function of the logout button
     clickout = () => {
         window.FB.logout();
         window.location.href = "http://localhost:3000";
@@ -163,6 +178,8 @@ class FacebookLoginHandler extends React.Component {
         return this.state.loginStatus;
     };
 
+
+    // The react render function which renders the login/logout buttons and returns them to the component call
     render(){
         const {logoutButton, loginButton} = this.props;
         let theButton;
