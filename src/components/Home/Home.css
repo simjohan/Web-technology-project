@@ -1,4 +1,6 @@
-
+/*
+   CSS file for the home component
+*/
 .newest-reviews,
 .newly-visited {
   margin: 10px;
@@ -14,7 +16,6 @@
   align-items: center;
 
 }
-
 
 .movie-item {
   display: flex;

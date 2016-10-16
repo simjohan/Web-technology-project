@@ -9,7 +9,8 @@ export default class Movie extends Component {
           Title
         </div>
         <div className="movie-item-poster">
-          <img src={'https://movies.qantaspoints.com/images/website-assets/placeholder-movie.jpg'} alt="movie poster placeholder" />
+            { /* Placeholder image for movies */ }
+            <img src={'https://movies.qantaspoints.com/images/website-assets/placeholder-movie.jpg'} alt="movie poster placeholder" />
         </div>
       </li>
     );

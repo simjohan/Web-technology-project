@@ -6,7 +6,6 @@ import "./Home.css";
 export default class Home extends Component {
     render() {
         return (
-
             <div className="home">
                { /* Render the imsported components */ }
                <Newest_reviews />
