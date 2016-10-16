@@ -12,7 +12,6 @@ export default class NavBar extends Component {
         return (
             <div id="navbar">
                 <SearchField />
-                <UserData/>
                 <Button btn_text="Login" />
             </div>
         );
