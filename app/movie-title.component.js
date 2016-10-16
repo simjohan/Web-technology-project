@@ -16,7 +16,7 @@ var core_1 = require('@angular/core');
 var MovieTitleComponent = (function () {
     function MovieTitleComponent() {
         //@Input() lets other components send in a titleValue, which this component inputs here. This value can be used in the template.
-        this.titleValue = "Ingen tittel er gitt :O";
+        this.titleValue = "No title given :O";
     }
     __decorate([
         core_1.Input(), 

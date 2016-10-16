@@ -16,8 +16,8 @@ var core_1 = require('@angular/core');
 var FrontPageComponent = (function () {
     function FrontPageComponent() {
         //Add variables with the following content. These variables can now be used by for example the template
-        this.newlyReviews = "Nyeste Anmeldelser";
-        this.newlyVisited = "Nylig Besøkte";
+        this.newlyReviews = "Newly Reviewed";
+        this.newlyVisited = "Newly Visisted";
     }
     FrontPageComponent = __decorate([
         core_1.Component({
