@@ -11,6 +11,7 @@ import { NavbarSearchComponent } from "./navbar-search.component";
 import { FrontPageComponent } from "./front-page.component";
 import { MovieComponent } from "./movie.component";
 import { MovieTitleComponent } from "./movie-title.component";
+import { FacebookComponent } from './fb.component';
 
 /**
  * @NgModule contains the list of external modules used by the application.
@@ -29,7 +30,8 @@ import { MovieTitleComponent } from "./movie-title.component";
         NavbarSearchComponent,
         FrontPageComponent,
         MovieComponent,
-        MovieTitleComponent
+        MovieTitleComponent,
+        FacebookComponent
     ],
     bootstrap: [ AppComponent ]
 })

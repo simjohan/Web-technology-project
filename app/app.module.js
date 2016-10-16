@@ -20,6 +20,7 @@ var navbar_search_component_1 = require("./navbar-search.component");
 var front_page_component_1 = require("./front-page.component");
 var movie_component_1 = require("./movie.component");
 var movie_title_component_1 = require("./movie-title.component");
+var fb_component_1 = require('./fb.component');
 /**
  * @NgModule contains the list of external modules used by the application.
  * Imports: what kind of modules are imported from the angular library
@@ -41,7 +42,8 @@ var AppModule = (function () {
                 navbar_search_component_1.NavbarSearchComponent,
                 front_page_component_1.FrontPageComponent,
                 movie_component_1.MovieComponent,
-                movie_title_component_1.MovieTitleComponent
+                movie_title_component_1.MovieTitleComponent,
+                fb_component_1.FacebookComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
