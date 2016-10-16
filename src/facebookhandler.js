@@ -1,8 +1,17 @@
-import React, { PropTypes } from 'react';
+// Modified from https://github.com/keppelen/react-facebook-login !
+
+import React, { Component, PropTypes } from 'react';
 
 
 class FacebookLoginHandler extends React.Component {
 
+    state = {
+        loginStatus: ""
+    };
+
+    /*
+        Sets the type of the props to be used
+     */
     static propTypes = {
         callback: PropTypes.func.isRequired,
         appId: PropTypes.string.isRequired,
@@ -20,10 +29,16 @@ class FacebookLoginHandler extends React.Component {
         icon: PropTypes.any,
         language: PropTypes.string,
         onClick: PropTypes.func,
+        loggedInStatus: PropTypes.string,
     };
 
+    /*
+        Default props to be used with JSX, e.g. <button>{textButton}</button>
+     */
     static defaultProps = {
         textButton: 'Login with Facebook',
+        loginButton: 'Login with Facebook',
+        logoutButton: 'Logout',
         typeButton: 'button',
         scope: 'public_profile',
         xfbml: false,
@@ -34,11 +49,17 @@ class FacebookLoginHandler extends React.Component {
         cssClass: 'kep-login-facebook',
         version: 'v2.5',
         language: 'en_US',
+        loggedInStatus: 'unknown'
     };
 
 
     componentDidMount() {
-        const {appId, xfbml, cookie, version, autoLoad, language} = this.props;
+        const {appId, xfbml, cookie, version, autoLoad, language, loggedInStatus} = this.props;
+
+        this.state = {
+            loginStatus: this.props.loggedInStatus
+        };
+
         let root = document.getElementById('fb-root');
 
         if (!root) {
@@ -48,7 +69,7 @@ class FacebookLoginHandler extends React.Component {
         }
         window.fbAsyncInit = () => {
             window.FB.init({
-                version: `v${version}`,
+                version: `${version}`,
                 appId,
                 xfbml,
                 cookie,
@@ -81,16 +102,28 @@ class FacebookLoginHandler extends React.Component {
         })(document, 'script', 'facebook-jssdk');
     }
 
+    // Check the login state of the facebook api session, and sets the response callback from the api
     checkLoginState = (response) => {
         if (response.authResponse) {
             this.responseApi(response.authResponse);
+            this.setState({
+                loginStatus: 'ok'
+            })
         } else {
             if (this.props.callback) {
                 this.props.callback({status: response.status});
             }
+            this.setState({
+                loginStatus: 'unknown'
+            })
         }
     };
 
+    /*
+        This is the call to and the response from the facebook api.
+        Uses the fields in props to call the api:
+        A typical facebook login api call is fb/me?fields=email,picture,friends
+     */
     responseApi = (authResponse) => {
         window.FB.api('/me', {fields: this.props.fields}, (me) => {
             Object.assign(me, authResponse);
@@ -98,6 +131,7 @@ class FacebookLoginHandler extends React.Component {
         });
     };
 
+    // Handles the click function of the login button
     click = () => {
         const {scope, appId, onClick, reAuthenticate} = this.props;
 
@@ -133,17 +167,43 @@ class FacebookLoginHandler extends React.Component {
         window.FB.login(this.checkLoginState, {scope, auth_type: params.auth_type});
     };
 
-    render(){
-        const {icon, textButton} = this.props;
-        const isIconString = typeof icon === 'string';
 
-        return (
-            <span>
+    // Handles the click function of the logout button
+    clickout = () => {
+        window.FB.logout();
+        window.location.href = "http://localhost:3000";
+    };
+
+    getLoggedInStatus = () => {
+        return this.state.loginStatus;
+    };
+
+
+    // The react render function which renders the login/logout buttons and returns them to the component call
+    render(){
+        const {logoutButton, loginButton} = this.props;
+        let theButton;
+        if (this.getLoggedInStatus() === 'unknown'){
+            theButton = (
                 <button
                     className="fb-login-button"
                     onClick={this.click}
-                >{textButton}
+                >{loginButton}
                 </button>
+            )
+        }
+        else {
+            theButton = (
+                <button
+                    className="fb-logout-button"
+                    onClick={this.clickout}
+                >{logoutButton}
+                </button>
+            )
+        }
+        return (
+            <span>
+                {theButton}
             </span>
         );
     }
