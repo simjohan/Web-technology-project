@@ -11,7 +11,7 @@ import { NavbarSearchComponent } from "./navbar/navbar-search.component";
 import { FrontPageComponent } from "./home/front-page.component";
 import { MovieComponent } from "./movie/movie.component";
 import { MovieTitleComponent } from "./movie/movie-title.component";
-import { FacebookComponent } from './fb.component';
+import { FacebookComponent } from './navbar/fb.component';
 
 /**
  * @NgModule contains the list of external modules used by the application.
