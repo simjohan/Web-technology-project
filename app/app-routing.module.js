@@ -9,19 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var NavbarComponent = (function () {
-    function NavbarComponent() {
+var router_1 = require('@angular/router');
+var front_page_component_1 = require("./home/front-page.component");
+var movie_page_component_1 = require("./movie/movie-page.component");
+var routes = [
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', component: front_page_component_1.FrontPageComponent },
+    { path: 'movie', component: movie_page_component_1.MoviePageComponent } //movie/:id
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
     }
-    NavbarComponent = __decorate([
-        core_1.Component({
-            //Selector "navigation-bar" lets other components use the template into their own template.
-            selector: "navigation-bar",
-            //"nav-search" is a selector of another component.
-            template: "\n    <div id=\"navbar\">\n        \n        \n        <nav-search></nav-search>\n        \n        <a routerLink=\"/home\">Home</a>\n        <a routerLink=\"/movie\">Movies</a>\n        \n        \n        <facebook-button></facebook-button>\n    </div>\n    "
+    AppRoutingModule = __decorate([
+        core_1.NgModule({
+            imports: [router_1.RouterModule.forRoot(routes)],
+            exports: [router_1.RouterModule]
         }), 
         __metadata('design:paramtypes', [])
-    ], NavbarComponent);
-    return NavbarComponent;
+    ], AppRoutingModule);
+    return AppRoutingModule;
 }());
-exports.NavbarComponent = NavbarComponent;
-//# sourceMappingURL=navbar.component.js.map
+exports.AppRoutingModule = AppRoutingModule;
+//# sourceMappingURL=app-routing.module.js.map

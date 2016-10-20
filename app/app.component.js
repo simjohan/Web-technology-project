@@ -21,7 +21,7 @@ var AppComponent = (function () {
             //Selector "my-app" lets other components use the template into their own template.
             selector: 'my-app',
             //"navigation-bar" and "front-page" are selectors of other components
-            template: "\n        <navigation-bar></navigation-bar>\n        <front-page></front-page>\n    "
+            template: "\n        \n        <navigation-bar></navigation-bar>\n        <router-outlet></router-outlet>\n       \n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

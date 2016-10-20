@@ -1,8 +1,6 @@
-Her var tanken bak koden å bli kjent med Angular, og også her lage noe som ikke var for komplisert,
-slik at alle gruppemedlemmene skulle kunne følge med. Det er filene “package.json”, “tsconfig.json”,
-“typings.json” og “systemjs.config.js” som bestemmer hvordan applikasjonen konfigureres, blant annet
-hvor den skal se etter filer og hvordan filene skal kompileres. Når man åpner applikasjonen i en browser
-vil browseren først se etter “index.html”, som så igjen vil kjøre “app.module.ts”. Dette er hovedfilen i
+Det er filene “package.json”, “tsconfig.json”, “typings.json” og “systemjs.config.js” som bestemmer hvordan
+applikasjonen konfigureres, blant annet hvor den skal se etter filer og hvordan filene skal kompileres. Når
+man åpner applikasjonen i en browser vil browseren først se etter “index.html”, som så igjen vil kjøre “app.module.ts”. Dette er hovedfilen i
 vår applikasjon og det er denne som starter opp resten av applikasjonen, ved å blant annet gi tilgangene
 videre inn til de andre klassene.
 

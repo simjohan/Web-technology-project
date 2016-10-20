@@ -9,10 +9,19 @@ import { Component } from '@angular/core';
     selector: 'my-app',
     //"navigation-bar" and "front-page" are selectors of other components
     template:`
+        
         <navigation-bar></navigation-bar>
-        <front-page></front-page>
+        <router-outlet></router-outlet>
+       
     `
 })
+
+//<a routerLink="/movie">Movies</a> <router-outlet></router-outlet>
+
+/*
+ <navigation-bar></navigation-bar>
+ <front-page></front-page>
+ */
 
 /**
  * Exporting the class AppComponent, so other components have access to it
