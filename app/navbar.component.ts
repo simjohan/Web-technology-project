@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     template:`
     <div id="navbar">
         <nav-search></nav-search>
-        <facebook-button></facebook-button>
+        <facebook-component></facebook-component>
     </div>
     `
 })

@@ -87,7 +87,11 @@ body {
 }
 
 #navbar .item {
+}
 
+.facebook-item {
+    margin-left: auto;
+    float: right;
 }
 
 #navbar nav ul li a:hover{
