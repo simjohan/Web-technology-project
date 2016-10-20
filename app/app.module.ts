@@ -6,12 +6,12 @@ import { FormsModule }   from '@angular/forms';
  * Imports the components we need to show the application
  */
 import { AppComponent }  from './app.component';
-import { NavbarComponent } from "./navbar.component";
-import { NavbarSearchComponent } from "./navbar-search.component";
-import { FrontPageComponent } from "./front-page.component";
-import { MovieComponent } from "./movie.component";
-import { MovieTitleComponent } from "./movie-title.component";
-import { FacebookComponent } from './fb.component';
+import { NavbarComponent } from "./navbar/navbar.component";
+import { NavbarSearchComponent } from "./navbar/navbar-search.component";
+import { FrontPageComponent } from "./home/front-page.component";
+import { MovieComponent } from "./movie/movie.component";
+import { MovieTitleComponent } from "./movie/movie-title.component";
+import { FacebookComponent } from './navbar/fb.component';
 
 /**
  * @NgModule contains the list of external modules used by the application.

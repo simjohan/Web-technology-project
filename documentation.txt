@@ -1,0 +1,32 @@
+Her var tanken bak koden å bli kjent med Angular, og også her lage noe som ikke var for komplisert,
+slik at alle gruppemedlemmene skulle kunne følge med. Det er filene “package.json”, “tsconfig.json”,
+“typings.json” og “systemjs.config.js” som bestemmer hvordan applikasjonen konfigureres, blant annet
+hvor den skal se etter filer og hvordan filene skal kompileres. Når man åpner applikasjonen i en browser
+vil browseren først se etter “index.html”, som så igjen vil kjøre “app.module.ts”. Dette er hovedfilen i
+vår applikasjon og det er denne som starter opp resten av applikasjonen, ved å blant annet gi tilgangene
+videre inn til de andre klassene.
+
+I Angular 2.0 finnes det navnekonvensjoner som gjør det enkelt å holde styr på hva en gitt fil skal
+brukes til. Filene som har filnavn som inneholder “.component.” er komponenter som vi til slutt skal kunne
+se, eller bruke i den ferdige applikasjonen. Filene som har filnavn som inneholder “.module.” er filer som
+har ansvar for å definere hvilke moduler som er brukt av for eksempel applikasjonen som helhet. Filen
+“app.module.ts” inneholder en oversikt over hvilke komponenter og andre moduler som er en del av hele applikasjonen
+og som den da trenger tilgang til.
+
+Med utgangspunkt i dette kan vi se på for eksempel “front-page.component”-filene. HTML-filen blir brukt inne
+i ts-filen, men blir liggende utenfor i en egen fil for å gjøre koden mer ryddig og oversiktlig. Inne i ts-filen
+blir det definert variabler, selector og hvilken fil HTML-delen av komponenten ligger i. For mer detaljer om hver
+av “.component.”-filene, se kommentarene som ligger i den filen du ønsker mer informasjon om.
+
+CSS kan også legges inn til hver komponent, men foreløpig passer det best med den overordnede “style.css”-filen,
+som blir hentet inn allerede i “index.html” på samme måte som når man skriver vanlig html-kode. Dersom vi hadde
+villet hatt en spesiell css-fil inn i en gitt komponent, kunne vi brukt “styleUrls” på samme måte som vi bruker
+“templateUrl” i “.component.ts”-filene.
+
+Typings-mappen inneholder TypeScript-definisjoner som brukes for at kompilatoren skal gjenkjenne funksjoner.
+FacebookComponent er en komponent som håndterer kall mot Facebook sitt API. Den har en template med login -og
+logout-knapper som settes inn i navbar-komponenten. Knappen har en (click)-funksjonalitet som kaller på login
+og logout, og henter brukerdata fra API-et. Det som hentes foreløpig er navn, epost og bilde-url. Det som mangler
+her er å få lagret dataene og satt de i komponentene slik at de vises på nettsiden. Det er i tillegg lagt til en
+ekstra typings-fil(typings/globals/fbsdk.d.ts) for å kunne bruke FB-definisjoner i TypeScript.
+
