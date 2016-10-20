@@ -1,7 +1,7 @@
 /**
  * Created by Mats on 16.10.2016.
  */
-/// <reference path="../typings/globals/fbsdk.d.ts" />
+/// <reference path="../../typings/globals/fbsdk.d.ts" />
 
 import { Component, OnInit } from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
