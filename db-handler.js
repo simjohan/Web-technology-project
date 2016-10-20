@@ -37,6 +37,7 @@ function getUsersFromDb(query) {
     db.close();
 }
 
+
 function getUser(useranme) {
 
 }
