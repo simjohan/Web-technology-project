@@ -17,7 +17,7 @@ var NavbarComponent = (function () {
             //Selector "navigation-bar" lets other components use the template into their own template.
             selector: "navigation-bar",
             //"nav-search" is a selector of another component.
-            template: "\n    <div id=\"navbar\">\n        <nav-search></nav-search>\n        <facebook-button></facebook-button>\n    </div>\n    "
+            template: "\n    <div id=\"navbar\">\n        \n        \n        <nav-search></nav-search>\n        \n        <a routerLink=\"/home\">Home</a>\n        <a routerLink=\"/movie\">Movies</a>\n        \n        \n        <facebook-button></facebook-button>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], NavbarComponent);

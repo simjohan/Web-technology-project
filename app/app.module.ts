@@ -1,6 +1,8 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
+import { RouterModule }     from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 /**
  * Imports the components we need to show the application
@@ -11,7 +13,9 @@ import { NavbarSearchComponent } from "./navbar/navbar-search.component";
 import { FrontPageComponent } from "./home/front-page.component";
 import { MovieComponent } from "./movie/movie.component";
 import { MovieTitleComponent } from "./movie/movie-title.component";
+import { MoviePageComponent }   from "./movie/movie-page.component"
 import { FacebookComponent } from './navbar/fb.component';
+
 
 /**
  * @NgModule contains the list of external modules used by the application.
@@ -22,7 +26,8 @@ import { FacebookComponent } from './navbar/fb.component';
 @NgModule({
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,
@@ -31,7 +36,8 @@ import { FacebookComponent } from './navbar/fb.component';
         FrontPageComponent,
         MovieComponent,
         MovieTitleComponent,
-        FacebookComponent
+        FacebookComponent,
+        MoviePageComponent
     ],
     bootstrap: [ AppComponent ]
 })
