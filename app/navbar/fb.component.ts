@@ -5,6 +5,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
+var DBHandler = require('../../db-handler');
 
 @Component ({
     moduleId: module.id,
@@ -97,6 +98,7 @@ export class FacebookComponent implements OnInit{
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email',me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
+                DBHandler.inserUser(10, me.name, me.email, me.picture.data.url);
             });
 
         } else if (response.status === 'not_authorized') {

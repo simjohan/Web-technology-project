@@ -13,6 +13,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var DBHandler = require('../../db-handler');
 var FacebookComponent = (function () {
     /**
      * Constructor code from developers.facebook.com
@@ -76,6 +77,7 @@ var FacebookComponent = (function () {
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email', me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
+                DBHandler.inserUser(10, me.name, me.email, me.picture.data.url);
             });
         }
         else if (response.status === 'not_authorized') {
