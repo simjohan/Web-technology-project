@@ -22,7 +22,7 @@ var front_page_component_1 = require("./home/front-page.component");
 var movie_component_1 = require("./movie/movie.component");
 var movie_title_component_1 = require("./movie/movie-title.component");
 var movie_page_component_1 = require("./movie/movie-page.component");
-var movie_review_component_1 = require("./movie/movie-review.component");
+var movie_review_component_1 = require('./movie/movie-review.component');
 var fb_component_1 = require('./navbar/fb.component');
 var profile_page_component_1 = require('./profile/profile-page.component');
 /**
@@ -39,11 +39,8 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                HttpModule,
                 forms_1.FormsModule,
                 app_routing_module_1.AppRoutingModule
-                forms_1.FormsModule,
-                http_1.HttpModule
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -52,9 +49,9 @@ var AppModule = (function () {
                 front_page_component_1.FrontPageComponent,
                 movie_component_1.MovieComponent,
                 movie_title_component_1.MovieTitleComponent,
-                fb_component_1.FacebookComponent,
                 movie_page_component_1.MoviePageComponent,
                 movie_review_component_1.MovieReviewComponent,
+                fb_component_1.FacebookComponent,
                 profile_page_component_1.ProfilePageComponent
             ],
             bootstrap: [app_component_1.AppComponent]

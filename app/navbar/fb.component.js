@@ -19,13 +19,9 @@ var FacebookComponent = (function () {
      */
     function FacebookComponent() {
         var _this = this;
-        this.fb_id = "n/a";
-        this.fb_name = "HEIDU";
-        this.fb_email = "n/a";
-        this.fb_imgUrl = "n/a";
         FB.init({
             appId: '1623658607931496',
-            cookie: false,
+            cookie: true,
             // the session
             xfbml: true,
             version: 'v2.5' // use graph api version 2.5
@@ -48,6 +44,9 @@ var FacebookComponent = (function () {
      */
     FacebookComponent.prototype.facebookLogin = function () {
         FB.login(this.statusChangeCallback, { scope: 'public_profile, email' });
+        this.fb_name = localStorage.getItem('name');
+        this.fb_email = localStorage.getItem('email');
+        this.fb_imgurl = localStorage.getItem('imgurl');
     };
     /**
      * Handles the logout button click
@@ -55,6 +54,7 @@ var FacebookComponent = (function () {
     FacebookComponent.prototype.facebookLogout = function () {
         console.log("in logout");
         FB.logout(this.statusChangeCallback);
+        localStorage.clear();
     };
     /**
      * statusChangeCallback is the standard callback function from developers.facebook.com
@@ -72,8 +72,11 @@ var FacebookComponent = (function () {
                 console.log("RESPONSE.NAME: " + me.name);
                 console.log("RESPONSE.EMAIL: " + me.email);
                 console.log("RESPONSE.IMAGEURL: " + me.picture.data.url);
+                console.log("friends: " + me.friends);
+                localStorage.setItem('name', me.name);
+                localStorage.setItem('email', me.email);
+                localStorage.setItem('imgurl', me.picture.data.url);
             });
-            console.log("fb_name: " + this.fb_name);
         }
         else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
@@ -95,8 +98,8 @@ var FacebookComponent = (function () {
     FacebookComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: "facebook-button",
-            template: "\n                <div>\n                    <button class=\"button\" (click)=\"facebookLogin()\">\n                        Sign in with Facebook\n                    </button>\n                    <button class=\"button\" (click)=\"facebookLogout()\">\n                        Logout\n                    </button>\n                    \n                </div>\n                \n            "
+            selector: "facebook-component",
+            template: "\n                <div class=\"facebook-item\">\n                    <button class=\"button\" (click)=\"facebookLogin()\">\n                        Sign in with Facebook\n                    </button>\n                    <button class=\"button\" (click)=\"facebookLogout()\">\n                        Logout\n                    </button>\n                    <span><img src=\"{{fb_imgurl}}\"/> {{fb_name}}, {{fb_email}}</span>\n                </div>\n                \n            "
         }), 
         __metadata('design:paramtypes', [])
     ], FacebookComponent);

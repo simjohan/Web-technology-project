@@ -13,9 +13,9 @@ import { FrontPageComponent } from "./home/front-page.component";
 import { MovieComponent } from "./movie/movie.component";
 import { MovieTitleComponent } from "./movie/movie-title.component";
 import { MoviePageComponent }   from "./movie/movie-page.component";
-import { MovieReviewComponent } from "./movie/movie-review.component";
+import { MovieReviewComponent } from './movie/movie-review.component';
 import { FacebookComponent } from './navbar/fb.component';
-import {ProfilePageComponent} from './profile/profile-page.component';
+import { ProfilePageComponent } from './profile/profile-page.component';
 
 
 /**
@@ -28,7 +28,6 @@ import {ProfilePageComponent} from './profile/profile-page.component';
     imports: [
         BrowserModule,
         FormsModule,
-        HttpModule
         FormsModule,
         AppRoutingModule
     ],
@@ -39,9 +38,9 @@ import {ProfilePageComponent} from './profile/profile-page.component';
         FrontPageComponent,
         MovieComponent,
         MovieTitleComponent,
-        FacebookComponent,
         MoviePageComponent,
         MovieReviewComponent,
+        FacebookComponent,
         ProfilePageComponent
     ],
     bootstrap: [ AppComponent ]
