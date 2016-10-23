@@ -13,7 +13,7 @@ function dbCallback(callback) {
     console.log(callback);
 }
 
-function getUsersFromDb2(query) {
+function getUsersFromDb(query) {
     var userList = {};
     var stmt = db.prepare('SELECT * FROM Users WHERE name LIKE ?');
     stmt.each('%' + query + '%',
