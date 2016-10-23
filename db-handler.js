@@ -9,8 +9,8 @@ var db = new sqlite3.Database(file);
  * TODO: Node is asynchronous, so the data is not available to add to a list like this. FIX
  */
 
-function getUsersCallback(users) {
-    console.log(users);
+function dbCallback(callback) {
+    console.log(callback);
 }
 
 function getUsersFromDb2(query) {
@@ -25,7 +25,7 @@ function getUsersFromDb2(query) {
 
         //callback called when the operation is completed (async call)
         function() {
-            getUsersCallback(userList)
+            dbCallback(userList)
         }
     );
     stmt.finalize();
@@ -33,6 +33,23 @@ function getUsersFromDb2(query) {
 }
 
 
-function getUser(useranme) {
+function getUserById(id) {
+    var user = {};
+    var stmt = db.prepare('SELECT * FROM Users WHERE id = ?');
+    stmt.each(id,
+        function(err, row) {
+            console.log(err);
+            user[row.id] = {"name": row.name, "email": row.email, "imageUrl": row.imageUrl};
+            console.log("User: " + row.id + " - " + row.name + " - " + row.email + " - " + row.imageUrl);
+        },
 
+        //callback called when the operation is completed (async call)
+        function() {
+            dbCallback(user)
+        }
+    );
+    stmt.finalize();
+    db.close();
 }
+
+getUserById(4);
