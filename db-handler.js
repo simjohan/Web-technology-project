@@ -71,3 +71,24 @@ function updateUser(id, attr, value) {
         console.log('Not a valid attribute to change!');
     }
 }
+
+function getMovieById(id) {
+    var movieList = {};
+    var stmt = db.prepare('SELECT * FROM Movies WHERE id = ?');
+    stmt.each(id,
+        function(err, row) {
+            console.log(err);
+            movieList[row.id] = {"name": row.title, "viewCount": row.viewCount};
+            console.log("Movie: " + row.id + " - " + row.title + " - " + row.viewCount);
+        },
+
+        //callback called when the operation is completed (async call)
+        function() {
+            dbCallback(movieList)
+        }
+    );
+    stmt.finalize();
+    db.close();
+}
+
+getMovieById('imdbtt2');
