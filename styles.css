@@ -20,7 +20,6 @@ body {
 
 }
 
-
 .movie-item {
     display: flex;
     flex-flow: column;
@@ -60,4 +59,12 @@ body {
 
 .hei {
 
+}
+
+.review {
+    background-color: lightgrey;
+}
+
+.followers{
+    background-color: #dddddd;
 }

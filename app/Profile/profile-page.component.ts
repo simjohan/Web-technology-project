@@ -18,5 +18,5 @@ import { Component, OnInit } from '@angular/core';
  */
 export class ProfilePageComponent {
     userName = "John Snow";
-
+    reviewTitle = "Good Movie";
 }

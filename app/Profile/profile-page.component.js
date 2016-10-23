@@ -16,6 +16,7 @@ var core_1 = require('@angular/core');
 var ProfilePageComponent = (function () {
     function ProfilePageComponent() {
         this.userName = "John Snow";
+        this.reviewTitle = "Good Movie";
     }
     ProfilePageComponent = __decorate([
         core_1.Component({
