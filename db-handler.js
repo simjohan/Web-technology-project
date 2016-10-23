@@ -8,7 +8,6 @@ var db = new sqlite3.Database(file);
 /**
  * TODO: Node is asynchronous, so the data is not available to add to a list like this. FIX
  */
-movieIds = [];
 
 function dbCallback(callback) {
     console.log(callback);
