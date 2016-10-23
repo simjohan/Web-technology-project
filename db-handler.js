@@ -58,3 +58,16 @@ function insertUser(id, name, email, imageurl) {
     stmt.finalize();
     db.close();
 }
+
+
+function updateUser(id, attr, value) {
+    if (attr == 'id' || attr == 'name' || attr == 'email' || attr == 'imgurl'){
+        var stmt = db.prepare('UPDATE Users SET ' + attr + '= ? WHERE id = ?');
+        stmt.run(value, id);
+        stmt.finalize();
+        db.close();
+    }
+    else {
+        console.log('Not a valid attribute to change!');
+    }
+}
