@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
         
         <nav-search></nav-search>
         
+        <!-- Shows links that refers to the routing that are done in app-routing.module.ts -->
         <a routerLink="/home">Home</a>
         <a routerLink="/movie">Movies</a>
         
