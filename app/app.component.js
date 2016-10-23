@@ -20,8 +20,8 @@ var AppComponent = (function () {
         core_1.Component({
             //Selector "my-app" lets other components use the template into their own template.
             selector: 'my-app',
-            //"navigation-bar" and "front-page" are selectors of other components
-            template: "\n        \n        <navigation-bar></navigation-bar>\n        <router-outlet></router-outlet>\n       \n    "
+            //"navigation-bar" are selectors of other components
+            template: "\n        <!-- Adds the navigation bar -->\n        <navigation-bar></navigation-bar>\n        <!-- Shows the outlet of the routing - if it is /home it shows the front page. \n        See \"app-routing.module.ts\" for more detail on what it should show.-->\n        <router-outlet></router-outlet>\n       \n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
