@@ -10,8 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+//Imports the components we want to be able to route to
 var front_page_component_1 = require("./home/front-page.component");
 var movie_page_component_1 = require("./movie/movie-page.component");
+/**
+ * path: the path you see after the url
+ * redirectTo: used to show which page we want to show when the user have not chosen any page yet
+ * pathMatch: how much of the path that has to match
+ * component: Which components are going to be shown when the given path is chosen
+ */
 var routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: front_page_component_1.FrontPageComponent },
