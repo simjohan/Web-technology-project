@@ -128,3 +128,10 @@ function updateMovie(id, attr, value){
         console.log('Not a valid attribute to change!');
     }
 }
+
+function incrementViewCount(id){
+    var stmt = db.prepare('UPDATE Movies SET viewCount = viewCount + 1 WHERE id = ?');
+    stmt.run(id);
+    stmt.finalize();
+    db.close();
+}
