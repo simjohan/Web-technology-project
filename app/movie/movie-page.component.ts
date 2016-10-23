@@ -17,6 +17,6 @@ import { Component, OnInit } from '@angular/core';
  * Exporting the class MovieComponent, so other components have access to it
  */
 export class MoviePageComponent {
-
+    reviewTitle = "ReviewTitle";
 
 }

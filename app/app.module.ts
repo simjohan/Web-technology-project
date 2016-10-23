@@ -12,7 +12,8 @@ import { NavbarSearchComponent } from "./navbar/navbar-search.component";
 import { FrontPageComponent } from "./home/front-page.component";
 import { MovieComponent } from "./movie/movie.component";
 import { MovieTitleComponent } from "./movie/movie-title.component";
-import { MoviePageComponent }   from "./movie/movie-page.component"
+import { MoviePageComponent }   from "./movie/movie-page.component";
+import { MovieReviewComponent } from "./movie/movie-review.component";
 import { FacebookComponent } from './navbar/fb.component';
 
 
@@ -36,7 +37,8 @@ import { FacebookComponent } from './navbar/fb.component';
         MovieComponent,
         MovieTitleComponent,
         FacebookComponent,
-        MoviePageComponent
+        MoviePageComponent,
+        MovieReviewComponent
     ],
     bootstrap: [ AppComponent ]
 })
