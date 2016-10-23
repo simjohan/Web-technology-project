@@ -91,4 +91,21 @@ function getMovieById(id) {
     db.close();
 }
 
-getMovieById('imdbtt2');
+function getMoviesByTitle(title){
+    var movieList = {};
+    var stmt = db.prepare('SELECT * FROM Movies WHERE title LIKE ?');
+    stmt.each('%' + title + '%',
+        function(err, row) {
+            console.log(err);
+            movieList[row.id] = {"name": row.title, "viewCount": row.viewCount};
+            console.log("Movie: " + row.id + " - " + row.title + " - " + row.viewCount);
+        },
+
+        //callback called when the operation is completed (async call)
+        function() {
+            dbCallback(movieList)
+        }
+    );
+    stmt.finalize();
+    db.close();
+}
