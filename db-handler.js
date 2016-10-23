@@ -13,15 +13,10 @@ function getUsersCallback(users) {
     console.log(users);
 }
 
-/*
- * TODO: Make prepared statement for security reasons.
- */
-function getUsersFromDb(query) {
+function getUsersFromDb2(query) {
     var userList = {};
-
-    db.each(
-
-        "SELECT * FROM Users WHERE name LIKE '%"+query+"%'",
+    var stmt = db.prepare('SELECT * FROM Users WHERE name LIKE ?');
+    stmt.each('%' + query + '%',
         function(err, row) {
             console.log(err);
             userList[row.id] = {"name": row.name, "email": row.email, "imageUrl": row.imageUrl};
@@ -33,7 +28,7 @@ function getUsersFromDb(query) {
             getUsersCallback(userList)
         }
     );
-
+    stmt.finalize();
     db.close();
 }
 
