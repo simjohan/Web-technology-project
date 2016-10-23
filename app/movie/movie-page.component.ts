@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -17,6 +17,7 @@ import { Component, OnInit } from '@angular/core';
  * Exporting the class MovieComponent, so other components have access to it
  */
 export class MoviePageComponent {
+    //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
     reviewTitle = "ReviewTitle";
 
 }
