@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_routing_module_1 = require('./app-routing.module');
+var http_1 = require('@angular/http');
 /**
  * Imports the components we need to show the application
  */
@@ -21,7 +22,6 @@ var navbar_search_component_1 = require("./navbar/navbar-search.component");
 var front_page_component_1 = require("./home/front-page.component");
 var movie_component_1 = require("./movie/movie.component");
 var movie_title_component_1 = require("./movie/movie-title.component");
-var movie_page_component_1 = require("./movie/movie-page.component");
 var fb_component_1 = require('./navbar/fb.component');
 /**
  * @NgModule contains the list of external modules used by the application.
@@ -38,6 +38,8 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 app_routing_module_1.AppRoutingModule
+                forms_1.FormsModule,
+                http_1.HttpModule
             ],
             declarations: [
                 app_component_1.AppComponent,

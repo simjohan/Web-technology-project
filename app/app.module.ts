@@ -26,6 +26,8 @@ import { FacebookComponent } from './navbar/fb.component';
     imports: [
         BrowserModule,
         FormsModule,
+        HttpModule
+        FormsModule,
         AppRoutingModule
     ],
     declarations: [
