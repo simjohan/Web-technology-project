@@ -61,7 +61,7 @@ function insertUser(id, name, email, imageurl) {
 
 
 function updateUser(id, attr, value) {
-    if (attr == 'id' || attr == 'name' || attr == 'email' || attr == 'imgurl'){
+    if (attr == 'name' || attr == 'email' || attr == 'imgurl'){
         var stmt = db.prepare('UPDATE Users SET ' + attr + '= ? WHERE id = ?');
         stmt.run(value, id);
         stmt.finalize();
@@ -108,4 +108,23 @@ function getMoviesByTitle(title){
     );
     stmt.finalize();
     db.close();
+}
+
+function insertMovie(id, title, viewCount) {
+    var stmt = db.prepare('INSERT INTO Movies VALUES (?, ?, ?)');
+    stmt.run(id, title, viewCount);
+    stmt.finalize();
+    db.close();
+}
+
+function updateMovie(id, attr, value){
+    if (attr == 'title' || attr == 'viewCount'){
+        var stmt = db.prepare('UPDATE Movies SET ' + attr + '= ? WHERE id = ?');
+        stmt.run(value, id);
+        stmt.finalize();
+        db.close();
+    }
+    else {
+        console.log('Not a valid attribute to change!');
+    }
 }
