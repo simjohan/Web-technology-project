@@ -52,4 +52,9 @@ function getUserById(id) {
     db.close();
 }
 
-getUserById(4);
+function insertUser(id, name, email, imageurl) {
+    var stmt = db.prepare('INSERT INTO Users VALUES (?, ?, ?, ?)');
+    stmt.run(id, name, email, imageurl);
+    stmt.finalize();
+    db.close();
+}
