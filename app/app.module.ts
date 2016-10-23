@@ -28,6 +28,8 @@ import {ProfilePageComponent} from './profile/profile-page.component';
     imports: [
         BrowserModule,
         FormsModule,
+        HttpModule
+        FormsModule,
         AppRoutingModule
     ],
     declarations: [

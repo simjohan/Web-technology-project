@@ -39,7 +39,11 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
+                HttpModule,
+                forms_1.FormsModule,
                 app_routing_module_1.AppRoutingModule
+                forms_1.FormsModule,
+                http_1.HttpModule
             ],
             declarations: [
                 app_component_1.AppComponent,
