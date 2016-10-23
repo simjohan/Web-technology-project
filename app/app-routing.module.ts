@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 //Imports the components we want to be able to route to
 import { FrontPageComponent } from "./home/front-page.component";
 import { MoviePageComponent } from "./movie/movie-page.component";
+import { ProfilePageComponent } from  './profile/profile-page.component';
 
 /**
  * path: the path you see after the url
@@ -14,7 +15,8 @@ import { MoviePageComponent } from "./movie/movie-page.component";
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home',  component: FrontPageComponent },
-    { path: 'movie', component: MoviePageComponent } //movie/:id
+    { path: 'movie', component: MoviePageComponent }, //movie/:id+
+    { path: 'profile', component: ProfilePageComponent } //profile/:id+
 ];
 
 @NgModule({

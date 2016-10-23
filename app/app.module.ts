@@ -15,6 +15,7 @@ import { MovieTitleComponent } from "./movie/movie-title.component";
 import { MoviePageComponent }   from "./movie/movie-page.component";
 import { MovieReviewComponent } from "./movie/movie-review.component";
 import { FacebookComponent } from './navbar/fb.component';
+import {ProfilePageComponent} from './profile/profile-page.component';
 
 
 /**
@@ -38,7 +39,8 @@ import { FacebookComponent } from './navbar/fb.component';
         MovieTitleComponent,
         FacebookComponent,
         MoviePageComponent,
-        MovieReviewComponent
+        MovieReviewComponent,
+        ProfilePageComponent
     ],
     bootstrap: [ AppComponent ]
 })
