@@ -15,9 +15,10 @@ import { Component } from '@angular/core';
         <!-- Shows links that refers to the routing that are done in app-routing.module.ts -->
         <a routerLink="/home">Home</a>
         <a routerLink="/movie">Movies</a>
+        <a routerLink="/profile">Profile</a>
         
         
-        <facebook-button></facebook-button>
+        <facebook-component></facebook-component>
     </div>
     `,
     /*styleURLs tells the component where it can find the css-file(s) it is supposed to use

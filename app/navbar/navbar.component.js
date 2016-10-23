@@ -19,7 +19,7 @@ var NavbarComponent = (function () {
             //Selector "navigation-bar" lets other components use the template into their own template.
             selector: "navigation-bar",
             //"nav-search" is a selector of another component.
-            template: "\n    <div id=\"navbar\">\n        \n        \n        <nav-search></nav-search>\n        \n        <!-- Shows links that refers to the routing that are done in app-routing.module.ts -->\n        <a routerLink=\"/home\">Home</a>\n        <a routerLink=\"/movie\">Movies</a>\n        \n        \n        <facebook-button></facebook-button>\n    </div>\n    ",
+            template: "\n    <div id=\"navbar\">\n        \n        \n        <nav-search></nav-search>\n        \n        <!-- Shows links that refers to the routing that are done in app-routing.module.ts -->\n        <a routerLink=\"/home\">Home</a>\n        <a routerLink=\"/movie\">Movies</a>\n        <a routerLink=\"/profile\">Profile</a>\n        \n        \n        <facebook-component></facebook-component>\n    </div>\n    ",
             /*styleURLs tells the component where it can find the css-file(s) it is supposed to use
               (in addition to the one defined in the index.html-file)
               */

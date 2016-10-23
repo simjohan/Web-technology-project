@@ -13,6 +13,7 @@ var router_1 = require('@angular/router');
 //Imports the components we want to be able to route to
 var front_page_component_1 = require("./home/front-page.component");
 var movie_page_component_1 = require("./movie/movie-page.component");
+var profile_page_component_1 = require('./profile/profile-page.component');
 /**
  * path: the path you see after the url
  * redirectTo: used to show which page we want to show when the user have not chosen any page yet
@@ -22,7 +23,8 @@ var movie_page_component_1 = require("./movie/movie-page.component");
 var routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: front_page_component_1.FrontPageComponent },
-    { path: 'movie', component: movie_page_component_1.MoviePageComponent } //movie/:id
+    { path: 'movie', component: movie_page_component_1.MoviePageComponent },
+    { path: 'profile', component: profile_page_component_1.ProfilePageComponent } //profile/:id+
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
