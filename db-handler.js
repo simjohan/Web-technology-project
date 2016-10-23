@@ -8,6 +8,7 @@ var db = new sqlite3.Database(file);
 /**
  * TODO: Node is asynchronous, so the data is not available to add to a list like this. FIX
  */
+movieIds = [];
 
 function dbCallback(callback) {
     console.log(callback);
@@ -134,4 +135,14 @@ function incrementViewCount(id){
     stmt.run(id);
     stmt.finalize();
     db.close();
+}
+
+// TODO: A review can now be added without the user or movie existing. Fix this.
+function addReview(userId, movieId, review) {
+    var stmt = db.prepare('INSERT INTO Reviews VALUES (?, ?, ?);');
+    stmt.run(userId, movieId, review);
+    stmt.finalize();
+    db.close();
+
+
 }
