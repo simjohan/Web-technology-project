@@ -11,6 +11,8 @@ import { Component } from '@angular/core';
     selector: "movie",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'movie-page.component.html',
+    // stylrUlrs tells the component where it can find the CSS-code that it is going to use
+    styleUrls: ['movie-page.component.css'],
 })
 
 /**
@@ -19,5 +21,4 @@ import { Component } from '@angular/core';
 export class MoviePageComponent {
     //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
     reviewTitle = "ReviewTitle";
-
 }
