@@ -15,7 +15,10 @@ var core_1 = require('@angular/core');
  */
 var ProfilePageComponent = (function () {
     function ProfilePageComponent() {
+        //Send in a user-name to the profile-view (the html-file)
         this.userName = "John Snow";
+        //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
+        this.reviewTitle = "Good Movie";
     }
     ProfilePageComponent = __decorate([
         core_1.Component({

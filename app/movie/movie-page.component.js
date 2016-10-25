@@ -15,7 +15,8 @@ var core_1 = require('@angular/core');
  */
 var MoviePageComponent = (function () {
     function MoviePageComponent() {
-        this.reviewTitle = "Reviews";
+        //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
+        this.reviewTitle = "ReviewTitle";
     }
     MoviePageComponent = __decorate([
         core_1.Component({
