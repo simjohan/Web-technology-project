@@ -1,0 +1,60 @@
+.profile-user-details-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.profile-user-details-item{
+    flex: 1;
+}
+
+
+/*
+    Left container within the profile-user-details-cotainer
+*/
+
+.profile-user-details-item-left-cotainer{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    flex: 2;
+
+    padding-right: 150px;
+}
+
+
+/*
+    Right container within the profile-user-details-cotainer
+*/
+
+.profile-user-details-item-right-container{
+    display: flex;
+    flex-flow: column wrap;
+    padding: 10px;
+
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.profile-user-details-item-right-item{
+    text-align: center;
+}
+
+/*
+ Control the size o f the profile picture
+*/
+.profile-user-details-picture img {
+    max-height: 400px;
+    max-width: 300px;
+}
+
+
+/*
+    Control how different entties behave on different screen sizes
+*/
+
+@media all and (max-width: 1000px) {
+    .profile-user-details-item-left-cotainer {
+        flex-flow: column wrap;
+    }
+}

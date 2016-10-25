@@ -18,6 +18,9 @@ import { MovieReviewsComponent } from "./movie/movie-reviews.component";
 import { FacebookComponent } from './navbar/fb.component';
 import { ProfilePageComponent } from './profile/profile-page.component';
 import { MovieDetailComponent } from './movie/movie-detail.component';
+import {ProfileUserDetailsComponent} from "./profile/profile-user-details.component";
+import {ProfileUserReviews} from "./profile/profile-user-reviews.component";
+import {ProfileUserReview} from "./profile/profile-user-review.component";
 
 /**
  * @NgModule contains the list of external modules used by the application.
@@ -44,7 +47,10 @@ import { MovieDetailComponent } from './movie/movie-detail.component';
         MovieReviewsComponent,
         FacebookComponent,
         ProfilePageComponent,
-        MovieDetailComponent
+        MovieDetailComponent,
+        ProfileUserDetailsComponent,
+        ProfileUserReviews,
+        ProfileUserReview
     ],
     bootstrap: [ AppComponent ]
 })

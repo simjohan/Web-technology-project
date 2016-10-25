@@ -1,0 +1,22 @@
+.profile-user-review-container{
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 50px;
+}
+
+.profile-user-review-internal-right-container{
+    display: flex;
+    flex-flow: column wrap;
+
+    padding: 10px;
+    padding-left: 125px;
+    flex: 2;
+    background: #d9d9d9;
+    margin: 25px;
+
+    border: 1px solid gray;
+}
+
+.profile-user-review-internal-right-container-item{
+    margin-top: 50px;
+}

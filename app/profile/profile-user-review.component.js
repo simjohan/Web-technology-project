@@ -13,25 +13,43 @@ var core_1 = require('@angular/core');
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
  * how the component should be processed, instantiated and used at runtime.
  */
-var ProfilePageComponent = (function () {
-    function ProfilePageComponent() {
-        //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
-        this.reviewTitle = "Good Movie";
+var ProfileUserReview = (function () {
+    function ProfileUserReview() {
+        this.userReviewMovieTitle = "MOVIE TITLE";
+        this.userReviewTitle = "REVIEW TITLE";
+        this.userReviewRating = "REVIEW RATING";
+        this.userReviewText = "REVIEW TEXT";
     }
-    ProfilePageComponent = __decorate([
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], ProfileUserReview.prototype, "userReviewMovieTitle", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], ProfileUserReview.prototype, "userReviewTitle", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], ProfileUserReview.prototype, "userReviewRating", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], ProfileUserReview.prototype, "userReviewText", void 0);
+    ProfileUserReview = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
             moduleId: module.id,
-            // Selector "profile" lets other components use the template into their own template
-            selector: "profile",
+            // Selector "profile-user-review" lets other components use the template into their own template
+            selector: "profile-user-review",
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
-            templateUrl: 'profile-page.component.html',
+            templateUrl: 'profile-user-review.component.html',
             // stylrUlrs tells the component where it can find the CSS-code that it is going to use
-            styleUrls: ['profile-page.component.css'],
+            styleUrls: ['profile-user-review.component.css'],
         }), 
         __metadata('design:paramtypes', [])
-    ], ProfilePageComponent);
-    return ProfilePageComponent;
+    ], ProfileUserReview);
+    return ProfileUserReview;
 }());
-exports.ProfilePageComponent = ProfilePageComponent;
-//# sourceMappingURL=profile-page.component.js.map
+exports.ProfileUserReview = ProfileUserReview;
+//# sourceMappingURL=profile-user-review.component.js.map
