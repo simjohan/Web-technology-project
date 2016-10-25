@@ -15,7 +15,7 @@ var core_1 = require('@angular/core');
  */
 var MoviePageComponent = (function () {
     function MoviePageComponent() {
-        this.reviewTitle = "ReviewTitle";
+        this.reviewTitle = "Reviews";
     }
     MoviePageComponent = __decorate([
         core_1.Component({
@@ -25,6 +25,8 @@ var MoviePageComponent = (function () {
             selector: "movie",
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
             templateUrl: 'movie-page.component.html',
+            // stylrUlrs tells the component where it can find the CSS-code that it is going to use
+            styleUrls: ['movie-page.component.css'],
         }), 
         __metadata('design:paramtypes', [])
     ], MoviePageComponent);

@@ -1,0 +1,13 @@
+.movie-page-container{
+    padding: 0;
+    margin: 40px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.movie-page-item{
+    margin-top: 15px;
+}
+
