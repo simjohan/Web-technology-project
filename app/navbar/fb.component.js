@@ -13,13 +13,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var DBHandler = require('../../db-handler');
+var http_1 = require('@angular/http');
+var db_handler_1 = require('./../db.handler');
 var FacebookComponent = (function () {
     /**
      * Constructor code from developers.facebook.com
      */
-    function FacebookComponent() {
+    function FacebookComponent(service) {
         var _this = this;
+        this.service = service;
         FB.init({
             appId: '1623658607931496',
             cookie: true,
@@ -62,6 +64,7 @@ var FacebookComponent = (function () {
      * @param response
      */
     FacebookComponent.prototype.statusChangeCallback = function (response) {
+        this.service = new db_handler_1.DatabaseService(http_1.Http);
         // The response object is returned with a status field that lets the
         // app know the current login status of the person.
         // Full docs on the response object can be found in the documentation
@@ -77,7 +80,6 @@ var FacebookComponent = (function () {
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email', me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
-                DBHandler.inserUser(10, me.name, me.email, me.picture.data.url);
             });
         }
         else if (response.status === 'not_authorized') {
@@ -89,6 +91,10 @@ var FacebookComponent = (function () {
             // they are logged into this app or not.
             console.log('STATUS?: ' + response.status);
         }
+        var namer = localStorage.getItem('name');
+        var emailer = localStorage.getItem('email');
+        var imger = localStorage.getItem('imgurl');
+        this.service.insertUser(42, namer, emailer, imger);
     };
     ;
     FacebookComponent.prototype.ngOnInit = function () {
@@ -101,9 +107,10 @@ var FacebookComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: "facebook-component",
+            providers: [db_handler_1.DatabaseService],
             template: "\n                <div class=\"facebook-item\">\n                    <button class=\"button\" (click)=\"facebookLogin()\">\n                        Sign in with Facebook\n                    </button>\n                    <button class=\"button\" (click)=\"facebookLogout()\">\n                        Logout\n                    </button>\n                    <span><img src=\"{{fb_imgurl}}\"/> {{fb_name}}, {{fb_email}}</span>\n                </div>\n                \n            "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [db_handler_1.DatabaseService])
     ], FacebookComponent);
     return FacebookComponent;
 }());

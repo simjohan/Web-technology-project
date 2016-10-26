@@ -5,11 +5,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
-var DBHandler = require('../../db-handler');
+import { Http, Headers } from '@angular/http';
+import { DatabaseService } from './../db.handler';
 
 @Component ({
     moduleId: module.id,
     selector: "facebook-component",
+    providers: [DatabaseService],
     template: `
                 <div class="facebook-item">
                     <button class="button" (click)="facebookLogin()">
@@ -26,7 +28,6 @@ var DBHandler = require('../../db-handler');
 
 export class FacebookComponent implements OnInit{
 
-
     status: string;
     fb_name : string;
     fb_email: string;
@@ -35,7 +36,7 @@ export class FacebookComponent implements OnInit{
     /**
      * Constructor code from developers.facebook.com
      */
-    constructor() {
+    constructor(private service: DatabaseService) {
         FB.init({
             appId      : '1623658607931496',
             cookie     : true,  // enable cookies to allow the server to access
@@ -47,7 +48,6 @@ export class FacebookComponent implements OnInit{
         FB.getLoginStatus(response => {
             this.statusChangeCallback(response);
         });
-
 
     }
 
@@ -83,6 +83,7 @@ export class FacebookComponent implements OnInit{
      * @param response
      */
     statusChangeCallback(response) {
+        this.service = new DatabaseService(Http);
         // The response object is returned with a status field that lets the
         // app know the current login status of the person.
         // Full docs on the response object can be found in the documentation
@@ -98,8 +99,8 @@ export class FacebookComponent implements OnInit{
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email',me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
-                DBHandler.inserUser(10, me.name, me.email, me.picture.data.url);
             });
+
 
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
@@ -111,7 +112,10 @@ export class FacebookComponent implements OnInit{
             console.log('STATUS?: ' + response.status)
 
         }
-
+        let namer = localStorage.getItem('name');
+        let emailer = localStorage.getItem('email');
+        let imger = localStorage.getItem('imgurl');
+        this.service.insertUser(42, namer, emailer, imger);
 
     };
 
