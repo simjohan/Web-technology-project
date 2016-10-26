@@ -21,4 +21,8 @@ import { Component } from '@angular/core';
 export class MoviePageComponent {
     //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
     reviewTitle = "ReviewTitle";
+
+
+
+
 }
