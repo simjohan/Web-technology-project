@@ -5,10 +5,12 @@
 
 import { Component, OnInit } from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
+import { DatabaseService } from './../../db.service';
 
 @Component ({
     moduleId: module.id,
     selector: "facebook-component",
+    providers: [DatabaseService],
     template: `
                 <div class="facebook-item">
                     <button class="button" (click)="facebookLogin()">
@@ -25,7 +27,6 @@ import forEach = require("core-js/fn/array/for-each");
 
 export class FacebookComponent implements OnInit{
 
-
     status: string;
     fb_name : string;
     fb_email: string;
@@ -34,7 +35,7 @@ export class FacebookComponent implements OnInit{
     /**
      * Constructor code from developers.facebook.com
      */
-    constructor() {
+    constructor(private service: DatabaseService) {
         FB.init({
             appId      : '1623658607931496',
             cookie     : true,  // enable cookies to allow the server to access
@@ -46,7 +47,6 @@ export class FacebookComponent implements OnInit{
         FB.getLoginStatus(response => {
             this.statusChangeCallback(response);
         });
-
 
     }
 
@@ -88,28 +88,30 @@ export class FacebookComponent implements OnInit{
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
-            console.log('STATUS?: ' + response.status);
             FB.api('/me?fields=name,email,picture', function(me) {
                 console.log("RESPONSE.NAME: " + me.name);
                 console.log("RESPONSE.EMAIL: " + me.email);
                 console.log("RESPONSE.IMAGEURL: " + me.picture.data.url);
-                console.log("friends: " + me.friends);
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email',me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
             });
 
+
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
-            console.log('STATUS?: ' + response.status)
 
         } else {
             // The person is not logged into Facebook, so we're not sure if
             // they are logged into this app or not.
-            console.log('STATUS?: ' + response.status)
 
         }
 
+        console.log("Before service call!");
+        let namer = localStorage.getItem('name');
+        let emailer = localStorage.getItem('email');
+        let imger = localStorage.getItem('imgurl');
+        this.service.insertUser(42, namer, emailer, imger);
 
     };
 
