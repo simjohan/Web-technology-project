@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -17,5 +17,5 @@ import { Component } from '@angular/core';
  * Exporting the class MovieComponent, so other components have access to it
  */
 export class MovieComponent {
-
+  @Input() movieTitle;
 }

@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
+import {Http, Response } from '@angular/http';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map'
+import { MovieService } from './../movie/movie.service';
+
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -11,13 +16,29 @@ import { Component } from '@angular/core';
     selector: "front-page",
      //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'front-page.component.html',
+    providers: [MovieService]
 })
 
 /**
  * Exporting the class FrontPageComponent, so other components have access to it
  */
-export class FrontPageComponent {
+export class FrontPageComponent implements  OnInit {
     //Add variables with the following content. These variables can now be used by for example the template
     newlyReviews = "Newly Reviewed";
     newlyVisited = "Newly Visisted";
+
+    constructor (private movieService: MovieService) {}
+
+    ngOnInit() { this.getMovies(); }
+
+    data: Object;
+
+    getMovies():void {
+      this.movieService.getMovies().subscribe(data => this.data = data, error => console.log(error));
+    }
+
+    generateArray(obj){
+        return Object.keys(obj).map((key)=>{ return obj[key]});
+    }
+
 }

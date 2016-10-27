@@ -5,13 +5,11 @@
     <ul class="movie-container">
         <!--"movie" shows the template with the associated selector
         (see the *.components.ts-files)-->
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
+
+        <div *ngFor="let movie of data">
+            <movie-cmp [movieTitle]=movie.title></movie-cmp>
+        </div>
+
     </ul>
 </div>
 

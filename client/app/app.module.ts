@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpModule }      from '@angular/http';
 
 /**
  * Imports the components we need to show the application
@@ -33,7 +34,8 @@ import {ProfileUserReview} from "./profile/profile-user-review.component";
         BrowserModule,
         FormsModule,
         FormsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpModule
     ],
     declarations: [
         AppComponent,
