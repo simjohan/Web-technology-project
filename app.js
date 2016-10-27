@@ -4,6 +4,16 @@ var server = require('http').Server(app);
 var session = require('express-session');
 var bodyParser = require('body-parser');
 
+// Database stuff here
+var dbInit = require('./dbInit.js');
+var dbHandler = require('./dbHandler.js');
+
+var fs = require("fs");
+var file = "database.db";
+var exists = fs.existsSync(file);
+var sqlite3 = require("sqlite3").verbose();
+
+// Run initial database script
 
 //var mysql = require('mysql');
 
@@ -18,6 +28,7 @@ app.use( session({
     resave:false,
     saveUninitialized:false
 }));
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );
