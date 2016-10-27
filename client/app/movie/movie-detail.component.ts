@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MovieService } from './movie.service';
+import { ActivatedRoute } from '@angular/router';
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -13,19 +15,33 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['movie-detail.component.css'],
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'movie-detail.component.html',
-
+    providers: [MovieService]
 })
 
 /**
  * Exporting the class MovieReviewComponent, so other components have access to it.
  */
-export class MovieDetailComponent {
-    //@Input() lets other components send in the values, which this component inputs here. This value can be used in the template.
-    @Input() movieTitle = "Title";
-    @Input() movieRating = "Rating";
-    @Input() movieYear = "Year";
-    @Input() movieActors = "Actors";
-    @Input() movieDirectors = "Directors";
-    @Input() movieCountry = "Country";
-    @Input() movieDescription = "Description";
+export class MovieDetailComponent implements OnInit{
+
+    private movie: Object;
+    private userId;
+    private sub: any;      // -> Subscriber
+
+    constructor (private movieService: MovieService, private route: ActivatedRoute) {}
+
+    ngOnInit() {
+        // get URL parameters
+        this.sub = this.route.params.subscribe(params => {this.userId = params['id']; });
+        console.log(this.sub);
+        this.getMovie(this.userId);
+    }
+
+    getMovie(userId):void {
+        console.log(userId);
+        this.movieService.getMovie(userId).subscribe(data => this.movie = data, error => console.log(error));
+    }
+
+    generateArray(obj){
+        return Object.keys(obj).map((key)=>{ return obj[key]});
+    }
 }

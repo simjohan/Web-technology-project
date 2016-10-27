@@ -7,13 +7,14 @@
 
     <!-- Container to hold the details of the movie -->
     <div class="movie-detail-information">
-        <h2> {{movieTitle}} </h2>
-        <p> {{movieRating}} </p>
-        <p>{{movieYear}}</p>
-        <p>{{movieActors}}</p>
-        <p>{{movieDirectors}}</p>
-        <p>{{movieCountry}}</p>
-        <p>{{movieDescription}}</p>
+        <h2> {{movie?.title}} </h2>
+        <p> ID: {{movie?.id}} </p>
+        <p> Rating: {{movie?.rating}} </p>
+        <p> Year: {{movie?.year}} </p>
+        <p> Actors:     {{movie?.actors}} </p>
+        <p> Directors: {{movie?.directors}} </p>
+        <p> Country: {{movie?.country}}  </p>
+        <p> Description: {{movie?.description}} </p>
         <button>Review movie</button>
     </div>
 

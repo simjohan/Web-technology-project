@@ -1,9 +1,6 @@
 import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
-import {Http, Response } from '@angular/http';
-import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map'
 import { MovieService } from './../movie/movie.service';
-
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -27,6 +24,7 @@ export class FrontPageComponent implements  OnInit {
     newlyReviews = "Newly Reviewed";
     newlyVisited = "Newly Visisted";
 
+
     constructor (private movieService: MovieService) {}
 
     ngOnInit() { this.getMovies(); }
@@ -35,10 +33,6 @@ export class FrontPageComponent implements  OnInit {
 
     getMovies():void {
       this.movieService.getMovies().subscribe(data => this.data = data, error => console.log(error));
-    }
-
-    generateArray(obj){
-        return Object.keys(obj).map((key)=>{ return obj[key]});
     }
 
 }

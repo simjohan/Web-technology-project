@@ -1,7 +1,7 @@
-<li class="movie-item">
+<li class="movie-item" [routerLink]="['/movie', movieObject?.id]">
     <!--Name of the movie-->
     <div class="movie-item-name">
-      {{movieTitle}}
+        {{movieObject?.title}}
     </div>
     <!--Image of the movie-->
     <div class="movie-item-poster">

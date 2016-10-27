@@ -27,7 +27,7 @@ var MoviePageComponent = (function () {
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
             templateUrl: 'movie-page.component.html',
             // stylrUlrs tells the component where it can find the CSS-code that it is going to use
-            styleUrls: ['movie-page.component.css'],
+            styleUrls: ['movie-page.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], MoviePageComponent);

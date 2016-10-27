@@ -15,7 +15,7 @@ import { ProfilePageComponent } from  './profile/profile-page.component';
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home',  component: FrontPageComponent },
-    { path: 'movie', component: MoviePageComponent }, //movie/:id+
+    { path: 'movie/:id', component: MoviePageComponent }, //movie/:id+
     { path: 'profile', component: ProfilePageComponent } //profile/:id+
 ];
 

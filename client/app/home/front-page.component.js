@@ -27,9 +27,6 @@ var FrontPageComponent = (function () {
         var _this = this;
         this.movieService.getMovies().subscribe(function (data) { return _this.data = data; }, function (error) { return console.log(error); });
     };
-    FrontPageComponent.prototype.generateArray = function (obj) {
-        return Object.keys(obj).map(function (key) { return obj[key]; });
-    };
     FrontPageComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.

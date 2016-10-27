@@ -7,11 +7,16 @@ import 'rxjs/add/operator/catch'
 @Injectable()
 export class MovieService {
 
-    private homeUrl = '/home';  // URL to web API
+    private homeUrl = '/api/newly-reviewed-movies';  // URL to web API
+    private movieUrl = '/movie/';
     constructor (private http: Http) {}
 
     getMovies(): Observable<any> {
         return this.http.get(this.homeUrl).map(res => res.json().movies);
+    }
+
+    getMovie(id): Observable<any> {
+        return this.http.get(this.movieUrl + id).map(res => res.json());
     }
 
 }

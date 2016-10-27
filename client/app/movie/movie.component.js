@@ -19,7 +19,7 @@ var MovieComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], MovieComponent.prototype, "movieTitle", void 0);
+    ], MovieComponent.prototype, "movieObject", void 0);
     MovieComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
@@ -27,7 +27,7 @@ var MovieComponent = (function () {
             // Selector "movie" lets other components use the template into their own template
             selector: "movie-cmp",
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
-            templateUrl: 'movie.component.html',
+            templateUrl: 'movie.component.html'
         }), 
         __metadata('design:paramtypes', [])
     ], MovieComponent);
