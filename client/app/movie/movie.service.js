@@ -15,14 +15,14 @@ require('rxjs/add/operator/catch');
 var MovieService = (function () {
     function MovieService(http) {
         this.http = http;
-        this.homeUrl = '/api/newly-reviewed-movies'; // URL to web API
-        this.movieUrl = '/movie/';
+        this.newlyReviewMoviesUrl = '/api/newly-reviewed-movies'; // URL to web API
+        this.specificMovieUrl = '/api/specific-movie/';
     }
     MovieService.prototype.getMovies = function () {
-        return this.http.get(this.homeUrl).map(function (res) { return res.json().movies; });
+        return this.http.get(this.newlyReviewMoviesUrl).map(function (res) { return res.json().movies; });
     };
     MovieService.prototype.getMovie = function (id) {
-        return this.http.get(this.movieUrl + id).map(function (res) { return res.json(); });
+        return this.http.get(this.specificMovieUrl + id).map(function (res) { return res.json(); });
     };
     MovieService = __decorate([
         core_1.Injectable(), 

@@ -35,6 +35,8 @@ var FrontPageComponent = (function () {
             selector: "front-page",
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
             templateUrl: 'front-page.component.html',
+            // stylrUlrs tells the component where it can find the CSS-code that it is going to use
+            styleUrls: ['front-page.component.css'],
             providers: [movie_service_1.MovieService]
         }), 
         __metadata('design:paramtypes', [movie_service_1.MovieService])

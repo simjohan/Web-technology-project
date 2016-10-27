@@ -1,0 +1,38 @@
+.movie-item {
+    display: flex;
+    flex-flow: column;
+
+    background-color: tomato;
+
+    width: 200px;
+    height: 350px;
+    margin: 5px;
+    padding: 5px;
+
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.movie-item:hover{
+    transform: scale(1.1);
+}
+
+.movie-item-name {
+    line-height: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+    height: 20%;
+    width: 100%;
+}
+
+.movie-item-poster {
+    width: 100%;
+    height: 100%;
+}
+
+.movie-item-poster img {
+    max-width: 100%;
+    max-height: 100%;
+}

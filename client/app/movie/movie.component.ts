@@ -10,7 +10,9 @@ import { Component, Input, OnInit } from '@angular/core';
     // Selector "movie" lets other components use the template into their own template
     selector: "movie-cmp",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
-    templateUrl: 'movie.component.html'
+    templateUrl: 'movie.component.html',
+    // stylrUlrs tells the component where it can find the CSS-code that it is going to use
+    styleUrls: ['movie.component.css']
 })
 
 /**

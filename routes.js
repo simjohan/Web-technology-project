@@ -15,13 +15,11 @@ module.exports = function(app,io){
         console.log("client dcd");
     });
 
-    app.get('/movie/:movieId', function(req, res) {
+    app.get('/api/specific-movie/:movieId', function(req, res) {
         // Insert DB logic here to handle the movieID, just sending example movie now.
         res.send(JSON.stringify(
             {
-
                 id: req.params.movieId, title: "Frozen", rating: "10", year: "2012", actors: "Anna, Bella, John", directors: "JJ", country: "Iceland", description: "Lengthy description."
-
             }
         ));
     });
