@@ -4,6 +4,8 @@ module.exports = function(app,io){
 
     var sess;
 
+
+
     io.on('connection', function(socket){
         console.log("Server connection.io");
         socket.emit('topology',currentTopo);
@@ -36,7 +38,7 @@ module.exports = function(app,io){
         ));
 
     });
-
+    /*
     app.get('/home/api/user', function (req, res) {
         if (req.method == 'POST'){
             console.log("IS POST!")
@@ -71,11 +73,20 @@ module.exports = function(app,io){
             console.log("Not a POST REQUEST!");
             console.log(req.method)
         }
-    });
+    });*/
     
     app.post('/home/api/user', function (req, res) {
         console.log("Received data: " + req.body.name);
-    })
+        console.log("req: " + req);
+        console.log("res: " + res);
+        var id = req.body.id;
+        var name = req.body.name;
+        var email = req.body.email;
+        var imgurl = req.body.imgurl;
+        console.log("req-BODY: " + req.body);
+        console.log("res-BODY: " + res.body);
+    });
+
 
 
 };

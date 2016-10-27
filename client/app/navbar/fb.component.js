@@ -13,12 +13,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var db_service_1 = require('./../db.service');
 var FacebookComponent = (function () {
     /**
      * Constructor code from developers.facebook.com
      */
-    function FacebookComponent() {
+    function FacebookComponent(service) {
         var _this = this;
+        this.service = service;
         FB.init({
             appId: '1623658607931496',
             cookie: true,
@@ -67,26 +69,24 @@ var FacebookComponent = (function () {
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
-            console.log('STATUS?: ' + response.status);
             FB.api('/me?fields=name,email,picture', function (me) {
                 console.log("RESPONSE.NAME: " + me.name);
                 console.log("RESPONSE.EMAIL: " + me.email);
                 console.log("RESPONSE.IMAGEURL: " + me.picture.data.url);
-                console.log("friends: " + me.friends);
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email', me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
             });
         }
         else if (response.status === 'not_authorized') {
-            // The person is logged into Facebook, but not your app.
-            console.log('STATUS?: ' + response.status);
         }
         else {
-            // The person is not logged into Facebook, so we're not sure if
-            // they are logged into this app or not.
-            console.log('STATUS?: ' + response.status);
         }
+        console.log("Before service call!");
+        var namer = localStorage.getItem('name');
+        var emailer = localStorage.getItem('email');
+        var imger = localStorage.getItem('imgurl');
+        this.service.insertUser(42, namer, emailer, imger);
     };
     ;
     FacebookComponent.prototype.ngOnInit = function () {
@@ -99,9 +99,10 @@ var FacebookComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: "facebook-component",
+            providers: [db_service_1.DatabaseService],
             template: "\n                <div class=\"facebook-item\">\n                    <button class=\"button\" (click)=\"facebookLogin()\">\n                        Sign in with Facebook\n                    </button>\n                    <button class=\"button\" (click)=\"facebookLogout()\">\n                        Logout\n                    </button>\n                    <span><img src=\"{{fb_imgurl}}\"/> {{fb_name}}, {{fb_email}}</span>\n                </div>\n                \n            "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [db_service_1.DatabaseService])
     ], FacebookComponent);
     return FacebookComponent;
 }());

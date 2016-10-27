@@ -5,7 +5,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
-import { DatabaseService } from './../../db.service';
+import { DatabaseService } from './../db.service';
 
 @Component ({
     moduleId: module.id,
