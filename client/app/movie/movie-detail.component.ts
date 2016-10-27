@@ -32,16 +32,11 @@ export class MovieDetailComponent implements OnInit{
     ngOnInit() {
         // get URL parameters
         this.sub = this.route.params.subscribe(params => {this.userId = params['id']; });
-        console.log(this.sub);
         this.getMovie(this.userId);
     }
 
     getMovie(userId):void {
-        console.log(userId);
         this.movieService.getMovie(userId).subscribe(data => this.movie = data, error => console.log(error));
     }
 
-    generateArray(obj){
-        return Object.keys(obj).map((key)=>{ return obj[key]});
-    }
 }

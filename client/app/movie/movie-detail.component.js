@@ -24,16 +24,11 @@ var MovieDetailComponent = (function () {
         var _this = this;
         // get URL parameters
         this.sub = this.route.params.subscribe(function (params) { _this.userId = params['id']; });
-        console.log(this.sub);
         this.getMovie(this.userId);
     };
     MovieDetailComponent.prototype.getMovie = function (userId) {
         var _this = this;
-        console.log(userId);
         this.movieService.getMovie(userId).subscribe(function (data) { return _this.movie = data; }, function (error) { return console.log(error); });
-    };
-    MovieDetailComponent.prototype.generateArray = function (obj) {
-        return Object.keys(obj).map(function (key) { return obj[key]; });
     };
     MovieDetailComponent = __decorate([
         core_1.Component({

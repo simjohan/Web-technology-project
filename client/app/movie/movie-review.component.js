@@ -15,14 +15,6 @@ var core_1 = require('@angular/core');
  */
 var MovieReviewComponent = (function () {
     function MovieReviewComponent() {
-        //@Input() lets other components send in the values, which this component inputs here. This value can be used in the template.
-        this.reviewTitle = "TITLE";
-        this.rating = "RATING";
-        this.userName = "USERNAME";
-        this.ratingText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure" +
-            "dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non" +
-            "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
         this.showElement = false;
     }
     MovieReviewComponent.prototype.toggle = function () {
@@ -34,19 +26,7 @@ var MovieReviewComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], MovieReviewComponent.prototype, "reviewTitle", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieReviewComponent.prototype, "rating", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieReviewComponent.prototype, "userName", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieReviewComponent.prototype, "ratingText", void 0);
+    ], MovieReviewComponent.prototype, "review", void 0);
     MovieReviewComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.

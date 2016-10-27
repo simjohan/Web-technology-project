@@ -15,6 +15,17 @@ module.exports = function(app,io){
         console.log("client dcd");
     });
 
+    app.get('/api/specific-movie-reviews/:movieId', function(req, res){
+        res.send(JSON.stringify(
+            {
+                "reviews": [
+                    {id: req.params.movieId, title: "Good", rating: "10", user: "username", text: "This is a good review."},
+                    {id: req.params.movieId, title: "Bad", rating: "2", user: "username", text: "This is a bad review."},
+                ]
+            }
+        ));
+    });
+
     app.get('/api/specific-movie/:movieId', function(req, res) {
         // Insert DB logic here to handle the movieID, just sending example movie now.
         res.send(JSON.stringify(

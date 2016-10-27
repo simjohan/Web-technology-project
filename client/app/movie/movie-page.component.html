@@ -5,7 +5,12 @@
     </li>
 
     <li class="movie-page-item">
-        <movie-reviews></movie-reviews>
+        <h2> Reviews </h2>
+        <hr>
+        <div *ngFor="let review of reviews">
+            <movie-review [review]=review></movie-review>
+        </div>
+
     </li>
 
 
