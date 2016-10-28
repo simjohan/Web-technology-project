@@ -21,9 +21,9 @@ import { MovieDetailComponent } from './movie/movie-detail.component';
 import {ProfileUserDetailsComponent} from "./profile/profile-user-details.component";
 import {ProfileUserReviews} from "./profile/profile-user-reviews.component";
 import {ProfileUserReview} from "./profile/profile-user-review.component";
-import { ReviewRatingPipe } from "./movie/pipes/review-rating.pipe";
-import { ReviewUserPipe } from "./movie/pipes/review-user.pipe";
-
+import { ReviewRatingFilterPipe } from "./movie/pipes/review-rating-filter.pipe";
+import { ReviewUserFilterPipe } from "./movie/pipes/review-user-filter.pipe";
+import { ReviewSorterPipe } from "./movie/pipes/review-sorter.pipe";
 /**
  * @NgModule contains the list of external modules used by the application.
  * Imports: what kind of modules are imported from the angular library
@@ -53,8 +53,9 @@ import { ReviewUserPipe } from "./movie/pipes/review-user.pipe";
         ProfileUserDetailsComponent,
         ProfileUserReviews,
         ProfileUserReview,
-        ReviewRatingPipe,
-        ReviewUserPipe
+        ReviewRatingFilterPipe,
+        ReviewUserFilterPipe,
+        ReviewSorterPipe
     ],
     bootstrap: [ AppComponent ]
 })

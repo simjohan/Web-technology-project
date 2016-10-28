@@ -30,8 +30,9 @@ var movie_detail_component_1 = require('./movie/movie-detail.component');
 var profile_user_details_component_1 = require("./profile/profile-user-details.component");
 var profile_user_reviews_component_1 = require("./profile/profile-user-reviews.component");
 var profile_user_review_component_1 = require("./profile/profile-user-review.component");
-var review_rating_pipe_1 = require("./movie/pipes/review-rating.pipe");
-var review_user_pipe_1 = require("./movie/pipes/review-user.pipe");
+var review_rating_filter_pipe_1 = require("./movie/pipes/review-rating-filter.pipe");
+var review_user_filter_pipe_1 = require("./movie/pipes/review-user-filter.pipe");
+var review_sorter_pipe_1 = require("./movie/pipes/review-sorter.pipe");
 /**
  * @NgModule contains the list of external modules used by the application.
  * Imports: what kind of modules are imported from the angular library
@@ -65,8 +66,9 @@ var AppModule = (function () {
                 profile_user_details_component_1.ProfileUserDetailsComponent,
                 profile_user_reviews_component_1.ProfileUserReviews,
                 profile_user_review_component_1.ProfileUserReview,
-                review_rating_pipe_1.ReviewRatingPipe,
-                review_user_pipe_1.ReviewUserPipe
+                review_rating_filter_pipe_1.ReviewRatingFilterPipe,
+                review_user_filter_pipe_1.ReviewUserFilterPipe,
+                review_sorter_pipe_1.ReviewSorterPipe
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

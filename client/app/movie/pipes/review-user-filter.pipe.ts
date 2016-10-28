@@ -2,10 +2,10 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 // Tell Angular2 we're creating a Pipe with TypeScript decorators
 @Pipe({
-    name: 'ReviewUserPipe'
+    name: 'ReviewUserFilterPipe'
 })
 
-export class ReviewUserPipe implements PipeTransform {
+export class ReviewUserFilterPipe implements PipeTransform {
     transform(value, args?) {
 
         let nameSearched = args;

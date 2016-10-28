@@ -13,8 +13,14 @@
     </li>
 
     <li *ngIf="(reviews | json) != '[]'" class="movie-page-item">
-        <hr>
+
         <div class="review-filter-container">
+
+            <div class="review-filter-item">
+                <p>Sort by</p>
+                <button (click)="toggleSortByRating()">Rating</button>
+                <button (click)="toggleSortByName()">Name</button>
+            </div>
 
             <div class="review-filter-item">
 
@@ -36,9 +42,7 @@
 
         </div>
 
-
-
-        <div *ngFor="let review of reviews | ReviewRatingPipe:sliderValue | ReviewUserPipe:nameSearched ">
+        <div *ngFor="let review of reviews | ReviewRatingFilterPipe:sliderValue | ReviewUserFilterPipe:nameSearched | ReviewSorterPipe:format ">
             <movie-review [review]=review></movie-review>
         </div>
 

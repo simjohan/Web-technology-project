@@ -2,10 +2,10 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 // Tell Angular2 we're creating a Pipe with TypeScript decorators
 @Pipe({
-    name: 'ReviewRatingPipe'
+    name: 'ReviewRatingFilterPipe'
 })
 
-export class ReviewRatingPipe implements PipeTransform {
+export class ReviewRatingFilterPipe implements PipeTransform {
     transform(value, args?) {
         let minRating = args;
         let review = value;

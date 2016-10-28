@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewService } from './review.service';
 import { ActivatedRoute } from '@angular/router';
-import { ReviewRatingPipe } from './pipes/review-rating.pipe';
-
+import { ReviewRatingFilterPipe } from './pipes/review-rating-filter.pipe';
+import { ReviewSorterPipe } from "./pipes/review-sorter.pipe";
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -29,6 +29,10 @@ export class MoviePageComponent{
 
     sliderValue:number = 0;
     nameSearched:String = "";
+    toggle = false;
+    format = "";
+    ratingToggle = false;
+    nameToggle = false;
 
     private reviews: Object;
     private movieId;
@@ -39,7 +43,6 @@ export class MoviePageComponent{
     ngOnInit() {
         // get URL parameters
         this.sub = this.route.params.subscribe(params => {this.movieId = params['id']; });
-        console.log(this.sub);
         this.getReviews(this.movieId);
     }
 
@@ -48,6 +51,13 @@ export class MoviePageComponent{
         this.reviewService.getReviews(movieId).subscribe(data => this.reviews = data, error => console.log(error));
     }
 
-
+    toggleSortByRating(){
+        this.ratingToggle ? this.format = "rating-asc" : this.format = "rating-desc";
+        this.ratingToggle = !this.ratingToggle;
+    }
+    toggleSortByName() {
+        this.nameToggle ? this.format = "name-asc" : this.format = "name-desc";
+        this.nameToggle = !this.nameToggle;
+    }
 
 }

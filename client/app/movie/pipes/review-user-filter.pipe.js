@@ -10,28 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 // Tell Angular2 we're creating a Pipe with TypeScript decorators
-var ReviewRatingPipe = (function () {
-    function ReviewRatingPipe() {
+var ReviewUserFilterPipe = (function () {
+    function ReviewUserFilterPipe() {
     }
-    ReviewRatingPipe.prototype.transform = function (value, args) {
-        var minRating = args;
+    ReviewUserFilterPipe.prototype.transform = function (value, args) {
+        var nameSearched = args;
         var review = value;
         var reviews = [];
+        if ((nameSearched).length == 0)
+            return review;
         for (var i in review) {
-            var rating = +review[i].rating;
-            if (rating >= minRating) {
+            var username = review[i].user;
+            if (username.toLowerCase().includes(nameSearched.toLowerCase())) {
                 reviews.push(review[i]);
             }
         }
         return reviews;
     };
-    ReviewRatingPipe = __decorate([
+    ReviewUserFilterPipe = __decorate([
         core_1.Pipe({
-            name: 'ReviewRatingPipe'
+            name: 'ReviewUserFilterPipe'
         }), 
         __metadata('design:paramtypes', [])
-    ], ReviewRatingPipe);
-    return ReviewRatingPipe;
+    ], ReviewUserFilterPipe);
+    return ReviewUserFilterPipe;
 }());
-exports.ReviewRatingPipe = ReviewRatingPipe;
-//# sourceMappingURL=review-rating.pipe.js.map
+exports.ReviewUserFilterPipe = ReviewUserFilterPipe;
+//# sourceMappingURL=review-user-filter.pipe.js.map

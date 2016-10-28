@@ -23,18 +23,29 @@ var MoviePageComponent = (function () {
         this.reviewTitle = "ReviewTitle";
         this.sliderValue = 0;
         this.nameSearched = "";
+        this.toggle = false;
+        this.format = "";
+        this.ratingToggle = false;
+        this.nameToggle = false;
     }
     MoviePageComponent.prototype.ngOnInit = function () {
         var _this = this;
         // get URL parameters
         this.sub = this.route.params.subscribe(function (params) { _this.movieId = params['id']; });
-        console.log(this.sub);
         this.getReviews(this.movieId);
     };
     MoviePageComponent.prototype.getReviews = function (movieId) {
         var _this = this;
         console.log(movieId);
         this.reviewService.getReviews(movieId).subscribe(function (data) { return _this.reviews = data; }, function (error) { return console.log(error); });
+    };
+    MoviePageComponent.prototype.toggleSortByRating = function () {
+        this.ratingToggle ? this.format = "rating-asc" : this.format = "rating-desc";
+        this.ratingToggle = !this.ratingToggle;
+    };
+    MoviePageComponent.prototype.toggleSortByName = function () {
+        this.nameToggle ? this.format = "name-asc" : this.format = "name-desc";
+        this.nameToggle = !this.nameToggle;
     };
     MoviePageComponent = __decorate([
         core_1.Component({
