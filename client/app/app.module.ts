@@ -21,6 +21,8 @@ import { MovieDetailComponent } from './movie/movie-detail.component';
 import {ProfileUserDetailsComponent} from "./profile/profile-user-details.component";
 import {ProfileUserReviews} from "./profile/profile-user-reviews.component";
 import {ProfileUserReview} from "./profile/profile-user-review.component";
+import { ReviewRatingPipe } from "./movie/pipes/review-rating.pipe";
+import { ReviewUserPipe } from "./movie/pipes/review-user.pipe";
 
 /**
  * @NgModule contains the list of external modules used by the application.
@@ -50,7 +52,9 @@ import {ProfileUserReview} from "./profile/profile-user-review.component";
         MovieDetailComponent,
         ProfileUserDetailsComponent,
         ProfileUserReviews,
-        ProfileUserReview
+        ProfileUserReview,
+        ReviewRatingPipe,
+        ReviewUserPipe
     ],
     bootstrap: [ AppComponent ]
 })

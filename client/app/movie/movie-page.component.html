@@ -4,10 +4,41 @@
         <movie-detail></movie-detail>
     </li>
 
-    <li class="movie-page-item">
-        <h2> Reviews </h2>
+    <h2> Reviews </h2>
+
+    <li *ngIf="(reviews | json) == '[]'" class="movie-page-item">
+        <p>
+            This movie has no reviews. Be the first to review it!
+        </p>
+    </li>
+
+    <li *ngIf="(reviews | json) != '[]'" class="movie-page-item">
         <hr>
-        <div *ngFor="let review of reviews">
+        <div class="review-filter-container">
+
+            <div class="review-filter-item">
+
+                <p> Filter by rating:</p>
+                <div class="review-slider-value"> {{ sliderValue }} </div>
+                <div>
+                    0
+                    <input type="range" min="0" max="10" [value]="sliderValue"
+                           (input)="sliderValue = $event.target.value" />
+                    10
+
+                </div>
+            </div>
+
+            <div class="review-filter-item">
+                <p>Filter by name</p>
+                <input #box [value]="nameSearched" (input)="nameSearched = $event.target.value">
+            </div>
+
+        </div>
+
+
+
+        <div *ngFor="let review of reviews | ReviewRatingPipe:sliderValue | ReviewUserPipe:nameSearched ">
             <movie-review [review]=review></movie-review>
         </div>
 

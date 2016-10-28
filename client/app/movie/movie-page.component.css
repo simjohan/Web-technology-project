@@ -11,3 +11,13 @@
     margin-top: 15px;
 }
 
+.review-filter-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.review-filter-item{
+    flex: 1;
+    text-align: center;
+}

@@ -19,8 +19,8 @@ module.exports = function(app,io){
         res.send(JSON.stringify(
             {
                 "reviews": [
-                    {id: req.params.movieId, title: "Good", rating: "10", user: "username", text: "This is a good review."},
-                    {id: req.params.movieId, title: "Bad", rating: "2", user: "username", text: "This is a bad review."},
+                    {id: req.params.movieId, title: "Good", rating: "10", user: "Thomas", text: "This is a good review."},
+                    {id: req.params.movieId, title: "Bad", rating: "2", user: "Alm", text: "This is a bad review."},
                 ]
             }
         ));

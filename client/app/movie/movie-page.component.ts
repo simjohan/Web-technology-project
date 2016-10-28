@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewService } from './review.service';
 import { ActivatedRoute } from '@angular/router';
+import { ReviewRatingPipe } from './pipes/review-rating.pipe';
+
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -15,8 +17,7 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: 'movie-page.component.html',
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['movie-page.component.css'],
-    providers: [ReviewService]
-
+    providers: [ReviewService],
 })
 
 /**
@@ -25,6 +26,9 @@ import { ActivatedRoute } from '@angular/router';
 export class MoviePageComponent{
     //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
     reviewTitle = "ReviewTitle";
+
+    sliderValue:number = 0;
+    nameSearched:String = "";
 
     private reviews: Object;
     private movieId;

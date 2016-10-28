@@ -21,6 +21,8 @@ var MoviePageComponent = (function () {
         this.route = route;
         //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
         this.reviewTitle = "ReviewTitle";
+        this.sliderValue = 0;
+        this.nameSearched = "";
     }
     MoviePageComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -44,7 +46,7 @@ var MoviePageComponent = (function () {
             templateUrl: 'movie-page.component.html',
             // stylrUlrs tells the component where it can find the CSS-code that it is going to use
             styleUrls: ['movie-page.component.css'],
-            providers: [review_service_1.ReviewService]
+            providers: [review_service_1.ReviewService],
         }), 
         __metadata('design:paramtypes', [review_service_1.ReviewService, router_1.ActivatedRoute])
     ], MoviePageComponent);

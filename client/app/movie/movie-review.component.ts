@@ -19,7 +19,7 @@ import { Component, Input } from '@angular/core';
 /**
  * Exporting the class MovieReviewComponent, so other components have access to it.
  */
-export class MovieReviewComponent {
+export class MovieReviewComponent  {
     //@Input() lets other components send in the values, which this component inputs here. This value can be used in the template.
     @Input() review;
 
