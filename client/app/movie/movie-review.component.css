@@ -23,7 +23,8 @@
 }
 
 .review-item-left{
-    margin-right: 175px;
+    width: 175px;
+    text-align: left;
 }
 
 .review-item-right {
@@ -57,10 +58,11 @@
     .review-list-item {
         flex-flow: column wrap;
     }
-    .review-item-right{
-        margin-left: 0;
+    .review-item-left{
+        margin-top: 10px;
     }
     .review-item-right{
         margin-top: 20px;
+        margin-left: 0px;
     }
 }

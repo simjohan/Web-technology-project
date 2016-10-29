@@ -23,7 +23,7 @@ var profile_page_component_1 = require('./profile/profile-page.component');
 var routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: front_page_component_1.FrontPageComponent },
-    { path: 'movie', component: movie_page_component_1.MoviePageComponent },
+    { path: 'movie/:id', component: movie_page_component_1.MoviePageComponent },
     { path: 'profile', component: profile_page_component_1.ProfilePageComponent } //profile/:id+
 ];
 var AppRoutingModule = (function () {

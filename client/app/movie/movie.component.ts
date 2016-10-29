@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -11,11 +11,15 @@ import { Component, Input } from '@angular/core';
     selector: "movie-cmp",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'movie.component.html',
+    // stylrUlrs tells the component where it can find the CSS-code that it is going to use
+    styleUrls: ['movie.component.css']
 })
 
 /**
  * Exporting the class MovieComponent, so other components have access to it
  */
-export class MovieComponent {
-  @Input() movieTitle;
+export class MovieComponent{
+
+    @Input() movieObject;
+
 }

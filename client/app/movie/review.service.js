@@ -10,25 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/Rx');
-require('rxjs/add/operator/catch');
-var MovieService = (function () {
-    function MovieService(http) {
+var ReviewService = (function () {
+    function ReviewService(http) {
         this.http = http;
-        this.newlyReviewMoviesUrl = '/api/newly-reviewed-movies'; // URL to web API
-        this.specificMovieUrl = '/api/specific-movie/';
+        this.reviewsUrl = '/api/specific-movie-reviews/'; // URL to web API
     }
-    MovieService.prototype.getMovies = function () {
-        return this.http.get(this.newlyReviewMoviesUrl).map(function (res) { return res.json().movies; });
+    ReviewService.prototype.getReviews = function (id) {
+        return this.http.get(this.reviewsUrl + id).map(function (res) { return res.json().reviews; });
     };
-    MovieService.prototype.getMovie = function (id) {
-        return this.http.get(this.specificMovieUrl + id).map(function (res) { return res.json(); });
-    };
-    MovieService = __decorate([
+    ReviewService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], MovieService);
-    return MovieService;
+    ], ReviewService);
+    return ReviewService;
 }());
-exports.MovieService = MovieService;
-//# sourceMappingURL=movie.service.js.map
+exports.ReviewService = ReviewService;
+//# sourceMappingURL=review.service.js.map

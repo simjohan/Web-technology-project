@@ -9,49 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var movie_service_1 = require('./movie.service');
+var router_1 = require('@angular/router');
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
  * how the component should be processed, instantiated and used at runtime.
  */
 var MovieDetailComponent = (function () {
-    function MovieDetailComponent() {
-        //@Input() lets other components send in the values, which this component inputs here. This value can be used in the template.
-        this.movieTitle = "Title";
-        this.movieRating = "Rating";
-        this.movieYear = "Year";
-        this.movieActors = "Actors";
-        this.movieDirectors = "Directors";
-        this.movieCountry = "Country";
-        this.movieDescription = "Description";
+    function MovieDetailComponent(movieService, route) {
+        this.movieService = movieService;
+        this.route = route;
     }
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieDetailComponent.prototype, "movieTitle", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieDetailComponent.prototype, "movieRating", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieDetailComponent.prototype, "movieYear", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieDetailComponent.prototype, "movieActors", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieDetailComponent.prototype, "movieDirectors", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieDetailComponent.prototype, "movieCountry", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], MovieDetailComponent.prototype, "movieDescription", void 0);
+    MovieDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // get URL parameters
+        this.sub = this.route.params.subscribe(function (params) { _this.userId = params['id']; });
+        this.getMovie(this.userId);
+    };
+    MovieDetailComponent.prototype.getMovie = function (userId) {
+        var _this = this;
+        this.movieService.getMovie(userId).subscribe(function (data) { return _this.movie = data; }, function (error) { return console.log(error); });
+    };
     MovieDetailComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
@@ -62,8 +40,9 @@ var MovieDetailComponent = (function () {
             styleUrls: ['movie-detail.component.css'],
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
             templateUrl: 'movie-detail.component.html',
+            providers: [movie_service_1.MovieService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [movie_service_1.MovieService, router_1.ActivatedRoute])
     ], MovieDetailComponent);
     return MovieDetailComponent;
 }());

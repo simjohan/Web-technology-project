@@ -9,15 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var review_service_1 = require('./review.service');
+var router_1 = require('@angular/router');
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
  * how the component should be processed, instantiated and used at runtime.
  */
 var MoviePageComponent = (function () {
-    function MoviePageComponent() {
+    function MoviePageComponent(reviewService, route) {
+        this.reviewService = reviewService;
+        this.route = route;
         //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
         this.reviewTitle = "ReviewTitle";
+        this.sliderValue = 0;
+        this.nameSearched = "";
     }
+    MoviePageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // get URL parameters
+        this.sub = this.route.params.subscribe(function (params) { _this.movieId = params['id']; });
+        console.log(this.sub);
+        this.getReviews(this.movieId);
+    };
+    MoviePageComponent.prototype.getReviews = function (movieId) {
+        var _this = this;
+        console.log(movieId);
+        this.reviewService.getReviews(movieId).subscribe(function (data) { return _this.reviews = data; }, function (error) { return console.log(error); });
+    };
     MoviePageComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
@@ -28,8 +46,9 @@ var MoviePageComponent = (function () {
             templateUrl: 'movie-page.component.html',
             // stylrUlrs tells the component where it can find the CSS-code that it is going to use
             styleUrls: ['movie-page.component.css'],
+            providers: [review_service_1.ReviewService],
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [review_service_1.ReviewService, router_1.ActivatedRoute])
     ], MoviePageComponent);
     return MoviePageComponent;
 }());

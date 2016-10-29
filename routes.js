@@ -15,38 +15,33 @@ module.exports = function(app,io){
         console.log("client dcd");
     });
 
-    app.get('/home', function(req, res) {
+    app.get('/api/specific-movie-reviews/:movieId', function(req, res){
+        res.send(JSON.stringify(
+            {
+                "reviews": [
+                    {id: req.params.movieId, title: "Good", rating: "10", user: "Thomas", text: "This is a good review."},
+                    {id: req.params.movieId, title: "Bad", rating: "2", user: "Alm", text: "This is a bad review."},
+                ]
+            }
+        ));
+    });
 
-        /*
-        res.send(JSON.stringify([
-          {
-            id: "1",
-            title: "Frozen",
-            year: "2012"
-          },
-          {
-            id: "2",
-            title: "Matrix",
-            year: "2002"
-          }
-        ]));
-        */
+    app.get('/api/specific-movie/:movieId', function(req, res) {
+        // Insert DB logic here to handle the movieID, just sending example movie now.
+        res.send(JSON.stringify(
+            {
+                id: req.params.movieId, title: "Frozen", rating: "10", year: "2012", actors: "Anna, Bella, John", directors: "JJ", country: "Iceland", description: "Lengthy description."
+            }
+        ));
+    });
 
-        //res.send(JSON.stringify({"title": "Frozen", "year": "2012"}));
+    app.get('/api/newly-reviewed-movies', function(req, res) {
 
         res.send(JSON.stringify(
             {
                 "movies": [
-                    {
-                        id: "1",
-                        title: "Frozen",
-                        year: "2012"
-                    },
-                    {
-                        id: "2",
-                        title: "Matrix",
-                        year: "2002"
-                    }
+                    {id: "1", title: "Frozen", year: "2012"},
+                    {id: "2", title: "Matrix", year: "2002"}
                 ]
             }
         ));
