@@ -11,13 +11,15 @@
     margin-top: 15px;
 }
 
-.review-filter-container{
+.review-settings-container{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
+    margin-bottom: 50px;
+    margin-top: 25px;
 }
 
-.review-filter-item{
+.review-settings-item{
     flex: 1;
     text-align: center;
 }

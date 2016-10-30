@@ -14,15 +14,17 @@
 
     <li *ngIf="(reviews | json) != '[]'" class="movie-page-item">
 
-        <div class="review-filter-container">
+        <hr>
 
-            <div class="review-filter-item">
+        <div class="review-settings-container">
+
+            <div class="review-settings-item">
                 <p>Sort by</p>
                 <button (click)="toggleSortByRating()">Rating</button>
                 <button (click)="toggleSortByName()">Name</button>
             </div>
 
-            <div class="review-filter-item">
+            <div class="review-settings-item">
 
                 <p> Filter by rating:</p>
                 <div class="review-slider-value"> {{ sliderValue }} </div>
@@ -35,12 +37,14 @@
                 </div>
             </div>
 
-            <div class="review-filter-item">
+            <div class="review-settings-item">
                 <p>Filter by name</p>
                 <input #box [value]="nameSearched" (input)="nameSearched = $event.target.value">
             </div>
 
         </div>
+
+        <hr>
 
         <div *ngFor="let review of reviews | ReviewRatingFilterPipe:sliderValue | ReviewUserFilterPipe:nameSearched | ReviewSorterPipe:format ">
             <movie-review [review]=review></movie-review>
