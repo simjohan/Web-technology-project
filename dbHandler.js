@@ -30,7 +30,6 @@ var _getUsersFromDb =  function(query) {
         }
     );
     stmt.finalize();
-    db.close();
 };
 
 
@@ -50,14 +49,12 @@ var _getUserById =  function(id) {
         }
     );
     stmt.finalize();
-    db.close();
 };
 
 var _insertUser = function(id, name, email, imageurl) {
     var stmt = db.prepare('INSERT INTO Users VALUES (?, ?, ?, ?)');
     stmt.run(id, name, email, imageurl);
     stmt.finalize();
-    db.close();
 };
 
 
@@ -66,7 +63,6 @@ var _updateUser =  function(id, attr, value) {
         var stmt = db.prepare('UPDATE Users SET ' + attr + '= ? WHERE id = ?');
         stmt.run(value, id);
         stmt.finalize();
-        db.close();
     }
     else {
         console.log('Not a valid attribute to change!');
@@ -89,7 +85,6 @@ var _getMovieById = function(id) {
         }
     );
     stmt.finalize();
-    db.close();
 };
 
 var _getMoviesByTitle =  function(title){
@@ -108,14 +103,12 @@ var _getMoviesByTitle =  function(title){
         }
     );
     stmt.finalize();
-    db.close();
 };
 
 var _insertMovie =  function(id, title, viewCount) {
     var stmt = db.prepare('INSERT INTO Movies VALUES (?, ?, ?)');
     stmt.run(id, title, viewCount);
     stmt.finalize();
-    db.close();
 };
 
 var _updateMovie =  function(id, attr, value){
@@ -123,7 +116,6 @@ var _updateMovie =  function(id, attr, value){
         var stmt = db.prepare('UPDATE Movies SET ' + attr + '= ? WHERE id = ?');
         stmt.run(value, id);
         stmt.finalize();
-        db.close();
     }
     else {
         console.log('Not a valid attribute to change!');
@@ -134,7 +126,6 @@ var _incrementViewCount = function(id){
     var stmt = db.prepare('UPDATE Movies SET viewCount = viewCount + 1 WHERE id = ?');
     stmt.run(id);
     stmt.finalize();
-    db.close();
 };
 
 // TODO: A review can now be added without the user or movie existing. Fix this.
@@ -142,7 +133,6 @@ var _addReview =  function(userId, movieId, review) {
     var stmt = db.prepare('INSERT INTO Reviews VALUES (?, ?, ?);');
     stmt.run(userId, movieId, review);
     stmt.finalize();
-    db.close();
 
 
 };

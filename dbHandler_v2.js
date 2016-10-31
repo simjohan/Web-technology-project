@@ -30,7 +30,6 @@ exports.getUsersFromDb =  function(query) {
         }
     );
     stmt.finalize();
-    db.close();
 };
 
 
@@ -50,14 +49,12 @@ exports.getUserById =  function(id) {
         }
     );
     stmt.finalize();
-    db.close();
 };
 
 exports.insertUser = function(id, name, email, imageurl) {
     var stmt = db.prepare('INSERT INTO Users VALUES (?, ?, ?, ?)');
     stmt.run(id, name, email, imageurl);
     stmt.finalize();
-    db.close();
 };
 
 
@@ -66,7 +63,6 @@ exports.updateUser =  function(id, attr, value) {
         var stmt = db.prepare('UPDATE Users SET ' + attr + '= ? WHERE id = ?');
         stmt.run(value, id);
         stmt.finalize();
-        db.close();
     }
     else {
         console.log('Not a valid attribute to change!');
@@ -89,7 +85,6 @@ exports.getMovieById = function(id) {
         }
     );
     stmt.finalize();
-    db.close();
 };
 
 exports.getMoviesByTitle =  function(title){
@@ -108,14 +103,12 @@ exports.getMoviesByTitle =  function(title){
         }
     );
     stmt.finalize();
-    db.close();
 };
 
 exports.insertMovie =  function(id, title, viewCount) {
     var stmt = db.prepare('INSERT INTO Movies VALUES (?, ?, ?)');
     stmt.run(id, title, viewCount);
     stmt.finalize();
-    db.close();
 };
 
 exports.updateMovie =  function(id, attr, value){
@@ -123,7 +116,6 @@ exports.updateMovie =  function(id, attr, value){
         var stmt = db.prepare('UPDATE Movies SET ' + attr + '= ? WHERE id = ?');
         stmt.run(value, id);
         stmt.finalize();
-        db.close();
     }
     else {
         console.log('Not a valid attribute to change!');
@@ -134,7 +126,6 @@ exports.incrementViewCount = function(id){
     var stmt = db.prepare('UPDATE Movies SET viewCount = viewCount + 1 WHERE id = ?');
     stmt.run(id);
     stmt.finalize();
-    db.close();
 };
 
 // TODO: A review can now be added without the user or movie existing. Fix this.
@@ -142,7 +133,6 @@ exports.addReview =  function(userId, movieId, review) {
     var stmt = db.prepare('INSERT INTO Reviews VALUES (?, ?, ?);');
     stmt.run(userId, movieId, review);
     stmt.finalize();
-    db.close();
 
 
 };
