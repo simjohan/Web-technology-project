@@ -17,7 +17,7 @@ if(!exists) {
 
     // Create the required tables.
     console.log("Creating tables..");
-    var CreateUserTable = "CREATE TABLE Users (id TEXT PRIMARY KEY, name TEXT, email TEXT, imageUrl TEXT)";
+    var CreateUserTable = "CREATE TABLE Users (id TEXT PRIMARY KEY UNIQUE, name TEXT, email TEXT, imageUrl TEXT)";
     var CreateMovieTable = "CREATE TABLE Movies (id TEXT PRIMARY KEY, title TEXT, viewCount INTEGER)";
     var CreateReviews = "CREATE TABLE Reviews (" +
         "userId TEXT, " +

@@ -1,6 +1,7 @@
 var http = require('http');
 
 module.exports = function(app,io){
+    var dbHandler = require('./dbHandler');
 
     var sess;
 
@@ -52,53 +53,28 @@ module.exports = function(app,io){
         ));
 
     });
-    /*
-    app.get('/home/api/user', function (req, res) {
-        if (req.method == 'POST'){
-            console.log("IS POST!")
-        }
-        else if (req.method == 'GET'){
-            var data = JSON.stringify({
-                name: 'bob bobsen',
-                email: 'bob@email.com'
-            });
 
-            var options = {
-                host: '',
-                port: 3000,
-                path: '/home/api/user',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Content-Length': Buffer.byteLength(data)
-                }
-            };
+    //Fetch the post request and add movie to database.
+    app.post('/api/movies/add/:id', function (req, res) {
+        console.log("Received movie title: " + req.body[1]);
+        var id = req.body[0];
+        var title = req.body[1];
+        var viewCount = req.body[2];
+        dbHandler.insertMovie(id, title, viewCount);
+    });
 
-            var req = http.request(options, function(res) {
-                res.setEncoding('utf8');
-                res.on('data', function (chunk) {
-                    console.log("body: " + chunk);
-                });
-            });
-            req.write(data);
-            req.end();
-        }
-        else {
-            console.log("Not a POST REQUEST!");
-            console.log(req.method)
-        }
-    });*/
-    
-    app.post('/home/api/user', function (req, res) {
-        console.log("Received data: " + req.body.name);
+    // Fetch the post request and add item to database.
+    app.post('/api/users/add/:id', function (req, res) {
+        console.log("Received data name: " + req.body[1]);
         console.log("req: " + req);
         console.log("res: " + res);
-        var id = req.body.id;
-        var name = req.body.name;
-        var email = req.body.email;
-        var imgurl = req.body.imgurl;
+        var id = req.body[0];
+        var name = req.body[1];
+        var email = req.body[2];
+        var imgurl = req.body[3];
         console.log("req-BODY: " + req.body);
-        console.log("res-BODY: " + res.body);
+        dbHandler.insertUser(id, name, email, imgurl);
+
     });
 
 

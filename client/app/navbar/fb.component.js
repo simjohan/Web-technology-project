@@ -70,9 +70,11 @@ var FacebookComponent = (function () {
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
             FB.api('/me?fields=name,email,picture', function (me) {
+                console.log("RESPONSE.ID: " + me.id);
                 console.log("RESPONSE.NAME: " + me.name);
                 console.log("RESPONSE.EMAIL: " + me.email);
                 console.log("RESPONSE.IMAGEURL: " + me.picture.data.url);
+                localStorage.setItem('id', me.id);
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email', me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
@@ -83,10 +85,11 @@ var FacebookComponent = (function () {
         else {
         }
         console.log("Before service call!");
+        var id = localStorage.getItem('id');
         var namer = localStorage.getItem('name');
         var emailer = localStorage.getItem('email');
         var imger = localStorage.getItem('imgurl');
-        this.service.insertUser(42, namer, emailer, imger);
+        this.service.insertUser(id, namer, emailer, imger);
     };
     ;
     FacebookComponent.prototype.ngOnInit = function () {

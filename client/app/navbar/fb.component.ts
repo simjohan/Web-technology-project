@@ -89,9 +89,11 @@ export class FacebookComponent implements OnInit{
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
             FB.api('/me?fields=name,email,picture', function(me) {
+                console.log("RESPONSE.ID: " + me.id);
                 console.log("RESPONSE.NAME: " + me.name);
                 console.log("RESPONSE.EMAIL: " + me.email);
                 console.log("RESPONSE.IMAGEURL: " + me.picture.data.url);
+                localStorage.setItem('id', me.id);
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email',me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
@@ -108,10 +110,11 @@ export class FacebookComponent implements OnInit{
         }
 
         console.log("Before service call!");
+        let id = localStorage.getItem('id');
         let namer = localStorage.getItem('name');
         let emailer = localStorage.getItem('email');
         let imger = localStorage.getItem('imgurl');
-        this.service.insertUser(42, namer, emailer, imger);
+        this.service.insertUser(id, namer, emailer, imger);
 
     };
 
