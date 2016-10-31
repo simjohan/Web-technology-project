@@ -16,6 +16,8 @@ module.exports = function(app,io){
         console.log("client dcd");
     });
 
+
+
     app.get('/api/specific-movie-reviews/:movieId', function(req, res){
         res.send(JSON.stringify(
             {
@@ -77,6 +79,13 @@ module.exports = function(app,io){
 
     });
 
+    /*
+        If all other options are exhausted, use this.
+        Temp solution. This should be placed last.
+    */
+    app.get('*', function (req, res) {
+        res.sendFile(__dirname + '/client/index.html');
+    });
 
 
 };
