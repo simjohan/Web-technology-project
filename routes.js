@@ -48,43 +48,10 @@ module.exports = function(app,io){
         ));
 
     });
-    /*
-    app.get('/home/api/user', function (req, res) {
-        if (req.method == 'POST'){
-            console.log("IS POST!")
-        }
-        else if (req.method == 'GET'){
-            var data = JSON.stringify({
-                name: 'bob bobsen',
-                email: 'bob@email.com'
-            });
 
-            var options = {
-                host: '',
-                port: 3000,
-                path: '/home/api/user',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Content-Length': Buffer.byteLength(data)
-                }
-            };
 
-            var req = http.request(options, function(res) {
-                res.setEncoding('utf8');
-                res.on('data', function (chunk) {
-                    console.log("body: " + chunk);
-                });
-            });
-            req.write(data);
-            req.end();
-        }
-        else {
-            console.log("Not a POST REQUEST!");
-            console.log(req.method)
-        }
-    });*/
-    app.post('/api/user/:id', function (req, res) {
+    // Catch the post request and add item to database.
+    app.post('/api/user/add/:id', function (req, res) {
         console.log("Received data name: " + req.body[1]);
         console.log("req: " + req);
         console.log("res: " + res);
