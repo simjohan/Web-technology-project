@@ -1,6 +1,7 @@
 var http = require('http');
 
 module.exports = function(app,io){
+    var dbHandler = require('./dbHandler');
 
     var sess;
 
@@ -83,17 +84,17 @@ module.exports = function(app,io){
             console.log(req.method)
         }
     });*/
-    
-    app.post('/home/api/user', function (req, res) {
-        console.log("Received data: " + req.body.name);
+    app.post('/api/user/:id', function (req, res) {
+        console.log("Received data name: " + req.body[1]);
         console.log("req: " + req);
         console.log("res: " + res);
-        var id = req.body.id;
-        var name = req.body.name;
-        var email = req.body.email;
-        var imgurl = req.body.imgurl;
+        var id = req.body[0];
+        var name = req.body[1];
+        var email = req.body[2];
+        var imgurl = req.body[3];
         console.log("req-BODY: " + req.body);
-        console.log("res-BODY: " + res.body);
+        dbHandler.insertUser(id, name, email, imgurl);
+
     });
 
 
