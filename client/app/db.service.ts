@@ -14,7 +14,7 @@ export class DatabaseService {
     insertUser(id, name, email, imgurl){
         let body = JSON.stringify([id, name, email, imgurl]);
         let headers = new Headers();
-        let addUserUrl = 'http://localhost:3000/api/user/add/' + id;
+        let addUserUrl = 'http://localhost:3000/api/users/add/' + id;
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({headers: headers});
         return this.http.post(addUserUrl, body, options).subscribe();

@@ -59,7 +59,7 @@ module.exports = function(app,io){
     });
 
     // Fetch the post request and add item to database.
-    app.post('/api/user/add/:id', function (req, res) {
+    app.post('/api/users/add/:id', function (req, res) {
         console.log("Received data name: " + req.body[1]);
         console.log("req: " + req);
         console.log("res: " + res);
