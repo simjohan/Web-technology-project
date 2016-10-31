@@ -8,6 +8,6 @@ Getting started
 
 3. Run the application by entering your project folder and run:
 
-    `node app.js`
+    `npm start`
 
 This will launch the application at localhost:3000.
