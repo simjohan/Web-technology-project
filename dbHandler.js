@@ -14,7 +14,7 @@ var dbCallback = function(callback) {
     console.log(callback);
 };
 
-var _getUsersFromDb =  function(query) {
+exports.getUsersFromDb =  function(query) {
     var userList = {};
     var stmt = db.prepare('SELECT * FROM Users WHERE name LIKE ?');
     stmt.each('%' + query + '%',
@@ -33,7 +33,7 @@ var _getUsersFromDb =  function(query) {
 };
 
 
-var _getUserById =  function(id) {
+exports.getUserById =  function(id) {
     var user = {};
     var stmt = db.prepare('SELECT * FROM Users WHERE id = ?');
     stmt.each(id,
@@ -51,14 +51,14 @@ var _getUserById =  function(id) {
     stmt.finalize();
 };
 
-var _insertUser = function(id, name, email, imageurl) {
+exports.insertUser = function(id, name, email, imageurl) {
     var stmt = db.prepare('INSERT INTO Users VALUES (?, ?, ?, ?)');
     stmt.run(id, name, email, imageurl);
     stmt.finalize();
 };
 
 
-var _updateUser =  function(id, attr, value) {
+exports.updateUser =  function(id, attr, value) {
     if (attr == 'name' || attr == 'email' || attr == 'imgurl'){
         var stmt = db.prepare('UPDATE Users SET ' + attr + '= ? WHERE id = ?');
         stmt.run(value, id);
@@ -69,7 +69,7 @@ var _updateUser =  function(id, attr, value) {
     }
 };
 
-var _getMovieById = function(id) {
+exports.getMovieById = function(id) {
     var movieList = {};
     var stmt = db.prepare('SELECT * FROM Movies WHERE id = ?');
     stmt.each(id,
@@ -87,7 +87,7 @@ var _getMovieById = function(id) {
     stmt.finalize();
 };
 
-var _getMoviesByTitle =  function(title){
+exports.getMoviesByTitle =  function(title){
     var movieList = {};
     var stmt = db.prepare('SELECT * FROM Movies WHERE title LIKE ?');
     stmt.each('%' + title + '%',
@@ -105,13 +105,13 @@ var _getMoviesByTitle =  function(title){
     stmt.finalize();
 };
 
-var _insertMovie =  function(id, title, viewCount) {
+exports.insertMovie =  function(id, title, viewCount) {
     var stmt = db.prepare('INSERT INTO Movies VALUES (?, ?, ?)');
     stmt.run(id, title, viewCount);
     stmt.finalize();
 };
 
-var _updateMovie =  function(id, attr, value){
+exports.updateMovie =  function(id, attr, value){
     if (attr == 'title' || attr == 'viewCount'){
         var stmt = db.prepare('UPDATE Movies SET ' + attr + '= ? WHERE id = ?');
         stmt.run(value, id);
@@ -122,32 +122,17 @@ var _updateMovie =  function(id, attr, value){
     }
 };
 
-var _incrementViewCount = function(id){
+exports.incrementViewCount = function(id){
     var stmt = db.prepare('UPDATE Movies SET viewCount = viewCount + 1 WHERE id = ?');
     stmt.run(id);
     stmt.finalize();
 };
 
 // TODO: A review can now be added without the user or movie existing. Fix this.
-var _addReview =  function(userId, movieId, review) {
+exports.addReview =  function(userId, movieId, review) {
     var stmt = db.prepare('INSERT INTO Reviews VALUES (?, ?, ?);');
     stmt.run(userId, movieId, review);
     stmt.finalize();
-
-
-};
-
-module.exports = {
-    insertUser: _insertUser,
-    updateUser: _updateUser,
-    getUsersFromDb: _getUsersFromDb,
-    addReview: _addReview,
-    incrementViewCount: _incrementViewCount,
-    updateMovie: _updateMovie,
-    insertMovie: _insertMovie,
-    getMoviesByTitle: _getMoviesByTitle,
-    getMoviesById: _getMovieById,
-    getUserById: _getUserById
 
 
 };

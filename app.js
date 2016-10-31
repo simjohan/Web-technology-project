@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 // Database stuff here
 var dbInit = require('./dbInit.js');
-var dbHandler = require('./dbHandler_v2.js');
+var dbHandler = require('./dbHandler.js');
 
 var fs = require("fs");
 var file = "database.db";

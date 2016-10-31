@@ -1,7 +1,7 @@
 var http = require('http');
 
 module.exports = function(app,io){
-    var dbHandler = require('./dbHandler_v2');
+    var dbHandler = require('./dbHandler');
 
     var sess;
 
