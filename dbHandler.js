@@ -75,13 +75,13 @@ exports.getMovieById = function(id) {
     stmt.each(id,
         function(err, row) {
             console.log(err);
-            movieList[row.id] = {"name": row.title, "viewCount": row.viewCount};
+            movieList[row.id] = {"title": row.title, "viewCount": row.viewCount};
             console.log("Movie: " + row.id + " - " + row.title + " - " + row.viewCount);
         },
 
         //callback called when the operation is completed (async call)
         function() {
-            dbCallback(movieList)
+            movieByIdCallback(movieList);
         }
     );
     stmt.finalize();
@@ -93,7 +93,7 @@ exports.getMoviesByTitle =  function(title){
     stmt.each('%' + title + '%',
         function(err, row) {
             console.log(err);
-            movieList[row.id] = {"name": row.title, "viewCount": row.viewCount};
+            movieList[row.id] = {"title": row.title, "viewCount": row.viewCount};
             console.log("Movie: " + row.id + " - " + row.title + " - " + row.viewCount);
         },
 
@@ -137,5 +137,13 @@ exports.addReview =  function(userId, movieId, review) {
 
 };
 
-
-
+var movieByIdCallback = function (callback) {
+    var key = Object.keys(callback);
+    var title = "";
+    var viewCount = 0;
+    Object.keys(callback).forEach(function (key) {
+        var attribute_list = callback[key];
+        title = attribute_list.title;
+        viewCount = attribute_list.viewCount;
+    });
+};
