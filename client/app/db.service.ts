@@ -12,10 +12,9 @@ export class DatabaseService {
 
 
     insertUser(id, name, email, imgurl){
-        console.log("IN DatabaseService insertUser!");
         let body = JSON.stringify([id, name, email, imgurl]);
         let headers = new Headers();
-        let userUrl = 'http://localhost:3000/api/user/' + id;
+        let userUrl = 'http://localhost:3000/api/user/add/' + id;
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({headers: headers});
         return this.http.post(userUrl, body, options).subscribe();

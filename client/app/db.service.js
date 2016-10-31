@@ -17,10 +17,9 @@ var DatabaseService = (function () {
         this.http = http;
     }
     DatabaseService.prototype.insertUser = function (id, name, email, imgurl) {
-        console.log("IN DatabaseService insertUser!");
         var body = JSON.stringify([id, name, email, imgurl]);
         var headers = new http_1.Headers();
-        var userUrl = 'http://localhost:3000/api/user/' + id;
+        var userUrl = 'http://localhost:3000/api/user/add/' + id;
         headers.append('Content-Type', 'application/json');
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(userUrl, body, options).subscribe();
