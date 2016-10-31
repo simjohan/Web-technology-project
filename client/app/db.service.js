@@ -19,12 +19,20 @@ var DatabaseService = (function () {
     DatabaseService.prototype.insertUser = function (id, name, email, imgurl) {
         var body = JSON.stringify([id, name, email, imgurl]);
         var headers = new http_1.Headers();
-        var userUrl = 'http://localhost:3000/api/user/add/' + id;
+        var addUserUrl = 'http://localhost:3000/api/user/add/' + id;
         headers.append('Content-Type', 'application/json');
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(userUrl, body, options).subscribe();
+        return this.http.post(addUserUrl, body, options).subscribe();
         //   .map((res: Response) => res.json())
         //   .catch(this.handleError);
+    };
+    DatabaseService.prototype.insertMovie = function (id, title, viewCount) {
+        var body = JSON.stringify([id, title, viewCount]);
+        var headers = new http_1.Headers();
+        var addMovieUrl = 'http://localhost:3000/api/movies/add/' + id;
+        headers.append('Content-Type', 'application/json');
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(addMovieUrl, body, options).subscribe();
     };
     DatabaseService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only

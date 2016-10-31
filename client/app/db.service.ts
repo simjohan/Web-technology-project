@@ -14,12 +14,21 @@ export class DatabaseService {
     insertUser(id, name, email, imgurl){
         let body = JSON.stringify([id, name, email, imgurl]);
         let headers = new Headers();
-        let userUrl = 'http://localhost:3000/api/user/add/' + id;
+        let addUserUrl = 'http://localhost:3000/api/user/add/' + id;
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({headers: headers});
-        return this.http.post(userUrl, body, options).subscribe();
+        return this.http.post(addUserUrl, body, options).subscribe();
          //   .map((res: Response) => res.json())
          //   .catch(this.handleError);
+    }
+
+    insertMovie(id, title, viewCount){
+        let body = JSON.stringify([id, title, viewCount]);
+        let headers = new Headers();
+        let addMovieUrl = 'http://localhost:3000/api/movies/add/' + id;
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({headers: headers});
+        return this.http.post(addMovieUrl, body, options).subscribe();
     }
 
     private handleError(error: any): Promise<any> {

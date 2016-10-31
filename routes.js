@@ -49,8 +49,16 @@ module.exports = function(app,io){
 
     });
 
+    //Fetch the post request and add movie to database.
+    app.post('/api/movies/add/:id', function (req, res) {
+        console.log("Received movie title: " + req.body[1]);
+        var id = req.body[0];
+        var title = req.body[1];
+        var viewCount = req.body[2];
+        dbHandler.insertMovie(id, title, viewCount);
+    });
 
-    // Catch the post request and add item to database.
+    // Fetch the post request and add item to database.
     app.post('/api/user/add/:id', function (req, res) {
         console.log("Received data name: " + req.body[1]);
         console.log("req: " + req);
