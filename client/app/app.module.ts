@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpModule }      from '@angular/http';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 /**
  * Imports the components we need to show the application
@@ -36,7 +37,8 @@ import { ReviewSorterPipe } from "./movie/pipes/review-sorter.pipe";
         FormsModule,
         FormsModule,
         AppRoutingModule,
-        HttpModule
+        HttpModule,
+        ChartsModule
     ],
     declarations: [
         AppComponent,

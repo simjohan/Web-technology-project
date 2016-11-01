@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_routing_module_1 = require('./app-routing.module');
 var http_1 = require('@angular/http');
+var ng2_charts_1 = require('ng2-charts/ng2-charts');
 /**
  * Imports the components we need to show the application
  */
@@ -49,7 +50,8 @@ var AppModule = (function () {
                 forms_1.FormsModule,
                 forms_1.FormsModule,
                 app_routing_module_1.AppRoutingModule,
-                http_1.HttpModule
+                http_1.HttpModule,
+                ng2_charts_1.ChartsModule
             ],
             declarations: [
                 app_component_1.AppComponent,
