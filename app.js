@@ -4,7 +4,6 @@ var server = require('http').Server(app);
 var session = require('express-session');
 var bodyParser = require('body-parser');
 
-
 // Database stuff here
 var dbInit = require('./dbInit.js');
 var dbHandler = require('./dbHandler.js');
@@ -25,11 +24,10 @@ server.listen(3000,function(){
 });
 //session init
 app.use( session({
-    secret:'can',
+    secret:'keyboard cat',
     resave:false,
     saveUninitialized:false
 }));
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );

@@ -1,9 +1,45 @@
 var http = require('http');
+var parseurl = require('parseurl')
 
 module.exports = function(app,io){
     var dbHandler = require('./dbHandler');
 
     var sess;
+
+    /*
+
+     */
+
+    app.use(function (req, res, next) {
+        var recentMovies = req.session.recentMovies;
+
+        if (!recentMovies) {
+            recentMovies = req.session.recentMovies = [];
+        }
+
+        next() // Sort of understand this
+    })
+
+    app.get('/api/recent-movies', function(req, res){
+
+        // Create an empty json array
+        var obj = {"recent_movies": []};
+
+        // Fill the array
+        for (var i = 0; i < req.session.recentMovies.length; i++) {
+            obj["recent_movies"].push({id: req.session.recentMovies[i], title: "Session", year: "2012"});
+        }
+
+        // Send the array
+        res.send(JSON.stringify(
+            obj
+        ));
+
+    });
+
+    /*
+
+     */
 
 
 
@@ -34,7 +70,33 @@ module.exports = function(app,io){
     });
 
     app.get('/api/specific-movie/:movieId', function(req, res) {
-        // Insert DB logic here to handle the movieID, just sending example movie now.
+
+        // Check if the movie is already there
+        // indexOf returns -1 if not present, index if present
+        if (req.session.recentMovies.indexOf(req.params.movieId) < 0){
+            // Check the length of the array
+            if (req.session.recentMovies.length >= 5) {
+                // Remove the first entry
+                req.session.recentMovies.shift();
+            }
+            // Add the latest visited movie
+            req.session.recentMovies.push(req.params.movieId);
+        }
+        else if (req.session.recentMovies.indexOf(req.params.movieId) >= 0) {
+            // Find the index
+            var index = req.session.recentMovies.indexOf(req.params.movieId);
+            // Remove the entry
+            req.session.recentMovies.splice(index, 1);
+            // Add the entry to last place of array
+            req.session.recentMovies.push(req.params.movieId);
+        }
+        else {
+            console.log("Error occurred in /api/specific-movie/" + req.params.movieId);
+        }
+
+
+
+
         res.send(JSON.stringify(
             {
                 id: req.params.movieId, title: "Frozen", rating: "10", year: "2012", actors: "Anna, Bella, John", directors: "JJ", country: "Iceland", description: "Lengthy description."
