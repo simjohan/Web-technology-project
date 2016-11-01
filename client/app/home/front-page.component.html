@@ -13,15 +13,16 @@
     </ul>
 </div>
 
-<div class="newly-visited">
-    <movie-title [titleValue]="newlyVisited"></movie-title>
-    <ul class="movie-container">
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-        <movie-cmp></movie-cmp>
-    </ul>
+<div *ngIf="(recentlyVisitedMovies | json) != '[]'">
+    <div class="newly-visited">
+        <movie-title [titleValue]="newlyVisited"></movie-title>
+        <ul class="movie-container">
+
+            <div *ngFor="let recentMovie of recentlyVisitedMovies">
+                <movie-cmp [movieObject]=recentMovie ></movie-cmp>
+            </div>
+
+        </ul>
+    </div>
 </div>
+

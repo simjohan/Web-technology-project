@@ -1,6 +1,7 @@
 import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
 import 'rxjs/add/operator/map'
 import { MovieService } from './../movie/movie.service';
+import { FrontPageService } from './front-page.service';
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -15,7 +16,7 @@ import { MovieService } from './../movie/movie.service';
     templateUrl: 'front-page.component.html',
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['front-page.component.css'],
-    providers: [MovieService]
+    providers: [MovieService, FrontPageService]
 })
 
 /**
@@ -27,14 +28,23 @@ export class FrontPageComponent implements  OnInit {
     newlyVisited = "Newly Visisted";
 
 
-    constructor (private movieService: MovieService) {}
+    constructor (private movieService: MovieService, private frontPageService: FrontPageService) {}
 
-    ngOnInit() { this.getMovies(); }
+    ngOnInit() {
+        this.getMovies();
+        this.getRecentlyVisitedMovies();
+    }
 
     data: Object;
 
     getMovies():void {
       this.movieService.getMovies().subscribe(data => this.data = data, error => console.log(error));
+    }
+
+    recentlyVisitedMovies: Object;
+
+    getRecentlyVisitedMovies(): void {
+        this.frontPageService.recentlyVisitedMovies().subscribe(data => this.recentlyVisitedMovies = data, error => console.log(error));
     }
 
 }
