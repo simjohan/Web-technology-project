@@ -34,7 +34,7 @@ export class MoviePageComponent{
     ratingToggle = false;
     nameToggle = false;
 
-    private reviews: Object;
+    private reviews = [];
     private movieId;
     private sub: any;      // -> Subscriber
 
@@ -47,8 +47,18 @@ export class MoviePageComponent{
     }
 
     getReviews(movieId):void {
-        console.log(movieId);
-        this.reviewService.getReviews(movieId).subscribe(data => this.reviews = data, error => console.log(error));
+        this.reviewService.getReviews(movieId).subscribe(
+            data => this.reviews = data,
+            error => console.log(error),
+            () => this.summarizeRatings(this.reviews)
+        );
+    }
+
+    summarizeRatings(reviews){
+        this.reviewService.summarizeRatings(reviews).then(
+            data => this.doughnutChartData = data,
+            error => console.log(error)
+        );
     }
 
     toggleSortByRating(){
@@ -58,6 +68,24 @@ export class MoviePageComponent{
     toggleSortByName() {
         this.nameToggle ? this.format = "name-asc" : this.format = "name-desc";
         this.nameToggle = !this.nameToggle;
+    }
+
+    /*
+    Chart
+     */
+
+    // Doughnut
+    public doughnutChartLabels:string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+    public doughnutChartType:string = 'doughnut';
+    public doughnutChartData:number[] = [];
+
+    // events
+    public chartClicked(e:any):void {
+        // console.log(e);
+    }
+
+    public chartHovered(e:any):void {
+        // console.log(e);
     }
 
 }

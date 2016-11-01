@@ -27,6 +27,14 @@ var MoviePageComponent = (function () {
         this.format = "";
         this.ratingToggle = false;
         this.nameToggle = false;
+        this.reviews = [];
+        /*
+        Chart
+         */
+        // Doughnut
+        this.doughnutChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+        this.doughnutChartType = 'doughnut';
+        this.doughnutChartData = [];
     }
     MoviePageComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -36,8 +44,11 @@ var MoviePageComponent = (function () {
     };
     MoviePageComponent.prototype.getReviews = function (movieId) {
         var _this = this;
-        console.log(movieId);
-        this.reviewService.getReviews(movieId).subscribe(function (data) { return _this.reviews = data; }, function (error) { return console.log(error); });
+        this.reviewService.getReviews(movieId).subscribe(function (data) { return _this.reviews = data; }, function (error) { return console.log(error); }, function () { return _this.summarizeRatings(_this.reviews); });
+    };
+    MoviePageComponent.prototype.summarizeRatings = function (reviews) {
+        var _this = this;
+        this.reviewService.summarizeRatings(reviews).then(function (data) { return _this.doughnutChartData = data; }, function (error) { return console.log(error); });
     };
     MoviePageComponent.prototype.toggleSortByRating = function () {
         this.ratingToggle ? this.format = "rating-asc" : this.format = "rating-desc";
@@ -46,6 +57,13 @@ var MoviePageComponent = (function () {
     MoviePageComponent.prototype.toggleSortByName = function () {
         this.nameToggle ? this.format = "name-asc" : this.format = "name-desc";
         this.nameToggle = !this.nameToggle;
+    };
+    // events
+    MoviePageComponent.prototype.chartClicked = function (e) {
+        // console.log(e);
+    };
+    MoviePageComponent.prototype.chartHovered = function (e) {
+        // console.log(e);
     };
     MoviePageComponent = __decorate([
         core_1.Component({

@@ -18,6 +18,16 @@ var ReviewService = (function () {
     ReviewService.prototype.getReviews = function (id) {
         return this.http.get(this.reviewsUrl + id).map(function (res) { return res.json().reviews; });
     };
+    ReviewService.prototype.summarizeRatings = function (reviews) {
+        var reviewRatings = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        for (var _i = 0, reviews_1 = reviews; _i < reviews_1.length; _i++) {
+            var review = reviews_1[_i];
+            var ratingToInt = +review.rating - 1; // Convert to int
+            reviewRatings[ratingToInt] = reviewRatings[ratingToInt] + 1;
+            console.log(ratingToInt);
+        }
+        return Promise.resolve(reviewRatings);
+    };
     ReviewService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

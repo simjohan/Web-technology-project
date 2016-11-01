@@ -17,18 +17,17 @@ module.exports = function(app,io){
     });
 
 
-
     app.get('/api/specific-movie-reviews/:movieId', function(req, res){
         res.send(JSON.stringify(
             {
                 "reviews": [
-                    {id: req.params.movieId, title: "Neutral", rating: "1", user: "A", text: "This is a test."},
-                    {id: req.params.movieId, title: "Good", rating: "8", user: "B", text: "This is a test."},
-                    {id: req.params.movieId, title: "lol", rating: "3", user: "AC", text: "This is a test."},
+                    {id: req.params.movieId, title: "Neutral", rating: "3", user: "A", text: "This is a test."},
+                    {id: req.params.movieId, title: "Good", rating: "4", user: "B", text: "This is a test."},
+                    {id: req.params.movieId, title: "lol", rating: "4", user: "AC", text: "This is a test."},
                     {id: req.params.movieId, title: "Awful", rating: "4", user: "C", text: "This is a test."},
-                    {id: req.params.movieId, title: "Nice", rating: "7", user: "BB", text: "This is a test."},
-                    {id: req.params.movieId, title: "Yolo", rating: "2", user: "Z", text: "This is a test."},
-                    {id: req.params.movieId, title: "G-man", rating: "6", user: "AA", text: "This is a test. "},
+                    {id: req.params.movieId, title: "Nice", rating: "5", user: "BB", text: "This is a test."},
+                    {id: req.params.movieId, title: "Yolo", rating: "9", user: "Z", text: "This is a test."},
+                    {id: req.params.movieId, title: "G-man", rating: "1", user: "AA", text: "This is a test. "},
                 ]
             }
         ));

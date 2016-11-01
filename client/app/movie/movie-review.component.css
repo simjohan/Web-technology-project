@@ -1,8 +1,9 @@
 .review-container{
-    background: rgb(217, 216, 212);
+    background: rgb(243, 242, 238);
     padding: 35px;
     margin-top: 25px;
     border: 1px solid rgb(187, 186, 182);
+    border-radius: 5px;
 }
 
 

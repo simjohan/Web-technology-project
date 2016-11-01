@@ -12,5 +12,13 @@ export class ReviewService {
         return this.http.get(this.reviewsUrl + id).map(res => res.json().reviews);
     }
 
-
+    summarizeRatings(reviews): Promise<any>{
+        let reviewRatings = [0,0,0,0,0,0,0,0,0,0];
+        for (let review of reviews) {
+            let ratingToInt = + review.rating - 1; // Convert to int
+            reviewRatings[ratingToInt] = reviewRatings[ratingToInt] + 1;
+            console.log(ratingToInt);
+        }
+        return Promise.resolve(reviewRatings);
+    }
 }
