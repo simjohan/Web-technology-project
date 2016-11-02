@@ -2,11 +2,11 @@
     display: flex;
     flex-flow: column;
 
-    background-color: tomato;
-
     width: 200px;
     height: 350px;
     margin: 5px;
+    margin-top: 20px;
+    margin-bottom: 75px;
     padding: 5px;
 
     cursor: pointer;
@@ -18,14 +18,16 @@
 }
 
 .movie-item-name {
-    line-height: 50px;
-    color: white;
+    color: black;
     font-weight: bold;
-    font-size: 3em;
+    font-size: 20px;
     text-align: center;
-    height: 20%;
+    height: 10%;
     width: 100%;
+    overflow: hidden;
+    padding-top: 15px;
 }
+
 
 .movie-item-poster {
     width: 100%;
