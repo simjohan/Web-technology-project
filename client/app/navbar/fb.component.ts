@@ -91,11 +91,14 @@ export class FacebookComponent implements OnInit{
     facebookLogout(){
         let self = this;
         FB.logout(function (response) {
-            // User is logged out.
+
+            // User is logged out; update props
+            self.isUser = false;
+            let idTest = localStorage.getItem('id');
+            self._databaseService.removeUser(idTest);
+            localStorage.clear();
         });
-        let idTest = localStorage.getItem('id');
-        self._databaseService.removeUser(idTest);
-        localStorage.clear();
+
     }
 
     ngOnInit() {

@@ -71,11 +71,12 @@ var FacebookComponent = (function () {
     FacebookComponent.prototype.facebookLogout = function () {
         var self = this;
         FB.logout(function (response) {
-            // User is logged out.
+            // User is logged out; update props
+            self.isUser = false;
+            var idTest = localStorage.getItem('id');
+            self._databaseService.removeUser(idTest);
+            localStorage.clear();
         });
-        var idTest = localStorage.getItem('id');
-        self._databaseService.removeUser(idTest);
-        localStorage.clear();
     };
     FacebookComponent.prototype.ngOnInit = function () {
         console.log('Init done');

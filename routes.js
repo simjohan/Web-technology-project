@@ -136,14 +136,13 @@ module.exports = function(app,io){
         var name = req.body[1];
         var email = req.body[2];
         var imgurl = req.body[3];
-        /*
+        // Dont call for insert if some attributes are undefined
         if (id != null && name != null && email != null && imgurl != null){
             dbHandler.insertUser(id, name, email, imgurl);
         }
         else {
             console.log('req body is null!');
-        }*/
-        dbHandler.insertUser(id, name, email, imgurl);
+        }
 
     });
 

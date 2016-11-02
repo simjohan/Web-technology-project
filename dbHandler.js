@@ -52,7 +52,6 @@ exports.getUserById =  function(id) {
 };
 
 exports.insertUser = function(id, name, email, imageurl) {
-    console.log('In insert user db');
     var stmt = db.prepare('INSERT OR IGNORE INTO Users VALUES (?, ?, ?, ?)');
     stmt.run(id, name, email, imageurl);
     stmt.finalize();
