@@ -13,7 +13,10 @@ import { Component } from '@angular/core';
         <navigation-bar></navigation-bar>
         <!-- Shows the outlet of the routing - if it is /home it shows the front page. 
         See "app-routing.module.ts" for more detail on what it should show.-->
-        <router-outlet></router-outlet>
+        <div class="main-container">
+            <router-outlet></router-outlet>
+        </div>
+        
        
     `
 })
