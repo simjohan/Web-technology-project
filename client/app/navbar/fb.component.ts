@@ -13,16 +13,21 @@ import { DatabaseService } from './../db.service';
     providers: [DatabaseService],
     template: `
                 <div class="facebook-item">
-                    <button class="button" (click)="facebookLogin()">
+                    <div class="logged-in" *ngIf="isUser">
+                        <button class="facebook button" (click)="facebookLogout()">
+                            Logout
+                        </button>
+                        <span><img src="{{imgurl}}"/> {{name}}, {{email}}</span>
+                    </div>
+                    <div class="not-logged-in" *ngIf="isUser==false">
+                        <button class="facebook button" (click)="facebookLogin()">
                         Sign in with Facebook
                     </button>
-                    <button class="button" (click)="facebookLogout()">
-                        Logout
-                    </button>
-                    <span *ngIf="isUser"><img src="{{imgurl}}"/> {{name}}, {{email}}</span>
+                    </div>
                 </div>
                 
-            `
+            `,
+    styleUrls: ['fb.component.css']
 })
 
 export class FacebookComponent implements OnInit{
