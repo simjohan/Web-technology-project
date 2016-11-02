@@ -17,12 +17,19 @@ var MovieService = (function () {
         this.http = http;
         this.newlyReviewMoviesUrl = '/api/newly-reviewed-movies'; // URL to web API
         this.specificMovieUrl = '/api/specific-movie/';
+        this.searchResultUrl = '/api/search-results/'; // Url to web API
     }
+    // Get all movies from API
     MovieService.prototype.getMovies = function () {
         return this.http.get(this.newlyReviewMoviesUrl).map(function (res) { return res.json().movies; });
     };
+    // Get a specific movie based on id variable from API
     MovieService.prototype.getMovie = function (id) {
         return this.http.get(this.specificMovieUrl + id).map(function (res) { return res.json(); });
+    };
+    // Get the movies associated with the search term from the API
+    MovieService.prototype.getSearchResult = function (searchTerm) {
+        return this.http.get(this.searchResultUrl + searchTerm).map(function (res) { return res.json().search_result; });
     };
     MovieService = __decorate([
         core_1.Injectable(), 

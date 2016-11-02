@@ -9,16 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var NavbarSearchComponent = (function () {
-    function NavbarSearchComponent() {
+    function NavbarSearchComponent(router) {
+        this.router = router;
     }
+    ;
+    NavbarSearchComponent.prototype.searchMovies = function (event) {
+        console.log(event.target.value);
+        this.router.navigate(['search/' + event.target.value]);
+    };
     NavbarSearchComponent = __decorate([
         core_1.Component({
             //Selector "nav-search" lets other components use the template into their own template.
             selector: "nav-search",
-            template: "\n    <input type =\"text\" placeholder=\"Search...\"/>\n    <label><input type=\"checkbox\"/>Person search</label>\n    \n    "
+            template: "\n    <input #box placeholder=\"Search...\" (keyup.enter)=\"searchMovies($event)\"/>\n    "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], NavbarSearchComponent);
     return NavbarSearchComponent;
 }());
