@@ -1,5 +1,5 @@
 var http = require('http');
-var parseurl = require('parseurl')
+var parseurl = require('parseurl');
 
 module.exports = function(app,io){
     var dbHandler = require('./dbHandler');
@@ -128,16 +128,32 @@ module.exports = function(app,io){
 
     // Fetch the post request and add item to database.
     app.post('/api/users/add/:id', function (req, res) {
-        console.log("Received data name: " + req.body[1]);
-        console.log("req: " + req);
-        console.log("res: " + res);
+        console.log("Received data ID: " + req.body[0]);
+        console.log("Received data NAME: " + req.body[1]);
+        console.log("Received data EMAIL: " + req.body[2]);
+        console.log("Received data IMGURL: " + req.body[3]);
         var id = req.body[0];
         var name = req.body[1];
         var email = req.body[2];
         var imgurl = req.body[3];
-        console.log("req-BODY: " + req.body);
-        dbHandler.insertUser(id, name, email, imgurl);
+        if (id != null && name != null && email != null && imgurl != null){
+            dbHandler.insertUser(id, name, email, imgurl);
+        }
+        else {
+            console.log('req body is null!');
+        }
 
+    });
+
+    //Fetch post request and remove user from database.
+    app.post('/api/users/remove/:id', function (req, res) {
+        console.log("Received data " + req.body[0]);
+        var id = req.body[0];
+        if (id != null){
+            dbHandler.deleteUser(id);
+        }else {
+            console.log('id is null');
+        }
     });
 
     /*

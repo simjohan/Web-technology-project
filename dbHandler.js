@@ -52,7 +52,8 @@ exports.getUserById =  function(id) {
 };
 
 exports.insertUser = function(id, name, email, imageurl) {
-    var stmt = db.prepare('INSERT INTO Users VALUES (?, ?, ?, ?)');
+    console.log('In insert user db');
+    var stmt = db.prepare('INSERT OR IGNORE INTO Users VALUES (?, ?, ?, ?)');
     stmt.run(id, name, email, imageurl);
     stmt.finalize();
 };
@@ -67,6 +68,13 @@ exports.updateUser =  function(id, attr, value) {
     else {
         console.log('Not a valid attribute to change!');
     }
+};
+
+exports.deleteUser = function (id) {
+    console.log('In delete user db');
+    var stmt = db.prepare('DELETE FROM Users WHERE id = ?');
+    stmt.run(id);
+    stmt.finalize();
 };
 
 exports.getMovieById = function(id) {

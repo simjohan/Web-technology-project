@@ -29,6 +29,7 @@ var FacebookComponent = (function () {
             version: 'v2.5' // use graph api version 2.5
         });
         FB.getLoginStatus(function (response) {
+            console.log('IN constructor FB.getLoginStatus');
             _this.statusChangeCallback(response);
         });
     }
@@ -37,18 +38,25 @@ var FacebookComponent = (function () {
      */
     FacebookComponent.prototype.getLoginStatus = function () {
         var _this = this;
-        FB.getLoginStatus(function (respone) {
-            _this.statusChangeCallback(respone);
+        FB.getLoginStatus(function (response) {
+            _this.statusChangeCallback(response);
         });
     };
     /**
      * Handles the login button click
      */
     FacebookComponent.prototype.facebookLogin = function () {
-        FB.login(this.statusChangeCallback, { scope: 'public_profile, email' });
-        this.fb_name = localStorage.getItem('name');
-        this.fb_email = localStorage.getItem('email');
-        this.fb_imgurl = localStorage.getItem('imgurl');
+        FB.login(this.statusChangeCallback.bind(this), { scope: 'public_profile, email' });
+        console.log("IN FB LOGIN call!");
+        var id = localStorage.getItem('id');
+        var name = localStorage.getItem('name');
+        var email = localStorage.getItem('email');
+        var imgurl = localStorage.getItem('imgurl');
+        this.fb_name = name;
+        this.fb_email = email;
+        this.fb_imgurl = imgurl;
+        console.log('LOGIN ID: ' + id);
+        this.service.insertUser(id, name, email, imgurl);
     };
     /**
      * Handles the logout button click
@@ -56,6 +64,12 @@ var FacebookComponent = (function () {
     FacebookComponent.prototype.facebookLogout = function () {
         console.log("in logout");
         FB.logout(this.statusChangeCallback);
+        var idTest = localStorage.getItem('id');
+        console.log("logout ID: " + idTest);
+        this.service.removeUser(idTest);
+        this.fb_name = "";
+        this.fb_email = "";
+        this.fb_imgurl = "";
         localStorage.clear();
     };
     /**
@@ -63,11 +77,8 @@ var FacebookComponent = (function () {
      * @param response
      */
     FacebookComponent.prototype.statusChangeCallback = function (response) {
-        // The response object is returned with a status field that lets the
-        // app know the current login status of the person.
-        // Full docs on the response object can be found in the documentation
-        // for FB.getLoginStatus().
         if (response.status === 'connected') {
+            console.log('STATUS: ' + response.status);
             // Logged into your app and Facebook.
             FB.api('/me?fields=name,email,picture', function (me) {
                 console.log("RESPONSE.ID: " + me.id);
@@ -81,19 +92,19 @@ var FacebookComponent = (function () {
             });
         }
         else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            console.log('STATUS: ' + response.status);
         }
         else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            console.log('STATUS: ' + response.status);
         }
-        console.log("Before service call!");
-        var id = localStorage.getItem('id');
-        var namer = localStorage.getItem('name');
-        var emailer = localStorage.getItem('email');
-        var imger = localStorage.getItem('imgurl');
-        this.service.insertUser(id, namer, emailer, imger);
     };
     ;
     FacebookComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log('IN ngOnInit()');
         FB.getLoginStatus(function (response) {
             _this.statusChangeCallback(response);
         });
