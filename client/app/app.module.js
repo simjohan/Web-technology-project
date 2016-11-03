@@ -24,6 +24,7 @@ var front_page_component_1 = require("./home/front-page.component");
 var movie_component_1 = require("./movie/movie.component");
 var movie_title_component_1 = require("./movie/movie-title.component");
 var movie_page_component_1 = require("./movie/movie-page.component");
+0;
 var movie_review_component_1 = require('./movie/movie-review.component');
 var fb_component_1 = require('./navbar/fb.component');
 var profile_page_component_1 = require('./profile/profile-page.component');
@@ -36,6 +37,7 @@ var review_user_filter_pipe_1 = require("./movie/pipes/review-user-filter.pipe")
 var review_sorter_pipe_1 = require("./movie/pipes/review-sorter.pipe");
 var movie_search_page_component_1 = require("./movie-search/movie-search-page.component");
 var auth_guard_1 = require("./common/auth.guard");
+var movie_reviews_component_1 = require("./movie/movie-reviews.component");
 /**
  * @NgModule contains the list of external modules used by the application.
  * Imports: what kind of modules are imported from the angular library
@@ -73,7 +75,8 @@ var AppModule = (function () {
                 review_rating_filter_pipe_1.ReviewRatingFilterPipe,
                 review_user_filter_pipe_1.ReviewUserFilterPipe,
                 review_sorter_pipe_1.ReviewSorterPipe,
-                movie_search_page_component_1.MovieSearchPageComponent
+                movie_search_page_component_1.MovieSearchPageComponent,
+                movie_reviews_component_1.MovieReviewsComponent
             ],
             providers: [
                 auth_guard_1.AuthGuard
