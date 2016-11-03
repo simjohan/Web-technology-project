@@ -1,14 +1,14 @@
 var http = require('http');
-var parseurl = require('parseurl')
+var parseurl = require('parseurl');
+var file = "database.db";
+var sqlite3 = require("sqlite3").verbose();
+var db = new sqlite3.Database(file);
 
 module.exports = function(app,io){
     var dbHandler = require('./dbHandler');
 
     var sess;
 
-    /*
-
-     */
 
     app.use(function (req, res, next) {
         var recentMovies = req.session.recentMovies;
@@ -50,6 +50,41 @@ module.exports = function(app,io){
 
     io.on('disconnect', function(socket){
         console.log("client dcd");
+    });
+
+    // Get all movies
+    app.get('/api/get/movies', function(req, res) {
+
+        var movieList = [];
+
+        db.each('SELECT * FROM Movies',
+            function(err, row) {
+                movieList.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
+            },
+            function() {
+                res.send({movieList})
+            }
+        );
+
+    });
+
+    // Get movies by title
+    app.get('/api/get/movies/:title', function(req, res) {
+
+        var movieList = [];
+        var stmt = db.prepare('SELECT * FROM Movies WHERE title = ?');
+        console.log("Title: " + req.params.title);
+
+        stmt.each(req.params.title,
+            function(err, row) {
+                console.log[row.id]
+                movieList.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
+            },
+            function() {
+                res.send({movieList});
+            }
+        );
+
     });
 
 

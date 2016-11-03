@@ -5,6 +5,7 @@ var exists = fs.existsSync(file);
 var sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(file);
 var routes = require('./routes.js');
+var util = require('util')
 
 /**
  * TODO: Node is asynchronous, so the data is not available to add to a list like this. FIX
@@ -87,14 +88,17 @@ exports.getMovieById = function(id) {
     stmt.finalize();
 };
 
-exports.getMoviesByTitle =  function(title){
+exports.getMovies =  function(){
+
+    //* id, title, img_url, year, description
     var movieList = {};
-    var stmt = db.prepare('SELECT * FROM Movies WHERE title LIKE ?');
-    stmt.each('%' + title + '%',
+    //var stmt = db.prepare('SELECT * FROM Movies');
+    db.each('SELECT * FROM Movies',
         function(err, row) {
-            console.log(err);
-            movieList[row.id] = {"title": row.title, "viewCount": row.viewCount};
-            console.log("Movie: " + row.id + " - " + row.title + " - " + row.viewCount);
+            //console.log(err);
+            movieList[row.id] = {"title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description};
+            //console.log(util.inspect(movieList[row.id], false, null));
+            //console.log("Movie: " + movieList[row.id]);
         },
 
         //callback called when the operation is completed (async call)
@@ -102,8 +106,12 @@ exports.getMoviesByTitle =  function(title){
             dbCallback(movieList)
         }
     );
-    stmt.finalize();
+    return movieList;
+    //stmt.finalize();
+
 };
+
+//this.getMovies()
 
 exports.insertMovie =  function(id, title, viewCount) {
     var stmt = db.prepare('INSERT INTO Movies VALUES (?, ?, ?)');
@@ -138,12 +146,17 @@ exports.addReview =  function(userId, movieId, review) {
 };
 
 var movieByIdCallback = function (callback) {
+    //* id, title, img_url, year, description
     var key = Object.keys(callback);
     var title = "";
-    var viewCount = 0;
+    var img_url = "";
+    var year = "";
+    var description = "";
     Object.keys(callback).forEach(function (key) {
         var attribute_list = callback[key];
         title = attribute_list.title;
-        viewCount = attribute_list.viewCount;
+        img_url = attribute_list.img_url;
+        year = attribute_list.year;
+        description = attribute_list.description
     });
 };
