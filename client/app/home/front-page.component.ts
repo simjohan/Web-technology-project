@@ -38,7 +38,7 @@ export class FrontPageComponent implements  OnInit {
     data: Object;
 
     getMovies():void {
-      this.movieService.getMovies().subscribe(data => this.data = data, error => console.log(error));
+      this.movieService.getNewlyReviewedMovies().subscribe(data => this.data = data, error => console.log(error));
     }
 
     recentlyVisitedMovies: Object;

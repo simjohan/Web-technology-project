@@ -14,8 +14,10 @@ export class NavbarSearchComponent {
     constructor(private router: Router){};
 
     searchMovies(event:any){
-        console.log(event.target.value);
-        this.router.navigate(['search/' + event.target.value]);
+        var str = event.target.value;
+        str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"");
+        this.router.navigate(['search/' + str]);
+        event.target.value = null;
     }
 
 }

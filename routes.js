@@ -12,29 +12,49 @@ module.exports = function(app,io){
 
 
     app.use(function (req, res, next) {
-        var recentMovies = req.session.recentMovies;
-
-        if (!recentMovies) {
-            recentMovies = req.session.recentMovies = [];
+        // If it is of length zero, create an empty array.
+        if (!req.session.recentMovies) {
+            req.session.recentMovies = [];
         }
-
-        next() // Sort of understand this
+        next()
     })
 
     app.get('/api/recent-movies', function(req, res){
 
-        // Create an empty json array
-        var obj = {"recent_movies": []};
+        // Store the session IDs in a string
+        var ids = req.session.recentMovies;
 
-        // Fill the array
-        for (var i = 0; i < req.session.recentMovies.length; i++) {
-            obj["recent_movies"].push({id: req.session.recentMovies[i], title: "Session", year: "2012"});
-        }
+        console.log(ids);
+        console.log("Length: " + ids.length);
 
-        // Send the array
-        res.send(JSON.stringify(
-            obj
-        ));
+        // Track the recent movies
+        var recent_movies = [];
+
+        // Prepare the DB Statement
+        var stmt = db.prepare(
+            "SELECT * " +
+            "FROM Movies " +
+            "WHERE id IN (?, ?, ?, ?, ?) "
+        );
+
+        // For each  DB row
+        stmt.each(ids,
+            function(err, row) {
+                recent_movies.push({
+                    "id": row.id,
+                    "title": row.title,
+                    "img_url": row.img_url
+                });
+            },
+            // Send the result
+            function() {
+                // Sort the array so that is in the same manner as the session array.
+                recent_movies.sort(function(a, b) {
+                    return ids.indexOf(b.id) - ids.indexOf(a.id);
+                });
+                res.send({recent_movies});
+            }
+        );
 
     });
 
@@ -91,21 +111,33 @@ module.exports = function(app,io){
 
     });
 
-
+    // Get specific movie reviews
     app.get('/api/specific-movie-reviews/:movieId', function(req, res){
-        res.send(JSON.stringify(
-            {
-                "reviews": [
-                    {id: req.params.movieId, title: "Neutral", rating: "3", user: "A", text: "This is a test."},
-                    {id: req.params.movieId, title: "Good", rating: "4", user: "B", text: "This is a test."},
-                    {id: req.params.movieId, title: "lol", rating: "4", user: "AC", text: "This is a test."},
-                    {id: req.params.movieId, title: "Awful", rating: "4", user: "C", text: "This is a test."},
-                    {id: req.params.movieId, title: "Nice", rating: "5", user: "BB", text: "This is a test."},
-                    {id: req.params.movieId, title: "Yolo", rating: "9", user: "Z", text: "This is a test."},
-                    {id: req.params.movieId, title: "G-man", rating: "1", user: "AA", text: "This is a test. "},
-                ]
+
+        var reviews = [];
+        var stmt = db.prepare(
+            "SELECT r.review, r.title, r.rating, r.date, Users.name " +
+            "FROM Reviews AS r " +
+            "INNER JOIN Users " +
+            "ON r.userId = Users.id " +
+            "AND r.movieId = ? "
+        );
+        var movieId = req.params.movieId;
+        stmt.each(movieId,
+            function(err, row) {
+                reviews.push({
+                    "username": row.name,
+                    "review": row.review,
+                    "title": row.title,
+                    "rating": row.rating,
+                    "date": row.date,
+                });
+            },
+            function() {
+                res.send({reviews});
             }
-        ));
+        );
+
     });
 
     app.get('/api/specific-movie/:movieId', function(req, res) {
@@ -133,63 +165,48 @@ module.exports = function(app,io){
             console.log("Error occurred in /api/specific-movie/" + req.params.movieId);
         }
 
-
-
-
-        res.send(JSON.stringify(
-            {
-                id: req.params.movieId, title: "Frozen", rating: "10", year: "2012", actors: "Anna, Bella, John", directors: "JJ", country: "Iceland", description: "Lengthy description."
+        var movie = [];
+        var stmt = db.prepare('SELECT * FROM Movies WHERE id = ?');
+        var id = req.params.movieId;
+        stmt.each(id,
+            function(err, row) {
+                movie = {"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description};
+            },
+            function() {
+                res.send({movie});
             }
-        ));
-    });
-
-    app.get('/api/search-results/:searchTerm', function(req, res) {
-
-        res.send(JSON.stringify(
-            {
-                "search_result": [
-                    {id: "1", title: req.params.searchTerm, year: "2012"},
-                    {id: "2", title: req.params.searchTerm, year: "2002"},
-                    {id: "3", title: req.params.searchTerm, year: "2012"},
-                    {id: "4", title: req.params.searchTerm, year: "2012"},
-                    {id: "5", title: req.params.searchTerm, year: "2012"},
-                    {id: "6", title: req.params.searchTerm, year: "2012"},
-                    {id: "7", title: req.params.searchTerm, year: "2012"},
-                    {id: "8", title: req.params.searchTerm, year: "2012"},
-                    {id: "9", title: req.params.searchTerm, year: "2012"},
-                    {id: "10", title: req.params.searchTerm, year: "2012"},
-                    {id: "11", title: req.params.searchTerm, year: "2012"},
-                    {id: "12", title: req.params.searchTerm, year: "2012"},
-                    {id: "13", title: req.params.searchTerm, year: "2012"},
-                    {id: "14", title: req.params.searchTerm, year: "2012"},
-                    {id: "15", title: req.params.searchTerm, year: "2012"},
-                    {id: "16", title: req.params.searchTerm, year: "2012"},
-                    {id: "17", title: req.params.searchTerm, year: "2012"},
-                    {id: "18", title: req.params.searchTerm, year: "2012"},
-                    {id: "19", title: req.params.searchTerm, year: "2012"},
-                    {id: "20", title: req.params.searchTerm, year: "2012"},
-                ]
-            }
-        ));
+        );
 
     });
 
+
+    // Get the newest reviewed movies sorted by date, limited to 5
     app.get('/api/newly-reviewed-movies', function(req, res) {
 
-        res.send(JSON.stringify(
-            {
-                "movies": [
-                    {id: "1", title: "Frozen", year: "2012"},
-                    {id: "2", title: "Matrix", year: "2002"}
-                ]
+        var movies = [];
+        var stmt = db.prepare(
+            'SELECT Movies.id AS moviesId, Movies.title AS moviesTitle, Movies.img_url AS moviesImg_url ' +
+            'FROM Movies ' +
+            'INNER JOIN Reviews ' +
+            'ON Movies.id = Reviews.movieId ' +
+            'GROUP BY Movies.id ' +
+            'ORDER BY datetime(Reviews.date) DESC ' +
+            'LIMIT 5'
+        );
+
+        stmt.each(
+            function (err, row) {
+                movies.push({"id": row.moviesId, "title": row.moviesTitle, "img_url": row.moviesImg_url, "abc": row.rating});
+            },
+            function () {
+                res.send({movies});
             }
-        ));
+        );
 
     });
 
     //Fetch the post request and add movie to database.
     app.post('/api/movies/add/:id', function (req, res) {
-        console.log("Received movie title: " + req.body[1]);
         var id = req.body[0];
         var title = req.body[1];
         var viewCount = req.body[2];

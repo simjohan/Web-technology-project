@@ -16,7 +16,7 @@ export class ReviewUserFilterPipe implements PipeTransform {
         if ((nameSearched).length == 0) return review;
 
         for (var i in review){
-            let username = review[i].user;
+            let username = review[i].username;
             if (username.toLowerCase().includes(nameSearched.toLowerCase())){
                 reviews.push(review[i]);
             }

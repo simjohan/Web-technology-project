@@ -2,19 +2,13 @@
 
     <!--Image of the movie-->
     <div class="movie-detail-poster">
-        <img src='https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SY1000_CR0,0,674,1000_AL_.jpg' alt="movie poster" />
+        <img src='{{movie?.img_url}}' alt="movie poster" />
     </div>
-
     <!-- Container to hold the details of the movie -->
     <div class="movie-detail-information">
         <h2> {{movie?.title}} </h2>
-        <p> ID: {{movie?.id}} </p>
-        <p> Rating: {{movie?.rating}} </p>
         <p> Year: {{movie?.year}} </p>
-        <p> Actors:     {{movie?.actors}} </p>
-        <p> Directors: {{movie?.directors}} </p>
-        <p> Country: {{movie?.country}}  </p>
-        <p> Description: {{movie?.description}} </p>
+        <p> Description: {{movie?.description}}</p>
         <button>Review movie</button>
     </div>
 
