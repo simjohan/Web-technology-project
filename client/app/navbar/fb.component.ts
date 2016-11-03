@@ -6,6 +6,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
 import { DatabaseService } from './../db.service';
+import { Router } from '@angular/router';
 
 @Component ({
     moduleId: module.id,
@@ -42,7 +43,7 @@ export class FacebookComponent implements OnInit{
      * Constructor code from developers.facebook.com
      */
     constructor(
-        private _databaseService: DatabaseService, private _ngZone: NgZone ) {
+        private _databaseService: DatabaseService, private _ngZone: NgZone, private router: Router ) {
         FB.init({
             appId      : '1623658607931496',
             cookie     : true,  // enable cookies to allow the server to access
@@ -50,7 +51,6 @@ export class FacebookComponent implements OnInit{
             xfbml      : true,  // parse ssocial plugins on this page
             version    : 'v2.5' // use graph api version 2.5
         });
-
     }
 
     /**
@@ -103,7 +103,8 @@ export class FacebookComponent implements OnInit{
             self._databaseService.removeUser(idTest);
             localStorage.clear();
         });
-
+        //When the user logs out, navigate to the home page to not stay on a possible closed page
+        this.router.navigate(['/home']);
     }
 
     ngOnInit() {

@@ -38,6 +38,10 @@ var review_sorter_pipe_1 = require("./movie/pipes/review-sorter.pipe");
 var movie_search_page_component_1 = require("./movie-search/movie-search-page.component");
 var movie_reviews_component_1 = require("./movie/movie-reviews.component");
 /**
+ * Imports the AuthGuard that lets us have session-handling in Angular
+ */
+var auth_guard_1 = require("./common/auth.guard");
+/**
  * @NgModule contains the list of external modules used by the application.
  * Imports: what kind of modules are imported from the angular library
  * Declarations: declare the components used from the rest of the program
@@ -76,6 +80,10 @@ var AppModule = (function () {
                 review_sorter_pipe_1.ReviewSorterPipe,
                 movie_search_page_component_1.MovieSearchPageComponent,
                 movie_reviews_component_1.MovieReviewsComponent
+            ],
+            //The AuthGuard is a provider
+            providers: [
+                auth_guard_1.AuthGuard
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
