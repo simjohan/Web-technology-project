@@ -1,0 +1,39 @@
+.movie-page-container{
+    padding: 0;
+    margin: 40px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.movie-page-item{
+    margin-top: 15px;
+    align-items: center;
+}
+
+.review-settings-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-bottom: 50px;
+    margin-top: 25px;
+}
+
+.review-settings-item{
+    flex: 1;
+    text-align: center;
+}
+
+.review-chart{
+    max-width: 650px;
+    min-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.review-page-title{
+    margin-top: 150px;
+    margin-bottom: 25px;
+    text-align: center;
+}

@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.button {
+    /* To right-align the button according to flex parent (#navbar) */
+    margin-left: auto;
+}
+
+.hei {
+
+}
+
+.review {
+    background-color: lightgrey;
+}
+
+.followers{
+    background-color: #dddddd;
+}
+
+.main-container{
+    margin-top: 50px;
+}
+

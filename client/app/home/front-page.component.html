@@ -1,0 +1,28 @@
+<div class="newest-reviews">
+    <!--"movie-title" shows the template with the associated selector and sends
+    in the value "newlyReviews" which has a value in the "front-page.component.ts"-file.-->
+    <movie-title [titleValue]="newlyReviews"></movie-title>
+    <ul class="movie-container">
+        <!--"movie" shows the template with the associated selector
+        (see the *.components.ts-files)-->
+
+        <div *ngFor="let movie of data">
+            <movie-cmp [movieObject]=movie ></movie-cmp>
+        </div>
+
+    </ul>
+</div>
+
+<div *ngIf="(recentlyVisitedMovies | json) != '[]'">
+    <div class="newly-visited">
+        <movie-title [titleValue]="newlyVisited"></movie-title>
+        <ul class="movie-container">
+
+            <div *ngFor="let recentMovie of recentlyVisitedMovies">
+                <movie-cmp [movieObject]=recentMovie ></movie-cmp>
+            </div>
+
+        </ul>
+    </div>
+</div>
+
