@@ -59,6 +59,12 @@ export class FacebookComponent implements OnInit{
         })
     }
 
+    getLoginStatusTwoTest(){
+        FB.getLoginStatus(respone => {
+            return respone.status;
+        })
+    }
+
     /**
      * Handles the login button click
      */
@@ -97,6 +103,7 @@ export class FacebookComponent implements OnInit{
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email',me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
+                //TODO: Gjøre dette med token også?
             });
 
 

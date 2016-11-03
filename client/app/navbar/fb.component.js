@@ -41,6 +41,11 @@ var FacebookComponent = (function () {
             _this.statusChangeCallback(respone);
         });
     };
+    FacebookComponent.prototype.getLoginStatusTwoTest = function () {
+        FB.getLoginStatus(function (respone) {
+            return respone.status;
+        });
+    };
     /**
      * Handles the login button click
      */
@@ -78,6 +83,7 @@ var FacebookComponent = (function () {
                 localStorage.setItem('name', me.name);
                 localStorage.setItem('email', me.email);
                 localStorage.setItem('imgurl', me.picture.data.url);
+                //TODO: Gjøre dette med token også?
             });
         }
         else if (response.status === 'not_authorized') {
