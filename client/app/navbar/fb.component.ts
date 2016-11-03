@@ -72,6 +72,7 @@ export class FacebookComponent implements OnInit{
                         localStorage.setItem('name', me.name);
                         localStorage.setItem('email', me.email);
                         localStorage.setItem('imgurl', me.picture.data.url);
+                        localStorage.setItem('isUser', 'true');
 
                         console.log("ID: " + self.id);
                         console.log("NAME: " + self.name);
@@ -99,6 +100,7 @@ export class FacebookComponent implements OnInit{
 
             // User is logged out; update props
             self.isUser = false;
+            localStorage.setItem('isUser', 'false');
             let idTest = localStorage.getItem('id');
             self._databaseService.removeUser(idTest);
             localStorage.clear();
