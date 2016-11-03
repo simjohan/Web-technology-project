@@ -1,60 +1,53 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
-//import { tokenNotExpired } from 'angular2-jwt';
-
 @Injectable()
 export class AuthGuard implements CanActivate {
+    /**
+     * Need the router to be able to do a redirect to the home page
+     * @param router
+     */
     constructor(
         private router: Router) {}
 
-    getLogin(){
-        console.log("Inne i getLogin");
-        var loggetInn = false;
+    /**
+     * This function checks the facebook loginstatus, and returns true
+     * if the user is logged in, and false otherwise
+     * @returns {boolean}
+     */
+    isLoggedIn(){
+        var loggedIn = false;
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
-                console.log("Logget inn: true");
-                loggetInn = true;
-                //var uid = response.authResponse.userID;
-                //var accessToken = response.authResponse.accessToken;
+                loggedIn = true;
             } else if (response.status === 'not_authorized') {
-                console.log("Logget inn: false1");
-                loggetInn = false;
+                loggedIn = false;
             } else {
-                console.log("Logget inn: false2");
-                loggetInn = false;
+                loggedIn = false;
             }
-        })
+        });
 
-        if (loggetInn){
-            console.log("fg.getLogin returnerer true");
+        if (loggedIn){
             return true;
         }
         else {
-            console.log("fg.getLogin returnerer false");
             return false;
         }
     }
 
+    /**
+     * Uses the canActivate in the Angular framework, to check if the application is allowed to
+     * enter the page from a navigation link
+     * @returns {boolean}
+     */
     canActivate() {
-        console.log("inne i canActivate");
-        console.log(this.getLogin());
-        if (this.getLogin()){
-            console.log("getLogin har returnert true");
-          return true;
+        if (this.isLoggedIn()){
+            return true;
         }
         else{
-        console.log("Ikke logget inn, navigerer til home");
-        this.router.navigate(['/home']);
-        return false;
+            //If the user is not logged in, navigate to /home
+            this.router.navigate(['/home']);
+            return false;
         }
-
-        /*
-         if (this.fbCompnent.getLoginStatusTwoTest() === 'connected') {
-         return true;
-         }
-
-         this.router.navigate(['/home']);
-         return false;*/
     }
 }

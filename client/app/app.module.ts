@@ -28,6 +28,9 @@ import { ReviewSorterPipe } from "./movie/pipes/review-sorter.pipe";
 import { MovieSearchPageComponent } from "./movie-search/movie-search-page.component";
 import { MovieReviewsComponent } from "./movie/movie-reviews.component";
 
+/**
+ * Imports the AuthGuard that lets us have session-handling in Angular
+ */
 import { AuthGuard } from "./common/auth.guard";
 
 /**
@@ -66,6 +69,7 @@ import { AuthGuard } from "./common/auth.guard";
         MovieSearchPageComponent,
         MovieReviewsComponent
     ],
+    //The AuthGuard is a provider
     providers: [
         AuthGuard
     ],

@@ -20,8 +20,11 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home',  component: FrontPageComponent },
     { path: 'movie/:id', component: MoviePageComponent }, //movie/:id+
+    /**
+     * By adding canActivate here, the application only let the user get to the route
+     * if the canActivate function in AuthGuard returns true
+     */
     { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]}, //profile/:id+
-    //{ path: 'profile', component: ProfilePageComponent}, //profile/:id+
     { path: 'search/:query',  component: MovieSearchPageComponent },
 ];
 

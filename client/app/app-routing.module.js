@@ -27,8 +27,11 @@ var routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: front_page_component_1.FrontPageComponent },
     { path: 'movie/:id', component: movie_page_component_1.MoviePageComponent },
+    /**
+     * By adding canActivate here, the application only let the user get to the route
+     * if the canActivate function in AuthGuard returns true
+     */
     { path: 'profile', component: profile_page_component_1.ProfilePageComponent, canActivate: [auth_guard_1.AuthGuard] },
-    //{ path: 'profile', component: ProfilePageComponent}, //profile/:id+
     { path: 'search/:query', component: movie_search_page_component_1.MovieSearchPageComponent },
 ];
 var AppRoutingModule = (function () {

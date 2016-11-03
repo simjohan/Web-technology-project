@@ -103,6 +103,7 @@ export class FacebookComponent implements OnInit{
             self._databaseService.removeUser(idTest);
             localStorage.clear();
         });
+        //When the user logs out, navigate to the home page to not stay on a possible closed page
         this.router.navigate(['/home']);
     }
 
