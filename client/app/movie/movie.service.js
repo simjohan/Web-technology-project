@@ -17,7 +17,7 @@ var MovieService = (function () {
         this.http = http;
         this.newlyReviewMoviesUrl = '/api/newly-reviewed-movies'; // URL to web API
         this.specificMovieUrl = '/api/specific-movie/';
-        this.searchResultUrl = '/api/search-results/'; // Url to web API
+        this.searchResultUrl = '/api/get/movies/'; // Url to web API
     }
     // Get all movies from API
     MovieService.prototype.getMovies = function () {
