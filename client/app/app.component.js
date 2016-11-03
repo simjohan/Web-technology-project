@@ -21,7 +21,7 @@ var AppComponent = (function () {
             //Selector "my-app" lets other components use the template into their own template.
             selector: 'my-app',
             //"navigation-bar" are selectors of other components
-            template: "\n        <!-- Adds the navigation bar -->\n        <navigation-bar></navigation-bar>\n        <!-- Shows the outlet of the routing - if it is /home it shows the front page. \n        See \"app-routing.module.ts\" for more detail on what it should show.-->\n        <router-outlet></router-outlet>\n       \n    "
+            template: "\n        <!-- Adds the navigation bar -->\n        <navigation-bar></navigation-bar>\n        <!-- Shows the outlet of the routing - if it is /home it shows the front page. \n        See \"app-routing.module.ts\" for more detail on what it should show.-->\n        <div class=\"main-container\">\n            <router-outlet></router-outlet>\n        </div>\n        \n       \n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
