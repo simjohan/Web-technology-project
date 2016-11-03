@@ -8,7 +8,7 @@ import { ProfilePageComponent } from  './profile/profile-page.component';
 import { MovieSearchPageComponent } from './movie-search/movie-search-page.component';
 
 //Imports AuthGuard
-//import { AuthGuard }    from  './common/auth.guard';
+import { AuthGuard }    from  './common/auth.guard';
 
 /**
  * path: the path you see after the url
@@ -20,8 +20,8 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home',  component: FrontPageComponent },
     { path: 'movie/:id', component: MoviePageComponent }, //movie/:id+
-    //{ path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]}, //profile/:id+
-    { path: 'profile', component: ProfilePageComponent}, //profile/:id+
+    { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]}, //profile/:id+
+    //{ path: 'profile', component: ProfilePageComponent}, //profile/:id+
     { path: 'search/:query',  component: MovieSearchPageComponent },
 ];
 
