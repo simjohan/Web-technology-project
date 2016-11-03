@@ -38,12 +38,6 @@ module.exports = function(app,io){
 
     });
 
-    /*
-
-     */
-
-
-
     io.on('connection', function(socket){
         console.log("Server connection.io");
         socket.emit('topology',currentTopo);
@@ -56,33 +50,42 @@ module.exports = function(app,io){
     // Get all movies
     app.get('/api/get/movies', function(req, res) {
 
-        var movieList = [];
+        var search_result = [];
 
         db.each('SELECT * FROM Movies',
             function(err, row) {
-                movieList.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
+                search_result.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
             },
             function() {
-                res.send({movieList})
+                res.send({search_result})
             }
         );
 
     });
 
+
+    // Get reviews based on movie with pagination
+    app.get('/api/get/reviews/:movie_id/:from/:to', function(req, res) {
+
+        var results = [];
+        var stmt = db.prepare('SELECT * FROM Reviews WHERE movieId = ? ')
+
+    });
+
+
     // Get movies by title
     app.get('/api/get/movies/:title', function(req, res) {
 
-        var movieList = [];
-        var stmt = db.prepare('SELECT * FROM Movies WHERE title = ?');
+        var search_result = [];
+        var stmt = db.prepare('SELECT * FROM Movies WHERE title LIKE ?');
         console.log("Title: " + req.params.title);
-
-        stmt.each(req.params.title,
+        var term = "%"+req.params.title+"%";
+        stmt.each(term,
             function(err, row) {
-                console.log[row.id]
-                movieList.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
+                search_result.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
             },
             function() {
-                res.send({movieList});
+                res.send({search_result});
             }
         );
 

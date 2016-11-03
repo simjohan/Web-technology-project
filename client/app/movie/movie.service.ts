@@ -9,7 +9,7 @@ export class MovieService {
 
     private newlyReviewMoviesUrl = '/api/newly-reviewed-movies';  // URL to web API
     private specificMovieUrl = '/api/specific-movie/';
-    private searchResultUrl = '/api/search-results/'; // Url to web API
+    private searchResultUrl = '/api/get/movies/'; // Url to web API
 
     constructor (private http: Http) {}
 

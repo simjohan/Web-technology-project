@@ -1,8 +1,13 @@
-# Angular-2-rc1-framework
+Getting started
+-----------
+1. Clone the repository
 
-*install node package manager   (http://blog.npmjs.org/post/85484771375/how-to-install-npm)  
+2. To get a complete installation of all necessary node modules, run:
 
-*run the ```npm install``` command in root dir    
-*run the ```npm install``` command in /client dir so that package.json can download the necessary dependencies 
+    `npm install`
 
-*in root dir run ```node app.js``` and voila! you have a ui framework that is made with angular 2 rc1
+3. Run the application by entering your project folder and run:
+
+    `npm start`
+
+This will launch the application at localhost:3000.
