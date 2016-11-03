@@ -15,6 +15,8 @@ var front_page_component_1 = require("./home/front-page.component");
 var movie_page_component_1 = require("./movie/movie-page.component");
 var profile_page_component_1 = require('./profile/profile-page.component');
 var movie_search_page_component_1 = require('./movie-search/movie-search-page.component');
+//Imports AuthGuard
+//import { AuthGuard }    from  './common/auth.guard';
 /**
  * path: the path you see after the url
  * redirectTo: used to show which page we want to show when the user have not chosen any page yet
@@ -25,6 +27,7 @@ var routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: front_page_component_1.FrontPageComponent },
     { path: 'movie/:id', component: movie_page_component_1.MoviePageComponent },
+    //{ path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]}, //profile/:id+
     { path: 'profile', component: profile_page_component_1.ProfilePageComponent },
     { path: 'search/:query', component: movie_search_page_component_1.MovieSearchPageComponent },
 ];
