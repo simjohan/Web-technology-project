@@ -25,6 +25,10 @@ var MovieReviewComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
+        __metadata('design:type', Object)
+    ], MovieReviewComponent.prototype, "review", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', String)
     ], MovieReviewComponent.prototype, "reviewTitle", void 0);
     __decorate([
