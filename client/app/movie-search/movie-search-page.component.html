@@ -1,0 +1,28 @@
+<div class="search-result-page-container">
+
+    <h1 > Search results </h1>
+
+    <div *ngIf="(searchResult | json) == '[]'">
+        <p>
+            No results were found. Please try again with a different search term.
+        </p>
+    </div>
+
+
+    <div *ngIf="(searchResult | json) != '[]'" class="movie-search-movie-container">
+
+        <div *ngFor="let movie of searchResult ">
+            <movie-cmp [movieObject]=movie ></movie-cmp>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+

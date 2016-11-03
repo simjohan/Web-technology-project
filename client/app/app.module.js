@@ -34,7 +34,7 @@ var profile_user_review_component_1 = require("./profile/profile-user-review.com
 var review_rating_filter_pipe_1 = require("./movie/pipes/review-rating-filter.pipe");
 var review_user_filter_pipe_1 = require("./movie/pipes/review-user-filter.pipe");
 var review_sorter_pipe_1 = require("./movie/pipes/review-sorter.pipe");
-var auth_guard_1 = require("./common/auth.guard");
+var movie_search_page_component_1 = require("./movie-search/movie-search-page.component");
 /**
  * @NgModule contains the list of external modules used by the application.
  * Imports: what kind of modules are imported from the angular library
@@ -71,10 +71,8 @@ var AppModule = (function () {
                 profile_user_review_component_1.ProfileUserReview,
                 review_rating_filter_pipe_1.ReviewRatingFilterPipe,
                 review_user_filter_pipe_1.ReviewUserFilterPipe,
-                review_sorter_pipe_1.ReviewSorterPipe
-            ],
-            providers: [
-                auth_guard_1.AuthGuard
+                review_sorter_pipe_1.ReviewSorterPipe,
+                movie_search_page_component_1.MovieSearchPageComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
