@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FrontPageComponent } from "./home/front-page.component";
 import { MoviePageComponent } from "./movie/movie-page.component";
 import { ProfilePageComponent } from  './profile/profile-page.component';
-
+import { MovieSearchPageComponent } from './movie-search/movie-search-page.component';
 /**
  * path: the path you see after the url
  * redirectTo: used to show which page we want to show when the user have not chosen any page yet
@@ -16,7 +16,8 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home',  component: FrontPageComponent },
     { path: 'movie/:id', component: MoviePageComponent }, //movie/:id+
-    { path: 'profile', component: ProfilePageComponent } //profile/:id+
+    { path: 'profile', component: ProfilePageComponent }, //profile/:id+
+    { path: 'search/:query',  component: MovieSearchPageComponent },
 ];
 
 @NgModule({
