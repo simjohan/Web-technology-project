@@ -14,7 +14,7 @@ import { NavbarSearchComponent } from "./navbar/navbar-search.component";
 import { FrontPageComponent } from "./home/front-page.component";
 import { MovieComponent } from "./movie/movie.component";
 import { MovieTitleComponent } from "./movie/movie-title.component";
-import { MoviePageComponent }   from "./movie/movie-page.component";
+import { MoviePageComponent }   from "./movie/movie-page.component";0
 import { MovieReviewComponent } from './movie/movie-review.component';
 import { FacebookComponent } from './navbar/fb.component';
 import { ProfilePageComponent } from './profile/profile-page.component';
@@ -26,6 +26,7 @@ import { ReviewRatingFilterPipe } from "./movie/pipes/review-rating-filter.pipe"
 import { ReviewUserFilterPipe } from "./movie/pipes/review-user-filter.pipe";
 import { ReviewSorterPipe } from "./movie/pipes/review-sorter.pipe";
 import { MovieSearchPageComponent } from "./movie-search/movie-search-page.component";
+import { MovieReviewsComponent } from "./movie/movie-reviews.component";
 
 /**
  * @NgModule contains the list of external modules used by the application.
@@ -60,7 +61,8 @@ import { MovieSearchPageComponent } from "./movie-search/movie-search-page.compo
         ReviewRatingFilterPipe,
         ReviewUserFilterPipe,
         ReviewSorterPipe,
-        MovieSearchPageComponent
+        MovieSearchPageComponent,
+        MovieReviewsComponent
     ],
     bootstrap: [ AppComponent ]
 })

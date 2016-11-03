@@ -27,6 +27,22 @@ var MovieReviewComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], MovieReviewComponent.prototype, "review", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], MovieReviewComponent.prototype, "reviewTitle", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], MovieReviewComponent.prototype, "rating", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], MovieReviewComponent.prototype, "userName", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], MovieReviewComponent.prototype, "ratingText", void 0);
     MovieReviewComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
