@@ -16,6 +16,30 @@ var core_1 = require('@angular/core');
 var MovieReviewsComponent = (function () {
     function MovieReviewsComponent() {
     }
+    MovieReviewsComponent.prototype.ngOnInit = function () {
+        this.reviews = [
+            { reviewTitle: "TITLE", rating: 5, userName: "USERNAME", ratingText: "lorem" },
+            { reviewTitle: "TITLE2", rating: 5, userName: "USERNAME2", ratingText: "lorem" },
+            { reviewTitle: "TITLE3", rating: 6, userName: "USERNAME4", ratingText: "lorem" }
+        ];
+    };
+    MovieReviewsComponent.prototype.getDocumentHeight = function () {
+        var body = document.body;
+        var html = document.documentElement;
+        return Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    };
+    MovieReviewsComponent.prototype.loadReviews = function () {
+        if ((document.body.scrollTop + 1) >= this.getDocumentHeight() - window.innerHeight) {
+            console.debug("Scroll Event");
+            this.reviews.push({ reviewTitle: "TITLE", rating: 5, userName: "USERNAME", ratingText: "lorem" });
+        }
+    };
+    __decorate([
+        core_1.HostListener('window:scroll', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], MovieReviewsComponent.prototype, "loadReviews", null);
     MovieReviewsComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.

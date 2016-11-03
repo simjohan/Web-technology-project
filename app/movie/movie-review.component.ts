@@ -21,16 +21,14 @@ import { Component, Input } from '@angular/core';
  */
 export class MovieReviewComponent {
     //@Input() lets other components send in the values, which this component inputs here. This value can be used in the template.
-    @Input() reviewTitle = "TITLE";
-    @Input() rating = "RATING";
-    @Input() userName = "USERNAME";
-    @Input() ratingText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure" +
-        "dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non" +
-        "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
+    @Input() reviewTitle: string;
+    @Input() rating: number;
+    @Input() userName: string;
+    @Input() ratingText: string;
 
     showElement = false;
+
     toggle(){
         if (this.showElement) this.showElement = false;
         else if (!this.showElement) this.showElement = true;
