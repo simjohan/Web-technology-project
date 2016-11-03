@@ -104,6 +104,37 @@ module.exports = function(app,io){
         ));
     });
 
+    app.get('/api/search-results/:searchTerm', function(req, res) {
+
+        res.send(JSON.stringify(
+            {
+                "search_result": [
+                    {id: "1", title: req.params.searchTerm, year: "2012"},
+                    {id: "2", title: req.params.searchTerm, year: "2002"},
+                    {id: "3", title: req.params.searchTerm, year: "2012"},
+                    {id: "4", title: req.params.searchTerm, year: "2012"},
+                    {id: "5", title: req.params.searchTerm, year: "2012"},
+                    {id: "6", title: req.params.searchTerm, year: "2012"},
+                    {id: "7", title: req.params.searchTerm, year: "2012"},
+                    {id: "8", title: req.params.searchTerm, year: "2012"},
+                    {id: "9", title: req.params.searchTerm, year: "2012"},
+                    {id: "10", title: req.params.searchTerm, year: "2012"},
+                    {id: "11", title: req.params.searchTerm, year: "2012"},
+                    {id: "12", title: req.params.searchTerm, year: "2012"},
+                    {id: "13", title: req.params.searchTerm, year: "2012"},
+                    {id: "14", title: req.params.searchTerm, year: "2012"},
+                    {id: "15", title: req.params.searchTerm, year: "2012"},
+                    {id: "16", title: req.params.searchTerm, year: "2012"},
+                    {id: "17", title: req.params.searchTerm, year: "2012"},
+                    {id: "18", title: req.params.searchTerm, year: "2012"},
+                    {id: "19", title: req.params.searchTerm, year: "2012"},
+                    {id: "20", title: req.params.searchTerm, year: "2012"},
+                ]
+            }
+        ));
+
+    });
+
     app.get('/api/newly-reviewed-movies', function(req, res) {
 
         res.send(JSON.stringify(

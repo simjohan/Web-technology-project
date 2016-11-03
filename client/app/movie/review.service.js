@@ -15,9 +15,13 @@ var ReviewService = (function () {
         this.http = http;
         this.reviewsUrl = '/api/specific-movie-reviews/'; // URL to web API
     }
+    // get the reviews from the API url, use id to find reviews for specific movie
     ReviewService.prototype.getReviews = function (id) {
         return this.http.get(this.reviewsUrl + id).map(function (res) { return res.json().reviews; });
     };
+    // Count the ratings and summarize them into an array
+    // The array contains the number of each rating at their specific index
+    // If theres 2 ratings of 0, the value of reviewsRatings[0] will be 2
     ReviewService.prototype.summarizeRatings = function (reviews) {
         var reviewRatings = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         for (var _i = 0, reviews_1 = reviews; _i < reviews_1.length; _i++) {
