@@ -31,6 +31,17 @@ export class DatabaseService {
         return this.http.post(addMovieUrl, body, options).subscribe();
     }
 
+    removeUser(id){
+        let body = JSON.stringify([id]);
+        let headers = new Headers();
+        let removeUserUrl = 'http://localhost:3000/api/users/remove/' + id;
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({headers: headers});
+        return this.http.post(removeUserUrl, body, options).subscribe();
+        //   .map((res: Response) => res.json())
+        //   .catch(this.handleError);
+    }
+
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);

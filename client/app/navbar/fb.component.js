@@ -18,9 +18,14 @@ var FacebookComponent = (function () {
     /**
      * Constructor code from developers.facebook.com
      */
-    function FacebookComponent(service) {
-        var _this = this;
-        this.service = service;
+    function FacebookComponent(_databaseService, _ngZone) {
+        this._databaseService = _databaseService;
+        this._ngZone = _ngZone;
+        this.id = "";
+        this.name = "";
+        this.email = "";
+        this.imgurl = "";
+        this.isUser = false;
         FB.init({
             appId: '1623658607931496',
             cookie: true,
@@ -28,84 +33,66 @@ var FacebookComponent = (function () {
             xfbml: true,
             version: 'v2.5' // use graph api version 2.5
         });
-        FB.getLoginStatus(function (response) {
-            _this.statusChangeCallback(response);
-        });
     }
-    /**
-     * Calls the login status from statusChangeCallback
-     */
-    FacebookComponent.prototype.getLoginStatus = function () {
-        var _this = this;
-        FB.getLoginStatus(function (respone) {
-            _this.statusChangeCallback(respone);
-        });
-    };
     /**
      * Handles the login button click
      */
     FacebookComponent.prototype.facebookLogin = function () {
-        FB.login(this.statusChangeCallback, { scope: 'public_profile, email' });
-        this.fb_name = localStorage.getItem('name');
-        this.fb_email = localStorage.getItem('email');
-        this.fb_imgurl = localStorage.getItem('imgurl');
+        var self = this;
+        FB.login(function (response) {
+            if (response.authResponse) {
+                FB.api('/me?fields=name,email,picture', function (me) {
+                    self._ngZone.run(function () {
+                        self.id = me.id;
+                        self.name = me.name;
+                        self.email = me.email;
+                        self.imgurl = me.picture.data.url;
+                        self.isUser = true;
+                        localStorage.setItem('id', me.id);
+                        localStorage.setItem('name', me.name);
+                        localStorage.setItem('email', me.email);
+                        localStorage.setItem('imgurl', me.picture.data.url);
+                        console.log("ID: " + self.id);
+                        console.log("NAME: " + self.name);
+                        console.log("EMAIL: " + self.email);
+                        console.log("IMGURL: " + self.imgurl);
+                        self._databaseService.insertUser(self.id, self.name, self.email, self.imgurl);
+                    });
+                });
+            }
+            else {
+                console.log('User cancelled login or did not fully authorize.');
+            }
+        }, { scope: 'public_profile, email' });
     };
     /**
      * Handles the logout button click
      */
     FacebookComponent.prototype.facebookLogout = function () {
-        console.log("in logout");
-        FB.logout(this.statusChangeCallback);
-        localStorage.clear();
-    };
-    /**
-     * statusChangeCallback is the standard callback function from developers.facebook.com
-     * @param response
-     */
-    FacebookComponent.prototype.statusChangeCallback = function (response) {
-        // The response object is returned with a status field that lets the
-        // app know the current login status of the person.
-        // Full docs on the response object can be found in the documentation
-        // for FB.getLoginStatus().
-        if (response.status === 'connected') {
-            // Logged into your app and Facebook.
-            FB.api('/me?fields=name,email,picture', function (me) {
-                console.log("RESPONSE.ID: " + me.id);
-                console.log("RESPONSE.NAME: " + me.name);
-                console.log("RESPONSE.EMAIL: " + me.email);
-                console.log("RESPONSE.IMAGEURL: " + me.picture.data.url);
-                localStorage.setItem('id', me.id);
-                localStorage.setItem('name', me.name);
-                localStorage.setItem('email', me.email);
-                localStorage.setItem('imgurl', me.picture.data.url);
-            });
-        }
-        else if (response.status === 'not_authorized') {
-        }
-        else {
-        }
-        console.log("Before service call!");
-        var id = localStorage.getItem('id');
-        var namer = localStorage.getItem('name');
-        var emailer = localStorage.getItem('email');
-        var imger = localStorage.getItem('imgurl');
-        this.service.insertUser(id, namer, emailer, imger);
-    };
-    ;
-    FacebookComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        FB.getLoginStatus(function (response) {
-            _this.statusChangeCallback(response);
+        var self = this;
+        FB.logout(function (response) {
+            // User is logged out; update props
+            self.isUser = false;
+            var idTest = localStorage.getItem('id');
+            self._databaseService.removeUser(idTest);
+            localStorage.clear();
         });
+    };
+    FacebookComponent.prototype.ngOnInit = function () {
+        console.log('Init done');
+    };
+    FacebookComponent.prototype.ngOnDestroy = function () {
+        this.facebookLogout();
     };
     FacebookComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: "facebook-component",
             providers: [db_service_1.DatabaseService],
-            template: "\n                <div class=\"facebook-item\">\n                    <button class=\"button\" (click)=\"facebookLogin()\">\n                        Sign in with Facebook\n                    </button>\n                    <button class=\"button\" (click)=\"facebookLogout()\">\n                        Logout\n                    </button>\n                    <span><img src=\"{{fb_imgurl}}\"/> {{fb_name}}, {{fb_email}}</span>\n                </div>\n                \n            "
+            template: "\n                <div class=\"facebook-item\">\n                    <div class=\"logged-in\" *ngIf=\"isUser\">\n                        <button class=\"facebook button\" (click)=\"facebookLogout()\">\n                            Logout\n                        </button>\n                        <span><img src=\"{{imgurl}}\"/> {{name}}, {{email}}</span>\n                    </div>\n                    <div class=\"not-logged-in\" *ngIf=\"isUser==false\">\n                        <button class=\"facebook button\" (click)=\"facebookLogin()\">\n                        Sign in with Facebook\n                    </button>\n                    </div>\n                </div>\n                \n            ",
+            styleUrls: ['fb.component.css']
         }), 
-        __metadata('design:paramtypes', [db_service_1.DatabaseService])
+        __metadata('design:paramtypes', [db_service_1.DatabaseService, core_1.NgZone])
     ], FacebookComponent);
     return FacebookComponent;
 }());
