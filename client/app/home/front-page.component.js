@@ -30,7 +30,7 @@ var FrontPageComponent = (function () {
     };
     FrontPageComponent.prototype.getMovies = function () {
         var _this = this;
-        this.movieService.getMovies().subscribe(function (data) { return _this.data = data; }, function (error) { return console.log(error); });
+        this.movieService.getNewlyReviewedMovies().subscribe(function (data) { return _this.data = data; }, function (error) { return console.log(error); });
     };
     FrontPageComponent.prototype.getRecentlyVisitedMovies = function () {
         var _this = this;

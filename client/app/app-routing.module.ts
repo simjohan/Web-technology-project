@@ -26,6 +26,7 @@ const routes: Routes = [
      */
     { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]}, //profile/:id+
     { path: 'search/:query',  component: MovieSearchPageComponent },
+    { path: 'search',  component: MovieSearchPageComponent },
 ];
 
 @NgModule({

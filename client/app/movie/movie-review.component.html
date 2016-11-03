@@ -6,14 +6,15 @@
             <!--Gets the values from "movie-review.component.ts", which might get the value from other components.-->
             <div class="review-item-left">{{review?.title}}</div>
             <div class="review-item-left">{{review?.rating}}</div>
-            <div class="review-item-left">{{review?.user}}</div>
+            <div class="review-item-left">{{review?.username}}</div>
+            <div class="review-item-left">{{review?.date}}</div>
             <button class="review-item-right expand-button" (click)="toggle()">Expand</button>
         </li>
 
         <li class="review-list-item">
             <div class="review-item-bottom" *ngIf="showElement">
                 <p>
-                    {{review?.text}}
+                    {{review?.review}}
                 </p>
             </div>
         </li>

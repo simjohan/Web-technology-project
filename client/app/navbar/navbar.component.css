@@ -5,36 +5,57 @@
     height: 74px;
     background: #4A4A4A;
 
+    align-items: center;
+
     /* Flex properties */
     display: flex;
-    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-around;
 
     /* box-sizing is used to not stretch the div 100%+20px padding */
     box-sizing: border-box;
     padding: 0 20px;
 }
 
-#navbar input[type=text] {
-    padding: 0 10px;
-    width: 180px;
-    height: 34px;
-    border-radius: 3px;
-    border: 0;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3) inset;
+
+.navbar-container-left{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    flex: 1;
 }
 
-#navbar label {
-    font-size: 12px;
+.all-movies-button{
+    margin-left: 15px;
 }
 
-#navbar input[type=checkbox] {
-    margin-left: 10px;
+.navbar-container-right{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    flex: 1;
+    align-items: center;
 }
 
-#navbar .item {
-
+.navbar-right-item{
+    margin-right: 25px;
 }
 
-#navbar nav ul li a:hover{
-    background-color: #ddd;
+/* Medium screens */
+@media all and (max-width: 800px) {
+    #navbar{
+        flex-flow: column wrap;
+        align-items: flex-start;
+    }
+    .navbar-container-right{
+        justify-content: center;
+        flex-flow: column wrap;
+        margin-right: 5px;
+    }
+    .navbar-container-left{
+        margin-top: 10px;
+    }
+    .navbar-container-right{
+        margin-bottom: 5px;
+    }
 }

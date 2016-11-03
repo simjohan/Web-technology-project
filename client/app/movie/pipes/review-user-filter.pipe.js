@@ -20,7 +20,7 @@ var ReviewUserFilterPipe = (function () {
         if ((nameSearched).length == 0)
             return review;
         for (var i in review) {
-            var username = review[i].user;
+            var username = review[i].username;
             if (username.toLowerCase().includes(nameSearched.toLowerCase())) {
                 reviews.push(review[i]);
             }

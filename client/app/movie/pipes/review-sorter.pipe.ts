@@ -10,10 +10,6 @@ export class ReviewSorterPipe implements PipeTransform {
 
         if(!value) return;
 
-        console.log("");
-        console.log("Args: " + args);
-        console.log(value);
-
         if (args == "rating-desc") {
             value.sort((a, b) => {
                 if (a.rating < b.rating) return 1;
@@ -32,16 +28,16 @@ export class ReviewSorterPipe implements PipeTransform {
 
         else if (args == "name-asc") {
             value.sort((a, b) => {
-                if (a.user < b.user) return 1;
-                if (a.user > b.user) return -1;
+                if (a.username < b.username) return 1;
+                if (a.username > b.username) return -1;
                 return 0;
             });
         }
 
         else if (args == "name-desc") {
             value.sort((a, b) => {
-                if (a.user < b.user) return -1;
-                if (a.user > b.user) return 1;
+                if (a.username < b.username) return -1;
+                if (a.username > b.username) return 1;
                 return 0;
             });
         }

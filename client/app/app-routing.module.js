@@ -33,6 +33,7 @@ var routes = [
      */
     { path: 'profile', component: profile_page_component_1.ProfilePageComponent, canActivate: [auth_guard_1.AuthGuard] },
     { path: 'search/:query', component: movie_search_page_component_1.MovieSearchPageComponent },
+    { path: 'search', component: movie_search_page_component_1.MovieSearchPageComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

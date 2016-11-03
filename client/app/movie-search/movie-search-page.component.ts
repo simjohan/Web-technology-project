@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from './../movie/movie.service';
 
@@ -22,22 +22,39 @@ export class MovieSearchPageComponent implements  OnInit {
         private router: Router,
         private movieService: MovieService,
         private route: ActivatedRoute) {
-
-
         // Detect changes in router to let the movie component know when to re-render
         router.events.subscribe(() => {
-            this.getSearchResult(this.searchTerm);
+            if(this.searchTerm){
+                console.log("True");
+                this.getSearchResult(this.searchTerm);
+            }
+            else {
+                console.log("False");
+                this.getAllMovies();
+            }
         });
 
     }
 
     // Fire when component is created
     ngOnInit() {
+
         // Find the parameter of the route and assign it to the searchTerm variable
         this.route.params.subscribe(params => {
-            this.searchTerm = params['query'].toString();
+            this.searchTerm = params['query'];
         });
-        this.getSearchResult(this.searchTerm);
+
+        console.log(this.searchTerm);
+
+
+
+    }
+
+    getAllMovies(){
+        this.movieService.getAllMovies().subscribe(
+            data => this.searchResult = data,
+            error => console.log(error)
+        );
     }
 
     getSearchResult(searchTerm){
