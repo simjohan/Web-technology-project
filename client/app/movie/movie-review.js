@@ -1,6 +1,9 @@
 "use strict";
 var MovieReview = (function () {
-    function MovieReview() {
+    function MovieReview(title, rating, review) {
+        this.title = title;
+        this.rating = rating;
+        this.review = review;
     }
     return MovieReview;
 }());

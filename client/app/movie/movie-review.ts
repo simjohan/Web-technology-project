@@ -1,7 +1,10 @@
 
 export class MovieReview {
-    reviewTitle: string;
-    rating: number;
-    userName: string;
-    ratingText: string;
+
+    constructor(
+        public title: string,
+        public rating: number,
+        public review: string
+    ){}
+
 }

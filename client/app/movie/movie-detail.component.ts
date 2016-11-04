@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { MovieService } from './movie.service';
 import { ActivatedRoute } from '@angular/router';
+import {ReviewFormComponent} from "./review-form.component";
+
+declare var $:any;
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -27,7 +30,9 @@ export class MovieDetailComponent implements OnInit{
     private userId;
     private sub: any;      // -> Subscriber
 
-    constructor (private movieService: MovieService, private route: ActivatedRoute) {}
+    constructor (private movieService: MovieService,
+                 private route: ActivatedRoute,
+                 private componentFactoryResolver: ComponentFactoryResolver) {}
 
     ngOnInit() {
         // get URL parameters
@@ -37,6 +42,10 @@ export class MovieDetailComponent implements OnInit{
 
     getMovie(userId):void {
         this.movieService.getMovie(userId).subscribe(data => this.movie = data, error => console.log(error));
+    }
+
+    createRating(){
+        // Handle the click here
     }
 
 }

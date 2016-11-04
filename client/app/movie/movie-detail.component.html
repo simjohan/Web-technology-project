@@ -15,7 +15,8 @@
         <p> Directors: {{movie?.directors}} </p>
         <p> Country: {{movie?.country}}  </p>
         <p> Description: {{movie?.description}} </p>
-        <button>Review movie</button>
+        <button (click)="createRating()">Review movie</button>
     </div>
+    <review-form></review-form>
 
 </div>
