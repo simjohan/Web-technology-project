@@ -15,17 +15,16 @@ var NavbarSearchComponent = (function () {
         this.router = router;
     }
     ;
-    NavbarSearchComponent.prototype.searchMovies = function (event) {
-        var str = event.target.value;
-        str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
-        this.router.navigate(['search/' + str]);
-        event.target.value = null;
+    NavbarSearchComponent.prototype.searchMovies = function () {
+        this.str = this.str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
+        this.router.navigate(['search/' + this.str]);
     };
     NavbarSearchComponent = __decorate([
         core_1.Component({
             //Selector "nav-search" lets other components use the template into their own template.
             selector: "nav-search",
-            template: "\n    <input #box placeholder=\"Search...\" (keyup.enter)=\"searchMovies($event)\"/>\n    "
+            styleUrls: ["navbar-search.component.css"],
+            template: "\n        <input class=\"navbar-search-field\" type=\"text\" #box placeholder=\"Search...\" (keyup.enter)=\"searchMovies()\" [(ngModel)] = \"str\" maxlength=\"25\"/>\n        <input class=\"btn navbar-search-submit-btn\" type=\"submit\" value=\"Submit\" (click)=\"searchMovies()\">\n    ",
         }), 
         __metadata('design:paramtypes', [router_1.Router])
     ], NavbarSearchComponent);

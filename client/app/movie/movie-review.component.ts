@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -19,10 +19,20 @@ import { Component, Input } from '@angular/core';
 /**
  * Exporting the class MovieReviewComponent, so other components have access to it.
  */
-export class MovieReviewComponent  {
+export class MovieReviewComponent implements OnChanges  {
     //@Input() lets other components send in the values, which this component inputs here. This value can be used in the template.
 
     @Input() review;
+    stars;
+
+    ngOnChanges(){
+        this.stars = "";
+        for (var i = 0; this.review.rating > i; i++){
+            this.stars = this.stars + "☆";
+        }
+    }
+
+
 
     @Input() reviewTitle: string;
     @Input() rating: number;

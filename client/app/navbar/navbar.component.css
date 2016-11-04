@@ -23,6 +23,8 @@
     flex-flow: row wrap;
     justify-content: flex-start;
     flex: 1;
+    order: 1;
+
 }
 
 .all-movies-button{
@@ -34,28 +36,41 @@
     flex-flow: row wrap;
     justify-content: flex-end;
     flex: 1;
-    align-items: center;
+    order: 2;
 }
 
 .navbar-right-item{
     margin-right: 25px;
 }
 
+
 /* Medium screens */
-@media all and (max-width: 800px) {
+@media all and (max-width: 720px) {
     #navbar{
         flex-flow: column wrap;
-        align-items: flex-start;
+        height: 114px;
+        justify-content: flex-start;
     }
     .navbar-container-right{
-        justify-content: center;
-        flex-flow: column wrap;
-        margin-right: 5px;
+        justify-content: flex-start;
+        flex-flow: row nowrap;
+        order: 1;
+        width: 100%;
+
     }
     .navbar-container-left{
+        flex-flow: row nowrap;
+        order: 2;
+        width: 100%;
+    }
+    .navbar-right-item{
         margin-top: 10px;
     }
-    .navbar-container-right{
-        margin-bottom: 5px;
+    .navbar-left-item{
+        margin-top: 10px;
     }
+    .all-movies-button{
+        margin-left: 10px;
+    }
+
 }

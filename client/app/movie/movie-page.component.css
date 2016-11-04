@@ -1,6 +1,5 @@
 .movie-page-container{
     padding: 0;
-    margin: 40px;
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -8,7 +7,6 @@
 }
 
 .movie-page-item{
-    margin-top: 15px;
     align-items: center;
 }
 
@@ -16,13 +14,12 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    margin-bottom: 50px;
-    margin-top: 25px;
 }
 
 .review-settings-item{
     flex: 1;
     text-align: center;
+    margin-bottom: 100px;
 }
 
 .review-chart{
@@ -33,7 +30,14 @@
 }
 
 .review-page-title{
-    margin-top: 150px;
+    margin-top: 100px;
     margin-bottom: 25px;
     text-align: center;
+}
+/* Medium screens */
+@media all and (max-width: 720px) {
+    .review-settings-container{
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+    }
 }

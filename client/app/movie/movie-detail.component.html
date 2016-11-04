@@ -1,15 +1,17 @@
 <div class="movie-detail-container">
 
     <!--Image of the movie-->
-    <div class="movie-detail-poster">
+    <div class="movie-detail-item movie-detail-poster">
         <img src='{{movie?.img_url}}' alt="movie poster" />
     </div>
     <!-- Container to hold the details of the movie -->
-    <div class="movie-detail-information">
+    <div class="movie-detail-item movie-detail-information">
+        <hr>
         <h2> {{movie?.title}} </h2>
-        <p> Year: {{movie?.year}} </p>
-        <p> Description: {{movie?.description}}</p>
-        <button>Review movie</button>
+        <hr>
+        <p> <b> Year: </b> {{movie?.year}} </p>
+        <p> <b> Description: </b> {{movie?.description}}</p>
+        <button class="btn"> Review movie</button>
     </div>
 
 </div>

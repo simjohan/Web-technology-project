@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    min-width: 390px;
 }
 
 .button {
@@ -9,19 +10,55 @@ body {
     margin-left: auto;
 }
 
-.hei {
-
-}
-
-.review {
-    background-color: lightgrey;
-}
-
-.followers{
-    background-color: #dddddd;
-}
-
 .main-container{
-    margin-top: 50px;
+    margin: 50px;
 }
 
+/*
+    Buttons
+*/
+
+/* start da css for da buttons */
+.btn{
+    background: #6FC6FF; /* this is a light blue */
+    border-radius: 2px;
+    margin: 0;
+    border: 0;
+    padding: 5px;
+    color: white;
+    transition: all .2s ease-in-out;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0px 1px 0px 0px #60acdd;
+}
+
+.btn:hover {
+    background: rgb(129, 242, 255); /* this is a light blue */
+    transform: scale(1.1);
+}
+
+.btn:active {
+    box-shadow: 1px 1px 1px 1px;
+}
+
+
+
+
+
+
+/*
+    For some weird reason I cannot  understand
+    the CSS below has to be placed in the top css
+    file to work.
+*/
+
+.navbar-search-submit-btn{
+    margin-left: 10px;
+}
+
+.navbar-search-field{
+    height: 23px;
+}
