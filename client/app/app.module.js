@@ -36,7 +36,6 @@ var review_rating_filter_pipe_1 = require("./movie/pipes/review-rating-filter.pi
 var review_user_filter_pipe_1 = require("./movie/pipes/review-user-filter.pipe");
 var review_sorter_pipe_1 = require("./movie/pipes/review-sorter.pipe");
 var movie_search_page_component_1 = require("./movie-search/movie-search-page.component");
-var movie_reviews_component_1 = require("./movie/movie-reviews.component");
 /**
  * Imports the AuthGuard that lets us have session-handling in Angular
  */
@@ -78,8 +77,7 @@ var AppModule = (function () {
                 review_rating_filter_pipe_1.ReviewRatingFilterPipe,
                 review_user_filter_pipe_1.ReviewUserFilterPipe,
                 review_sorter_pipe_1.ReviewSorterPipe,
-                movie_search_page_component_1.MovieSearchPageComponent,
-                movie_reviews_component_1.MovieReviewsComponent
+                movie_search_page_component_1.MovieSearchPageComponent
             ],
             //The AuthGuard is a provider
             providers: [

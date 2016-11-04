@@ -46,6 +46,17 @@ var MoviePageComponent = (function () {
         var _this = this;
         this.reviewService.getReviews(movieId).subscribe(function (data) { return _this.reviews = data; }, function (error) { return console.log(error); }, function () { return _this.summarizeRatings(_this.reviews); });
     };
+    MoviePageComponent.prototype.getDocumentHeight = function () {
+        var body = document.body;
+        var html = document.documentElement;
+        return Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    };
+    MoviePageComponent.prototype.loadReviews = function () {
+        if ((document.body.scrollTop + 1) >= this.getDocumentHeight() - window.innerHeight) {
+            console.debug("Scroll Event");
+            this.getReviews(this.movieId);
+        }
+    };
     MoviePageComponent.prototype.summarizeRatings = function (reviews) {
         var _this = this;
         this.reviewService.summarizeRatings(reviews).then(function (data) { return _this.doughnutChartData = data; }, function (error) { return console.log(error); });
@@ -65,6 +76,12 @@ var MoviePageComponent = (function () {
     MoviePageComponent.prototype.chartHovered = function (e) {
         // console.log(e);
     };
+    __decorate([
+        core_1.HostListener('window:scroll', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], MoviePageComponent.prototype, "loadReviews", null);
     MoviePageComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
