@@ -13,8 +13,10 @@ var http_1 = require('@angular/http');
 var FrontPageService = (function () {
     function FrontPageService(http) {
         this.http = http;
-        this.reviewsUrl = '/api/recent-movies'; // URL to web API
+        // URL to web API
+        this.reviewsUrl = '/api/recent-movies';
     }
+    // Get recently visited movies through the rest API
     FrontPageService.prototype.recentlyVisitedMovies = function () {
         return this.http.get(this.reviewsUrl).map(function (res) { return res.json().recent_movies; });
     };

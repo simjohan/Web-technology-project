@@ -15,7 +15,8 @@ var ReviewSorterPipe = (function () {
     }
     ReviewSorterPipe.prototype.transform = function (value, args) {
         if (!value)
-            return;
+            return; // Check if value is defined
+        // Sort rating in descending order
         if (args == "rating-desc") {
             value.sort(function (a, b) {
                 if (a.rating < b.rating)
@@ -52,8 +53,7 @@ var ReviewSorterPipe = (function () {
                 return 0;
             });
         }
-        console.log(value);
-        return value;
+        return value; // Return the newly sorted value
     };
     ReviewSorterPipe = __decorate([
         core_1.Pipe({

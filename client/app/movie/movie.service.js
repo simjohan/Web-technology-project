@@ -15,9 +15,10 @@ require('rxjs/add/operator/catch');
 var MovieService = (function () {
     function MovieService(http) {
         this.http = http;
-        this.newlyReviewMoviesUrl = '/api/newly-reviewed-movies'; // URL to web API
+        // REST API URLs
+        this.newlyReviewMoviesUrl = '/api/newly-reviewed-movies';
         this.specificMovieUrl = '/api/specific-movie/';
-        this.searchResultUrl = '/api/get/movies/'; // Url to web API
+        this.searchResultUrl = '/api/get/movies/';
         this.getAllMoviesUrl = '/api/get/movies';
     }
     // Get ALL the movies
