@@ -17,6 +17,12 @@ var MovieReviewComponent = (function () {
     function MovieReviewComponent() {
         this.showElement = false;
     }
+    MovieReviewComponent.prototype.ngOnChanges = function () {
+        this.stars = "";
+        for (var i = 0; this.review.rating > i; i++) {
+            this.stars = this.stars + "☆";
+        }
+    };
     MovieReviewComponent.prototype.toggle = function () {
         if (this.showElement)
             this.showElement = false;

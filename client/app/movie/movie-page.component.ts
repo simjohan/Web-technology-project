@@ -75,7 +75,7 @@ export class MoviePageComponent{
      */
 
     // Doughnut
-    public doughnutChartLabels:string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+    public doughnutChartLabels:string[] = ['1', '2', '3', '4', '5'];
     public doughnutChartType:string = 'doughnut';
     public doughnutChartData:number[] = [];
 

@@ -42,8 +42,8 @@
 
             <div class="review-settings-item">
                 <p>Sort by</p>
-                <button (click)="toggleSortByRating()">Rating</button>
-                <button (click)="toggleSortByName()">Name</button>
+                <button class="btn" (click)="toggleSortByRating()">Rating</button>
+                <button class="btn" (click)="toggleSortByName()">Name</button>
             </div>
 
             <div class="review-settings-item">
@@ -52,9 +52,9 @@
                 <div class="review-slider-value"> {{ sliderValue }} </div>
                 <div>
                     0
-                    <input type="range" min="0" max="10" [value]="sliderValue"
+                    <input type="range" min="0" max="5" [value]="sliderValue"
                            (input)="sliderValue = $event.target.value" />
-                    10
+                    5
 
                 </div>
             </div>

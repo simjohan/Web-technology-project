@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
                     </div>
                     <div class="not-logged-in" *ngIf="isUser==false">
                         <button class="facebook button" (click)="facebookLogin()">
-                        Sign in with Facebook
+                        Sign in
                     </button>
                     </div>
                 </div>
