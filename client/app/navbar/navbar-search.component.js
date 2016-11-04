@@ -16,8 +16,13 @@ var NavbarSearchComponent = (function () {
     }
     ;
     NavbarSearchComponent.prototype.searchMovies = function () {
-        this.str = this.str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
-        this.router.navigate(['search/' + this.str]);
+        if (typeof this.str !== 'undefined') {
+            this.str = this.str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
+            this.router.navigate(['search/' + this.str]);
+        }
+        else {
+            this.router.navigate(['search']);
+        }
     };
     NavbarSearchComponent = __decorate([
         core_1.Component({

@@ -13,21 +13,9 @@ var router_1 = require('@angular/router');
 var movie_service_1 = require('./../movie/movie.service');
 var MovieSearchPageComponent = (function () {
     function MovieSearchPageComponent(router, movieService, route) {
-        var _this = this;
         this.router = router;
         this.movieService = movieService;
         this.route = route;
-        // Detect changes in router to let the movie component know when to re-render
-        router.events.subscribe(function () {
-            if (_this.searchTerm) {
-                console.log("True");
-                _this.getSearchResult(_this.searchTerm);
-            }
-            else {
-                console.log("False");
-                _this.getAllMovies();
-            }
-        });
     }
     // Fire when component is created
     MovieSearchPageComponent.prototype.ngOnInit = function () {
@@ -35,8 +23,14 @@ var MovieSearchPageComponent = (function () {
         // Find the parameter of the route and assign it to the searchTerm variable
         this.route.params.subscribe(function (params) {
             _this.searchTerm = params['query'];
+            // If a term is supplied, find movies matching to the term
+            if (typeof _this.searchTerm !== 'undefined') {
+                _this.getSearchResult(_this.searchTerm);
+            }
+            else {
+                _this.getAllMovies();
+            }
         });
-        console.log(this.searchTerm);
     };
     MovieSearchPageComponent.prototype.getAllMovies = function () {
         var _this = this;

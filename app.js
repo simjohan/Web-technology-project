@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var session = require('express-session');
+var SQLiteStore = require('connect-sqlite3')(session);
 var bodyParser = require('body-parser');
 
 // Database stuff here
@@ -22,11 +23,20 @@ var io = require('socket.io')(server,{log:false});
 server.listen(3000,function(){
     console.log("Server connected. Listening on port: 3000");
 });
+
+
 //session init
 app.use( session({
-    secret:'keyboard cat',
-    resave:false,
-    saveUninitialized:false
+    store: new SQLiteStore({
+        table: 'sessions',
+        db: 'database',
+        dir: '.'
+    }),
+    rolling: true,
+    secret: 'keyboard cat',
+    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, // 1 week
+    resave: false,
+    saveUninitialized: false
 }));
 
 app.use(bodyParser.json());

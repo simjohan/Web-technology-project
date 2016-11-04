@@ -22,18 +22,6 @@ export class MovieSearchPageComponent implements  OnInit {
         private router: Router,
         private movieService: MovieService,
         private route: ActivatedRoute) {
-        // Detect changes in router to let the movie component know when to re-render
-        router.events.subscribe(() => {
-            if(this.searchTerm){
-                console.log("True");
-                this.getSearchResult(this.searchTerm);
-            }
-            else {
-                console.log("False");
-                this.getAllMovies();
-            }
-        });
-
     }
 
     // Fire when component is created
@@ -42,11 +30,15 @@ export class MovieSearchPageComponent implements  OnInit {
         // Find the parameter of the route and assign it to the searchTerm variable
         this.route.params.subscribe(params => {
             this.searchTerm = params['query'];
+            // If a term is supplied, find movies matching to the term
+            if (typeof this.searchTerm !== 'undefined'){
+                this.getSearchResult(this.searchTerm);
+            }
+            // Get all movies if no term is supplied.
+            else {
+                this.getAllMovies();
+            }
         });
-
-        console.log(this.searchTerm);
-
-
 
     }
 
