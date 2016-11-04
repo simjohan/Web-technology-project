@@ -24,9 +24,6 @@ module.exports = function(app,io){
         // Store the session IDs in a string
         var ids = req.session.recentMovies;
 
-        console.log(ids);
-        console.log("Length: " + ids.length);
-
         // Track the recent movies
         var recent_movies = [];
 
@@ -142,11 +139,17 @@ module.exports = function(app,io){
 
     app.get('/api/specific-movie/:movieId', function(req, res) {
 
+
+        console.log("");
+        console.log(req.sessionID);
+
         // Check if the movie is already there
         // indexOf returns -1 if not present, index if present
         if (req.session.recentMovies.indexOf(req.params.movieId) < 0){
+            console.log("test 1");
             // Check the length of the array
             if (req.session.recentMovies.length >= 5) {
+                console.log("test 3");
                 // Remove the first entry
                 req.session.recentMovies.shift();
             }
@@ -154,6 +157,7 @@ module.exports = function(app,io){
             req.session.recentMovies.push(req.params.movieId);
         }
         else if (req.session.recentMovies.indexOf(req.params.movieId) >= 0) {
+            console.log("test 2");
             // Find the index
             var index = req.session.recentMovies.indexOf(req.params.movieId);
             // Remove the entry
@@ -164,6 +168,8 @@ module.exports = function(app,io){
         else {
             console.log("Error occurred in /api/specific-movie/" + req.params.movieId);
         }
+
+        console.log("TEST: " + req.session.recentMovies);
 
         var movie = [];
         var stmt = db.prepare('SELECT * FROM Movies WHERE id = ?');

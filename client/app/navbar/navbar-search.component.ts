@@ -19,8 +19,13 @@ export class NavbarSearchComponent {
 
 
     searchMovies(){
-        this.str = this.str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"");
-        this.router.navigate(['search/' + this.str]);
+        if (typeof this.str !== 'undefined'){
+            this.str = this.str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"");
+            this.router.navigate(['search/' + this.str]);
+        }
+        else{
+            this.router.navigate(['search']);
+        }
     }
 
 }
