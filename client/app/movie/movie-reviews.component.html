@@ -1,9 +1,0 @@
-<ul class="movie-reviews-container" id="review-container">
-
-    <h2> Reviews </h2>
-    <div *ngFor ="let review of reviews">
-        <movie-review [reviewTitle] = review.reviewTitle [rating] = review.rating
-                      [userName] = review.userName [ratingText] = review.ratingText></movie-review>
-    </div>
-</ul>
-
