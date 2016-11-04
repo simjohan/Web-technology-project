@@ -1,5 +1,5 @@
 import { Injectable }     from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
@@ -25,6 +25,16 @@ export class ReviewService {
             console.log(ratingToInt);
         }
         return Promise.resolve(reviewRatings);
+    }
+
+    sendReview(userId, movieId, title, rating, review){
+        let body = JSON.stringify([userId, movieId, title, rating, review]);
+        let headers = new Headers();
+        let id = userId + movieId;
+        let addReviewUrl = 'http://localhost:3000/api/reviews/add/' + id;
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({headers: headers});
+        return this.http.post(addReviewUrl, body, options).subscribe();
     }
 
 }

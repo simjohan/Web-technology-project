@@ -32,6 +32,15 @@ var ReviewService = (function () {
         }
         return Promise.resolve(reviewRatings);
     };
+    ReviewService.prototype.sendReview = function (userId, movieId, title, rating, review) {
+        var body = JSON.stringify([userId, movieId, title, rating, review]);
+        var headers = new http_1.Headers();
+        var id = userId + movieId;
+        var addReviewUrl = 'http://localhost:3000/api/reviews/add/' + id;
+        headers.append('Content-Type', 'application/json');
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(addReviewUrl, body, options).subscribe();
+    };
     ReviewService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

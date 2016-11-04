@@ -22,6 +22,8 @@ if(!exists) {
     var CreateReviews = "CREATE TABLE Reviews (" +
         "userId TEXT, " +
         "movieId TEXT, " +
+        "title TEXT, " +
+        "rating INTEGER, " +
         "review TEXT," +
         "PRIMARY KEY (userId, movieId)," +
         "FOREIGN KEY(movieId) REFERENCES Movies(id)," +
@@ -48,7 +50,7 @@ if(!exists) {
     console.log("Inserting dummy data");
     var insertUser = "INSERT INTO Users VALUES (?, ?, ?, ?)";
     var insertMovie = "INSERT INTO Movies VALUES (?, ?, ?, ?, ?)";
-    var insertReview = "INSERT INTO Reviews VALUES(?, ?, ?)";
+    var insertReview = "INSERT INTO Reviews VALUES(?, ?, ?, ?, ?)";
 
     // ID, NAME, EMAIL, URL
     var user1 = ['3', 'Bob Arne', 'bob@bobsen.com', 'BOBimageurlhere'];
@@ -64,9 +66,9 @@ if(!exists) {
     var movie2 = [2, 'Saw 3', "https://images-na.ssl-images-amazon.com/images/M/MV5BMjI0NTEwNTgwNF5BMl5BanBnXkFtZTcwMDM5MTU5Mw@@._V1_SY1000_CR0,0,675,1000_AL_.jpg", 2010, "As a deadly battle rages over Jigsaw's brutal legacy, a group of Jigsaw survivors gathers to seek the support of self-help guru and fellow survivor Bobby Dagen, a man whose own dark secrets unleash a new wave of terror."];
     var movie3 = [3, 'test', 'url', 2010, 'text'];
 
-    // USERID, MOVIEID, REVIEWTEXT
-    var r1 = ['3', '1', 'It was a bad movie:('];
-    var r2 = ['4', '2', 'It was AWESOME!'];
+    // USERID, MOVIEID, TITLE, RATING, REVIEWTEXT
+    var r1 = ['3', '1', 'title1', 1, 'It was a bad movie:('];
+    var r2 = ['4', '2', 'title2', 5, 'It was AWESOME!'];
 
     var stmt = db.prepare(insertUser);
     stmt.run(user1);

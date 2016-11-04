@@ -11,17 +11,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var movie_review_1 = require('./movie-review');
 var review_service_1 = require("./review.service");
+var router_1 = require("@angular/router");
 var ReviewFormComponent = (function () {
-    function ReviewFormComponent(reviewService) {
+    function ReviewFormComponent(reviewService, route) {
         this.reviewService = reviewService;
+        this.route = route;
+        this.userId = 0;
+        this.movieId = 0;
         this.ratings = [0, 1, 2, 3, 4, 5];
-        this.model = new movie_review_1.MovieReview('', this.ratings[0], '');
+        this.model = new movie_review_1.MovieReview(this.userId, this.movieId, '', this.ratings[0], '');
         this.submitted = false;
         this.active = true;
     }
+    // Submitting the review form. Send data to server
     ReviewFormComponent.prototype.onSubmit = function () {
         this.submitted = true;
         console.log(JSON.stringify(this.model));
+        this.reviewService.sendReview(this.userId, this.movieId, this.model.title, this.model.rating, this.model.review);
     };
     Object.defineProperty(ReviewFormComponent.prototype, "diagnostic", {
         // TODO: Remove this when we're done
@@ -31,9 +37,14 @@ var ReviewFormComponent = (function () {
     });
     ReviewFormComponent.prototype.newReview = function () {
         var _this = this;
-        this.model = new movie_review_1.MovieReview('', this.ratings[0], '');
+        this.model = new movie_review_1.MovieReview(this.userId, this.movieId, '', this.ratings[0], '');
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
+    };
+    ReviewFormComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // get URL parameters
+        this.route.params.subscribe(function (params) { _this.movieId = params['id']; });
     };
     ReviewFormComponent = __decorate([
         core_1.Component({
@@ -41,7 +52,7 @@ var ReviewFormComponent = (function () {
             selector: 'review-form',
             templateUrl: 'review-form.component.html'
         }), 
-        __metadata('design:paramtypes', [review_service_1.ReviewService])
+        __metadata('design:paramtypes', [review_service_1.ReviewService, router_1.ActivatedRoute])
     ], ReviewFormComponent);
     return ReviewFormComponent;
 }());

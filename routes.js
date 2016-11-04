@@ -224,6 +224,17 @@ module.exports = function(app,io){
         }
     });
 
+    app.post('/api/reviews/add/:id', function (req, res) {
+        console.log("Received data: " + req.body[0]);
+        var userId = req.body[0];
+        var movieId = req.body[1];
+        var title = req.body[2];
+        var rating = req.body[3];
+        var review = req.body[4];
+
+        dbHandler.addReview(userId, movieId, title, rating, review);
+    });
+
     /*
         If all other options are exhausted, use this.
         Temp solution. This should be placed last.
