@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ReviewService } from './review.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewRatingFilterPipe } from './pipes/review-rating-filter.pipe';
@@ -52,6 +52,26 @@ export class MoviePageComponent{
             error => console.log(error),
             () => this.summarizeRatings(this.reviews)
         );
+    }
+
+
+    getDocumentHeight() {
+        const body = document.body;
+        const html = document.documentElement;
+
+        return Math.max(
+            body.scrollHeight, body.offsetHeight,
+            html.clientHeight, html.scrollHeight, html.offsetHeight)
+    }
+
+    @HostListener('window:scroll', ['$event'])
+    loadReviews() {
+        if ((document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
+            console.debug("Scroll Event");
+
+            this.getReviews(this.movieId);
+
+        }
     }
 
     summarizeRatings(reviews){
