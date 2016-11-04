@@ -13,16 +13,19 @@ var core_1 = require('@angular/core');
 var ReviewRatingFilterPipe = (function () {
     function ReviewRatingFilterPipe() {
     }
+    // This will filter out the review components that does not meet the requirements
     ReviewRatingFilterPipe.prototype.transform = function (value, args) {
         var minRating = args;
         var review = value;
-        var reviews = [];
+        var reviews = []; // Empty array to hold the new reviews
         for (var i in review) {
-            var rating = +review[i].rating;
+            var rating = +review[i].rating; // Convert to number
             if (rating >= minRating) {
+                // Push the review that meet the requirement into the reviews array
                 reviews.push(review[i]);
             }
         }
+        // Return a list of reviews that meet the requirement
         return reviews;
     };
     ReviewRatingFilterPipe = __decorate([

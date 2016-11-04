@@ -19,7 +19,7 @@ import { Component, Input, OnInit } from '@angular/core';
  * Exporting the class MovieComponent, so other components have access to it
  */
 export class MovieComponent{
-
+    //@Input() lets other components send in a titleValue, which this component inputs here. This value can be used in the template.
     @Input() movieObject;
 
 }

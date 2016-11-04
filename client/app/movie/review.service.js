@@ -23,7 +23,7 @@ var ReviewService = (function () {
     // The array contains the number of each rating at their specific index
     // If theres 2 ratings of 0, the value of reviewsRatings[0] will be 2
     ReviewService.prototype.summarizeRatings = function (reviews) {
-        var reviewRatings = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var reviewRatings = [0, 0, 0, 0, 0];
         for (var _i = 0, reviews_1 = reviews; _i < reviews_1.length; _i++) {
             var review = reviews_1[_i];
             var ratingToInt = +review.rating - 1; // Convert to int

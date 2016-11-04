@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['movie-detail.component.css'],
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'movie-detail.component.html',
+    // Provider tells the component which service to use
     providers: [MovieService]
 })
 
@@ -25,16 +26,16 @@ export class MovieDetailComponent implements OnInit{
 
     private movie: Object;
     private userId;
-    private sub: any;      // -> Subscriber
-
     constructor (private movieService: MovieService, private route: ActivatedRoute) {}
 
+    // On start of lifecycle
     ngOnInit() {
         // get URL parameters
-        this.sub = this.route.params.subscribe(params => {this.userId = params['id']; });
+        this.route.params.subscribe(params => {this.userId = params['id']; });
         this.getMovie(this.userId);
     }
 
+    // Get a specific movie from the REST API based on id.
     getMovie(userId):void {
         this.movieService.getMovie(userId).subscribe(data => this.movie = data, error => console.log(error));
     }

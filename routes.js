@@ -3,14 +3,21 @@ var parseurl = require('parseurl');
 var file = "database.db";
 var sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(file);
-var parseurl = require('parseurl');
+var dbHandler = require('./dbHandler');
 
 module.exports = function(app,io){
-    var dbHandler = require('./dbHandler');
 
-    var sess;
+    // On connect emit from socket
+    io.on('connection', function(socket){
+        console.log("Server connection.io");
+        socket.emit('topology',currentTopo);
+    });
 
+    io.on('disconnect', function(socket){
+        console.log("client dcd");
+    });
 
+    // Creates the recentMovies variable for the session
     app.use(function (req, res, next) {
         // If it is of length zero, create an empty array.
         if (!req.session.recentMovies) {
@@ -19,6 +26,7 @@ module.exports = function(app,io){
         next()
     })
 
+    // Gets all the recent movies
     app.get('/api/recent-movies', function(req, res){
 
         // Store the session IDs in a string
@@ -55,15 +63,6 @@ module.exports = function(app,io){
 
     });
 
-    io.on('connection', function(socket){
-        console.log("Server connection.io");
-        socket.emit('topology',currentTopo);
-    });
-
-    io.on('disconnect', function(socket){
-        console.log("client dcd");
-    });
-
     // Get all movies
     app.get('/api/get/movies', function(req, res) {
 
@@ -95,8 +94,7 @@ module.exports = function(app,io){
 
         var search_result = [];
         var stmt = db.prepare('SELECT * FROM Movies WHERE title LIKE ?');
-        console.log("Title: " + req.params.title);
-        var term = "%"+req.params.title+"%";
+        var term = "%"+req.params.title+"%"; // Check for results that are LIKE the search term
         stmt.each(term,
             function(err, row) {
                 search_result.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
@@ -119,7 +117,7 @@ module.exports = function(app,io){
             "ON r.userId = Users.id " +
             "AND r.movieId = ? "
         );
-        var movieId = req.params.movieId;
+        var movieId = req.params.movieId; // ID is provided by the parameters of the URL
         stmt.each(movieId,
             function(err, row) {
                 reviews.push({
@@ -137,11 +135,11 @@ module.exports = function(app,io){
 
     });
 
+    // Get a specific movie based on id
     app.get('/api/specific-movie/:movieId', function(req, res) {
 
-
-        console.log("");
-        console.log(req.sessionID);
+        // SESSION START
+        // Adds the movie accessed to the recentMovies variable of the session, with some added logic
 
         // Check if the movie is already there
         // indexOf returns -1 if not present, index if present
@@ -169,8 +167,9 @@ module.exports = function(app,io){
             console.log("Error occurred in /api/specific-movie/" + req.params.movieId);
         }
 
-        console.log("TEST: " + req.session.recentMovies);
+        // SESSION END
 
+        //Do the acutal DB work
         var movie = [];
         var stmt = db.prepare('SELECT * FROM Movies WHERE id = ?');
         var id = req.params.movieId;
@@ -253,6 +252,7 @@ module.exports = function(app,io){
     /*
         If all other options are exhausted, use this.
         Temp solution. This should be placed last.
+        Sends the index file for all other URLs not specified previously in the express routing
     */
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/client/index.html');

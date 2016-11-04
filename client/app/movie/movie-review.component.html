@@ -18,12 +18,14 @@
                 </p>
             </div>
             <div class="review-item-right">
+                <!-- Function is defined in movie-review.component.ts -->
                 <button class="btn btn-review-expand" (click)="toggle()">Expand</button>
             </div>
 
         </li>
 
         <li class="review-list-item">
+            <!-- Show/Hide based on the showElement boolean based on the movie-review component -->
             <div class="review-item-bottom" *ngIf="showElement">
                 <p>
                     {{review?.review}}
