@@ -15,14 +15,18 @@ var core_1 = require('@angular/core');
  */
 var MovieReviewComponent = (function () {
     function MovieReviewComponent() {
+        this.stars = "";
         this.showElement = false;
     }
+    // Listen to changes
     MovieReviewComponent.prototype.ngOnChanges = function () {
+        // Change the rating from number to stars
         this.stars = "";
         for (var i = 0; this.review.rating > i; i++) {
             this.stars = this.stars + "☆";
         }
     };
+    // Toggles the hide/show effect of the expand button
     MovieReviewComponent.prototype.toggle = function () {
         if (this.showElement)
             this.showElement = false;

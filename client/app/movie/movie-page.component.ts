@@ -17,6 +17,7 @@ import { ReviewSorterPipe } from "./pipes/review-sorter.pipe";
     templateUrl: 'movie-page.component.html',
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['movie-page.component.css'],
+    // Providers tell the component which service to use.
     providers: [ReviewService],
 })
 
@@ -27,6 +28,7 @@ export class MoviePageComponent{
     //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
     reviewTitle = "ReviewTitle";
 
+    // Variables for days!
     sliderValue:number = 0;
     nameSearched:String = "";
     toggle = false;
@@ -36,21 +38,22 @@ export class MoviePageComponent{
 
     private reviews = [];
     private movieId;
-    private sub: any;      // -> Subscriber
 
     constructor (private reviewService: ReviewService, private route: ActivatedRoute) {}
 
+    // On init of lifecycle call this function
     ngOnInit() {
-        // get URL parameters
-        this.sub = this.route.params.subscribe(params => {this.movieId = params['id']; });
+        this.route.params.subscribe(params => {this.movieId = params['id']; }); // get URL parameters
         this.getReviews(this.movieId);
     }
 
+    // Get all reviews for a specific movie id
     getReviews(movieId):void {
+        // Subscribe and update the reviews array whenever possible
         this.reviewService.getReviews(movieId).subscribe(
             data => this.reviews = data,
             error => console.log(error),
-            () => this.summarizeRatings(this.reviews)
+            () => this.summarizeRatings(this.reviews) // Execute function whenever reviews array is updated
         );
     }
 
@@ -74,6 +77,7 @@ export class MoviePageComponent{
         }
     }
 
+    // Summarizes the ratings to be presented in the doughnut chart
     summarizeRatings(reviews){
         this.reviewService.summarizeRatings(reviews).then(
             data => this.doughnutChartData = data,
@@ -81,10 +85,13 @@ export class MoviePageComponent{
         );
     }
 
+    // Set the format based on the toggle boolean
     toggleSortByRating(){
         this.ratingToggle ? this.format = "rating-asc" : this.format = "rating-desc";
         this.ratingToggle = !this.ratingToggle;
     }
+
+    // Set the format based on the toggle boolean
     toggleSortByName() {
         this.nameToggle ? this.format = "name-asc" : this.format = "name-desc";
         this.nameToggle = !this.nameToggle;
@@ -94,16 +101,17 @@ export class MoviePageComponent{
     Chart
      */
 
-    // Doughnut
+    // Doughnut variables
     public doughnutChartLabels:string[] = ['1', '2', '3', '4', '5'];
     public doughnutChartType:string = 'doughnut';
     public doughnutChartData:number[] = [];
 
-    // events
+    // Currently not in use, kept here to remember the possibility of usage for further development
     public chartClicked(e:any):void {
         // console.log(e);
     }
 
+    // Currently not in use, kept here to remember the possibility of usage for further development
     public chartHovered(e:any):void {
         // console.log(e);
     }

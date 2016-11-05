@@ -7,9 +7,10 @@ import 'rxjs/add/operator/catch'
 @Injectable()
 export class MovieService {
 
-    private newlyReviewMoviesUrl = '/api/newly-reviewed-movies';  // URL to web API
+    // REST API URLs
+    private newlyReviewMoviesUrl = '/api/newly-reviewed-movies';
     private specificMovieUrl = '/api/specific-movie/';
-    private searchResultUrl = '/api/get/movies/'; // Url to web API
+    private searchResultUrl = '/api/get/movies/';
     private getAllMoviesUrl = '/api/get/movies';
 
     constructor (private http: Http) {}

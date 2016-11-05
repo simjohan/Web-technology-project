@@ -32,13 +32,19 @@ var MovieSearchPageComponent = (function () {
             }
         });
     };
+    // Gets all movies
     MovieSearchPageComponent.prototype.getAllMovies = function () {
         var _this = this;
-        this.movieService.getAllMovies().subscribe(function (data) { return _this.searchResult = data; }, function (error) { return console.log(error); });
+        this.movieService.getAllMovies().subscribe(function (data) { return _this.searchResult = data; }, // Set searchResult when data is updated
+        function (// Set searchResult when data is updated
+            error) { return console.log(error); });
     };
+    // Get movie based on search term
     MovieSearchPageComponent.prototype.getSearchResult = function (searchTerm) {
         var _this = this;
-        this.movieService.getSearchResult(searchTerm).subscribe(function (data) { return _this.searchResult = data; }, function (error) { return console.log(error); });
+        this.movieService.getSearchResult(searchTerm).subscribe(function (data) { return _this.searchResult = data; }, // Set searchResult when data is updated
+        function (// Set searchResult when data is updated
+            error) { return console.log(error); });
     };
     MovieSearchPageComponent = __decorate([
         core_1.Component({

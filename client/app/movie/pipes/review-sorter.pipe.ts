@@ -8,8 +8,9 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class ReviewSorterPipe implements PipeTransform {
     transform(value, args) {
 
-        if(!value) return;
+        if(!value) return; // Check if value is defined
 
+        // Sort rating in descending order
         if (args == "rating-desc") {
             value.sort((a, b) => {
                 if (a.rating < b.rating) return 1;
@@ -18,6 +19,7 @@ export class ReviewSorterPipe implements PipeTransform {
             });
         }
 
+        // Sort rating in ascending order
         else if (args == "rating-asc") {
             value.sort((a, b) => {
                 if (a.rating < b.rating) return -1;
@@ -26,6 +28,7 @@ export class ReviewSorterPipe implements PipeTransform {
             });
         }
 
+        // Sort name in ascending order
         else if (args == "name-asc") {
             value.sort((a, b) => {
                 if (a.username < b.username) return 1;
@@ -34,6 +37,7 @@ export class ReviewSorterPipe implements PipeTransform {
             });
         }
 
+        // Sort name in descending order
         else if (args == "name-desc") {
             value.sort((a, b) => {
                 if (a.username < b.username) return -1;
@@ -42,8 +46,7 @@ export class ReviewSorterPipe implements PipeTransform {
             });
         }
 
-        console.log(value);
-        return value;
+        return value; // Return the newly sorted value
 
     }
 

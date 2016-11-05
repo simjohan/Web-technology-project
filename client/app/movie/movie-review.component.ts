@@ -21,26 +21,25 @@ import { Component, Input, OnChanges } from '@angular/core';
  */
 export class MovieReviewComponent implements OnChanges  {
     //@Input() lets other components send in the values, which this component inputs here. This value can be used in the template.
-
     @Input() review;
-    stars;
+    @Input() reviewTitle: string;
+    @Input() rating: number;
+    @Input() userName: string;
+    @Input() ratingText: string;
 
+    private stars: String = "";
+    private showElement = false;
+
+    // Listen to changes
     ngOnChanges(){
+        // Change the rating from number to stars
         this.stars = "";
         for (var i = 0; this.review.rating > i; i++){
             this.stars = this.stars + "☆";
         }
     }
 
-
-
-    @Input() reviewTitle: string;
-    @Input() rating: number;
-    @Input() userName: string;
-    @Input() ratingText: string;
-
-    showElement = false;
-
+    // Toggles the hide/show effect of the expand button
     toggle(){
         if (this.showElement) this.showElement = false;
         else if (!this.showElement) this.showElement = true;
