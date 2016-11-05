@@ -1,0 +1,46 @@
+<div *ngIf="isUser" class="review-form-container">
+    <h1>Review form</h1>
+    <form *ngIf="active" (ngSubmit)="onSubmit()" #reviewForm="ngForm">
+        <div class="form-group">
+            <label for="title">Review title</label>
+            <input type="text" class="form-control" id="title"
+                   required
+                   [(ngModel)]="model.title" name="title">
+        </div>
+        <label for="rating">Rating</label>
+        <select class="form-control" id="rating"
+                required
+                [(ngModel)]="model.rating" name="rating">
+            <option *ngFor="let r of ratings" [value]="r">{{r}}</option>
+        </select>
+        <div class="form-group">
+            <label for="review">Review text</label>
+            <input type="text" class="form-control" id="review"
+                   required
+                   [(ngModel)]="model.review" name="review">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="button" class="btn btn-default" (click)="newReview()">New Review</button>
+    </form>
+</div>
+<div *ngIf="isUser==false" class="review-form-container">
+    <h1>You must be logged in to review movies!</h1>
+</div>
+
+<div [hidden]="!submitted">
+    <h2>You submitted the following review:</h2>
+    <div class="row">
+        <div class="col-xs-3">Review title</div>
+        <div class="col-xs-9  pull-left">{{ model.title }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Rating</div>
+        <div class="col-xs-9 pull-left">{{ model.rating }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Review text</div>
+        <div class="col-xs-9 pull-left">{{ model.review }}</div>
+    </div>
+    <br>
+    <button class="btn btn-default" (click)="submitted=false">Edit</button>
+</div>

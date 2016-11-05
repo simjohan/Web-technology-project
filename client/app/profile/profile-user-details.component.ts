@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -20,8 +21,11 @@ import { Component } from '@angular/core';
  */
 export class ProfileUserDetailsComponent {
     //Send in a user information into the view
-    userUsername = "Username";
-    userRealName = "Real Name";
+    isu = localStorage.getItem('isUser');
+    isUser = (this.isu == 'true' ? true : false);
+    userUsername = (this.isUser ? localStorage.getItem('id'): "USERNAME");
+    userRealName = (this.isUser ? localStorage.getItem('name'): "REAL NAME");
+
     userDescription = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore " +
         "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo" +
         "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
