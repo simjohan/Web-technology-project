@@ -29,12 +29,6 @@ var ReviewFormComponent = (function () {
         console.log(JSON.stringify(this.model));
         this.reviewService.sendReview(this.userId, this.movieId, this.model.title, this.model.rating, this.model.review);
     };
-    Object.defineProperty(ReviewFormComponent.prototype, "diagnostic", {
-        // TODO: Remove this when we're done
-        get: function () { return JSON.stringify(this.model); },
-        enumerable: true,
-        configurable: true
-    });
     ReviewFormComponent.prototype.newReview = function () {
         var _this = this;
         this.model = new movie_review_1.MovieReview(this.userId, this.movieId, '', this.ratings[0], '');

@@ -144,9 +144,9 @@ exports.incrementViewCount = function(id){
 };
 
 // TODO: A review can now be added without the user or movie existing. Fix this.
-exports.addReview =  function(userId, movieId, title, rating, review) {
-    var stmt = db.prepare('INSERT INTO Reviews VALUES (?, ?, ?, ?, ?);');
-    stmt.run(userId, movieId, title, rating, review);
+exports.addReview =  function(userId, movieId, title, rating, review, date) {
+    var stmt = db.prepare('INSERT INTO Reviews VALUES (?, ?, ?, ?, ?, ?);');
+    stmt.run(userId, movieId, title, rating, review, date);
     stmt.finalize();
 
 

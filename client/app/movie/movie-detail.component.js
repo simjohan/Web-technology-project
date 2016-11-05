@@ -16,10 +16,9 @@ var router_1 = require('@angular/router');
  * how the component should be processed, instantiated and used at runtime.
  */
 var MovieDetailComponent = (function () {
-    function MovieDetailComponent(movieService, route, componentFactoryResolver) {
+    function MovieDetailComponent(movieService, route) {
         this.movieService = movieService;
         this.route = route;
-        this.componentFactoryResolver = componentFactoryResolver;
     }
     // On start of lifecycle
     MovieDetailComponent.prototype.ngOnInit = function () {
@@ -32,9 +31,6 @@ var MovieDetailComponent = (function () {
     MovieDetailComponent.prototype.getMovie = function (userId) {
         var _this = this;
         this.movieService.getMovie(userId).subscribe(function (data) { return _this.movie = data; }, function (error) { return console.log(error); });
-    };
-    MovieDetailComponent.prototype.createRating = function () {
-        // Handle the click here
     };
     MovieDetailComponent = __decorate([
         core_1.Component({
@@ -49,7 +45,7 @@ var MovieDetailComponent = (function () {
             // Provider tells the component which service to use
             providers: [movie_service_1.MovieService]
         }), 
-        __metadata('design:paramtypes', [movie_service_1.MovieService, router_1.ActivatedRoute, core_1.ComponentFactoryResolver])
+        __metadata('design:paramtypes', [movie_service_1.MovieService, router_1.ActivatedRoute])
     ], MovieDetailComponent);
     return MovieDetailComponent;
 }());

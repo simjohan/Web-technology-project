@@ -7,8 +7,8 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.13.3",
-    "connect-sqlite3": "^0.9.8",
     "bootstrap": "^3.3.7",
+    "connect-sqlite3": "^0.9.8",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "nodemon": "^1.11.0",

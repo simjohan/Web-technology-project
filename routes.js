@@ -257,7 +257,12 @@ module.exports = function(app,io){
         var rating = req.body[3];
         var review = req.body[4];
 
-        dbHandler.addReview(userId, movieId, title, rating, review);
+        var date = new Date();
+        var dbDate = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
+        var dbTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        var finalDate = dbDate + ' ' + dbTime;
+
+        dbHandler.addReview(userId, movieId, title, rating, review, finalDate);
     });
 
     /*

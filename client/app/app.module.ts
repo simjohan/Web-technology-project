@@ -26,7 +26,6 @@ import { ReviewRatingFilterPipe } from "./movie/pipes/review-rating-filter.pipe"
 import { ReviewUserFilterPipe } from "./movie/pipes/review-user-filter.pipe";
 import { ReviewSorterPipe } from "./movie/pipes/review-sorter.pipe";
 import { MovieSearchPageComponent } from "./movie-search/movie-search-page.component";
-import { MovieReviewsComponent } from "./movie/movie-reviews.component";
 import { ReviewFormComponent } from "./movie/review-form.component";
 
 
@@ -69,8 +68,7 @@ import { AuthGuard } from "./common/auth.guard";
         ReviewUserFilterPipe,
         ReviewSorterPipe,
         MovieSearchPageComponent,
-        MovieReviewsComponent,
-        ReviewFormComponent
+        ReviewFormComponent,
         MovieSearchPageComponent
     ],
     //The AuthGuard is a provider

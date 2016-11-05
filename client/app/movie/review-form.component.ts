@@ -19,7 +19,6 @@ export class ReviewFormComponent implements OnInit{
     constructor(private reviewService : ReviewService, private route : ActivatedRoute){ }
 
 
-    private sub: any;
     userId = 0;
     movieId = 0;
 
@@ -36,8 +35,6 @@ export class ReviewFormComponent implements OnInit{
         console.log(JSON.stringify(this.model));
         this.reviewService.sendReview(this.userId, this.movieId, this.model.title, this.model.rating, this.model.review);
     }
-    // TODO: Remove this when we're done
-    get diagnostic() { return JSON.stringify(this.model); }
 
     newReview(){
         this.model = new MovieReview(this.userId, this.movieId, '', this.ratings[0], '');

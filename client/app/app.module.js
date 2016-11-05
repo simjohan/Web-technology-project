@@ -35,12 +35,11 @@ var review_rating_filter_pipe_1 = require("./movie/pipes/review-rating-filter.pi
 var review_user_filter_pipe_1 = require("./movie/pipes/review-user-filter.pipe");
 var review_sorter_pipe_1 = require("./movie/pipes/review-sorter.pipe");
 var movie_search_page_component_1 = require("./movie-search/movie-search-page.component");
+var review_form_component_1 = require("./movie/review-form.component");
 /**
  * Imports the AuthGuard that lets us have session-handling in Angular
  */
 var auth_guard_1 = require("./common/auth.guard");
-var movie_reviews_component_1 = require("./movie/movie-reviews.component");
-var review_form_component_1 = require("./movie/review-form.component");
 /**
  * @NgModule contains the list of external modules used by the application.
  * Imports: what kind of modules are imported from the angular library
@@ -78,14 +77,13 @@ var AppModule = (function () {
                 review_rating_filter_pipe_1.ReviewRatingFilterPipe,
                 review_user_filter_pipe_1.ReviewUserFilterPipe,
                 review_sorter_pipe_1.ReviewSorterPipe,
+                movie_search_page_component_1.MovieSearchPageComponent,
+                review_form_component_1.ReviewFormComponent,
                 movie_search_page_component_1.MovieSearchPageComponent
             ],
             //The AuthGuard is a provider
             providers: [
                 auth_guard_1.AuthGuard
-                movie_search_page_component_1.MovieSearchPageComponent,
-                movie_reviews_component_1.MovieReviewsComponent,
-                review_form_component_1.ReviewFormComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
