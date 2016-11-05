@@ -24,7 +24,6 @@ var front_page_component_1 = require("./home/front-page.component");
 var movie_component_1 = require("./movie/movie.component");
 var movie_title_component_1 = require("./movie/movie-title.component");
 var movie_page_component_1 = require("./movie/movie-page.component");
-0;
 var movie_review_component_1 = require('./movie/movie-review.component');
 var fb_component_1 = require('./navbar/fb.component');
 var profile_page_component_1 = require('./profile/profile-page.component');
@@ -36,6 +35,7 @@ var review_rating_filter_pipe_1 = require("./movie/pipes/review-rating-filter.pi
 var review_user_filter_pipe_1 = require("./movie/pipes/review-user-filter.pipe");
 var review_sorter_pipe_1 = require("./movie/pipes/review-sorter.pipe");
 var movie_search_page_component_1 = require("./movie-search/movie-search-page.component");
+var review_form_component_1 = require("./movie/review-form.component");
 /**
  * Imports the AuthGuard that lets us have session-handling in Angular
  */
@@ -77,6 +77,8 @@ var AppModule = (function () {
                 review_rating_filter_pipe_1.ReviewRatingFilterPipe,
                 review_user_filter_pipe_1.ReviewUserFilterPipe,
                 review_sorter_pipe_1.ReviewSorterPipe,
+                movie_search_page_component_1.MovieSearchPageComponent,
+                review_form_component_1.ReviewFormComponent,
                 movie_search_page_component_1.MovieSearchPageComponent
             ],
             //The AuthGuard is a provider

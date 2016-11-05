@@ -16,8 +16,10 @@ var core_1 = require('@angular/core');
 var ProfileUserDetailsComponent = (function () {
     function ProfileUserDetailsComponent() {
         //Send in a user information into the view
-        this.userUsername = "Username";
-        this.userRealName = "Real Name";
+        this.isu = localStorage.getItem('isUser');
+        this.isUser = (this.isu == 'true' ? true : false);
+        this.userUsername = (this.isUser ? localStorage.getItem('id') : "USERNAME");
+        this.userRealName = (this.isUser ? localStorage.getItem('name') : "REAL NAME");
         this.userDescription = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore " +
             "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo" +
             "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
