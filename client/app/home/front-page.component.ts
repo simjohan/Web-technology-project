@@ -27,8 +27,9 @@ export class FrontPageComponent implements  OnInit {
     newlyReviews = "Newly Reviewed";
     newlyVisited = "Newly Visisted";
 
-
     constructor (private movieService: MovieService, private frontPageService: FrontPageService) {}
+
+    private recentlyVisitedMovies: Object = [];
 
     ngOnInit() {
         this.getMovies();
@@ -38,10 +39,10 @@ export class FrontPageComponent implements  OnInit {
     data: Object;
 
     getMovies():void {
-      this.movieService.getMovies().subscribe(data => this.data = data, error => console.log(error));
+      this.movieService.getNewlyReviewedMovies().subscribe(data => this.data = data, error => console.log(error));
     }
 
-    recentlyVisitedMovies: Object;
+
 
     getRecentlyVisitedMovies(): void {
         this.frontPageService.recentlyVisitedMovies().subscribe(data => this.recentlyVisitedMovies = data, error => console.log(error));

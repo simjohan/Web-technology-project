@@ -21,6 +21,7 @@ var MoviePageComponent = (function () {
         this.route = route;
         //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
         this.reviewTitle = "ReviewTitle";
+        // Variables for days!
         this.sliderValue = 0;
         this.nameSearched = "";
         this.toggle = false;
@@ -31,40 +32,65 @@ var MoviePageComponent = (function () {
         /*
         Chart
          */
-        // Doughnut
-        this.doughnutChartLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+        // Doughnut variables
+        this.doughnutChartLabels = ['1', '2', '3', '4', '5'];
         this.doughnutChartType = 'doughnut';
         this.doughnutChartData = [];
     }
+    // On init of lifecycle call this function
     MoviePageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // get URL parameters
-        this.sub = this.route.params.subscribe(function (params) { _this.movieId = params['id']; });
+        this.route.params.subscribe(function (params) { _this.movieId = params['id']; }); // get URL parameters
         this.getReviews(this.movieId);
     };
+    // Get all reviews for a specific movie id
     MoviePageComponent.prototype.getReviews = function (movieId) {
         var _this = this;
-        this.reviewService.getReviews(movieId).subscribe(function (data) { return _this.reviews = data; }, function (error) { return console.log(error); }, function () { return _this.summarizeRatings(_this.reviews); });
+        // Subscribe and update the reviews array whenever possible
+        this.reviewService.getReviews(movieId).subscribe(function (data) { return _this.reviews = data; }, function (error) { return console.log(error); }, function () { return _this.summarizeRatings(_this.reviews); } // Execute function whenever reviews array is updated
+         // Execute function whenever reviews array is updated
+        );
     };
+    MoviePageComponent.prototype.getDocumentHeight = function () {
+        var body = document.body;
+        var html = document.documentElement;
+        return Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    };
+    MoviePageComponent.prototype.loadReviews = function () {
+        if ((document.body.scrollTop + 1) >= this.getDocumentHeight() - window.innerHeight) {
+            console.debug("Scroll Event");
+            this.getReviews(this.movieId);
+        }
+    };
+    // Summarizes the ratings to be presented in the doughnut chart
     MoviePageComponent.prototype.summarizeRatings = function (reviews) {
         var _this = this;
         this.reviewService.summarizeRatings(reviews).then(function (data) { return _this.doughnutChartData = data; }, function (error) { return console.log(error); });
     };
+    // Set the format based on the toggle boolean
     MoviePageComponent.prototype.toggleSortByRating = function () {
         this.ratingToggle ? this.format = "rating-asc" : this.format = "rating-desc";
         this.ratingToggle = !this.ratingToggle;
     };
+    // Set the format based on the toggle boolean
     MoviePageComponent.prototype.toggleSortByName = function () {
         this.nameToggle ? this.format = "name-asc" : this.format = "name-desc";
         this.nameToggle = !this.nameToggle;
     };
-    // events
+    // Currently not in use, kept here to remember the possibility of usage for further development
     MoviePageComponent.prototype.chartClicked = function (e) {
         // console.log(e);
     };
+    // Currently not in use, kept here to remember the possibility of usage for further development
     MoviePageComponent.prototype.chartHovered = function (e) {
         // console.log(e);
     };
+    __decorate([
+        core_1.HostListener('window:scroll', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], MoviePageComponent.prototype, "loadReviews", null);
     MoviePageComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
@@ -75,6 +101,7 @@ var MoviePageComponent = (function () {
             templateUrl: 'movie-page.component.html',
             // stylrUlrs tells the component where it can find the CSS-code that it is going to use
             styleUrls: ['movie-page.component.css'],
+            // Providers tell the component which service to use.
             providers: [review_service_1.ReviewService],
         }), 
         __metadata('design:paramtypes', [review_service_1.ReviewService, router_1.ActivatedRoute])

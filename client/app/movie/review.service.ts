@@ -18,7 +18,7 @@ export class ReviewService {
     // The array contains the number of each rating at their specific index
     // If theres 2 ratings of 0, the value of reviewsRatings[0] will be 2
     summarizeRatings(reviews): Promise<any>{
-        let reviewRatings = [0,0,0,0,0,0,0,0,0,0];
+        let reviewRatings = [0,0,0,0,0];
         for (let review of reviews) {
             let ratingToInt = + review.rating - 1; // Convert to int
             reviewRatings[ratingToInt] = reviewRatings[ratingToInt] + 1;

@@ -15,17 +15,23 @@ require('rxjs/add/operator/catch');
 var MovieService = (function () {
     function MovieService(http) {
         this.http = http;
-        this.newlyReviewMoviesUrl = '/api/newly-reviewed-movies'; // URL to web API
+        // REST API URLs
+        this.newlyReviewMoviesUrl = '/api/newly-reviewed-movies';
         this.specificMovieUrl = '/api/specific-movie/';
-        this.searchResultUrl = '/api/search-results/'; // Url to web API
+        this.searchResultUrl = '/api/get/movies/';
+        this.getAllMoviesUrl = '/api/get/movies';
     }
-    // Get all movies from API
-    MovieService.prototype.getMovies = function () {
+    // Get ALL the movies
+    MovieService.prototype.getAllMovies = function () {
+        return this.http.get(this.getAllMoviesUrl).map(function (res) { return res.json().search_result; });
+    };
+    // Get get newly reviwed movies
+    MovieService.prototype.getNewlyReviewedMovies = function () {
         return this.http.get(this.newlyReviewMoviesUrl).map(function (res) { return res.json().movies; });
     };
     // Get a specific movie based on id variable from API
     MovieService.prototype.getMovie = function (id) {
-        return this.http.get(this.specificMovieUrl + id).map(function (res) { return res.json(); });
+        return this.http.get(this.specificMovieUrl + id).map(function (res) { return res.json().movie; });
     };
     // Get the movies associated with the search term from the API
     MovieService.prototype.getSearchResult = function (searchTerm) {

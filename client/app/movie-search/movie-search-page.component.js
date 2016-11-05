@@ -13,27 +13,38 @@ var router_1 = require('@angular/router');
 var movie_service_1 = require('./../movie/movie.service');
 var MovieSearchPageComponent = (function () {
     function MovieSearchPageComponent(router, movieService, route) {
-        var _this = this;
         this.router = router;
         this.movieService = movieService;
         this.route = route;
-        // Detect changes in router to let the movie component know when to re-render
-        router.events.subscribe(function () {
-            _this.getSearchResult(_this.searchTerm);
-        });
     }
     // Fire when component is created
     MovieSearchPageComponent.prototype.ngOnInit = function () {
         var _this = this;
         // Find the parameter of the route and assign it to the searchTerm variable
         this.route.params.subscribe(function (params) {
-            _this.searchTerm = params['query'].toString();
+            _this.searchTerm = params['query'];
+            // If a term is supplied, find movies matching to the term
+            if (typeof _this.searchTerm !== 'undefined') {
+                _this.getSearchResult(_this.searchTerm);
+            }
+            else {
+                _this.getAllMovies();
+            }
         });
-        this.getSearchResult(this.searchTerm);
     };
+    // Gets all movies
+    MovieSearchPageComponent.prototype.getAllMovies = function () {
+        var _this = this;
+        this.movieService.getAllMovies().subscribe(function (data) { return _this.searchResult = data; }, // Set searchResult when data is updated
+        function (// Set searchResult when data is updated
+            error) { return console.log(error); });
+    };
+    // Get movie based on search term
     MovieSearchPageComponent.prototype.getSearchResult = function (searchTerm) {
         var _this = this;
-        this.movieService.getSearchResult(searchTerm).subscribe(function (data) { return _this.searchResult = data; }, function (error) { return console.log(error); });
+        this.movieService.getSearchResult(searchTerm).subscribe(function (data) { return _this.searchResult = data; }, // Set searchResult when data is updated
+        function (// Set searchResult when data is updated
+            error) { return console.log(error); });
     };
     MovieSearchPageComponent = __decorate([
         core_1.Component({

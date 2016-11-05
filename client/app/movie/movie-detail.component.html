@@ -1,21 +1,18 @@
 <div class="movie-detail-container">
 
     <!--Image of the movie-->
-    <div class="movie-detail-poster">
-        <img src='https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SY1000_CR0,0,674,1000_AL_.jpg' alt="movie poster" />
+    <div class="movie-detail-item movie-detail-poster">
+        <img src='{{movie?.img_url}}' alt="movie poster" />
     </div>
-
     <!-- Container to hold the details of the movie -->
-    <div class="movie-detail-information">
+    <div class="movie-detail-item movie-detail-information">
+        <!-- Print out details about the movie from the movie object defined by the typescript file-->
+        <hr>
         <h2> {{movie?.title}} </h2>
-        <p> ID: {{movie?.id}} </p>
-        <p> Rating: {{movie?.rating}} </p>
-        <p> Year: {{movie?.year}} </p>
-        <p> Actors:     {{movie?.actors}} </p>
-        <p> Directors: {{movie?.directors}} </p>
-        <p> Country: {{movie?.country}}  </p>
-        <p> Description: {{movie?.description}} </p>
-        <button (click)="createRating()">Review movie</button>
+        <hr>
+        <p> <b> Year: </b> {{movie?.year}} </p>
+        <p> <b> Description: </b> {{movie?.description}}</p>
+        <button class="btn"> Review movie</button>
     </div>
     <review-form></review-form>
 

@@ -3,47 +3,11 @@ var parseurl = require('parseurl');
 var file = "database.db";
 var sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(file);
-var parseurl = require('parseurl');
+var dbHandler = require('./dbHandler');
 
 module.exports = function(app,io){
-    var dbHandler = require('./dbHandler');
 
-    var sess;
-
-
-    app.use(function (req, res, next) {
-        var recentMovies = req.session.recentMovies;
-
-        if (!recentMovies) {
-            recentMovies = req.session.recentMovies = [];
-        }
-
-        next() // Sort of understand this
-    })
-
-    app.get('/api/recent-movies', function(req, res){
-
-        // Create an empty json array
-        var obj = {"recent_movies": []};
-
-        // Fill the array
-        for (var i = 0; i < req.session.recentMovies.length; i++) {
-            obj["recent_movies"].push({id: req.session.recentMovies[i], title: "Session", year: "2012"});
-        }
-
-        // Send the array
-        res.send(JSON.stringify(
-            obj
-        ));
-
-    });
-
-    /*
-
-     */
-
-
-
+    // On connect emit from socket
     io.on('connection', function(socket){
         console.log("Server connection.io");
         socket.emit('topology',currentTopo);
@@ -53,65 +17,137 @@ module.exports = function(app,io){
         console.log("client dcd");
     });
 
-    // Get all movies
-    app.get('/api/get/movies', function(req, res) {
+    // Creates the recentMovies variable for the session
+    app.use(function (req, res, next) {
+        // If it is of length zero, create an empty array.
+        if (!req.session.recentMovies) {
+            req.session.recentMovies = [];
+        }
+        next()
+    })
 
-        var movieList = [];
+    // Gets all the recent movies
+    app.get('/api/recent-movies', function(req, res){
 
-        db.each('SELECT * FROM Movies',
+        // Store the session IDs in a string
+        var ids = req.session.recentMovies;
+
+        // Track the recent movies
+        var recent_movies = [];
+
+        // Prepare the DB Statement
+        var stmt = db.prepare(
+            "SELECT * " +
+            "FROM Movies " +
+            "WHERE id IN (?, ?, ?, ?, ?) "
+        );
+
+        // For each  DB row
+        stmt.each(ids,
             function(err, row) {
-                movieList.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
+                recent_movies.push({
+                    "id": row.id,
+                    "title": row.title,
+                    "img_url": row.img_url
+                });
             },
+            // Send the result
             function() {
-                res.send({movieList})
+                // Sort the array so that is in the same manner as the session array.
+                recent_movies.sort(function(a, b) {
+                    return ids.indexOf(b.id) - ids.indexOf(a.id);
+                });
+                res.send({recent_movies});
             }
         );
 
     });
+
+    // Get all movies
+    app.get('/api/get/movies', function(req, res) {
+
+        var search_result = [];
+
+        db.each('SELECT * FROM Movies',
+            function(err, row) {
+                search_result.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
+            },
+            function() {
+                res.send({search_result})
+            }
+        );
+
+    });
+
+
+    // Get reviews based on movie with pagination
+    app.get('/api/get/reviews/:movie_id/:from/:to', function(req, res) {
+
+        var results = [];
+        var stmt = db.prepare('SELECT * FROM Reviews WHERE movieId = ? ')
+
+    });
+
 
     // Get movies by title
     app.get('/api/get/movies/:title', function(req, res) {
 
-        var movieList = [];
-        var stmt = db.prepare('SELECT * FROM Movies WHERE title = ?');
-        console.log("Title: " + req.params.title);
-
-        stmt.each(req.params.title,
+        var search_result = [];
+        var stmt = db.prepare('SELECT * FROM Movies WHERE title LIKE ?');
+        var term = "%"+req.params.title+"%"; // Check for results that are LIKE the search term
+        stmt.each(term,
             function(err, row) {
-                console.log[row.id]
-                movieList.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
+                search_result.push({"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description});
             },
             function() {
-                res.send({movieList});
+                res.send({search_result});
             }
         );
 
     });
 
-
+    // Get specific movie reviews
     app.get('/api/specific-movie-reviews/:movieId', function(req, res){
-        res.send(JSON.stringify(
-            {
-                "reviews": [
-                    {id: req.params.movieId, title: "Neutral", rating: "3", user: "A", text: "This is a test."},
-                    {id: req.params.movieId, title: "Good", rating: "4", user: "B", text: "This is a test."},
-                    {id: req.params.movieId, title: "lol", rating: "4", user: "AC", text: "This is a test."},
-                    {id: req.params.movieId, title: "Awful", rating: "4", user: "C", text: "This is a test."},
-                    {id: req.params.movieId, title: "Nice", rating: "5", user: "BB", text: "This is a test."},
-                    {id: req.params.movieId, title: "Yolo", rating: "9", user: "Z", text: "This is a test."},
-                    {id: req.params.movieId, title: "G-man", rating: "1", user: "AA", text: "This is a test. "},
-                ]
+
+        var reviews = [];
+        var stmt = db.prepare(
+            "SELECT r.review, r.title, r.rating, r.date, Users.name " +
+            "FROM Reviews AS r " +
+            "INNER JOIN Users " +
+            "ON r.userId = Users.id " +
+            "AND r.movieId = ? "
+        );
+        var movieId = req.params.movieId; // ID is provided by the parameters of the URL
+        stmt.each(movieId,
+            function(err, row) {
+                reviews.push({
+                    "username": row.name,
+                    "review": row.review,
+                    "title": row.title,
+                    "rating": row.rating,
+                    "date": row.date,
+                });
+            },
+            function() {
+                res.send({reviews});
             }
-        ));
+        );
+
     });
 
+    // Get a specific movie based on id
     app.get('/api/specific-movie/:movieId', function(req, res) {
+
+        // SESSION START
+        // Adds the movie accessed to the recentMovies variable of the session, with some added logic
 
         // Check if the movie is already there
         // indexOf returns -1 if not present, index if present
         if (req.session.recentMovies.indexOf(req.params.movieId) < 0){
+            console.log("test 1");
             // Check the length of the array
             if (req.session.recentMovies.length >= 5) {
+                console.log("test 3");
                 // Remove the first entry
                 req.session.recentMovies.shift();
             }
@@ -119,6 +155,7 @@ module.exports = function(app,io){
             req.session.recentMovies.push(req.params.movieId);
         }
         else if (req.session.recentMovies.indexOf(req.params.movieId) >= 0) {
+            console.log("test 2");
             // Find the index
             var index = req.session.recentMovies.indexOf(req.params.movieId);
             // Remove the entry
@@ -130,63 +167,51 @@ module.exports = function(app,io){
             console.log("Error occurred in /api/specific-movie/" + req.params.movieId);
         }
 
+        // SESSION END
 
-
-
-        res.send(JSON.stringify(
-            {
-                id: req.params.movieId, title: "Frozen", rating: "10", year: "2012", actors: "Anna, Bella, John", directors: "JJ", country: "Iceland", description: "Lengthy description."
+        //Do the acutal DB work
+        var movie = [];
+        var stmt = db.prepare('SELECT * FROM Movies WHERE id = ?');
+        var id = req.params.movieId;
+        stmt.each(id,
+            function(err, row) {
+                movie = {"id": row.id, "title": row.title, "img_url": row.img_url, "year": row.year, "description": row.description};
+            },
+            function() {
+                res.send({movie});
             }
-        ));
-    });
-
-    app.get('/api/search-results/:searchTerm', function(req, res) {
-
-        res.send(JSON.stringify(
-            {
-                "search_result": [
-                    {id: "1", title: req.params.searchTerm, year: "2012"},
-                    {id: "2", title: req.params.searchTerm, year: "2002"},
-                    {id: "3", title: req.params.searchTerm, year: "2012"},
-                    {id: "4", title: req.params.searchTerm, year: "2012"},
-                    {id: "5", title: req.params.searchTerm, year: "2012"},
-                    {id: "6", title: req.params.searchTerm, year: "2012"},
-                    {id: "7", title: req.params.searchTerm, year: "2012"},
-                    {id: "8", title: req.params.searchTerm, year: "2012"},
-                    {id: "9", title: req.params.searchTerm, year: "2012"},
-                    {id: "10", title: req.params.searchTerm, year: "2012"},
-                    {id: "11", title: req.params.searchTerm, year: "2012"},
-                    {id: "12", title: req.params.searchTerm, year: "2012"},
-                    {id: "13", title: req.params.searchTerm, year: "2012"},
-                    {id: "14", title: req.params.searchTerm, year: "2012"},
-                    {id: "15", title: req.params.searchTerm, year: "2012"},
-                    {id: "16", title: req.params.searchTerm, year: "2012"},
-                    {id: "17", title: req.params.searchTerm, year: "2012"},
-                    {id: "18", title: req.params.searchTerm, year: "2012"},
-                    {id: "19", title: req.params.searchTerm, year: "2012"},
-                    {id: "20", title: req.params.searchTerm, year: "2012"},
-                ]
-            }
-        ));
+        );
 
     });
 
+
+    // Get the newest reviewed movies sorted by date, limited to 5
     app.get('/api/newly-reviewed-movies', function(req, res) {
 
-        res.send(JSON.stringify(
-            {
-                "movies": [
-                    {id: "1", title: "Frozen", year: "2012"},
-                    {id: "2", title: "Matrix", year: "2002"}
-                ]
+        var movies = [];
+        var stmt = db.prepare(
+            'SELECT Movies.id AS moviesId, Movies.title AS moviesTitle, Movies.img_url AS moviesImg_url ' +
+            'FROM Movies ' +
+            'INNER JOIN Reviews ' +
+            'ON Movies.id = Reviews.movieId ' +
+            'GROUP BY Movies.id ' +
+            'ORDER BY datetime(Reviews.date) DESC ' +
+            'LIMIT 5'
+        );
+
+        stmt.each(
+            function (err, row) {
+                movies.push({"id": row.moviesId, "title": row.moviesTitle, "img_url": row.moviesImg_url, "abc": row.rating});
+            },
+            function () {
+                res.send({movies});
             }
-        ));
+        );
 
     });
 
     //Fetch the post request and add movie to database.
     app.post('/api/movies/add/:id', function (req, res) {
-        console.log("Received movie title: " + req.body[1]);
         var id = req.body[0];
         var title = req.body[1];
         var viewCount = req.body[2];
@@ -238,6 +263,7 @@ module.exports = function(app,io){
     /*
         If all other options are exhausted, use this.
         Temp solution. This should be placed last.
+        Sends the index file for all other URLs not specified previously in the express routing
     */
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/client/index.html');

@@ -1,18 +1,22 @@
 <ul class="movie-page-container">
 
-
-
-
     <li class="movie-page-item">
         <movie-detail></movie-detail>
     </li>
 
+    <!-- Show only if reviews is not an empty array-->
     <li *ngIf="(reviews | json) != '[]'" class="movie-page-item">
 
         <div class="review-page-title">
             <h2> Ratings </h2>
         </div>
 
+        <!--
+            Only show if reviewsRatings is not an empty array
+            Uses the  ng2-charts module to create a fancy chart.
+            Check the node_modules file for code, or check the github site
+            https://github.com/valor-software/ng2-charts
+        -->
         <div *ngIf="reviewsRatings != []" class="review-chart">
             <canvas baseChart
                     [data]="doughnutChartData"
@@ -30,42 +34,47 @@
         <h2> Reviews </h2>
     </li>
 
+    <!-- Only show if reviews is an empty array -->
     <li *ngIf="(reviews | json) == '[]'" class="movie-page-item">
         <p>
             This movie has no reviews. Be the first to review it!
         </p>
     </li>
 
+    <!-- Only show if reviews is not an empty array -->
     <li *ngIf="(reviews | json) != '[]'" class="movie-page-item">
 
         <div class="review-settings-container">
 
             <div class="review-settings-item">
                 <p>Sort by</p>
-                <button (click)="toggleSortByRating()">Rating</button>
-                <button (click)="toggleSortByName()">Name</button>
+                <!-- Calls functions in the component -->
+                <button class="btn" (click)="toggleSortByRating()">Rating</button>
+                <button class="btn" (click)="toggleSortByName()">Name</button>
             </div>
 
             <div class="review-settings-item">
-
+                <!-- Filter input by rating entered in input tag below -->
                 <p> Filter by rating:</p>
                 <div class="review-slider-value"> {{ sliderValue }} </div>
                 <div>
                     0
-                    <input type="range" min="0" max="10" [value]="sliderValue"
+                    <input type="range" min="0" max="5" [value]="sliderValue"
                            (input)="sliderValue = $event.target.value" />
-                    10
+                    5
 
                 </div>
             </div>
 
             <div class="review-settings-item">
+                <!-- Filter input by name entered in input tag below -->
                 <p>Filter by name</p>
                 <input #box [value]="nameSearched" (input)="nameSearched = $event.target.value">
             </div>
 
         </div>
 
+        <!-- Loop through the reviews in the reviews array, apply sorting and filtering  pipes -->
         <div *ngFor="let review of reviews | ReviewRatingFilterPipe:sliderValue | ReviewUserFilterPipe:nameSearched | ReviewSorterPipe:format ">
             <movie-review [review]=review></movie-review>
         </div>

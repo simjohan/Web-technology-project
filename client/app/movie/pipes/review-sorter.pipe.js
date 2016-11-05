@@ -15,10 +15,8 @@ var ReviewSorterPipe = (function () {
     }
     ReviewSorterPipe.prototype.transform = function (value, args) {
         if (!value)
-            return;
-        console.log("");
-        console.log("Args: " + args);
-        console.log(value);
+            return; // Check if value is defined
+        // Sort rating in descending order
         if (args == "rating-desc") {
             value.sort(function (a, b) {
                 if (a.rating < b.rating)
@@ -39,24 +37,23 @@ var ReviewSorterPipe = (function () {
         }
         else if (args == "name-asc") {
             value.sort(function (a, b) {
-                if (a.user < b.user)
+                if (a.username < b.username)
                     return 1;
-                if (a.user > b.user)
+                if (a.username > b.username)
                     return -1;
                 return 0;
             });
         }
         else if (args == "name-desc") {
             value.sort(function (a, b) {
-                if (a.user < b.user)
+                if (a.username < b.username)
                     return -1;
-                if (a.user > b.user)
+                if (a.username > b.username)
                     return 1;
                 return 0;
             });
         }
-        console.log(value);
-        return value;
+        return value; // Return the newly sorted value
     };
     ReviewSorterPipe = __decorate([
         core_1.Pipe({

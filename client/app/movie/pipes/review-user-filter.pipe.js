@@ -13,19 +13,20 @@ var core_1 = require('@angular/core');
 var ReviewUserFilterPipe = (function () {
     function ReviewUserFilterPipe() {
     }
+    // Filters reviews based on name
     ReviewUserFilterPipe.prototype.transform = function (value, args) {
         var nameSearched = args;
         var review = value;
-        var reviews = [];
+        var reviews = []; // Hold the filtered reviews
         if ((nameSearched).length == 0)
-            return review;
+            return review; // If no term was entered, return review as is
         for (var i in review) {
-            var username = review[i].user;
+            var username = review[i].username;
             if (username.toLowerCase().includes(nameSearched.toLowerCase())) {
-                reviews.push(review[i]);
+                reviews.push(review[i]); // If name meets requirement, push it to the new reviews array
             }
         }
-        return reviews;
+        return reviews; // Return the filtered reviews
     };
     ReviewUserFilterPipe = __decorate([
         core_1.Pipe({

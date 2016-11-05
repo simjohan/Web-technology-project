@@ -23,6 +23,7 @@ var FrontPageComponent = (function () {
         //Add variables with the following content. These variables can now be used by for example the template
         this.newlyReviews = "Newly Reviewed";
         this.newlyVisited = "Newly Visisted";
+        this.recentlyVisitedMovies = [];
     }
     FrontPageComponent.prototype.ngOnInit = function () {
         this.getMovies();
@@ -30,7 +31,7 @@ var FrontPageComponent = (function () {
     };
     FrontPageComponent.prototype.getMovies = function () {
         var _this = this;
-        this.movieService.getMovies().subscribe(function (data) { return _this.data = data; }, function (error) { return console.log(error); });
+        this.movieService.getNewlyReviewedMovies().subscribe(function (data) { return _this.data = data; }, function (error) { return console.log(error); });
     };
     FrontPageComponent.prototype.getRecentlyVisitedMovies = function () {
         var _this = this;

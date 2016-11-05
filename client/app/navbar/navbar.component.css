@@ -5,36 +5,72 @@
     height: 74px;
     background: #4A4A4A;
 
+    align-items: center;
+
     /* Flex properties */
     display: flex;
-    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-around;
 
     /* box-sizing is used to not stretch the div 100%+20px padding */
     box-sizing: border-box;
     padding: 0 20px;
 }
 
-#navbar input[type=text] {
-    padding: 0 10px;
-    width: 180px;
-    height: 34px;
-    border-radius: 3px;
-    border: 0;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3) inset;
-}
 
-#navbar label {
-    font-size: 12px;
-}
-
-#navbar input[type=checkbox] {
-    margin-left: 10px;
-}
-
-#navbar .item {
+.navbar-container-left{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    flex: 1;
+    order: 1;
 
 }
 
-#navbar nav ul li a:hover{
-    background-color: #ddd;
+.all-movies-button{
+    margin-left: 15px;
+}
+
+.navbar-container-right{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    flex: 1;
+    order: 2;
+}
+
+.navbar-right-item{
+    margin-right: 25px;
+}
+
+
+/* Medium screens */
+@media all and (max-width: 720px) {
+    #navbar{
+        flex-flow: column wrap;
+        height: 114px;
+        justify-content: flex-start;
+    }
+    .navbar-container-right{
+        justify-content: flex-start;
+        flex-flow: row nowrap;
+        order: 1;
+        width: 100%;
+
+    }
+    .navbar-container-left{
+        flex-flow: row nowrap;
+        order: 2;
+        width: 100%;
+    }
+    .navbar-right-item{
+        margin-top: 10px;
+    }
+    .navbar-left-item{
+        margin-top: 10px;
+    }
+    .all-movies-button{
+        margin-left: 10px;
+    }
+
 }

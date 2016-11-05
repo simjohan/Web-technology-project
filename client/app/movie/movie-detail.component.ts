@@ -1,9 +1,6 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MovieService } from './movie.service';
 import { ActivatedRoute } from '@angular/router';
-import {ReviewFormComponent} from "./review-form.component";
-
-declare var $:any;
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -18,6 +15,7 @@ declare var $:any;
     styleUrls: ['movie-detail.component.css'],
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'movie-detail.component.html',
+    // Provider tells the component which service to use
     providers: [MovieService]
 })
 
@@ -28,24 +26,18 @@ export class MovieDetailComponent implements OnInit{
 
     private movie: Object;
     private userId;
-    private sub: any;      // -> Subscriber
+    constructor (private movieService: MovieService, private route: ActivatedRoute) {}
 
-    constructor (private movieService: MovieService,
-                 private route: ActivatedRoute,
-                 private componentFactoryResolver: ComponentFactoryResolver) {}
-
+    // On start of lifecycle
     ngOnInit() {
         // get URL parameters
-        this.sub = this.route.params.subscribe(params => {this.userId = params['id']; });
+        this.route.params.subscribe(params => {this.userId = params['id']; });
         this.getMovie(this.userId);
     }
 
+    // Get a specific movie from the REST API based on id.
     getMovie(userId):void {
         this.movieService.getMovie(userId).subscribe(data => this.movie = data, error => console.log(error));
-    }
-
-    createRating(){
-        // Handle the click here
     }
 
 }

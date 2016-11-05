@@ -14,13 +14,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var db_service_1 = require('./../db.service');
+var router_1 = require('@angular/router');
 var FacebookComponent = (function () {
     /**
      * Constructor code from developers.facebook.com
      */
-    function FacebookComponent(_databaseService, _ngZone) {
+    function FacebookComponent(_databaseService, _ngZone, router) {
         this._databaseService = _databaseService;
         this._ngZone = _ngZone;
+        this.router = router;
         this.id = "";
         this.name = "";
         this.email = "";
@@ -79,6 +81,8 @@ var FacebookComponent = (function () {
             self._databaseService.removeUser(idTest);
             localStorage.clear();
         });
+        //When the user logs out, navigate to the home page to not stay on a possible closed page
+        this.router.navigate(['/home']);
     };
     FacebookComponent.prototype.ngOnInit = function () {
         console.log('Init done');
@@ -91,10 +95,10 @@ var FacebookComponent = (function () {
             moduleId: module.id,
             selector: "facebook-component",
             providers: [db_service_1.DatabaseService],
-            template: "\n                <div class=\"facebook-item\">\n                    <div class=\"logged-in\" *ngIf=\"isUser\">\n                        <button class=\"facebook button\" (click)=\"facebookLogout()\">\n                            Logout\n                        </button>\n                        <span><img src=\"{{imgurl}}\"/> {{name}}, {{email}}</span>\n                    </div>\n                    <div class=\"not-logged-in\" *ngIf=\"isUser==false\">\n                        <button class=\"facebook button\" (click)=\"facebookLogin()\">\n                        Sign in with Facebook\n                    </button>\n                    </div>\n                </div>\n                \n            ",
+            template: "\n                <div class=\"facebook-item\">\n                    <div class=\"logged-in\" *ngIf=\"isUser\">\n                        <button class=\"facebook button\" (click)=\"facebookLogout()\">\n                            Logout\n                        </button>\n                        <span><img src=\"{{imgurl}}\"/> {{name}}, {{email}}</span>\n                    </div>\n                    <div class=\"not-logged-in\" *ngIf=\"isUser==false\">\n                        <button class=\"facebook button\" (click)=\"facebookLogin()\">\n                        Sign in\n                    </button>\n                    </div>\n                </div>\n                \n            ",
             styleUrls: ['fb.component.css']
         }), 
-        __metadata('design:paramtypes', [db_service_1.DatabaseService, core_1.NgZone])
+        __metadata('design:paramtypes', [db_service_1.DatabaseService, core_1.NgZone, router_1.Router])
     ], FacebookComponent);
     return FacebookComponent;
 }());

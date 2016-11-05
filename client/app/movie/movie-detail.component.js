@@ -21,12 +21,14 @@ var MovieDetailComponent = (function () {
         this.route = route;
         this.componentFactoryResolver = componentFactoryResolver;
     }
+    // On start of lifecycle
     MovieDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         // get URL parameters
-        this.sub = this.route.params.subscribe(function (params) { _this.userId = params['id']; });
+        this.route.params.subscribe(function (params) { _this.userId = params['id']; });
         this.getMovie(this.userId);
     };
+    // Get a specific movie from the REST API based on id.
     MovieDetailComponent.prototype.getMovie = function (userId) {
         var _this = this;
         this.movieService.getMovie(userId).subscribe(function (data) { return _this.movie = data; }, function (error) { return console.log(error); });
@@ -44,6 +46,7 @@ var MovieDetailComponent = (function () {
             styleUrls: ['movie-detail.component.css'],
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
             templateUrl: 'movie-detail.component.html',
+            // Provider tells the component which service to use
             providers: [movie_service_1.MovieService]
         }), 
         __metadata('design:paramtypes', [movie_service_1.MovieService, router_1.ActivatedRoute, core_1.ComponentFactoryResolver])

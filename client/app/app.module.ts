@@ -29,6 +29,12 @@ import { MovieSearchPageComponent } from "./movie-search/movie-search-page.compo
 import { MovieReviewsComponent } from "./movie/movie-reviews.component";
 import { ReviewFormComponent } from "./movie/review-form.component";
 
+
+/**
+ * Imports the AuthGuard that lets us have session-handling in Angular
+ */
+import { AuthGuard } from "./common/auth.guard";
+
 /**
  * @NgModule contains the list of external modules used by the application.
  * Imports: what kind of modules are imported from the angular library
@@ -65,6 +71,11 @@ import { ReviewFormComponent } from "./movie/review-form.component";
         MovieSearchPageComponent,
         MovieReviewsComponent,
         ReviewFormComponent
+        MovieSearchPageComponent
+    ],
+    //The AuthGuard is a provider
+    providers: [
+        AuthGuard
     ],
     bootstrap: [ AppComponent ]
 })
