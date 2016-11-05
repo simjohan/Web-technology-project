@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone, Input, EventEmitter } from '@angular/core';
 
 import { MovieReview } from './movie-review';
 import {ReviewService} from "./review.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 
@@ -43,7 +43,6 @@ export class ReviewFormComponent implements OnInit{
         //Callback function for FB API. We now have access to the data.
         }, function (callback) {
             _self.reviewService.sendReview(callback.id, _self.movieId, _self.model.review, _self.model.title, _self.model.rating);
-
         });
     }
 

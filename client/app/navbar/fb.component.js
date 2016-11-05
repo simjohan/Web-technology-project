@@ -75,8 +75,8 @@ var FacebookComponent = (function () {
         FB.logout(function (response) {
             // User is logged out; update props
             self.isUser = false;
-            var idTest = localStorage.getItem('id');
-            self._databaseService.removeUser(idTest);
+            //let idTest = localStorage.getItem('id');
+            //self._databaseService.removeUser(idTest);
             localStorage.clear();
         });
         //When the user logs out, navigate to the home page to not stay on a possible closed page
