@@ -253,16 +253,16 @@ module.exports = function(app,io){
         console.log("Received data: " + req.body[0]);
         var userId = req.body[0];
         var movieId = req.body[1];
-        var title = req.body[2];
-        var rating = req.body[3];
-        var review = req.body[4];
+        var review = req.body[2];
+        var title = req.body[3];
+        var rating = req.body[4];
 
         var date = new Date();
         var dbDate = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
         var dbTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         var finalDate = dbDate + ' ' + dbTime;
 
-        dbHandler.addReview(userId, movieId, title, rating, review, finalDate);
+        dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
     });
 
     /*

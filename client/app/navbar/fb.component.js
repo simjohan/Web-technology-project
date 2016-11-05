@@ -54,7 +54,6 @@ var FacebookComponent = (function () {
                         localStorage.setItem('name', me.name);
                         localStorage.setItem('email', me.email);
                         localStorage.setItem('imgurl', me.picture.data.url);
-                        localStorage.setItem('isUser', 'true');
                         console.log("ID: " + self.id);
                         console.log("NAME: " + self.name);
                         console.log("EMAIL: " + self.email);
@@ -76,7 +75,6 @@ var FacebookComponent = (function () {
         FB.logout(function (response) {
             // User is logged out; update props
             self.isUser = false;
-            localStorage.setItem('isUser', 'false');
             var idTest = localStorage.getItem('id');
             self._databaseService.removeUser(idTest);
             localStorage.clear();
@@ -85,7 +83,18 @@ var FacebookComponent = (function () {
         this.router.navigate(['/home']);
     };
     FacebookComponent.prototype.ngOnInit = function () {
-        console.log('Init done');
+        var _self = this;
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                _self.isUser = true;
+            }
+            else if (response.status === 'not_authorized') {
+                _self.isUser = false;
+            }
+            else {
+                _self.isUser = false;
+            }
+        });
     };
     FacebookComponent.prototype.ngOnDestroy = function () {
         this.facebookLogout();

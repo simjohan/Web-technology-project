@@ -3,7 +3,7 @@
  */
 /// <reference path="../../typings/globals/fbsdk.d.ts" />
 
-import { Component, OnInit, NgZone } from '@angular/core';
+import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
 import { DatabaseService } from './../db.service';
 import { Router } from '@angular/router';
@@ -31,7 +31,7 @@ import { Router } from '@angular/router';
     styleUrls: ['fb.component.css']
 })
 
-export class FacebookComponent implements OnInit{
+export class FacebookComponent implements OnInit, OnDestroy{
 
     id="";
     name="";
@@ -72,7 +72,6 @@ export class FacebookComponent implements OnInit{
                         localStorage.setItem('name', me.name);
                         localStorage.setItem('email', me.email);
                         localStorage.setItem('imgurl', me.picture.data.url);
-                        localStorage.setItem('isUser', 'true');
 
                         console.log("ID: " + self.id);
                         console.log("NAME: " + self.name);
@@ -97,10 +96,8 @@ export class FacebookComponent implements OnInit{
     facebookLogout(){
         let self = this;
         FB.logout(function (response) {
-
             // User is logged out; update props
             self.isUser = false;
-            localStorage.setItem('isUser', 'false');
             let idTest = localStorage.getItem('id');
             self._databaseService.removeUser(idTest);
             localStorage.clear();
@@ -110,7 +107,16 @@ export class FacebookComponent implements OnInit{
     }
 
     ngOnInit() {
-        console.log('Init done');
+        let _self = this;
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                _self.isUser = true;
+            } else if (response.status === 'not_authorized') {
+                _self.isUser = false;
+            } else {
+                _self.isUser = false;
+            }
+        });
     }
 
     ngOnDestroy(){
