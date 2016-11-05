@@ -1,0 +1,10 @@
+<li class="movie-item" [routerLink]="['/movie', movieObject?.id]">
+    <!--Name of the movie-->
+    <div class="movie-item-name">
+            {{movieObject?.title}}
+    </div>
+    <!--Image of the movie-->
+    <div class="movie-item-poster">
+        <img src='{{movieObject?.img_url}}' alt="movie poster placeholder" />
+    </div>
+</li>
