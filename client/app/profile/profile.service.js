@@ -16,7 +16,7 @@ var ProfileService = (function () {
     function ProfileService(http) {
         this.http = http;
         //the url to the app.get-function in routes.js
-        this.specificUserUrl = '/api/users/getUser/';
+        this.specificUserUrl = '/api/users/get-user/';
     }
     // Get a specific user based on id variable from API
     ProfileService.prototype.getUser = function (id) {

@@ -13,10 +13,47 @@ var core_1 = require('@angular/core');
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
  * how the component should be processed, instantiated and used at runtime.
  */
-var ProfileUserReviews = (function () {
-    function ProfileUserReviews() {
+var ProfileUserReviewComponent = (function () {
+    function ProfileUserReviewComponent() {
+        this.stars = "";
+        this.showElement = false;
     }
-    ProfileUserReviews = __decorate([
+    // Listen to changes
+    ProfileUserReviewComponent.prototype.ngOnChanges = function () {
+        // Change the rating from number to stars
+        this.stars = "";
+        for (var i = 0; this.review.rating > i; i++) {
+            this.stars = this.stars + "☆";
+        }
+    };
+    // Toggles the hide/show effect of the expand button
+    ProfileUserReviewComponent.prototype.toggle = function () {
+        if (this.showElement)
+            this.showElement = false;
+        else if (!this.showElement)
+            this.showElement = true;
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], ProfileUserReviewComponent.prototype, "review", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ProfileUserReviewComponent.prototype, "reviewTitle", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], ProfileUserReviewComponent.prototype, "rating", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ProfileUserReviewComponent.prototype, "userName", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ProfileUserReviewComponent.prototype, "ratingText", void 0);
+    ProfileUserReviewComponent = __decorate([
         core_1.Component({
             //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
             moduleId: module.id,
@@ -25,11 +62,11 @@ var ProfileUserReviews = (function () {
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
             templateUrl: 'profile-user-reviews.component.html',
             // stylrUlrs tells the component where it can find the CSS-code that it is going to use
-            styleUrls: ['profile-user-reviews.component.css'],
+            styleUrls: ['../movie/reviews.component.css'],
         }), 
         __metadata('design:paramtypes', [])
-    ], ProfileUserReviews);
-    return ProfileUserReviews;
+    ], ProfileUserReviewComponent);
+    return ProfileUserReviewComponent;
 }());
-exports.ProfileUserReviews = ProfileUserReviews;
+exports.ProfileUserReviewComponent = ProfileUserReviewComponent;
 //# sourceMappingURL=profile-user-reviews.component.js.map

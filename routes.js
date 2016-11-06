@@ -135,6 +135,39 @@ module.exports = function(app,io){
 
     });
 
+    app.get('/api/reviews/specific-user-reviews/:id', function (req, res) {
+        var reviews = [];
+        var stmt = db.prepare(
+            "SELECT r.review, r.title as rt, r.rating, r.date, Users.name, m.title as mt " +
+            "FROM Users " +
+            "INNER JOIN Reviews AS r " +
+            "ON Users.id = r.userId " +
+            "INNER JOIN Movies as m " +
+            "ON r.movieId = m.id " +
+            "AND r.userId = ?"
+        );
+        var stmt2 = db.prepare('SELECT r.review, r.title as rt, r.rating, r.date, Users.name, m.title as mt ' +
+        'FROM Users INNER JOIN Reviews AS r ON Users.id = r.userId ' +
+        'INNER JOIN Movies as m ON r.movieId = m.id AND r.userId = ?');
+        var userId = req.params.id;
+        stmt2.each(userId,
+            function(err, row) {
+                reviews.push({
+                    "name": row.name,
+                    "review": row.review,
+                    "reviewtitle": row.rt,
+                    "rating": row.rating,
+                    "date": row.date,
+                    "movietitle": row.mt
+                });
+            },
+            function() {
+                res.send({reviews});
+            }
+        );
+
+    });
+
     // Get a specific movie based on id
     app.get('/api/specific-movie/:movieId', function(req, res) {
 
@@ -265,7 +298,7 @@ module.exports = function(app,io){
         dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
     });
 
-    app.get('/api/users/getUser/:id', function (req, res) {
+    app.get('/api/users/get-user/:id', function (req, res) {
         var user_by_id = [];
         var stmt = db.prepare("SELECT * FROM Users WHERE id = ?");
 

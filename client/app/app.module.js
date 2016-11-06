@@ -72,7 +72,7 @@ var AppModule = (function () {
                 profile_page_component_1.ProfilePageComponent,
                 movie_detail_component_1.MovieDetailComponent,
                 profile_user_details_component_1.ProfileUserDetailsComponent,
-                profile_user_reviews_component_1.ProfileUserReviews,
+                profile_user_reviews_component_1.ProfileUserReviewComponent,
                 profile_user_review_component_1.ProfileUserReview,
                 review_rating_filter_pipe_1.ReviewRatingFilterPipe,
                 review_user_filter_pipe_1.ReviewUserFilterPipe,
