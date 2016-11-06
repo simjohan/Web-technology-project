@@ -138,7 +138,7 @@ module.exports = function(app,io){
     app.get('/api/reviews/specific-user-reviews/:id', function (req, res) {
         var reviews = [];
         var stmt = db.prepare(
-            "SELECT r.review, r.title as rt, r.rating, r.date, Users.name, m.title as mt" +
+            "SELECT r.review, r.title as rt, r.rating, r.date, Users.name, m.title as mt " +
             "FROM Users " +
             "INNER JOIN Reviews AS r " +
             "ON Users.id = r.userId " +
@@ -146,16 +146,19 @@ module.exports = function(app,io){
             "ON r.movieId = m.id " +
             "AND r.userId = ?"
         );
+        var stmt2 = db.prepare('SELECT r.review, r.title as rt, r.rating, r.date, Users.name, m.title as mt ' +
+        'FROM Users INNER JOIN Reviews AS r ON Users.id = r.userId ' +
+        'INNER JOIN Movies as m ON r.movieId = m.id AND r.userId = ?');
         var userId = req.params.id;
-        stmt.each(userId,
+        stmt2.each(userId,
             function(err, row) {
                 reviews.push({
-                    "username": row.name,
+                    "name": row.name,
                     "review": row.review,
-                    "reviewTitle": row.rt,
+                    "reviewtitle": row.rt,
                     "rating": row.rating,
                     "date": row.date,
-                    "movieTitle": row.mt
+                    "movietitle": row.mt
                 });
             },
             function() {

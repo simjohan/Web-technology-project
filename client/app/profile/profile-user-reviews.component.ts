@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -12,12 +12,36 @@ import { Component } from '@angular/core';
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'profile-user-reviews.component.html',
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
-    styleUrls: ['profile-user-reviews.component.css'],
+    styleUrls: ['../movie/reviews.component.css'],
 })
 
 /**
  * Exporting the class ProfilePageComponent, so other components have access to it
  */
-export class ProfileUserReviews {
+export class ProfileUserReviewComponent {
+    //@Input() lets other components send in the values, which this component inputs here. This value can be used in the template.
+    @Input() review;
+    @Input() reviewTitle: string;
+    @Input() rating: number;
+    @Input() userName: string;
+    @Input() ratingText: string;
+
+    private stars: String = "";
+    private showElement = false;
+
+    // Listen to changes
+    ngOnChanges(){
+        // Change the rating from number to stars
+        this.stars = "";
+        for (var i = 0; this.review.rating > i; i++){
+            this.stars = this.stars + "☆";
+        }
+    }
+
+    // Toggles the hide/show effect of the expand button
+    toggle(){
+        if (this.showElement) this.showElement = false;
+        else if (!this.showElement) this.showElement = true;
+    }
 
 }

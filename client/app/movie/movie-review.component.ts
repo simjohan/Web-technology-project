@@ -10,7 +10,7 @@ import { Component, Input, OnChanges } from '@angular/core';
     // Selector "movie-review" lets other components use the template into their own template
     selector: "movie-review",
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
-    styleUrls: ['movie-review.component.css'],
+    styleUrls: ['reviews.component.css'],
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'movie-review.component.html',
 
