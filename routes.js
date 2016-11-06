@@ -138,10 +138,12 @@ module.exports = function(app,io){
     app.get('/api/reviews/specific-user-reviews/:id', function (req, res) {
         var reviews = [];
         var stmt = db.prepare(
-            "SELECT r.review, r.title, r.rating, r.date, Users.name " +
+            "SELECT r.review, r.title as rt, r.rating, r.date, Users.name, m.title as mt" +
             "FROM Users " +
             "INNER JOIN Reviews AS r " +
             "ON Users.id = r.userId " +
+            "INNER JOIN Movies as m " +
+            "ON r.movieId = m.id " +
             "AND r.userId = ?"
         );
         var userId = req.params.id;
@@ -150,9 +152,10 @@ module.exports = function(app,io){
                 reviews.push({
                     "username": row.name,
                     "review": row.review,
-                    "title": row.title,
+                    "reviewTitle": row.rt,
                     "rating": row.rating,
-                    "date": row.date
+                    "date": row.date,
+                    "movieTitle": row.mt
                 });
             },
             function() {

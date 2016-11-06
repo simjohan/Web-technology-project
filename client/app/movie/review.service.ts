@@ -15,6 +15,7 @@ export class ReviewService {
         return this.http.get(this.reviewsUrl + id).map(res => res.json().reviews);
     }
 
+    // get the user reviews from the API url
     getUserReviews(id): Observable<any> {
         return this.http.get(this.userReviewsUrl + id).map(res => res.json().reviews);
     }

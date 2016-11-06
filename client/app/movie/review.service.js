@@ -20,6 +20,7 @@ var ReviewService = (function () {
     ReviewService.prototype.getReviews = function (id) {
         return this.http.get(this.reviewsUrl + id).map(function (res) { return res.json().reviews; });
     };
+    // get the user reviews from the API url
     ReviewService.prototype.getUserReviews = function (id) {
         return this.http.get(this.userReviewsUrl + id).map(function (res) { return res.json().reviews; });
     };
