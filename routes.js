@@ -140,8 +140,8 @@ module.exports = function(app,io){
         var stmt = db.prepare(
             "SELECT r.review, r.title, r.rating, r.date, Users.name " +
             "FROM Users " +
-            "INNER JOIN Reviews AS r" +
-            "ON Users.id = r.userId" +
+            "INNER JOIN Reviews AS r " +
+            "ON Users.id = r.userId " +
             "AND r.userId = ?"
         );
         var userId = req.params.id;
