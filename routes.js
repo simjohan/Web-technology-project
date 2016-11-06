@@ -292,6 +292,31 @@ module.exports = function(app,io){
         dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
     });
 
+    app.get('/api/users/getUser/:id', function (req, res) {
+        var user_by_id = [];
+        var stmt = db.prepare("SELECT * FROM Users WHERE id = ?");
+
+        stmt.each(req.params.id, // ID is provided by the parameters of the URL
+            function(err, row) {
+                console.log(err);
+                user_by_id = {
+                    "name": row.name,
+                    "email": row.email,
+                    "imageUrl": row.imageUrl
+                };
+                //console.log("User: " + row.id + " - " + row.name + " - " + row.email + " - " + row.imageUrl);
+            },
+            function() {
+                /*Object.keys(user_by_id).forEach(function (key) {
+                 var attribute_list = user_by_id[key];
+                 console.log("Name: " + attribute_list.name);
+                 console.log("Email: " + attribute_list.email);
+                 });*/
+                res.send({user_by_id});
+            }
+        );
+    });
+
     /*
         If all other options are exhausted, use this.
         Temp solution. This should be placed last.
