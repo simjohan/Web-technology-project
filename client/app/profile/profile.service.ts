@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ProfileService {
     //the url to the app.get-function in routes.js
-    private specificUserUrl = '/api/users/getUser/';
+    private specificUserUrl = '/api/users/get-user/';
 
     constructor (private http: Http) {}
 

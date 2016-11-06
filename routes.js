@@ -292,7 +292,7 @@ module.exports = function(app,io){
         dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
     });
 
-    app.get('/api/users/getUser/:id', function (req, res) {
+    app.get('/api/users/get-user/:id', function (req, res) {
         var user_by_id = [];
         var stmt = db.prepare("SELECT * FROM Users WHERE id = ?");
 
