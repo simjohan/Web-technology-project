@@ -4,3 +4,47 @@
 
     margin: 40px;
 }
+
+.movie-page-container{
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.movie-page-item{
+    align-items: center;
+}
+
+.review-settings-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.review-settings-item{
+    flex: 1;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.review-chart{
+    max-width: 650px;
+    min-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.review-page-title{
+    margin-top: 100px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+/* Medium screens */
+@media all and (max-width: 720px) {
+    .review-settings-container{
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+    }
+}

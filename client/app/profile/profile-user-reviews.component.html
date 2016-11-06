@@ -1,7 +1,39 @@
-<div class="profile-user-reviews-container">
-    <h2>Reviews</h2>
-    <!-- Shows a review -->
-    <profile-user-review></profile-user-review>
-    <profile-user-review></profile-user-review>
-    <profile-user-review></profile-user-review>
+<div class="review-container">
+    <ul class="review-list-container">
+
+        <li class="review-list-item">
+            <!--Gets the values from "movie-review.component.ts", which might get the value from other components.-->
+            <div class="review-item-left">
+                <p>
+                    <b><u>{{review?.movietitle}}</u></b>
+                </p>
+                <p>
+                    <b>
+                       {{review?.reviewtitle}}
+                    </b>
+                    <span class="review-stars">
+                        {{stars}}
+                    </span>
+                </p>
+                <p>
+                    {{review?.name}} wrote on {{review?.date}}
+                </p>
+            </div>
+            <div class="review-item-right">
+                <!-- Function is defined in movie-review.component.ts -->
+                <button class="btn btn-review-expand" (click)="toggle()">Expand</button>
+            </div>
+
+        </li>
+
+        <li class="review-list-item">
+            <!-- Show/Hide based on the showElement boolean based on the movie-review component -->
+            <div class="review-item-bottom" *ngIf="showElement">
+                <p>
+                    {{review?.review}}
+                </p>
+            </div>
+        </li>
+    </ul>
+
 </div>
