@@ -135,6 +135,33 @@ module.exports = function(app,io){
 
     });
 
+    app.get('/api/reviews/specific-user-reviews/:id', function (req, res) {
+        var reviews = [];
+        var stmt = db.prepare(
+            "SELECT r.review, r.title, r.rating, r.date, Users.name " +
+            "FROM Users " +
+            "INNER JOIN Reviews AS r" +
+            "ON Users.id = r.userId" +
+            "AND r.userId = ?"
+        );
+        var userId = req.params.id;
+        stmt.each(userId,
+            function(err, row) {
+                reviews.push({
+                    "username": row.name,
+                    "review": row.review,
+                    "title": row.title,
+                    "rating": row.rating,
+                    "date": row.date
+                });
+            },
+            function() {
+                res.send({reviews});
+            }
+        );
+
+    });
+
     // Get a specific movie based on id
     app.get('/api/specific-movie/:movieId', function(req, res) {
 
