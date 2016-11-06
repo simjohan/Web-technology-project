@@ -295,11 +295,11 @@ module.exports = function(app,io){
         dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
     });
 
-    app.get('/api/users/get-user/:id', function (req, res) {
+    app.get('/api/users/get-user/:idUser', function (req, res) {
         var user_by_id = [];
         var stmt = db.prepare("SELECT * FROM Users WHERE id = ?");
 
-        stmt.each(req.params.id, // ID is provided by the parameters of the URL
+        stmt.each(req.params.idUser, // ID is provided by the parameters of the URL
             function(err, row) {
                 console.log(err);
                 user_by_id = {
@@ -319,6 +319,40 @@ module.exports = function(app,io){
             }
         );
     });
+
+
+    app.get('/api/reviews/specific-user-movie-reviews/:userId/:movieId', function (req, res) {
+        var reviews = [];
+
+        var stmt = db.prepare(
+            'SELECT * ' +
+            'FROM Reviews ' +
+            'WHERE movieId = ? AND userId = ?;'
+        );
+
+        var userId = req.params.userId;
+        var movieId = req.params.movieId;
+
+        stmt.each([movieId, userId],
+            function(err, row) {
+                console.log("Callback! ");
+                reviews = {
+                    "userId": row.userId,
+                    "movieId": row.movieId,
+                    "title": row.title,
+                    "rating": row.rating,
+                    "review": row.review
+                };
+            },
+            function() {
+                console.log("Complete!");
+
+                res.send({reviews});
+            }
+        );
+
+    });
+
 
     /*
         If all other options are exhausted, use this.
