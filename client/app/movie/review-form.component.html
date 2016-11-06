@@ -19,8 +19,10 @@
                    required
                    [(ngModel)]="model.review" name="review">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-        <button type="button" class="btn btn-default" (click)="newReview()">New Review</button>
+        <div [hidden]="submitted">
+            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="button" class="btn btn-default" (click)="newReview()">New Review</button>
+        </div>
     </form>
 </div>
 <div *ngIf="isUser==false" class="review-form-container">
@@ -42,5 +44,4 @@
         <div class="col-xs-9 pull-left">{{ model.review }}</div>
     </div>
     <br>
-    <button class="btn btn-default" (click)="submitted=false">Edit</button>
 </div>
