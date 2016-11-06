@@ -1,5 +1,4 @@
 .movie-detail-container{
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -26,4 +25,7 @@
 
 .movie-detail-item {
     margin: 15px;
+}
+.review-form-container{
+    flex: 3 0;
 }

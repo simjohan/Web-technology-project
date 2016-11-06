@@ -249,6 +249,22 @@ module.exports = function(app,io){
         }
     });
 
+    app.post('/api/reviews/add/:id', function (req, res) {
+        console.log("Received data: " + req.body[0]);
+        var userId = req.body[0];
+        var movieId = req.body[1];
+        var review = req.body[2];
+        var title = req.body[3];
+        var rating = req.body[4];
+
+        var date = new Date();
+        var dbDate = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
+        var dbTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        var finalDate = dbDate + ' ' + dbTime;
+
+        dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
+    });
+
     app.get('/api/users/getUser/:id', function (req, res) {
         var user_by_id = [];
         var stmt = db.prepare("SELECT * FROM Users WHERE id = ?");
@@ -265,10 +281,10 @@ module.exports = function(app,io){
             },
             function() {
                 /*Object.keys(user_by_id).forEach(function (key) {
-                    var attribute_list = user_by_id[key];
-                    console.log("Name: " + attribute_list.name);
-                    console.log("Email: " + attribute_list.email);
-                });*/
+                 var attribute_list = user_by_id[key];
+                 console.log("Name: " + attribute_list.name);
+                 console.log("Email: " + attribute_list.email);
+                 });*/
                 res.send({user_by_id});
             }
         );

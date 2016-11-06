@@ -75,15 +75,26 @@ var FacebookComponent = (function () {
         FB.logout(function (response) {
             // User is logged out; update props
             self.isUser = false;
-            var idTest = localStorage.getItem('id');
-            self._databaseService.removeUser(idTest);
+            //let idTest = localStorage.getItem('id');
+            //self._databaseService.removeUser(idTest);
             localStorage.clear();
         });
         //When the user logs out, navigate to the home page to not stay on a possible closed page
         this.router.navigate(['/home']);
     };
     FacebookComponent.prototype.ngOnInit = function () {
-        console.log('Init done');
+        var _self = this;
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                _self.isUser = true;
+            }
+            else if (response.status === 'not_authorized') {
+                _self.isUser = false;
+            }
+            else {
+                _self.isUser = false;
+            }
+        });
     };
     FacebookComponent.prototype.ngOnDestroy = function () {
         this.facebookLogout();
