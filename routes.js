@@ -63,12 +63,30 @@ module.exports = function(app,io){
 
     });
 
+    /*
+     SELECT title FROM tracks
+     WHERE singer='Madonna'
+     AND title>:lasttitle
+     ORDER BY title
+     LIMIT 5;
+     */
 
     // Get reviews based on movie with pagination
-    app.get('/api/get/reviews/:movie_id/:from/:to', function(req, res) {
+    app.get('/api/get/reviews/:movie_id/:chunk/:offset', function(req, res) {
 
         var results = [];
-        var stmt = db.prepare('SELECT * FROM Reviews WHERE movieId = ? ')
+        var stmt = db.prepare('SELECT * FROM Reviews WHERE movieId = ? ORDER BY id LIMIT ? OFFSET ?')
+
+        // TODO: fikse at man får gjenverende rows
+
+        stmt.each([req.params.movie_id, req.params.chunk, req.params.offset],
+            function (err, row) {
+                results.push({"id": row.id, "userid": row.userId, "movieId": row.movieId, "review": row.review})
+            },
+            function() {
+                res.send({results})
+            }
+        )
 
     });
 
