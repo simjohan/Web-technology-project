@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, Input, EventEmitter } from '@angular/core';
+import {Component, OnInit, NgZone, Input, EventEmitter} from '@angular/core';
 
 import { MovieReview } from './movie-review';
 import {ReviewService} from "./review.service";
@@ -14,10 +14,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 
 
-export class ReviewFormComponent implements OnInit{
+export class ReviewFormComponent implements OnInit {
 
-    constructor(private reviewService : ReviewService, private route : ActivatedRoute){ }
+    constructor(private reviewService : ReviewService, private route : ActivatedRoute, private _ngZone: NgZone){ }
 
+    private reviewByUser: Object;
 
     userId = 0;
     movieId = 0;
@@ -52,6 +53,10 @@ export class ReviewFormComponent implements OnInit{
         setTimeout(() => this.active = true, 0);
     }
 
+    getUserMovieReviews(userId, movieId){
+        this.reviewService.getUserMovieReviews(userId, movieId).subscribe(data => this.reviewByUser = data, error => console.log(error));
+    }
+
     ngOnInit() {
         // get URL parameters
         let _self = this;
@@ -59,6 +64,8 @@ export class ReviewFormComponent implements OnInit{
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 _self.isUser = true;
+
+
             } else if (response.status === 'not_authorized') {
                 _self.isUser = false;
             } else {
@@ -66,8 +73,14 @@ export class ReviewFormComponent implements OnInit{
             }
         });
 
+
+        //Use the facebook-api to get the ID from the user that is logged in
+        FB.api("/me", function(response){
+            _self._ngZone.run(() => {
+                _self.getUserMovieReviews(response.id, _self.movieId);
+            })
+        });
+
     }
-
-
 
 }

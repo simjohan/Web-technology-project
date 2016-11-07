@@ -87,6 +87,14 @@ var FacebookComponent = (function () {
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 _self.isUser = true;
+                FB.api('/me?fields=name,email,picture', function (me) {
+                    _self._ngZone.run(function () {
+                        _self.id = me.id;
+                        _self.name = me.name;
+                        _self.email = me.email;
+                        _self.imgurl = me.picture.data.url;
+                    });
+                });
             }
             else if (response.status === 'not_authorized') {
                 _self.isUser = false;

@@ -13,9 +13,10 @@ var movie_review_1 = require('./movie-review');
 var review_service_1 = require("./review.service");
 var router_1 = require("@angular/router");
 var ReviewFormComponent = (function () {
-    function ReviewFormComponent(reviewService, route) {
+    function ReviewFormComponent(reviewService, route, _ngZone) {
         this.reviewService = reviewService;
         this.route = route;
+        this._ngZone = _ngZone;
         this.userId = 0;
         this.movieId = 0;
         this.isUser = false;
@@ -44,6 +45,10 @@ var ReviewFormComponent = (function () {
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
     };
+    ReviewFormComponent.prototype.getUserMovieReviews = function (userId, movieId) {
+        var _this = this;
+        this.reviewService.getUserMovieReviews(userId, movieId).subscribe(function (data) { return _this.reviewByUser = data; }, function (error) { return console.log(error); });
+    };
     ReviewFormComponent.prototype.ngOnInit = function () {
         var _this = this;
         // get URL parameters
@@ -60,6 +65,12 @@ var ReviewFormComponent = (function () {
                 _self.isUser = false;
             }
         });
+        //Use the facebook-api to get the ID from the user that is logged in
+        FB.api("/me", function (response) {
+            _self._ngZone.run(function () {
+                _self.getUserMovieReviews(response.id, _self.movieId);
+            });
+        });
     };
     ReviewFormComponent = __decorate([
         core_1.Component({
@@ -67,7 +78,7 @@ var ReviewFormComponent = (function () {
             selector: 'review-form',
             templateUrl: 'review-form.component.html'
         }), 
-        __metadata('design:paramtypes', [review_service_1.ReviewService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [review_service_1.ReviewService, router_1.ActivatedRoute, core_1.NgZone])
     ], ReviewFormComponent);
     return ReviewFormComponent;
 }());

@@ -52,6 +52,38 @@ exports.getUserById =  function(id) {
     stmt.finalize();
 };
 
+
+
+
+exports.getUserMovieReview =  function(userId, movieId) {
+    var userMovieReview = {};
+    var stmt = db.prepare('SELECT * FROM Reviews WHERE userId = ? AND movieId = ?');
+    stmt.each([userId, movieId],
+        function(err, row) {
+            console.log(err);
+
+            userMovieReview[row.userId] = {"MovieId: ": row.movieId,
+                "ReviewTitle: ": row.title,
+                "Rating: ": row.rating,
+                "ReviewText: ": row.review};
+
+            console.log("MovieId: " + row.movieId + " - "
+                + row.title + " - " + row.rating + " - " + row.review);
+        },
+
+        //callback called when the operation is completed (async call)
+        function() {
+            dbCallback(userMovieReview)
+        }
+    );
+    stmt.finalize();
+};
+
+//this.getUserMovieReview("802492929853563", "2");
+
+
+
+
 exports.insertUser = function(id, name, email, imageurl) {
     var stmt = db.prepare('INSERT OR IGNORE INTO Users VALUES (?, ?, ?, ?)');
     stmt.run(id, name, email, imageurl);
