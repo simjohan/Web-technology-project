@@ -79,6 +79,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
                         console.log("IMGURL: " + self.imgurl);
 
                         self._databaseService.insertUser(self.id, self.name, self.email, self.imgurl);
+                        self.router.navigate(['/profile']);
 
                     });
                 });
