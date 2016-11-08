@@ -6,6 +6,7 @@
   "author": "",
   "private": true,
   "dependencies": {
+    "@types/facebook-js-sdk": "0.0.30",
     "body-parser": "^1.13.3",
     "bootstrap": "^3.3.7",
     "connect-sqlite3": "^0.9.8",
