@@ -49,9 +49,4 @@ export class ReviewService {
         return this.http.post(addReviewUrl, body, options).subscribe();
     }
 
-    // Test method to test the removal of compiled files
-    allJsRemovalTest(){
-        let test = "This is just a test";
-    }
-
 }
