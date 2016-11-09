@@ -11,20 +11,22 @@ import { Router } from '@angular/router';
     template: `
                 <div class="facebook-item">
                     <div class="logged-in" *ngIf="isUser">
-                        <button class="facebook button" (click)="facebookLogout()">
-                            Logout
+                        <button class="btn btn-facebook" (click)="facebookLogout()">
+                            <div id="btn-image-container"><img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/></div>
+                            <span>Logout</span>
                         </button>
-                        <span><img src="{{imgurl}}"/> {{name}}</span>
+                        <span><img class="navbar-facebook-img" src="{{imgurl}}"/> {{name}}</span>
                     </div>
                     <div class="not-logged-in" *ngIf="isUser==false">
-                        <button class="facebook button" (click)="facebookLogin()">
-                        Login
-                    </button>
+                        <button class="btn btn-facebook" (click)="facebookLogin()">
+                            <div id="btn-image-container"><img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/></div>
+                            <span> Login </span>
+                    </button> 
                     </div>
-                </div>    
+                </div>   
                 
             `,
-    styleUrls: ['fb.component.css']
+    styleUrls: ['navbar.component.css']
 })
 
 export class FacebookComponent implements OnInit, OnDestroy{
