@@ -8,6 +8,7 @@ export class ReviewService {
     private reviewsUrl = '/api/specific-movie-reviews/';  // URL to web API
     private userReviewsUrl = '/api/reviews/specific-user-reviews/'; // URL to web API
     private userMovieReviewsUrl = '/api/reviews/specific-user-movie-reviews/';
+    private paginatedReviews = '/api/get/reviews/';
 
     constructor (private http: Http) {}
 
@@ -24,6 +25,11 @@ export class ReviewService {
     //Get the review the given user have written for the given movie
     getUserMovieReviews(userId, movieId): Observable<any>{
         return this.http.get(this.userMovieReviewsUrl + userId + "/" + movieId).map(res=>res.json().reviews);
+    }
+
+    getPaginatedReviews(id, chunk, offset): Observable<any>{
+        console.log(this.paginatedReviews + id + "/" + chunk + "/" + offset);
+        return this.http.get(this.paginatedReviews + id + "/" + chunk + "/" + offset).map(res => res.json().reviews);
     }
 
     // Count the ratings and summarize them into an array

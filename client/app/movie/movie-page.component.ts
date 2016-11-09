@@ -35,6 +35,7 @@ export class MoviePageComponent{
     format = "";
     ratingToggle = false;
     nameToggle = false;
+    offset = 0;
 
     private reviews = [];
     private movieId;
@@ -50,7 +51,7 @@ export class MoviePageComponent{
     // Get all reviews for a specific movie id
     getReviews(movieId):void {
         // Subscribe and update the reviews array whenever possible
-        this.reviewService.getReviews(movieId).subscribe(
+        this.reviewService.getPaginatedReviews(movieId, 2, this.offset).subscribe(
             data => this.reviews = data,
             error => console.log(error),
             () => this.summarizeRatings(this.reviews) // Execute function whenever reviews array is updated
@@ -71,7 +72,7 @@ export class MoviePageComponent{
     loadReviews() {
         if ((document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
             console.debug("Scroll Event");
-
+            this.offset += 2;
             this.getReviews(this.movieId);
 
         }

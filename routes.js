@@ -81,10 +81,22 @@ module.exports = function(app,io){
 
 
     // Get reviews based on movie with pagination
-    app.get('/api/get/reviews/:movie_id/:from/:to', function(req, res) {
+    app.get('/api/get/reviews/:movie_id/:chunk/:offset', function(req, res) {
 
-        var results = [];
-        var stmt = db.prepare('SELECT * FROM Reviews WHERE movieId = ? ')
+        var reviews = [];
+        var page = req.params.offset * 2;
+        var stmt = db.prepare('SELECT * FROM Reviews WHERE movieId = ? ORDER BY date DESC LIMIT ? OFFSET ?')
+
+        // TODO: fikse at man får gjenverende rows
+
+        stmt.each([req.params.movie_id, req.params.chunk, req.params.offset],
+            function (err, row) {
+                reviews.push({"userid": row.userId, "movieId": row.movieId, "review": row.review, "date": row.date, "rating": row.rating})
+            },
+            function() {
+                res.send({reviews})
+            }
+        )
 
     });
 
