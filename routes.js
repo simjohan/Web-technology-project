@@ -291,7 +291,7 @@ module.exports = function(app,io){
         var rating = req.body[4];
 
         var date = new Date();
-        var dbDate = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay();
+        var dbDate = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
         var dbTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         var finalDate = dbDate + ' ' + dbTime;
 
