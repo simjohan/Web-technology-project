@@ -1,36 +1,14 @@
 <div class="profile-user-details-container">
 
-
-    <div class="profile-user-details-item profile-user-details-item-left-cotainer">
-
-        <div class="profile-user-details-item-left-item">
-            <div class="profile-user-details-picture">
-                <!--Image of the person-->
-                <img src='{{userById?.imageUrl}}' alt="profile picture" />
-                <!--<img src='https://movies.qantaspoints.com/images/website-assets/placeholder-movie.jpg' alt="profilepic placeholder" />-->
-            </div>
-        </div>
-
-        <div class="profile-user-details-item-left-item">
+    <div class="profile-user-details-item">
+        <h1>
+            <!--Image of the person-->
+            <img src='{{userById?.imageUrl}}' alt="profile picture" />
             <!--Name of the person-->
-            <!--<h1>{{userUsername}} - {{userRealName}}</h1>-->
-            <h1>{{userById?.name}}</h1>
-            <p>{{userById?.email}}</p>
-            <p> {{userDescription}}</p>
-        </div>
-
-
+            {{userById?.name}}
+        </h1>
+        <p>{{userById?.email}}</p>
     </div>
-
-    <div class="profile-user-details-item profile-user-details-item-right-container">
-        <div class="profile-user-details-item-right-item">
-            <h2>Followers</h2>
-        </div>
-
-    </div>
-
-
-
 
 </div>
 
