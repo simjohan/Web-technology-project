@@ -41,13 +41,10 @@ var ReviewFormComponent = (function () {
     };
     ReviewFormComponent.prototype.newReview = function () {
         var _this = this;
+        this.submitted = false;
         this.model = new movie_review_1.MovieReview(this.userId, this.movieId, '', '', this.ratings[0]);
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
-    };
-    ReviewFormComponent.prototype.getUserMovieReviews = function (userId, movieId) {
-        var _this = this;
-        this.reviewService.getUserMovieReviews(userId, movieId).subscribe(function (data) { return _this.reviewByUser = data; }, function (error) { return console.log(error); });
     };
     ReviewFormComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -64,12 +61,6 @@ var ReviewFormComponent = (function () {
             else {
                 _self.isUser = false;
             }
-        });
-        //Use the facebook-api to get the ID from the user that is logged in
-        FB.api("/me", function (response) {
-            _self._ngZone.run(function () {
-                _self.getUserMovieReviews(response.id, _self.movieId);
-            });
         });
     };
     ReviewFormComponent = __decorate([
