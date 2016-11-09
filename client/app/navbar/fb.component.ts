@@ -1,6 +1,4 @@
-/**
- * Created by Mats on 16.10.2016.
- */
+/// <reference path="../../typings/globals/fbsdk.d.ts" />
 import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
 import { DatabaseService } from './../db.service';
@@ -16,14 +14,14 @@ import { Router } from '@angular/router';
                         <button class="facebook button" (click)="facebookLogout()">
                             Logout
                         </button>
-                        <span><img src="{{imgurl}}"/> {{name}}, {{email}}</span>
+                        <span><img src="{{imgurl}}"/> {{name}}</span>
                     </div>
                     <div class="not-logged-in" *ngIf="isUser==false">
                         <button class="facebook button" (click)="facebookLogin()">
                         Sign in
                     </button>
                     </div>
-                </div>
+                </div>    
                 
             `,
     styleUrls: ['fb.component.css']

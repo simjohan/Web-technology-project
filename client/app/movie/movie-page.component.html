@@ -4,6 +4,10 @@
         <movie-detail></movie-detail>
     </li>
 
+    <li class="movie-page-item">
+        <review-form></review-form>
+    </li>
+
     <!-- Show only if reviews is not an empty array-->
     <li *ngIf="(reviews | json) != '[]'" class="movie-page-item">
 
