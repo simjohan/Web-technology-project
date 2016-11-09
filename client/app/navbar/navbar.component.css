@@ -15,6 +15,7 @@
     /* box-sizing is used to not stretch the div 100%+20px padding */
     box-sizing: border-box;
     padding: 0 20px;
+
 }
 
 
@@ -33,10 +34,11 @@
 
 .navbar-container-right{
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: flex-end;
     flex: 1;
     order: 2;
+    text-overflow: ellipsis;
 }
 
 .navbar-right-item{
@@ -45,18 +47,17 @@
 
 
 /* Medium screens */
-@media all and (max-width: 720px) {
+@media all and (max-width: 900px) {
     #navbar{
         flex-flow: column wrap;
-        height: 114px;
+        height: 125px;
         justify-content: flex-start;
     }
     .navbar-container-right{
         justify-content: flex-start;
         flex-flow: row nowrap;
-        order: 1;
+        order: 2;
         width: 100%;
-
     }
     .navbar-container-left{
         flex-flow: row nowrap;
