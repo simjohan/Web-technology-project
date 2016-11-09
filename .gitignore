@@ -22,5 +22,5 @@ idea
 .db
 
 # Angular .js & .js.map
-*.js
-*.js.map
+client/app/*.js
+client/app/*.js.map
