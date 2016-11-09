@@ -1,8 +1,4 @@
-/**
- * Created by Mats on 16.10.2016.
- */
 /// <reference path="../../typings/globals/fbsdk.d.ts" />
-
 import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
 import { DatabaseService } from './../db.service';
@@ -15,20 +11,22 @@ import { Router } from '@angular/router';
     template: `
                 <div class="facebook-item">
                     <div class="logged-in" *ngIf="isUser">
-                        <button class="facebook button" (click)="facebookLogout()">
-                            Logout
+                        <button class="btn btn-facebook" (click)="facebookLogout()">
+                            <div id="btn-image-container"><img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/></div>
+                            <span>Logout</span>
                         </button>
-                        <span><img src="{{imgurl}}"/> {{name}}, {{email}}</span>
+                        <span><img class="navbar-facebook-img" src="{{imgurl}}"/> {{name}}</span>
                     </div>
                     <div class="not-logged-in" *ngIf="isUser==false">
-                        <button class="facebook button" (click)="facebookLogin()">
-                        Sign in
-                    </button>
+                        <button class="btn btn-facebook" (click)="facebookLogin()">
+                            <div id="btn-image-container"><img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/></div>
+                            <span> Login </span>
+                    </button> 
                     </div>
-                </div>
+                </div>   
                 
             `,
-    styleUrls: ['fb.component.css']
+    styleUrls: ['navbar.component.css']
 })
 
 export class FacebookComponent implements OnInit, OnDestroy{
@@ -79,6 +77,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
                         console.log("IMGURL: " + self.imgurl);
 
                         self._databaseService.insertUser(self.id, self.name, self.email, self.imgurl);
+                        self.router.navigate(['/profile']);
 
                     });
                 });
@@ -112,14 +111,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
             if (response.status === 'connected') {
                 _self.isUser = true;
 
-                FB.api('/me?fields=name,email,picture', function(me) {
-                    _self._ngZone.run(() => {
-                        _self.id = me.id;
-                        _self.name = me.name;
-                        _self.email = me.email;
-                        _self.imgurl = me.picture.data.url;
-                    });
-                });
+                _self.facebookLogin();
 
             } else if (response.status === 'not_authorized') {
                 _self.isUser = false;

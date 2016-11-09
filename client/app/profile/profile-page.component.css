@@ -41,6 +41,18 @@
     margin-bottom: 25px;
     text-align: center;
 }
+
+.review-slider-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+.review-page-slider{
+    width: 80%;
+}
+
+
 /* Medium screens */
 @media all and (max-width: 720px) {
     .review-settings-container{

@@ -15,7 +15,6 @@ var ReviewService = (function () {
         this.http = http;
         this.reviewsUrl = '/api/specific-movie-reviews/'; // URL to web API
         this.userReviewsUrl = '/api/reviews/specific-user-reviews/'; // URL to web API
-        this.userMovieReviewsUrl = '/api/reviews/specific-user-movie-reviews/';
     }
     // get the reviews from the API url, use id to find reviews for specific movie
     ReviewService.prototype.getReviews = function (id) {
@@ -24,10 +23,6 @@ var ReviewService = (function () {
     // get the user reviews from the API url
     ReviewService.prototype.getUserReviews = function (id) {
         return this.http.get(this.userReviewsUrl + id).map(function (res) { return res.json().reviews; });
-    };
-    //Get the review the given user have written for the given movie
-    ReviewService.prototype.getUserMovieReviews = function (userId, movieId) {
-        return this.http.get(this.userMovieReviewsUrl + userId + "/" + movieId).map(function (res) { return res.json().reviews; });
     };
     // Count the ratings and summarize them into an array
     // The array contains the number of each rating at their specific index

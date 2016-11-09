@@ -102,7 +102,7 @@ interface FBSDKEvents{
     /* This method allows you to subscribe to a range of events, and define callback functions for when they fire. */
     subscribe(event : string, callback : (fbResponseObject : Object) => any) : void;
 
-    /* This method allows you to un-subscribe a callback from any events previously subscribed to using .Event.subscribe(). */
+    /* This method allows you to unsubscribe a callback from any events previously subscribed to using .Event.subscribe(). */
     unsubscribe(event : string, callback : (fbResponseObject : Object) => any) : void;
 }
 

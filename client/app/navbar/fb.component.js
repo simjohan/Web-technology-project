@@ -1,7 +1,3 @@
-/**
- * Created by Mats on 16.10.2016.
- */
-/// <reference path="../../typings/globals/fbsdk.d.ts" />
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -12,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/// <reference path="../../typings/globals/fbsdk.d.ts" />
 var core_1 = require('@angular/core');
 var db_service_1 = require('./../db.service');
 var router_1 = require('@angular/router');
@@ -59,6 +56,7 @@ var FacebookComponent = (function () {
                         console.log("EMAIL: " + self.email);
                         console.log("IMGURL: " + self.imgurl);
                         self._databaseService.insertUser(self.id, self.name, self.email, self.imgurl);
+                        self.router.navigate(['/profile']);
                     });
                 });
             }
@@ -87,14 +85,7 @@ var FacebookComponent = (function () {
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 _self.isUser = true;
-                FB.api('/me?fields=name,email,picture', function (me) {
-                    _self._ngZone.run(function () {
-                        _self.id = me.id;
-                        _self.name = me.name;
-                        _self.email = me.email;
-                        _self.imgurl = me.picture.data.url;
-                    });
-                });
+                _self.facebookLogin();
             }
             else if (response.status === 'not_authorized') {
                 _self.isUser = false;
@@ -112,8 +103,8 @@ var FacebookComponent = (function () {
             moduleId: module.id,
             selector: "facebook-component",
             providers: [db_service_1.DatabaseService],
-            template: "\n                <div class=\"facebook-item\">\n                    <div class=\"logged-in\" *ngIf=\"isUser\">\n                        <button class=\"facebook button\" (click)=\"facebookLogout()\">\n                            Logout\n                        </button>\n                        <span><img src=\"{{imgurl}}\"/> {{name}}, {{email}}</span>\n                    </div>\n                    <div class=\"not-logged-in\" *ngIf=\"isUser==false\">\n                        <button class=\"facebook button\" (click)=\"facebookLogin()\">\n                        Sign in\n                    </button>\n                    </div>\n                </div>\n                \n            ",
-            styleUrls: ['fb.component.css']
+            template: "\n                <div class=\"facebook-item\">\n                    <div class=\"logged-in\" *ngIf=\"isUser\">\n                        <button class=\"btn btn-facebook\" (click)=\"facebookLogout()\">\n                            <div id=\"btn-image-container\"><img  src=\"https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png\"/></div>\n                            <span>Logout</span>\n                        </button>\n                        <span><img class=\"navbar-facebook-img\" src=\"{{imgurl}}\"/> {{name}}</span>\n                    </div>\n                    <div class=\"not-logged-in\" *ngIf=\"isUser==false\">\n                        <button class=\"btn btn-facebook\" (click)=\"facebookLogin()\">\n                            <div id=\"btn-image-container\"><img  src=\"https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png\"/></div>\n                            <span> Login </span>\n                    </button> \n                    </div>\n                </div>   \n                \n            ",
+            styleUrls: ['navbar.component.css']
         }), 
         __metadata('design:paramtypes', [db_service_1.DatabaseService, core_1.NgZone, router_1.Router])
     ], FacebookComponent);

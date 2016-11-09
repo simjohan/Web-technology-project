@@ -4,6 +4,10 @@
         <movie-detail></movie-detail>
     </li>
 
+    <li class="movie-page-item">
+        <review-form></review-form>
+    </li>
+
     <!-- Show only if reviews is not an empty array-->
     <li *ngIf="(reviews | json) != '[]'" class="movie-page-item">
 
@@ -57,13 +61,11 @@
                 <!-- Filter input by rating entered in input tag below -->
                 <p> Filter by rating:</p>
                 <div class="review-slider-value"> {{ sliderValue }} </div>
-                <div>
-                    0
-                    <input type="range" min="0" max="5" [value]="sliderValue"
-                           (input)="sliderValue = $event.target.value" />
-                    5
 
+                <div class="review-slider-container">
+                    0<input class="review-page-slider" type="range" min="0" max="5" [value]="sliderValue" (input)="sliderValue = $event.target.value" />5
                 </div>
+
             </div>
 
             <div class="review-settings-item">

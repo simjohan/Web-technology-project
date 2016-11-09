@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    min-width: 390px;
+    min-width: 410px;
 }
 
 .button {
@@ -20,7 +20,7 @@ body {
 
 /* start da css for da buttons */
 .btn{
-    background: #6FC6FF; /* this is a light blue */
+    background: #3b5998; /* this is a light blue */
     border-radius: 2px;
     margin: 0;
     border: 0;
@@ -32,12 +32,15 @@ body {
     cursor: pointer;
     font-size: 16px;
     text-decoration: none;
-    box-shadow: 0px 1px 0px 0px #60acdd;
+    box-shadow: 0px 1px 0px 0px #262e57;
+    height: 34px;
+    width: auto;
 }
 
 .btn:hover {
     background: rgb(129, 242, 255); /* this is a light blue */
     transform: scale(1.1);
+    color: white;
 }
 
 .btn:active {
@@ -60,6 +63,6 @@ body {
 }
 
 .navbar-search-field{
-    height: 23px;
+    height: 33px;
     color: black;
 }
