@@ -135,6 +135,39 @@ module.exports = function(app,io){
 
     });
 
+    app.get('/api/reviews/specific-user-reviews/:id', function (req, res) {
+        var reviews = [];
+        var stmt = db.prepare(
+            "SELECT r.review, r.title as rt, r.rating, r.date, Users.name, m.title as mt " +
+            "FROM Users " +
+            "INNER JOIN Reviews AS r " +
+            "ON Users.id = r.userId " +
+            "INNER JOIN Movies as m " +
+            "ON r.movieId = m.id " +
+            "AND r.userId = ?"
+        );
+        var stmt2 = db.prepare('SELECT r.review, r.title as rt, r.rating, r.date, Users.name, m.title as mt ' +
+        'FROM Users INNER JOIN Reviews AS r ON Users.id = r.userId ' +
+        'INNER JOIN Movies as m ON r.movieId = m.id AND r.userId = ?');
+        var userId = req.params.id;
+        stmt2.each(userId,
+            function(err, row) {
+                reviews.push({
+                    "name": row.name,
+                    "review": row.review,
+                    "reviewtitle": row.rt,
+                    "rating": row.rating,
+                    "date": row.date,
+                    "movietitle": row.mt
+                });
+            },
+            function() {
+                res.send({reviews});
+            }
+        );
+
+    });
+
     // Get a specific movie based on id
     app.get('/api/specific-movie/:movieId', function(req, res) {
 
@@ -264,6 +297,65 @@ module.exports = function(app,io){
 
         dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
     });
+
+    app.get('/api/users/get-user/:idUser', function (req, res) {
+        var user_by_id = [];
+        var stmt = db.prepare("SELECT * FROM Users WHERE id = ?");
+
+        stmt.each(req.params.idUser, // ID is provided by the parameters of the URL
+            function(err, row) {
+                console.log(err);
+                user_by_id = {
+                    "name": row.name,
+                    "email": row.email,
+                    "imageUrl": row.imageUrl
+                };
+                //console.log("User: " + row.id + " - " + row.name + " - " + row.email + " - " + row.imageUrl);
+            },
+            function() {
+                /*Object.keys(user_by_id).forEach(function (key) {
+                 var attribute_list = user_by_id[key];
+                 console.log("Name: " + attribute_list.name);
+                 console.log("Email: " + attribute_list.email);
+                 });*/
+                res.send({user_by_id});
+            }
+        );
+    });
+
+
+    app.get('/api/reviews/specific-user-movie-reviews/:userId/:movieId', function (req, res) {
+        var reviews = [];
+
+        var stmt = db.prepare(
+            'SELECT * ' +
+            'FROM Reviews ' +
+            'WHERE movieId = ? AND userId = ?;'
+        );
+
+        var userId = req.params.userId;
+        var movieId = req.params.movieId;
+
+        stmt.each([movieId, userId],
+            function(err, row) {
+                console.log("Callback! ");
+                reviews = {
+                    "userId": row.userId,
+                    "movieId": row.movieId,
+                    "title": row.title,
+                    "rating": row.rating,
+                    "review": row.review
+                };
+            },
+            function() {
+                console.log("Complete!");
+
+                res.send({reviews});
+            }
+        );
+
+    });
+
 
     /*
         If all other options are exhausted, use this.

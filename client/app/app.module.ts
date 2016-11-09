@@ -20,7 +20,7 @@ import { FacebookComponent } from './navbar/fb.component';
 import { ProfilePageComponent } from './profile/profile-page.component';
 import { MovieDetailComponent } from './movie/movie-detail.component';
 import {ProfileUserDetailsComponent} from "./profile/profile-user-details.component";
-import {ProfileUserReviews} from "./profile/profile-user-reviews.component";
+import {ProfileUserReviewComponent} from "./profile/profile-user-reviews.component";
 import {ProfileUserReview} from "./profile/profile-user-review.component";
 import { ReviewRatingFilterPipe } from "./movie/pipes/review-rating-filter.pipe";
 import { ReviewUserFilterPipe } from "./movie/pipes/review-user-filter.pipe";
@@ -62,7 +62,7 @@ import { AuthGuard } from "./common/auth.guard";
         ProfilePageComponent,
         MovieDetailComponent,
         ProfileUserDetailsComponent,
-        ProfileUserReviews,
+        ProfileUserReviewComponent,
         ProfileUserReview,
         ReviewRatingFilterPipe,
         ReviewUserFilterPipe,

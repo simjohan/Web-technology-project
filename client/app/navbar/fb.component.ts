@@ -1,8 +1,6 @@
 /**
  * Created by Mats on 16.10.2016.
  */
-/// <reference path="../../typings/globals/fbsdk.d.ts" />
-
 import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
 import { DatabaseService } from './../db.service';
@@ -79,6 +77,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
                         console.log("IMGURL: " + self.imgurl);
 
                         self._databaseService.insertUser(self.id, self.name, self.email, self.imgurl);
+                        self.router.navigate(['/profile']);
 
                     });
                 });
@@ -111,6 +110,16 @@ export class FacebookComponent implements OnInit, OnDestroy{
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 _self.isUser = true;
+
+                FB.api('/me?fields=name,email,picture', function(me) {
+                    _self._ngZone.run(() => {
+                        _self.id = me.id;
+                        _self.name = me.name;
+                        _self.email = me.email;
+                        _self.imgurl = me.picture.data.url;
+                    });
+                });
+
             } else if (response.status === 'not_authorized') {
                 _self.isUser = false;
             } else {

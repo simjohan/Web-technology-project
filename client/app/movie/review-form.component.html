@@ -5,7 +5,7 @@
             <label for="title">Review title</label>
             <input type="text" class="form-control" id="title"
                    required
-                   [(ngModel)]="model.title" name="title">
+                   [(ngModel)]="model.title" name="title" placeholder="{{reviewByUser?.title}}">
         </div>
         <label for="rating">Rating</label>
         <select class="form-control" id="rating"
@@ -17,10 +17,12 @@
             <label for="review">Review text</label>
             <input type="text" class="form-control" id="review"
                    required
-                   [(ngModel)]="model.review" name="review">
+                   [(ngModel)]="model.review" name="review" placeholder="{{reviewByUser?.review}}">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-        <button type="button" class="btn btn-default" (click)="newReview()">New Review</button>
+        <div [hidden]="submitted">
+            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="button" class="btn btn-default" (click)="newReview()">New Review</button>
+        </div>
     </form>
 </div>
 <div *ngIf="isUser==false" class="review-form-container">
@@ -42,5 +44,4 @@
         <div class="col-xs-9 pull-left">{{ model.review }}</div>
     </div>
     <br>
-    <button class="btn btn-default" (click)="submitted=false">Edit</button>
 </div>

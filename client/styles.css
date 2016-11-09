@@ -60,5 +60,6 @@ body {
 }
 
 .navbar-search-field{
-    height: 23px;
+    height: 33px;
+    color: black;
 }
