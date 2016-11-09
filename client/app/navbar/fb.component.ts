@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
                     </div>
                     <div class="not-logged-in" *ngIf="isUser==false">
                         <button class="facebook button" (click)="facebookLogin()">
-                        Sign in
+                        Login
                     </button>
                     </div>
                 </div>    
@@ -109,14 +109,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
             if (response.status === 'connected') {
                 _self.isUser = true;
 
-                FB.api('/me?fields=name,email,picture', function(me) {
-                    _self._ngZone.run(() => {
-                        _self.id = me.id;
-                        _self.name = me.name;
-                        _self.email = me.email;
-                        _self.imgurl = me.picture.data.url;
-                    });
-                });
+                _self.facebookLogin();
 
             } else if (response.status === 'not_authorized') {
                 _self.isUser = false;

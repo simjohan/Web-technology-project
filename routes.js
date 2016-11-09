@@ -323,40 +323,6 @@ module.exports = function(app,io){
         );
     });
 
-
-    app.get('/api/reviews/specific-user-movie-reviews/:userId/:movieId', function (req, res) {
-        var reviews = [];
-
-        var stmt = db.prepare(
-            'SELECT * ' +
-            'FROM Reviews ' +
-            'WHERE movieId = ? AND userId = ?;'
-        );
-
-        var userId = req.params.userId;
-        var movieId = req.params.movieId;
-
-        stmt.each([movieId, userId],
-            function(err, row) {
-                console.log("Callback! ");
-                reviews = {
-                    "userId": row.userId,
-                    "movieId": row.movieId,
-                    "title": row.title,
-                    "rating": row.rating,
-                    "review": row.review
-                };
-            },
-            function() {
-                console.log("Complete!");
-
-                res.send({reviews});
-            }
-        );
-
-    });
-
-
     /*
         If all other options are exhausted, use this.
         Temp solution. This should be placed last.
