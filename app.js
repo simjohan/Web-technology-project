@@ -14,6 +14,9 @@ var file = "database.db";
 var exists = fs.existsSync(file);
 var sqlite3 = require("sqlite3").verbose();
 
+//Open db. Should fix the SQL_ERROR: DB LOCKED.
+var db = new sqlite3.Database(file);
+
 // Run initial database script
 
 //var mysql = require('mysql');
@@ -38,7 +41,7 @@ app.use( session({
     resave: false,
     saveUninitialized: false
 }));
-
+db.close();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );
 

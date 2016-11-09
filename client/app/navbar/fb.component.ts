@@ -1,8 +1,6 @@
 /**
  * Created by Mats on 16.10.2016.
  */
-/// <reference path="../../typings/globals/fbsdk.d.ts" />
-
 import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
 import forEach = require("core-js/fn/array/for-each");
 import { DatabaseService } from './../db.service';
@@ -79,6 +77,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
                         console.log("IMGURL: " + self.imgurl);
 
                         self._databaseService.insertUser(self.id, self.name, self.email, self.imgurl);
+                        self.router.navigate(['/profile']);
 
                     });
                 });
