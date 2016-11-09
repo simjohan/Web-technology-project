@@ -20,10 +20,10 @@ import { Router } from '@angular/router';
                     <div class="not-logged-in" *ngIf="isUser==false">
                         <button class="btn btn-facebook" (click)="facebookLogin()">
                             <div id="btn-image-container"><img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/></div>
-                            <span> Sign in </span>
-                    </button>
+                            <span> Login </span>
+                    </button> 
                     </div>
-                </div>    
+                </div>   
                 
             `,
     styleUrls: ['navbar.component.css']
@@ -111,14 +111,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
             if (response.status === 'connected') {
                 _self.isUser = true;
 
-                FB.api('/me?fields=name,email,picture', function(me) {
-                    _self._ngZone.run(() => {
-                        _self.id = me.id;
-                        _self.name = me.name;
-                        _self.email = me.email;
-                        _self.imgurl = me.picture.data.url;
-                    });
-                });
+                _self.facebookLogin();
 
             } else if (response.status === 'not_authorized') {
                 _self.isUser = false;
