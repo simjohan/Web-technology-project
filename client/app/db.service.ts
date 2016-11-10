@@ -14,7 +14,7 @@ export class DatabaseService {
     insertUser(id, name, email, imgurl){
         let body = JSON.stringify([id, name, email, imgurl]);
         let headers = new Headers();
-        let addUserUrl = 'http://localhost:3000/api/users/add/' + id;
+        let addUserUrl = '/api/users/add/' + id;
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({headers: headers});
         return this.http.post(addUserUrl, body, options).subscribe();
@@ -25,7 +25,7 @@ export class DatabaseService {
     insertMovie(id, title, viewCount){
         let body = JSON.stringify([id, title, viewCount]);
         let headers = new Headers();
-        let addMovieUrl = 'http://localhost:3000/api/movies/add/' + id;
+        let addMovieUrl = '/api/movies/add/' + id;
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({headers: headers});
         return this.http.post(addMovieUrl, body, options).subscribe();
@@ -34,7 +34,7 @@ export class DatabaseService {
     removeUser(id){
         let body = JSON.stringify([id]);
         let headers = new Headers();
-        let removeUserUrl = 'http://localhost:3000/api/users/remove/' + id;
+        let removeUserUrl = '/api/users/remove/' + id;
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({headers: headers});
         return this.http.post(removeUserUrl, body, options).subscribe();

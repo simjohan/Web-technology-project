@@ -26,7 +26,7 @@ if(!exists) {
         "title TEXT," +
         "rating TEXT," +
         "date DATETIME, " +
-        "PRIMARY KEY (userId, movieId)," +
+        "PRIMARY KEY (userId, movieId, date)," +
         "FOREIGN KEY(movieId) REFERENCES Movies(id)," +
         "FOREIGN KEY(userId) REFERENCES Users(id))";
 

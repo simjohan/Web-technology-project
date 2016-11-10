@@ -49,7 +49,7 @@ export class ReviewService {
         let body = JSON.stringify([userId, movieId, title, rating, review]);
         let headers = new Headers();
         let id = userId + movieId;
-        let addReviewUrl = 'http://localhost:3000/api/reviews/add/' + id;
+        let addReviewUrl = '/api/reviews/add/' + id;
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({headers: headers});
         return this.http.post(addReviewUrl, body, options).subscribe();
