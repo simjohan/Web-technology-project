@@ -304,9 +304,21 @@ module.exports = function(app,io){
         var rating = req.body[4];
 
         var date = new Date();
-        var dbDate = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+
+        var dd = date.getDate();
+        var mm = date.getMonth()+1; //January is 0!
+        var yyyy = date.getFullYear();
+
+        if(dd<10){
+            dd='0'+dd
+        }
+        if(mm<10){
+            mm='0'+mm
+        }
+
+        //var dbDate = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
         var dbTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        var finalDate = dbDate + ' ' + dbTime;
+        var finalDate = yyyy + "-" + mm + "-" + dd + " " + dbTime;
 
         dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
         res.send();
