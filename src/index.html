@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/"><!-- Makes it possible to use the app-routing.module-file -->
+    <title>MovieViewer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" href="app/styles.css">-->
+    <!-- Load bootstrap css -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <!-- 2. Configure SystemJS -->
+    <!--<script src="../systemjs.config.js"></script>-->
+    <!-- facebook sdk -->
+    <script src="//connect.facebook.net/en_US/all.js"></script>
+    <!-- Chart -->
+    <!--<script src="node_modules/chart.js/dist/chart.bundle.js"></script>-->
+    <script>
+        System.import('app').catch(function(err){ console.error(err); });
+    </script>
+</head>
+<!-- 3. Display the application -->
+<body>
+<my-app>Loading...</my-app>
+</body>
+</html>
