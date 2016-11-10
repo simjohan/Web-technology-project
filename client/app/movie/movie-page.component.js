@@ -48,7 +48,7 @@ var MoviePageComponent = (function () {
     MoviePageComponent.prototype.getReviews = function (movieId) {
         var _this = this;
         // Subscribe and update the reviews array whenever possible
-        this.reviewService.getPaginatedReviews(movieId, 2, this.offset).subscribe(function (data) { return _this.reviews = data; }, function (error) { return console.log(error); }, function () { return _this.summarizeRatings(_this.reviews); } // Execute function whenever reviews array is updated
+        this.reviewService.getPaginatedReviews(movieId, 2, this.offset).subscribe(function (data) { return _this.reviews = _this.reviews.concat(data); }, function (error) { return console.log(error); }, function () { return _this.summarizeRatings(_this.reviews); } // Execute function whenever reviews array is updated
          // Execute function whenever reviews array is updated
         );
     };
@@ -100,6 +100,7 @@ var MoviePageComponent = (function () {
             // Selector "movie" lets other components use the template into their own template
             selector: "movie",
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush,
             templateUrl: 'movie-page.component.html',
             // stylrUlrs tells the component where it can find the CSS-code that it is going to use
             styleUrls: ['movie-page.component.css'],
