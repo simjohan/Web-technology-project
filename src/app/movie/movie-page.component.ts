@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {Component, OnInit, HostListener, ChangeDetectionStrategy} from '@angular/core';
 import { ReviewService } from './review.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewRatingFilterPipe } from './pipes/review-rating-filter.pipe';
@@ -10,10 +10,11 @@ import { ReviewSorterPipe } from "./pipes/review-sorter.pipe";
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: "module.id",
+    moduleId: module.id,
     // Selector "movie" lets other components use the template into their own template
     selector: "movie",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: 'movie-page.component.html',
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['movie-page.component.css'],
@@ -31,13 +32,15 @@ export class MoviePageComponent{
     // Variables for days!
     sliderValue:number = 0;
     nameSearched:String = "";
-    toggle: boolean = false;
-    format: string = "";
-    ratingToggle:boolean = false;
-    nameToggle:boolean = false;
+    toggle = false;
+    format = "";
+    ratingToggle = false;
+    nameToggle = false;
+    offset = 0;
 
-    private reviews: any[] = [];
-    private movieId: any;
+
+    private reviews = [];
+    private movieId;
 
     constructor (private reviewService: ReviewService, private route: ActivatedRoute) {}
 
@@ -48,16 +51,15 @@ export class MoviePageComponent{
     }
 
     // Get all reviews for a specific movie id
-    getReviews(movieId: any):void {
+    getReviews(movieId):void {
         // Subscribe and update the reviews array whenever possible
-        this.reviewService.getReviews(movieId).subscribe(
-            data => this.reviews = data,
+        this.reviewService.getPaginatedReviews(movieId, 2, this.offset).subscribe(
+            data => this.reviews = this.reviews.concat(data),
             error => console.log(error),
             () => this.summarizeRatings(this.reviews) // Execute function whenever reviews array is updated
         );
     }
-
-
+    
     getDocumentHeight() {
         const body = document.body;
         const html = document.documentElement;
@@ -71,14 +73,14 @@ export class MoviePageComponent{
     loadReviews() {
         if ((document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
             console.debug("Scroll Event");
-
+            this.offset += 2;
             this.getReviews(this.movieId);
 
         }
     }
 
     // Summarizes the ratings to be presented in the doughnut chart
-    summarizeRatings(reviews: any){
+    summarizeRatings(reviews){
         this.reviewService.summarizeRatings(reviews).then(
             data => this.doughnutChartData = data,
             error => console.log(error)
