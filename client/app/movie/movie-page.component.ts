@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {Component, OnInit, HostListener, ChangeDetectionStrategy} from '@angular/core';
 import { ReviewService } from './review.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewRatingFilterPipe } from './pipes/review-rating-filter.pipe';
@@ -14,6 +14,7 @@ import { ReviewSorterPipe } from "./pipes/review-sorter.pipe";
     // Selector "movie" lets other components use the template into their own template
     selector: "movie",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: 'movie-page.component.html',
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['movie-page.component.css'],
@@ -35,6 +36,8 @@ export class MoviePageComponent{
     format = "";
     ratingToggle = false;
     nameToggle = false;
+    offset = 0;
+
 
     private reviews = [];
     private movieId;
@@ -50,14 +53,13 @@ export class MoviePageComponent{
     // Get all reviews for a specific movie id
     getReviews(movieId):void {
         // Subscribe and update the reviews array whenever possible
-        this.reviewService.getReviews(movieId).subscribe(
-            data => this.reviews = data,
+        this.reviewService.getPaginatedReviews(movieId, 2, this.offset).subscribe(
+            data => this.reviews = this.reviews.concat(data),
             error => console.log(error),
             () => this.summarizeRatings(this.reviews) // Execute function whenever reviews array is updated
         );
     }
-
-
+    
     getDocumentHeight() {
         const body = document.body;
         const html = document.documentElement;
@@ -71,7 +73,7 @@ export class MoviePageComponent{
     loadReviews() {
         if ((document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
             console.debug("Scroll Event");
-
+            this.offset += 2;
             this.getReviews(this.movieId);
 
         }

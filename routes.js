@@ -81,10 +81,20 @@ module.exports = function(app,io){
 
 
     // Get reviews based on movie with pagination
-    app.get('/api/get/reviews/:movie_id/:from/:to', function(req, res) {
+    app.get('/api/get/reviews/:movie_id/:chunk/:offset', function(req, res) {
 
-        var results = [];
-        var stmt = db.prepare('SELECT * FROM Reviews WHERE movieId = ? ')
+        var reviews = [];
+        var page = req.params.offset * 2;
+        var stmt = db.prepare('SELECT * FROM Reviews WHERE movieId = ? ORDER BY date DESC LIMIT ? OFFSET ?')
+
+        stmt.each([req.params.movie_id, req.params.chunk, req.params.offset],
+            function (err, row) {
+                reviews.push({"userid": row.userId, "title": row.title, "movieId": row.movieId, "review": row.review, "date": row.date, "rating": row.rating})
+            },
+            function() {
+                res.send({reviews})
+            }
+        )
 
     });
 
@@ -228,7 +238,7 @@ module.exports = function(app,io){
             'INNER JOIN Reviews ' +
             'ON Movies.id = Reviews.movieId ' +
             'GROUP BY Movies.id ' +
-            'ORDER BY datetime(Reviews.date) DESC ' +
+            'ORDER BY Reviews.date DESC ' +
             'LIMIT 5'
         );
 
