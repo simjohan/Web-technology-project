@@ -259,6 +259,7 @@ module.exports = function(app,io){
         var title = req.body[1];
         var viewCount = req.body[2];
         dbHandler.insertMovie(id, title, viewCount);
+        res.send();
     });
 
     // Fetch the post request and add item to database.
@@ -274,6 +275,7 @@ module.exports = function(app,io){
         // Dont call for insert if some attributes are undefined
         if (id != null && name != null && email != null && imgurl != null){
             dbHandler.insertUser(id, name, email, imgurl);
+            res.send();
         }
         else {
             console.log('req body is null!');
@@ -287,6 +289,7 @@ module.exports = function(app,io){
         var id = req.body[0];
         if (id != null){
             dbHandler.deleteUser(id);
+            res.send();
         }else {
             console.log('id is null');
         }
@@ -306,6 +309,7 @@ module.exports = function(app,io){
         var finalDate = dbDate + ' ' + dbTime;
 
         dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
+        res.send();
     });
 
     app.get('/api/users/get-user/:idUser', function (req, res) {
