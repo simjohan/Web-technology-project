@@ -14,7 +14,6 @@ import { ReviewSorterPipe } from "./pipes/review-sorter.pipe";
     // Selector "movie" lets other components use the template into their own template
     selector: "movie",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
-    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: 'movie-page.component.html',
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['movie-page.component.css'],
