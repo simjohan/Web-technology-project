@@ -317,8 +317,8 @@ module.exports = function(app,io){
         }
 
         //var dbDate = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
-        //var dbTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        var finalDate = yyyy + "-" + mm + "-" + dd;
+        var dbTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        var finalDate = yyyy + "-" + mm + "-" + dd + " " + dbTime;
 
         dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
         res.send();
