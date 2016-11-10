@@ -5,11 +5,7 @@ var exists = fs.existsSync(file);
 var sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(file);
 var routes = require('./routes.js');
-var util = require('util')
-
-/**
- * TODO: Node is asynchronous, so the data is not available to add to a list like this. FIX
- */
+var util = require('util');
 
 var dbCallback = function(callback) {
     console.log(callback);
@@ -175,7 +171,6 @@ exports.incrementViewCount = function(id){
     stmt.finalize();
 };
 
-// TODO: A review can now be added without the user or movie existing. Fix this.
 exports.addReview =  function(userId, movieId, review, title, rating, date) {
     var stmt = db.prepare('INSERT OR IGNORE INTO Reviews VALUES (?, ?, ?, ?, ?, ?);');
     stmt.run(userId, movieId, review, title, rating, date);
