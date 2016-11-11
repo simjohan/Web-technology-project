@@ -30,6 +30,7 @@ var ReviewService = (function () {
     ReviewService.prototype.getUserMovieReviews = function (userId, movieId) {
         return this.http.get(this.userMovieReviewsUrl + userId + "/" + movieId).map(function (res) { return res.json().reviews; });
     };
+    // Get a number of reviews depending on a chunk(how many to get) and an offset(what reviews to get)
     ReviewService.prototype.getPaginatedReviews = function (id, chunk, offset) {
         console.log(this.paginatedReviews + id + "/" + chunk + "/" + offset);
         return this.http.get(this.paginatedReviews + id + "/" + chunk + "/" + offset).map(function (res) { return res.json().reviews; });

@@ -1,9 +1,6 @@
-import {Component, OnInit, HostListener, ChangeDetectionStrategy} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import { ReviewService } from './review.service';
 import { ActivatedRoute } from '@angular/router';
-import { ReviewRatingFilterPipe } from './pipes/review-rating-filter.pipe';
-import { ReviewSorterPipe } from "./pipes/review-sorter.pipe";
-
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
  * how the component should be processed, instantiated and used at runtime.
@@ -35,8 +32,8 @@ export class MoviePageComponent{
     format = "";
     ratingToggle = false;
     nameToggle = false;
-    offset = 0;
 
+    offset = 0;
 
     private reviews = [];
     private movieId;
@@ -49,7 +46,7 @@ export class MoviePageComponent{
         this.getReviews(this.movieId);
     }
 
-    // Get all reviews for a specific movie id
+    // Get 2 reviews for a specific movie id
     getReviews(movieId):void {
         // Subscribe and update the reviews array whenever possible
         this.reviewService.getPaginatedReviews(movieId, 2, this.offset).subscribe(
@@ -58,7 +55,8 @@ export class MoviePageComponent{
             () => this.summarizeRatings(this.reviews) // Execute function whenever reviews array is updated
         );
     }
-    
+
+    // The height of the document
     getDocumentHeight() {
         const body = document.body;
         const html = document.documentElement;
@@ -68,6 +66,7 @@ export class MoviePageComponent{
             html.clientHeight, html.scrollHeight, html.offsetHeight)
     }
 
+    // Loads reviews if a scroll event takes place at the bottom of the page
     @HostListener('window:scroll', ['$event'])
     loadReviews() {
         if ((document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
