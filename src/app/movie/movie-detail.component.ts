@@ -36,7 +36,7 @@ export class MovieDetailComponent implements OnInit{
     }
 
     // Get a specific movie from the REST API based on id.
-    getMovie(userId):void {
+    getMovie(userId: any):void {
         this.movieService.getMovie(userId).subscribe(data => this.movie = data, error => console.log(error));
     }
 
