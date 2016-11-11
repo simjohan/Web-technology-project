@@ -11,7 +11,7 @@ export class ReviewRatingFilterPipe implements PipeTransform {
     transform(value: any, args?: any) {
         let minRating = args;
         let review = value;
-        let reviews = []; // Empty array to hold the new reviews
+        let reviews: any[] = []; // Empty array to hold the new reviews
         for (var i in review){
             let rating = +review[i].rating // Convert to number
             if (rating >= minRating){

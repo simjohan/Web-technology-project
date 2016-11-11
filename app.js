@@ -46,12 +46,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );
 
 
-// Check if project is packed with webpack. If not use the slow development mode.
-if (process.env.ENV == 'production'){
-    app.use(express.static(__dirname + '/dist'));
-}else{
-    app.use( express.static(__dirname + '/client' ) );
-}
+app.use( express.static(__dirname + '/client' ) );
 
 //Routes
 var Routes = require('./routes.js');

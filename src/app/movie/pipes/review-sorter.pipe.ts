@@ -6,7 +6,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 
 export class ReviewSorterPipe implements PipeTransform {
-    transform(value, args) {
+    transform(value: any, args: any) {
 
         if(!value) return; // Check if value is defined
 

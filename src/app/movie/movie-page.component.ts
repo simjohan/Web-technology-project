@@ -38,7 +38,7 @@ export class MoviePageComponent{
     offset: number = 0;
 
 
-    private reviews = [];
+    private reviews: any[] = [];
     private movieId: any;
 
     constructor (private reviewService: ReviewService, private route: ActivatedRoute) {}

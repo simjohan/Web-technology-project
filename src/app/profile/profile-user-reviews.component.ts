@@ -6,7 +6,7 @@ import {Component, Input} from '@angular/core';
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "profile-user-reviews" lets other components use the template into their own template
     selector: "profile-user-reviews",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
