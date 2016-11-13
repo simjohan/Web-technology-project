@@ -44,7 +44,7 @@ var MoviePageComponent = (function () {
         this.route.params.subscribe(function (params) { _this.movieId = params['id']; }); // get URL parameters
         this.getReviews(this.movieId);
     };
-    // Get all reviews for a specific movie id
+    // Get 2 reviews for a specific movie id
     MoviePageComponent.prototype.getReviews = function (movieId) {
         var _this = this;
         // Subscribe and update the reviews array whenever possible
@@ -52,11 +52,13 @@ var MoviePageComponent = (function () {
          // Execute function whenever reviews array is updated
         );
     };
+    // The height of the document
     MoviePageComponent.prototype.getDocumentHeight = function () {
         var body = document.body;
         var html = document.documentElement;
         return Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
     };
+    // Loads reviews if a scroll event takes place at the bottom of the page
     MoviePageComponent.prototype.loadReviews = function () {
         if ((document.body.scrollTop + 1) >= this.getDocumentHeight() - window.innerHeight) {
             console.debug("Scroll Event");

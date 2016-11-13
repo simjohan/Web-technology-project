@@ -1,5 +1,5 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
@@ -27,6 +27,7 @@ export class ReviewService {
         return this.http.get(this.userMovieReviewsUrl + userId + "/" + movieId).map(res=>res.json().reviews);
     }
 
+    // Get a number of reviews depending on a chunk(how many to get) and an offset(what reviews to get)
     getPaginatedReviews(id, chunk, offset): Observable<any>{
         console.log(this.paginatedReviews + id + "/" + chunk + "/" + offset);
         return this.http.get(this.paginatedReviews + id + "/" + chunk + "/" + offset).map(res => res.json().reviews);
