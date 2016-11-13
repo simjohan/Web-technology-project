@@ -1,6 +1,8 @@
-### Getting started
+A description of our application can be found under “Overview of the website”. We have chosen to focus on Angular 2.0, and reasoning for this can be found in “The choice between Angular 2.0 and React”. Therefore the Angular 2.0 code is in the master branch of the project. In the master branch the newest, running code is located. The code we delivered in assignment 3.2 is located in the React and Angular branches. The other branches are used while we code different parts of the application, and there might be outdated code in these.
+
+
+### Getting started: How to pack and run with webpack 
 -----------
-Run project: How to pack and run with webpack 
 1. Clone the project > 
 git clone -b webpack https://bitbucket.org/trondaal/it2810-10-oppgave-3.git
 
