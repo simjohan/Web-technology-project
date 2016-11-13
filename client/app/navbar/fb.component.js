@@ -112,8 +112,8 @@ var FacebookComponent = (function () {
             selector: "facebook-component",
             // Providers tell the component which service to use.
             providers: [db_service_1.DatabaseService],
-            // Template shows how the page is to be rendered
-            template: "\n                <div class=\"facebook-item\">\n                    <div class=\"logged-in\" *ngIf=\"isUser\">\n                        <button class=\"btn btn-facebook\" (click)=\"facebookLogout()\">\n                            <div id=\"btn-image-container\"><img  src=\"https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png\"/></div>\n                            <span>Logout</span>\n                        </button>\n                        <span><img class=\"navbar-facebook-img\" src=\"{{imgurl}}\"/> {{name}}</span>\n                    </div>\n                    <div class=\"not-logged-in\" *ngIf=\"isUser==false\">\n                        <button class=\"btn btn-facebook\" (click)=\"facebookLogin()\">\n                            <div id=\"btn-image-container\"><img  src=\"https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png\"/></div>\n                            <span> Login </span>\n                    </button> \n                    </div>\n                </div>   \n                \n            ",
+            //TemplateUrl tells the component where it can find the HTML-code it is going to show
+            templateUrl: "fb.component.html",
             // stylrUlrs tells the component where it can find the CSS-code that it is going to use
             styleUrls: ['navbar.component.css']
         }), 

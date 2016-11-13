@@ -15,25 +15,8 @@ import { Router } from '@angular/router';
     selector: "facebook-component",
     // Providers tell the component which service to use.
     providers: [DatabaseService],
-    // Template shows how the page is to be rendered
-    template: `
-                <div class="facebook-item">
-                    <div class="logged-in" *ngIf="isUser">
-                        <button class="btn btn-facebook" (click)="facebookLogout()">
-                            <div id="btn-image-container"><img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/></div>
-                            <span>Logout</span>
-                        </button>
-                        <span><img class="navbar-facebook-img" src="{{imgurl}}"/> {{name}}</span>
-                    </div>
-                    <div class="not-logged-in" *ngIf="isUser==false">
-                        <button class="btn btn-facebook" (click)="facebookLogin()">
-                            <div id="btn-image-container"><img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/></div>
-                            <span> Login </span>
-                    </button> 
-                    </div>
-                </div>   
-                
-            `,
+    //TemplateUrl tells the component where it can find the HTML-code it is going to show
+    templateUrl: "fb.component.html",
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['navbar.component.css']
 })

@@ -46,6 +46,7 @@ var MoviePageComponent = (function () {
     // Get 2 reviews for a specific movie id
     MoviePageComponent.prototype.getReviews = function (movieId) {
         var _this = this;
+        console.log("getReviews");
         // Subscribe and update the reviews array whenever possible
         this.reviewService.getPaginatedReviews(movieId, 2, this.offset).subscribe(function (data) { return _this.reviews = _this.reviews.concat(data); }, function (error) { return console.log(error); }, function () { return _this.summarizeRatings(_this.reviews); } // Execute function whenever reviews array is updated
          // Execute function whenever reviews array is updated
@@ -53,13 +54,16 @@ var MoviePageComponent = (function () {
     };
     // The height of the document, this is needed in the function loadReviews
     MoviePageComponent.prototype.getDocumentHeight = function () {
+        console.log("GetDocumentHeight");
         var body = document.body;
         var html = document.documentElement;
         return Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
     };
     // Loads reviews if a scroll event takes place at the bottom of the page
     MoviePageComponent.prototype.loadReviews = function () {
-        if ((document.body.scrollTop + 1) >= this.getDocumentHeight() - window.innerHeight) {
+        console.log("Load reviews");
+        if ((window.pageYOffset + 1 || document.documentElement.scrollTop + 1 || document.body.scrollTop + 1) >= this.getDocumentHeight() - window.innerHeight) {
+            console.log("Scroll event");
             console.debug("Scroll Event");
             this.offset += 2;
             this.getReviews(this.movieId);
