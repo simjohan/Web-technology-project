@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var review_service_1 = require("../movie/review.service");
+var review_service_1 = require("../movie-review/review.service");
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
  * how the component should be processed, instantiated and used at runtime.
@@ -20,7 +20,6 @@ var ProfilePageComponent = (function () {
         this._ngZone = _ngZone;
         ///Add a reviewTitle to the movie-review that is added in the movie-page.component.html
         this.reviewTitle = "ReviewTitle";
-        // Variables for days!
         this.sliderValue = 0;
         this.nameSearched = "";
         this.toggle = false;
@@ -39,7 +38,7 @@ var ProfilePageComponent = (function () {
     // On init of lifecycle call this function
     ProfilePageComponent.prototype.ngOnInit = function () {
         var self = this;
-        //Use the facebook-api to get the ID from the user that is logged in
+        //Use the facebook-api to get the ID from the user that is logged in, and call getUserReviews
         FB.api("/me", function (response) {
             self._ngZone.run(function () {
                 self.userId = response.id;
@@ -55,6 +54,7 @@ var ProfilePageComponent = (function () {
          // Execute function whenever reviews array is updated
         );
     };
+    //Used in loadReviews
     ProfilePageComponent.prototype.getDocumentHeight = function () {
         var body = document.body;
         var html = document.documentElement;
@@ -105,6 +105,7 @@ var ProfilePageComponent = (function () {
             templateUrl: 'profile-page.component.html',
             // stylrUlrs tells the component where it can find the CSS-code that it is going to use
             styleUrls: ['profile-page.component.css'],
+            // Providers tell the component which service to use.
             providers: [review_service_1.ReviewService]
         }), 
         __metadata('design:paramtypes', [review_service_1.ReviewService, core_1.NgZone])

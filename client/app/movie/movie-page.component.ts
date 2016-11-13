@@ -1,5 +1,5 @@
 import {Component, HostListener} from '@angular/core';
-import { ReviewService } from './review.service';
+import { ReviewService } from '../movie-review/review.service';
 import { ActivatedRoute } from '@angular/router';
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -25,7 +25,6 @@ export class MoviePageComponent{
     //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
     reviewTitle = "ReviewTitle";
 
-    // Variables for days!
     sliderValue:number = 0;
     nameSearched:String = "";
     toggle = false;
@@ -56,7 +55,7 @@ export class MoviePageComponent{
         );
     }
 
-    // The height of the document
+    // The height of the document, this is needed in the function loadReviews
     getDocumentHeight() {
         const body = document.body;
         const html = document.documentElement;

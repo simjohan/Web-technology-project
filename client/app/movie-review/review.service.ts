@@ -5,8 +5,9 @@ import { Observable }     from 'rxjs/Observable';
 @Injectable()
 export class ReviewService {
 
-    private reviewsUrl = '/api/specific-movie-reviews/';  // URL to web API
-    private userReviewsUrl = '/api/reviews/specific-user-reviews/'; // URL to web API
+    // URLs to web API
+    private reviewsUrl = '/api/specific-movie-reviews/';
+    private userReviewsUrl = '/api/reviews/specific-user-reviews/';
     private userMovieReviewsUrl = '/api/reviews/specific-user-movie-reviews/';
     private paginatedReviews = '/api/get/reviews/';
 
@@ -35,7 +36,7 @@ export class ReviewService {
 
     // Count the ratings and summarize them into an array
     // The array contains the number of each rating at their specific index
-    // If theres 2 ratings of 0, the value of reviewsRatings[0] will be 2
+    // If there's 2 ratings of 0, the value of reviewsRatings[0] will be 2
     summarizeRatings(reviews): Promise<any>{
         let reviewRatings = [0,0,0,0,0];
         for (let review of reviews) {
@@ -46,6 +47,7 @@ export class ReviewService {
         return Promise.resolve(reviewRatings);
     }
 
+    // Save the review to the database, via the API
     sendReview(userId, movieId, title, rating, review){
         let body = JSON.stringify([userId, movieId, title, rating, review]);
         let headers = new Headers();

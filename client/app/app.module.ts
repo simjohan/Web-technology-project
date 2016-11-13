@@ -15,18 +15,17 @@ import { FrontPageComponent } from "./home/front-page.component";
 import { MovieComponent } from "./movie/movie.component";
 import { MovieTitleComponent } from "./movie/movie-title.component";
 import { MoviePageComponent }   from "./movie/movie-page.component";
-import { MovieReviewComponent } from './movie/movie-review.component';
+import { MovieReviewComponent } from './movie-review/movie-review.component';
 import { FacebookComponent } from './navbar/fb.component';
 import { ProfilePageComponent } from './profile/profile-page.component';
 import { MovieDetailComponent } from './movie/movie-detail.component';
 import {ProfileUserDetailsComponent} from "./profile/profile-user-details.component";
 import {ProfileUserReviewComponent} from "./profile/profile-user-reviews.component";
-import {ProfileUserReview} from "./profile/profile-user-review.component";
-import { ReviewRatingFilterPipe } from "./movie/pipes/review-rating-filter.pipe";
-import { ReviewUserFilterPipe } from "./movie/pipes/review-user-filter.pipe";
-import { ReviewSorterPipe } from "./movie/pipes/review-sorter.pipe";
+import { ReviewRatingFilterPipe } from "./movie-review/pipes/review-rating-filter.pipe";
+import { ReviewUserFilterPipe } from "./movie-review/pipes/review-user-filter.pipe";
+import { ReviewSorterPipe } from "./movie-review/pipes/review-sorter.pipe";
 import { MovieSearchPageComponent } from "./movie-search/movie-search-page.component";
-import { ReviewFormComponent } from "./movie/review-form.component";
+import { ReviewFormComponent } from "./movie-review/review-form.component";
 
 
 /**
@@ -63,7 +62,6 @@ import { AuthGuard } from "./common/auth.guard";
         MovieDetailComponent,
         ProfileUserDetailsComponent,
         ProfileUserReviewComponent,
-        ProfileUserReview,
         ReviewRatingFilterPipe,
         ReviewUserFilterPipe,
         ReviewSorterPipe,

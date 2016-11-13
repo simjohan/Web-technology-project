@@ -85,11 +85,14 @@ module.exports = function(app,io){
 
         var reviews = [];
         var page = req.params.offset * 2;
-        var stmt = db.prepare('SELECT * FROM Reviews WHERE movieId = ? ORDER BY date DESC LIMIT ? OFFSET ?')
+        var stmt = db.prepare(
+            'SELECT r.userId, Users.name, r.title, r.movieId, r.review, r.date, r.rating ' +
+            'FROM Reviews AS r INNER JOIN Users ON r.userId = Users.id ' +
+            'WHERE movieId = ? ORDER BY date DESC LIMIT ? OFFSET ?');
 
         stmt.each([req.params.movie_id, req.params.chunk, req.params.offset],
             function (err, row) {
-                reviews.push({"userid": row.userId, "title": row.title, "movieId": row.movieId, "review": row.review, "date": row.date, "rating": row.rating})
+                reviews.push({"userid": row.userId, "username": row.name, "title": row.title, "movieId": row.movieId, "review": row.review, "date": row.date, "rating": row.rating})
             },
             function() {
                 res.send({reviews})

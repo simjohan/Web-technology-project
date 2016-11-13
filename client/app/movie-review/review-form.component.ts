@@ -1,22 +1,28 @@
-import {Component, OnInit, NgZone, Input, EventEmitter} from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 
 import { MovieReview } from './movie-review';
 import {ReviewService} from "./review.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 
+/**
+* @Component allows you to mark a class as an Angular component and provide additional metadata that determines
+* how the component should be processed, instantiated and used at runtime.
+*/
 
 @Component({
+    //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
     moduleId: module.id,
+    // Selector "movie-review" lets other components use the template into their own template
     selector: 'review-form',
+    //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'review-form.component.html'
-
 })
 
 
 export class ReviewFormComponent implements OnInit {
 
-    constructor(private reviewService : ReviewService, private route : ActivatedRoute, private _ngZone: NgZone){ }
+    constructor(private reviewService : ReviewService, private route : ActivatedRoute){ }
 
     userId = 0;
     movieId = 0;
@@ -45,6 +51,7 @@ export class ReviewFormComponent implements OnInit {
         });
     }
 
+    //Remove the text in the form, so it is possible to make a new review
     newReview(){
         this.submitted = false;
         this.model = new MovieReview(this.userId, this.movieId, '', '', this.ratings[0]);
@@ -52,6 +59,7 @@ export class ReviewFormComponent implements OnInit {
         setTimeout(() => this.active = true, 0);
     }
 
+    //When the page loads, get the login-status and movieid
     ngOnInit() {
         // get URL parameters
         let _self = this;

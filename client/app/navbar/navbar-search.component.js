@@ -30,6 +30,7 @@ var NavbarSearchComponent = (function () {
         core_1.Component({
             //Selector "nav-search" lets other components use the template into their own template.
             selector: "nav-search",
+            //Template contains the HTML-code it is going to show
             template: "\n        <input class=\"navbar-search-field\" type=\"text\" #box placeholder=\"Search...\" (keyup.enter)=\"searchMovies()\" [(ngModel)] = \"str\" maxlength=\"25\"/>\n        <input class=\"btn navbar-search-submit-btn\" type=\"submit\" value=\"Submit\" (click)=\"searchMovies()\">\n    ",
         }), 
         __metadata('design:paramtypes', [router_1.Router])

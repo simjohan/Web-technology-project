@@ -21,11 +21,11 @@ var MovieService = (function () {
         this.searchResultUrl = '/api/get/movies/';
         this.getAllMoviesUrl = '/api/get/movies';
     }
-    // Get ALL the movies
+    // Get ALL the movies from API
     MovieService.prototype.getAllMovies = function () {
         return this.http.get(this.getAllMoviesUrl).map(function (res) { return res.json().search_result; });
     };
-    // Get get newly reviwed movies
+    // Get get newly reviwed movies from API
     MovieService.prototype.getNewlyReviewedMovies = function () {
         return this.http.get(this.newlyReviewMoviesUrl).map(function (res) { return res.json().movies; });
     };

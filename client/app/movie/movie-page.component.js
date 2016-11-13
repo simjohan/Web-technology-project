@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var review_service_1 = require('./review.service');
+var review_service_1 = require('../movie-review/review.service');
 var router_1 = require('@angular/router');
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
@@ -21,7 +21,6 @@ var MoviePageComponent = (function () {
         this.route = route;
         //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
         this.reviewTitle = "ReviewTitle";
-        // Variables for days!
         this.sliderValue = 0;
         this.nameSearched = "";
         this.toggle = false;
@@ -52,7 +51,7 @@ var MoviePageComponent = (function () {
          // Execute function whenever reviews array is updated
         );
     };
-    // The height of the document
+    // The height of the document, this is needed in the function loadReviews
     MoviePageComponent.prototype.getDocumentHeight = function () {
         var body = document.body;
         var html = document.documentElement;
