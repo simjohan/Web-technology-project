@@ -17,41 +17,41 @@ The application can be viewed at localhost:80.
 
 
 ### Folder structure
-├── client/
-│   ├── app/
-│   │   ├── common/
-│   │   ├── home/
-│   │   ├── movie-review/
-│   │   ├── movie-search/
-│   │   ├── navbar/
-│   │   └── profile/
-├── config/
-│   ├── helpers.js
-│   ├── webpack.common.js
-│   ├── webpack.prod.js
-│   ├── webpack.test.js
-├── dist/ (after build)
-│   ├── app.[hash].css
-│   ├── app.[hash].css.map
-│   ├── app.[hash].js
-│   ├── app.[hash].js.map
-│   ├── index.html
-│   ├── polyfills.[hash].js
-│   ├── polyfills.[hash].js.map
-│   ├── vendor.[hash].js
-│   └── vendor.[hash].js.map
-├── node_modules/
-├── app.js
-├── database.db
-├── dbHandler.js
-├── dbInit.js
-├── package.json
-├── README.md
-├── routes.js
-├── systemjs.config.js
-├── tsconfig.json
-├── typings.json
-├── webpack.config.js
+| client/
+|   | app/
+|   |   | common/
+|   |   | home/
+|   |   | movie-review/
+|   |   | movie-search/
+|   |   | navbar/
+|   |   | profile/
+| config/
+|   | helpers.js
+|   | webpack.common.js
+|   | webpack.prod.js
+|   | webpack.test.js
+| dist/ (after build)
+|   | app.[hash].css
+|   | app.[hash].css.map
+|   | app.[hash].js
+|   | app.[hash].js.map
+|   | index.html
+|   | polyfills.[hash].js
+|   | polyfills.[hash].js.map
+|   | vendor.[hash].js
+|   | vendor.[hash].js.map
+| node_modules/
+| app.js
+| database.db
+| dbHandler.js
+| dbInit.js
+| package.json
+| README.md
+| routes.js
+| systemjs.config.js
+| tsconfig.json
+| typings.json
+| webpack.config.js
 
 
 [me@home]$ tree Python-2.7.3 --charset ascii | head -n 11  # ASCII only
