@@ -22,7 +22,7 @@ import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 import 'ng2-charts';
-import 'chart.js/dist/chart.bundle.js'
+import 'chart.js/dist/Chart.bundle.js'
 import 'angular-in-memory-web-api';
 
 import {enableProdMode} from '@angular/core';
