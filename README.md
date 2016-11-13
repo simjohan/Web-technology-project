@@ -23,14 +23,15 @@ Windows: From the task manager by stopping all node processes.
 Linux: From the terminal run “sudo ps -aux | grep node” to find the id of the node processes and then “sudo kill -9 <id>” to kill it.
 
 
-# Note about running the project: #
+### Note about running the project: 
 For some reason when building the app with webpack, it won’t allow us to have moduleId: module.id, but needs us to have “module.id” (a string instead). The string resulted in a crash when we tried it locally, so the first option wouldn’t work, but the webpack option worked. Because of the extreme performance boost of webpack we chose to stick with that version. 
 
 
-Supported browsers:
-Chrome
-Firefox
-Angular 2.0 default project files:
+### Supported browsers:
+* Chrome
+* Firefox
+
+### Angular 2.0 default project files:
 The files “package.json”, “tsconfig.json”, “typings.json” og “systemjs.config.js” describes how the application is supposed to be configured, for example how it should look for files and how the files are supposed to be compiled.
 
 
@@ -39,11 +40,11 @@ The “index.html” file will be the first file the browser will look for when 
 
 
 
-Naming conventions in Angular 2.0:
+### Naming conventions in Angular 2.0:
 The naming conventions in Angular 2.0 makes it easy to find what a file is supposed to be used for, and we have chosen to follow these.
 
 
-.component: 
+#### .component: 
 The files that includes “.component.” is components or files that supports a component, that we would see or use in the finished application. 
 
 
