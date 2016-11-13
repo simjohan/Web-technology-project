@@ -27,12 +27,12 @@ export class MovieService {
     }
 
     // Get a specific movie based on id variable from API
-    getMovie(id): Observable<any> {
+    getMovie(id: any): Observable<any> {
         return this.http.get(this.specificMovieUrl + id).map(res => res.json().movie);
     }
 
     // Get the movies associated with the search term from the API
-    getSearchResult(searchTerm) : Observable<any> {
+    getSearchResult(searchTerm: string) : Observable<any> {
         return this.http.get(this.searchResultUrl + searchTerm).map(res => res.json().search_result);
     }
 

@@ -6,7 +6,7 @@ import { Component, Input, OnChanges } from '@angular/core';
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "movie-review" lets other components use the template into their own template
     selector: "movie-review",
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
@@ -21,7 +21,7 @@ import { Component, Input, OnChanges } from '@angular/core';
  */
 export class MovieReviewComponent implements OnChanges  {
     //@Input() lets other components send in the values, which this component inputs here. This value can be used in the template.
-    @Input() review;
+    @Input() review: any;
     @Input() reviewTitle: string;
     @Input() rating: number;
     @Input() userName: string;

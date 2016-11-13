@@ -9,7 +9,7 @@ import { MovieService } from './../movie/movie.service';
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "movie" lets other components use the template into their own template
     selector: "movie-search-page",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
@@ -23,8 +23,8 @@ import { MovieService } from './../movie/movie.service';
 export class MovieSearchPageComponent implements  OnInit {
 
 
-    private searchTerm;
-    private searchResult;
+    private searchTerm: any;
+    private searchResult: any;
 
     constructor(
         private movieService: MovieService,
@@ -58,7 +58,7 @@ export class MovieSearchPageComponent implements  OnInit {
     }
 
     // Get movie based on search term
-    getSearchResult(searchTerm){
+    getSearchResult(searchTerm: string){
         this.movieService.getSearchResult(searchTerm).subscribe(
             data => this.searchResult = data, // Set searchResult when data is updated
             error => console.log(error)

@@ -7,7 +7,7 @@ import { ProfileService } from './profile.service';
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "profile-user-details" lets other components use the template into their own template
     selector: "profile-user-details",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
@@ -31,7 +31,7 @@ export class ProfileUserDetailsComponent  implements OnInit{
     ngOnInit() {
         let self = this;
         //Use the facebook-api to get the ID from the user that is logged in
-        FB.api("/me", function(response){
+        FB.api("/me", function(response: any){
             self._ngZone.run(() => {
                 self.getUserById(response.id);
             })
@@ -39,7 +39,7 @@ export class ProfileUserDetailsComponent  implements OnInit{
     }
 
     // Use the profileService to get a specific user from the REST API based on id.
-    getUserById(userNameId):void {
+    getUserById(userNameId: any):void {
         this.profileService.getUser(userNameId).subscribe(data => this.userById = data, error => console.log(error));
 
     }

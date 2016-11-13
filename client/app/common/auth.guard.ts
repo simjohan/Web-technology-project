@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
      */
     isLoggedIn(){
         var loggedIn = false;
-        FB.getLoginStatus(function(response) {
+        FB.getLoginStatus(function(response: any) {
             if (response.status === 'connected') {
                 loggedIn = true;
             } else if (response.status === 'not_authorized') {

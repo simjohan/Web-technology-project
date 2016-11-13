@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "movie" lets other components use the template into their own template
     selector: "facebook-component",
     // Providers tell the component which service to use.
@@ -40,11 +40,11 @@ import { Router } from '@angular/router';
 
 export class FacebookComponent implements OnInit, OnDestroy{
 
-    id="";
-    name="";
-    email="";
-    imgurl="";
-    isUser=false;
+    id: string = "";
+    name: string = "";
+    email: string = "";
+    imgurl: string = "";
+    isUser: boolean = false;
 
     /**
      * Constructor code from developers.facebook.com
@@ -65,9 +65,9 @@ export class FacebookComponent implements OnInit, OnDestroy{
      */
     facebookLogin(){
         var self = this;
-        FB.login(function(response) {
+        FB.login(function(response: any) {
             if (response.authResponse) {
-                FB.api('/me?fields=name,email,picture', function(me) {
+                FB.api('/me?fields=name,email,picture', function(me: any) {
                     self._ngZone.run(() => {
                         self.id = me.id;
                         self.name = me.name;
@@ -103,7 +103,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
      */
     facebookLogout(){
         let self = this;
-        FB.logout(function (response) {
+        FB.logout(function (response: any) {
             // User is logged out; update props
             self.isUser = false;
             //let idTest = localStorage.getItem('id');
@@ -117,7 +117,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
     // Fire when component is created
     ngOnInit() {
         let _self = this;
-        FB.getLoginStatus(function(response) {
+        FB.getLoginStatus(function(response: any) {
             if (response.status === 'connected') {
                 _self.isUser = true;
 

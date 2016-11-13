@@ -9,7 +9,7 @@ import {ReviewService} from "../movie-review/review.service";
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "profile" lets other components use the template into their own template
     selector: "profile",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
@@ -27,15 +27,15 @@ export class ProfilePageComponent {
     ///Add a reviewTitle to the movie-review that is added in the movie-page.component.html
     reviewTitle = "ReviewTitle";
 
-    sliderValue:number = 0;
-    nameSearched:String = "";
-    toggle = false;
-    format = "";
-    ratingToggle = false;
-    nameToggle = false;
+    sliderValue: number = 0;
+    nameSearched: String = "";
+    toggle: boolean = false;
+    format: string = "";
+    ratingToggle: boolean = false;
+    nameToggle: boolean = false;
 
-    private reviews = [];
-    private userId;
+    private reviews: any[] = [];
+    private userId: any;
 
     constructor (private reviewService: ReviewService, private _ngZone: NgZone) {}
 
@@ -43,7 +43,7 @@ export class ProfilePageComponent {
     ngOnInit() {
         let self = this;
         //Use the facebook-api to get the ID from the user that is logged in, and call getUserReviews
-        FB.api("/me", function(response){
+        FB.api("/me", function(response: any){
             self._ngZone.run(() => {
                 self.userId = response.id;
                 self.getUserReviews(response.id);
@@ -52,7 +52,7 @@ export class ProfilePageComponent {
     }
 
     // Get all reviews for a specific movie id
-    getUserReviews(userId):void {
+    getUserReviews(userId: any):void {
         // Subscribe and update the reviews array whenever possible
         this.reviewService.getUserReviews(userId).subscribe(
             data => this.reviews = data,
@@ -81,7 +81,7 @@ export class ProfilePageComponent {
     }
 
     // Summarizes the ratings to be presented in the doughnut chart
-    summarizeRatings(reviews){
+    summarizeRatings(reviews: any){
         this.reviewService.summarizeRatings(reviews).then(
             data => this.doughnutChartData = data,
             error => console.log(error)
