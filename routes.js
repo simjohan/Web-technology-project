@@ -238,7 +238,7 @@ module.exports = function(app,io){
         var stmt = db.prepare(
             'SELECT Movies.id AS moviesId, Movies.title AS moviesTitle, Movies.img_url AS moviesImg_url ' +
             'FROM Movies ' +
-            'INNER JOIN Reviews ' +
+            'LEFT JOIN Reviews ' +
             'ON Movies.id = Reviews.movieId ' +
             'GROUP BY Movies.id ' +
             'ORDER BY Reviews.date DESC ' +
