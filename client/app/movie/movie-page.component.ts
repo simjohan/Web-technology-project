@@ -47,6 +47,7 @@ export class MoviePageComponent{
 
     // Get 2 reviews for a specific movie id
     getReviews(movieId):void {
+        console.log("getReviews");
         // Subscribe and update the reviews array whenever possible
         this.reviewService.getPaginatedReviews(movieId, 2, this.offset).subscribe(
             data => this.reviews = this.reviews.concat(data),
@@ -57,6 +58,7 @@ export class MoviePageComponent{
 
     // The height of the document, this is needed in the function loadReviews
     getDocumentHeight() {
+        console.log("GetDocumentHeight");
         const body = document.body;
         const html = document.documentElement;
 
@@ -68,7 +70,9 @@ export class MoviePageComponent{
     // Loads reviews if a scroll event takes place at the bottom of the page
     @HostListener('window:scroll', ['$event'])
     loadReviews() {
-        if ((document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
+        console.log("Load reviews");
+        if ((window.pageYOffset+1 || document.documentElement.scrollTop+1 || document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
+            console.log("Scroll event");
             console.debug("Scroll Event");
             this.offset += 2;
             this.getReviews(this.movieId);
