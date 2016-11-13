@@ -1,5 +1,5 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
@@ -14,21 +14,20 @@ export class ReviewService {
     constructor (private http: Http) {}
 
     // get the reviews from the API url, use id to find reviews for specific movie
-    getReviews(id: any): Observable<any> {
+    getReviews(id: string): Observable<any> {
         return this.http.get(this.reviewsUrl + id).map(res => res.json().reviews);
     }
 
     // get the user reviews from the API url
-    getUserReviews(id: any): Observable<any> {
+    getUserReviews(id: string): Observable<any> {
         return this.http.get(this.userReviewsUrl + id).map(res => res.json().reviews);
     }
 
     //Get the review the given user have written for the given movie
-    getUserMovieReviews(userId: any, movieId: any): Observable<any>{
+    getUserMovieReviews(userId: string, movieId: string): Observable<any>{
         return this.http.get(this.userMovieReviewsUrl + userId + "/" + movieId).map(res=>res.json().reviews);
     }
 
-    // Get a number of reviews depending on a chunk(how many to get) and an offset(what reviews to get)
     getPaginatedReviews(id: any, chunk: any, offset: any): Observable<any>{
         console.log(this.paginatedReviews + id + "/" + chunk + "/" + offset);
         return this.http.get(this.paginatedReviews + id + "/" + chunk + "/" + offset).map(res => res.json().reviews);
@@ -48,7 +47,7 @@ export class ReviewService {
     }
 
     // Save the review to the database, via the API
-    sendReview(userId: any, movieId: any, title: any, rating: any, review: any){
+    sendReview(userId: number, movieId: number, title: string, rating: number, review: string){
         let body = JSON.stringify([userId, movieId, title, rating, review]);
         let headers = new Headers();
         let id = userId + movieId;

@@ -28,7 +28,7 @@ export class MovieReviewComponent implements OnChanges  {
     @Input() ratingText: string;
 
     private stars: String = "";
-    private showElement = false;
+    private showElement: boolean = false;
 
     // Listen to changes
     ngOnChanges(){

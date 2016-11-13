@@ -26,12 +26,12 @@ export class ReviewFormComponent implements OnInit {
 
     userId: number = 0;
     movieId: number = 0;
-    isUser = false;
+    isUser: boolean = false;
 
-    ratings: any[] = [0, 1, 2, 3, 4, 5];
+    ratings: any = [0, 1, 2, 3, 4, 5];
 
 
-    model = new MovieReview(this.userId, this.movieId, '', '', this.ratings[0]);
+    model: any = new MovieReview(this.userId, this.movieId, '', '', this.ratings[0]);
     submitted: boolean = false;
     active: boolean = true;
 

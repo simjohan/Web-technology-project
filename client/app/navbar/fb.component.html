@@ -1,0 +1,19 @@
+<div class="facebook-item">
+    <div class="logged-in" *ngIf="isUser">
+        <button class="btn btn-facebook" (click)="facebookLogout()">
+            <div class="btn-image-container">
+                <img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/>
+                <span>Logout</span>
+            </div>
+        </button>
+        <span><img class="navbar-facebook-img" src="{{imgurl}}"/> {{name}}</span>
+    </div>
+    <div class="not-logged-in" *ngIf="isUser==false">
+        <button class="btn btn-facebook" (click)="facebookLogin()">
+            <div class="btn-image-container">
+                <img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/>
+                <span> Login </span>
+            </div>
+        </button>
+    </div>
+</div>
