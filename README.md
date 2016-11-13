@@ -1,18 +1,20 @@
 A description of our application can be found under “Overview of the website”. We have chosen to focus on Angular 2.0, and reasoning for this can be found in “The choice between Angular 2.0 and React”. Therefore the Angular 2.0 code is in the master branch of the project. In the master branch the newest, running code is located. The code we delivered in assignment 3.2 is located in the React and Angular branches. The other branches are used while we code different parts of the application, and there might be outdated code in these.
+The website can be found on http://it2810-10.idi.ntnu.no.
 
 
 ### Getting started: How to pack and run with webpack 
 -----------
 1. Clone the project > 
-git clone -b webpack https://bitbucket.org/trondaal/it2810-10-oppgave-3.git
+git clone https://bitbucket.org/trondaal/it2810-10-oppgave-3.git
 
 
-2. cd it2810-10-oppgave-3
+2. Change to the project folder >
+cd it2810-10-oppgave-3
 
 3. Run npm install in the root directory. This will install the necessary dependencies required for webpack
 
 
-4. Run npm start to build the production pack for the project. This will build the dist/ folder and run the project from there. This will run the server with forever js, which 
+4. Run npm start to build the production pack for the project. This will build the dist/ folder and run the project from there. This will run the server with forever js, which runs the node server “forever”. 
 
 
 5. Access the website through http://localhost:80/ 
@@ -22,6 +24,8 @@ git clone -b webpack https://bitbucket.org/trondaal/it2810-10-oppgave-3.git
 Windows: From the task manager by stopping all node processes. 
 Linux: From the terminal run “sudo ps -aux | grep node” to find the id of the node processes and then “sudo kill -9 <id>” to kill it.
 
+### Note about the facebook login:
+Because we now have delivered the project, and launched the page to it2810-10.idi.ntnu.no, we also had to turn off developer mode in the facebook application. This also meant that we had to change the home page url of the app to it2810-10.idi.ntnu.no. Because of this, the login won’t work on localhost. A fix for this could be to create your own facebook app, and just replace our app id with yours, and set the homepage to localhost. The login functionality can be seen to work on the server: it2810-10.idi.ntnu.no.
 
 ### Note about running the project: 
 For some reason when building the app with webpack, it won’t allow us to have moduleId: module.id, but needs us to have “module.id” (a string instead). The string resulted in a crash when we tried it locally, so the first option wouldn’t work, but the webpack option worked. Because of the extreme performance boost of webpack we chose to stick with that version. 
@@ -62,11 +66,17 @@ To be able to differentiate between the client side and the server side of the a
 | client/
 |   | app/
 |   |   | common/
+|   |   |   | ...
 |   |   | home/
+|   |   |   | ...
 |   |   | movie-review/
+|   |   |   | ...
 |   |   | movie-search/
+|   |   |   | ...
 |   |   | navbar/
+|   |   |   | ...
 |   |   | profile/
+|   |   |   | ...
 | config/
 |   | helpers.js
 |   | webpack.common.js
@@ -181,9 +191,9 @@ We have also discussed the tutorials, and find the one in Angular 2.0 to be easi
 * If a user is logged into facebook before the database is created, the user won’t be added to the database if the user has already approved the application.
 * Fix so reviews that are written to a movie are added to the list of reviews, without needing to reload the page.
 * More user / profile page functionality:
-  * Add followers to users
-  * Show user pages of other users
-  * Add description on the profile page of a user
+    * Add followers to users
+    * Show user pages of other users
+    * Add description on the profile page of a user
 * Add possibility to edit reviews
 * Fix so a review only can be added with the user and movie existing
 * For some reason when running the app initially, when it has to initialize and create the database, it will get the SQLITE_LOCKED error and will crash. It only happens sometimes, so it wasn’t a high priority for the project. We know it is caused by having two accesses to the database in the init phase, and sometimes the first transaction has not completed before the second tries to connect.
