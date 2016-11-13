@@ -2,13 +2,13 @@
   "name": "it2810-10-oppgave-3-angular",
   "version": "1.0.0",
   "scripts": {
-    "start": "node server.js",
+    "start": "node app.js",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings",
-    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
+    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail && node app.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -71,7 +71,7 @@
   "main": "db-handler.js",
   "repository": {
     "type": "git",
-    "url": "git+https://thoalm@bitbucket.org/trondaal/it2810-10-oppgave-3.git"
+    "url": "git+https://bitbucket.org/trondaal/it2810-10-oppgave-3.git"
   },
   "author": "",
   "homepage": "https://bitbucket.org/trondaal/it2810-10-oppgave-3#readme"

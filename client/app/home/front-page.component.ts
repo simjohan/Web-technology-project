@@ -1,4 +1,4 @@
-import { Component, OnInit, PipeTransform, Pipe } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map'
 import { MovieService } from './../movie/movie.service';
 import { FrontPageService } from './front-page.service';
@@ -14,8 +14,9 @@ import { FrontPageService } from './front-page.service';
     selector: "front-page",
      //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'front-page.component.html',
-    // stylrUlrs tells the component where it can find the CSS-code that it is going to use
+    // styleUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['front-page.component.css'],
+    // The providers are the services that lets us use their functions
     providers: [MovieService, FrontPageService]
 })
 
@@ -31,6 +32,9 @@ export class FrontPageComponent implements  OnInit {
 
     private recentlyVisitedMovies: Object = [];
 
+    /**
+     * Runs the getMovies and gerRecentlyVisitedMovies when the page is loaded
+     */
     ngOnInit() {
         this.getMovies();
         this.getRecentlyVisitedMovies();
@@ -38,12 +42,17 @@ export class FrontPageComponent implements  OnInit {
 
     data: Object;
 
+    /**
+     * Uses the movieService to get the newly reviewed movies, and store it in the data variable
+     */
     getMovies():void {
       this.movieService.getNewlyReviewedMovies().subscribe(data => this.data = data, error => console.log(error));
     }
 
 
-
+    /**
+     * Uses the frontPageService to get the recently visited movies, and store it in the recentlyVisitedMovies variable
+     */
     getRecentlyVisitedMovies(): void {
         this.frontPageService.recentlyVisitedMovies().subscribe(data => this.recentlyVisitedMovies = data, error => console.log(error));
     }

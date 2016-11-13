@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 @Component ({
     //Selector "nav-search" lets other components use the template into their own template.
     selector: "nav-search",
+    //Template contains the HTML-code it is going to show
     template:`
         <input class="navbar-search-field" type="text" #box placeholder="Search..." (keyup.enter)="searchMovies()" [(ngModel)] = "str" maxlength="25"/>
         <input class="btn navbar-search-submit-btn" type="submit" value="Submit" (click)="searchMovies()">

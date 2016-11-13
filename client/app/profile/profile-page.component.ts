@@ -1,7 +1,6 @@
 import {Component, HostListener, NgZone} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
-import {ReviewService} from "../movie/review.service";
+import {ReviewService} from "../movie-review/review.service";
 
 
 /**
@@ -17,6 +16,7 @@ import {ReviewService} from "../movie/review.service";
     templateUrl: 'profile-page.component.html',
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['profile-page.component.css'],
+    // Providers tell the component which service to use.
     providers: [ReviewService]
 })
 
@@ -27,9 +27,8 @@ export class ProfilePageComponent {
     ///Add a reviewTitle to the movie-review that is added in the movie-page.component.html
     reviewTitle = "ReviewTitle";
 
-    // Variables for days!
-    sliderValue:number = 0;
-    nameSearched:String = "";
+    sliderValue: number = 0;
+    nameSearched: String = "";
     toggle: boolean = false;
     format: string = "";
     ratingToggle: boolean = false;
@@ -43,7 +42,7 @@ export class ProfilePageComponent {
     // On init of lifecycle call this function
     ngOnInit() {
         let self = this;
-        //Use the facebook-api to get the ID from the user that is logged in
+        //Use the facebook-api to get the ID from the user that is logged in, and call getUserReviews
         FB.api("/me", function(response: any){
             self._ngZone.run(() => {
                 self.userId = response.id;
@@ -62,7 +61,7 @@ export class ProfilePageComponent {
         );
     }
 
-
+    //Used in loadReviews
     getDocumentHeight() {
         const body = document.body;
         const html = document.documentElement;
@@ -78,7 +77,6 @@ export class ProfilePageComponent {
             console.debug("Scroll Event");
 
             this.getUserReviews(this.userId);
-
         }
     }
 

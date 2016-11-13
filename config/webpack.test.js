@@ -24,12 +24,12 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                exclude: helpers.root('src', 'app'),
+                exclude: helpers.root('client', 'app'),
                 loader: 'null'
             },
             {
                 test: /\.css$/,
-                include: helpers.root('src', 'app'),
+                include: helpers.root('client', 'app'),
                 loader: 'raw'
             }
         ]

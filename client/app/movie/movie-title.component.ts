@@ -18,5 +18,5 @@ import { Component, Input } from '@angular/core';
  */
 export class MovieTitleComponent {
     //@Input() lets other components send in a titleValue, which this component inputs here. This value can be used in the template.
-    @Input() titleValue: string = "No title given :O";
+    @Input() titleValue = "No title given :O";
 }
