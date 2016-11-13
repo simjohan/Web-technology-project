@@ -66,6 +66,7 @@ To be able to differentiate between the client side and the server side of the a
 | client/
 |   | app/
 |   |   | common/
+|   |   |   | ...
 |   |   | home/
 |   |   | movie-review/
 |   |   | movie-search/
