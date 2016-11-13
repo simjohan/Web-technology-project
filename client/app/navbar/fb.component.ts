@@ -27,8 +27,10 @@ import { Router } from '@angular/router';
                     </div>
                     <div class="not-logged-in" *ngIf="isUser==false">
                         <button class="btn btn-facebook" (click)="facebookLogin()">
-                            <div id="btn-image-container"><img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/></div>
-                            <span> Login </span>
+                            <div id="btn-image-container">
+                                <img  src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png"/>
+                                <span> Login </span>
+                            </div>
                     </button> 
                     </div>
                 </div>   

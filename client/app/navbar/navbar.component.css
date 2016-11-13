@@ -58,6 +58,11 @@
     justify-content: space-around;
 }
 
+#btn-image-container {
+    display:flex;
+    align-items: center;
+}
+
 #btn-image-container img{
     height: 20px;
     width: 20px;
