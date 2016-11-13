@@ -5,10 +5,11 @@ The website can be found on http://it2810-10.idi.ntnu.no.
 ### Getting started: How to pack and run with webpack 
 -----------
 1. Clone the project > 
-git clone -b webpack https://bitbucket.org/trondaal/it2810-10-oppgave-3.git
+git clone https://bitbucket.org/trondaal/it2810-10-oppgave-3.git
 
 
-2. cd it2810-10-oppgave-3
+2. Change to the project folder >
+cd it2810-10-oppgave-3
 
 3. Run npm install in the root directory. This will install the necessary dependencies required for webpack
 
