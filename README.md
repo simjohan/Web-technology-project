@@ -177,18 +177,13 @@ We have also discussed the tutorials, and find the one in Angular 2.0 to be easi
 * Session is also implemented to handle recently viewed movies.
 * The application has a “fancy” alternative to a view of the list. This is implemented by showing the rating of a given movie in a graph.
 
-
-
-
-
-
-Things we would have added or fixed if we had more time 
-If a user is logged into facebook before the database is created, the user won’t be added to the database if the user has already approved the application.
-Fix so reviews that are written to a movie are added to the list of reviews, without needing to reload the page.
-More user / profile page functionality:
-Add followers to users
-Show user pages of other users
-Add description on the profile page of a user
-Add possibility to edit reviews
-Fix so a review only can be added with the user and movie existing
-For some reason when running the app initially, when it has to initialize and create the database, it will get the SQLITE_LOCKED error and will crash. It only happens sometimes, so it wasn’t a high priority for the project. We know it is caused by having two accesses to the database in the init phase, and sometimes the first transaction has not completed before the second tries to connect.
+### Things we would have added or fixed if we had more time 
+* If a user is logged into facebook before the database is created, the user won’t be added to the database if the user has already approved the application.
+* Fix so reviews that are written to a movie are added to the list of reviews, without needing to reload the page.
+* More user / profile page functionality:
+* * Add followers to users
+* * Show user pages of other users
+* * Add description on the profile page of a user
+* Add possibility to edit reviews
+* Fix so a review only can be added with the user and movie existing
+* For some reason when running the app initially, when it has to initialize and create the database, it will get the SQLITE_LOCKED error and will crash. It only happens sometimes, so it wasn’t a high priority for the project. We know it is caused by having two accesses to the database in the init phase, and sometimes the first transaction has not completed before the second tries to connect.
