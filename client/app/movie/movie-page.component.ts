@@ -68,7 +68,7 @@ export class MoviePageComponent{
     // Loads reviews if a scroll event takes place at the bottom of the page
     @HostListener('window:scroll', ['$event'])
     loadReviews() {
-        if ((document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
+        if ((window.pageYOffset+1 || document.documentElement.scrollTop+1 || document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
             console.debug("Scroll Event");
             this.offset += 2;
             this.getReviews(this.movieId);
