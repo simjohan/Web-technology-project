@@ -22,6 +22,8 @@ git clone -b webpack https://bitbucket.org/trondaal/it2810-10-oppgave-3.git
 Windows: From the task manager by stopping all node processes. 
 Linux: From the terminal run “sudo ps -aux | grep node” to find the id of the node processes and then “sudo kill -9 <id>” to kill it.
 
+### Note about the facebook login:
+Because we now have delivered the project, and launched the page to it2810-10.idi.ntnu.no, we also had to turn off developer mode in the facebook application. This also meant that we had to change the home page url of the app to it2810-10.idi.ntnu.no. Because of this, the login won’t work on localhost. A fix for this could be to create your own facebook app, and just replace our app id with yours, and set the homepage to localhost. The login functionality can be seen to work on the server: it2810-10.idi.ntnu.no.
 
 ### Note about running the project: 
 For some reason when building the app with webpack, it won’t allow us to have moduleId: module.id, but needs us to have “module.id” (a string instead). The string resulted in a crash when we tried it locally, so the first option wouldn’t work, but the webpack option worked. Because of the extreme performance boost of webpack we chose to stick with that version. 
