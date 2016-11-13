@@ -96,5 +96,34 @@ To be able to differentiate between the client side and the server side of the a
 | webpack.config.js
 ```
 
-# client/
-This is where
+#### client folder:
+Inside the client folder you find an “app” folder, which contains the different components, services and providers that are needed for the application. The different component groups have their own folders. Therefore we have the common file auth.guard.ts inside the common folder, and everything that has to do with the home page in the home folder, movie-reviews in the movie-review folder, movie search in movie-search folder, navigation bar at the top of the page in the navbar folder and profile page in the profile folder. These are the files that are served to the user (client).
+
+
+#### config folder:
+The config folder has 4 config files for webpack. These are files required to pack the project with webpack. One could have made it into one file, but we felt it was cleaner with separate files. The way it is now makes it very easy to build a webpack.dev.js file, which will use the webpack.common.js file and build further on it. The webpack.prod.js file is the main file used for packing the application for production, and it uses the common and the helper file to do so.
+
+
+#### dist folder:
+The dist folder has the distribution files, which are the packed files from webpack. They consist of the app files, index.html, vendor files, and polyfill files. The polyfills file imports core-js functionality required, while the vendor file is for importing other frameworks like bootstrap, jquery and rxjs.
+This is also the folder which the app.js file gets the app files to serve (through the new index.html file).
+
+
+### Database files
+The database files are separated into two different files: “db.init.js” and “db.handler.js”. The first file is responsible for initializing the database: create tables with attributes and add some dummy data. The handler file is used to handle different database transactions like adding a user to the database or getting reviews from it. 
+
+
+### Facebook API
+fb.component.ts inside the “\app\navbar” folder is a component that handles call to the Facebook API. The button has a (click)-functionality that calls login and logout, and gets userdata from the API. At the moment we get name, email and image url. 
+
+
+### Choosing SQLite:
+SQLite is a fast open source database. SQLite was chosen because it offers very easy setup and connection and since it’s an internal database it should perform faster than other alternatives. Almost all major frameworks/languages have native support for this database, and we felt that it would be too tedious to use time figuring out how to configure i.e MySQL or Oracle. Since our application will not scale to support millions of requests a full blown RDBMS is not necessary. Our group also had previous experience using SQLite which was a plus. 
+
+
+### Choosing Webpack
+The “packing tool” most talked about was webpack, and it also had most documentation, which is why we chose it to pack our angular files. We needed webpack to pack the files, or we would’ve had 30 seconds to 2 minutes to serve the web page to the user. And these loading times would then happen again if we were to refresh the web page. With webpack we got it down to “normal” times of mere seconds to serve the web page initially.
+
+
+### The choice between Angular 2.0 and React
+To be able to choose between Angular 2.0 and React, we first listed all the positive and negative information we had about each technology.
