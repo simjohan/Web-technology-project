@@ -13,4 +13,4 @@ Getting started
 
 This will pack the project with Webpack and run it afterwards!
 
-The application can be viewed at localhost:3000.
+The application can be viewed at localhost:80.
