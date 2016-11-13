@@ -127,3 +127,37 @@ The “packing tool” most talked about was webpack, and it also had most docum
 
 ### The choice between Angular 2.0 and React
 To be able to choose between Angular 2.0 and React, we first listed all the positive and negative information we had about each technology.
+
+#### Positives about Angular 2.0:
+* It is seems to be straightforward to use, especially when you look at routing because this is described well in the toturial
+* It looks complete, and does not look like we would need to look for extra libraries to be able to complete our task.
+* As a group with limited time to finish the task, to choose Angular 2.0 instead of React might be a smart move, because in React we would need discussions about which extra libraries we would want to use.
+* It seems precise, because it is only one way to declare a component if we continue  to use TypeScript
+* Good documented
+* Good toturial
+
+#### Negatives about Angular 2.0:
+* There are many files and imports we would need to keep an overview over
+* The whole group need to learn TypeScript and Angular specific syntax if we choose to continue to use this
+* There has been cases where group members have experienced that the application won’t start because of a syntax error in the code, and where Angular have not made an alert for it
+* It could be difficult to find answers to new problems because the framework is new. It is possible no one else have had the same problem before.
+
+#### Positives about React:
+* Freedom of choice: we can choose what libraries we want to include. They are also pretty easy to find if you already know what kind of library you need.
+* The application will only need the libraries we want to use
+* Good documentation
+* JSX makes the code easy to read for those who have used html and javascript earlier - something everyone in this subject should know
+* Usually provides good and accurate error messages. You do not need to look for the error yourself.
+* Easy to find someone else on the internet with the same problem, and with an answer that we can use.
+
+#### Negatives about React: 
+* We would need to find the libraries we would need to complete the application we want to make - this will add time to discuss these choices in the group
+* We would need to discuss how we want to write the code, or the code will become messy. - It exists more than one way to declare a component.
+* More confusing tutorial than the one Angular have.
+* If the application is going to be used later, we would need to be careful to install updates from the libraries we use. We would also need to check if they will work in the same ways, so that they do not suddenly do something different than what we expect.
+* It could be difficult to find answers to new problems in the newest libraries we might use. It is possible no one else have had the same problem before.
+
+#### Conclusion:
+We choose Angular 2.0, because we think that might be a waste of time to discuss which libraries we want to add to React, even though this might gives us more freedom of choice. Also, our experience at this time is that it is simpler to implement the facebook-API in Angular 2.0 than in React.
+
+We have also discussed the tutorials, and find the one in Angular 2.0 to be easier to understand. This might make it easy to learn Angular, even though it won’t be as easy as to read JSX (for those who already know HTML and JavaScript already). Another thing we have discussed is that we think that Angular gives enough feedback on errors that this won’t be a problem, even though we think React is a bit better and faster to give the feedback.
