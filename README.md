@@ -48,7 +48,7 @@ The naming conventions in Angular 2.0 makes it easy to find what a file is suppo
 The files that includes “.component.” is components or files that supports a component, that we would see or use in the finished application. 
 
 
-.module:
+### .module:
 The files that includes “.module.” is the ones that are responsible for defining which modules we include from the Angular framework and how we use them. 
 
 
@@ -56,6 +56,8 @@ The file “app-routing.module.ts” lets us describe how to use Routing from th
 
 
 ### Folder structure
+To be able to differentiate between the client side and the server side of the application, all client side files are placed in the client folder. The server side files are outside the client folder. 
+
 ``` ruby
 | client/
 |   | app/
