@@ -3,7 +3,7 @@ var parseurl = require('parseurl');
 var file = "database.db";
 var sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(file);
-var dbHandler = require('./dbHandler');
+var dbHandler = require('./db.handler');
 
 module.exports = function(app,io){
 

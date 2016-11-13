@@ -6,8 +6,8 @@ var SQLiteStore = require('connect-sqlite3')(session);
 var bodyParser = require('body-parser');
 
 // Database stuff here
-var dbInit = require('./dbInit.js');
-var dbHandler = require('./dbHandler.js');
+var dbInit = require('./db.init.js');
+var dbHandler = require('./db.handler.js');
 
 var fs = require("fs");
 var file = "database.db";

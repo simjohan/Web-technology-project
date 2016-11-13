@@ -44,8 +44,8 @@ The application can be viewed at localhost:80.
 | node_modules/
 | app.js
 | database.db
-| dbHandler.js
-| dbInit.js
+| db.handler.js
+| db.init.js
 | package.json
 | README.md
 | routes.js
