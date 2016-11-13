@@ -161,3 +161,34 @@ To be able to choose between Angular 2.0 and React, we first listed all the posi
 We choose Angular 2.0, because we think that might be a waste of time to discuss which libraries we want to add to React, even though this might gives us more freedom of choice. Also, our experience at this time is that it is simpler to implement the facebook-API in Angular 2.0 than in React.
 
 We have also discussed the tutorials, and find the one in Angular 2.0 to be easier to understand. This might make it easy to learn Angular, even though it won’t be as easy as to read JSX (for those who already know HTML and JavaScript already). Another thing we have discussed is that we think that Angular gives enough feedback on errors that this won’t be a problem, even though we think React is a bit better and faster to give the feedback.
+
+### Implementation of the requirements in this task:
+* We have implemented an application of the type “catalog” by storing movies.
+* We use node.js on the server side, and the webpage is now up and running on http://it2810-10.idi.ntnu.no/
+* Our application uses Angular 2.0.
+* We have chosen to use SQLite as a database. And we have demonstrated both writing and reading to the database from the web application by inserting users, and reading movie and review information.
+* A search in the database is done by letting the user search for movies he/she wants to read about.
+* The user interface can show elements in a list based way, and include a way to see more details of each element in the list. This is implemented by just showing the pictures and titles of the movies in a search result, and letting you click on the picture to get to a page where the movies is shown in more detail. An expand button to show more details of a list element is also included for the reviews for a movie.
+* The list based view can be sorted on different properties. This is implemented for reviews of a movie. When you enter the detailed information of a movie, you can see the reviews, and choose to sort the list by name or rating.
+* The list based view can be filtered on different properties. This is implemented for reviews of a movie. When you enter the detailed information of a movie, you can see the reviews, and choose to filter the views by rating or name.
+* The list based view is dynamically loaded. This is implemented in reviews of a movie. When the user scrolls down to the bottom a number of reviews are loaded underneath the previous ones. 
+* The application has a “my page” functionality. This is implemented by letting the user log into the application, and then on the profile page let the user see which reviews he/she have written to different movies.
+* The application has session-handling. This is implemented in Angular 2.0, by checking if the user is logged in before letting the user navigate to a page where you have to be logged on to get to. If the user is not logged into the application, the user is redirected to the home page.
+* Session is also implemented to handle recently viewed movies.
+* The application has a “fancy” alternative to a view of the list. This is implemented by showing the rating of a given movie in a graph.
+
+
+
+
+
+
+Things we would have added or fixed if we had more time 
+If a user is logged into facebook before the database is created, the user won’t be added to the database if the user has already approved the application.
+Fix so reviews that are written to a movie are added to the list of reviews, without needing to reload the page.
+More user / profile page functionality:
+Add followers to users
+Show user pages of other users
+Add description on the profile page of a user
+Add possibility to edit reviews
+Fix so a review only can be added with the user and movie existing
+For some reason when running the app initially, when it has to initialize and create the database, it will get the SQLITE_LOCKED error and will crash. It only happens sometimes, so it wasn’t a high priority for the project. We know it is caused by having two accesses to the database in the init phase, and sometimes the first transaction has not completed before the second tries to connect.
