@@ -16,12 +16,12 @@ export class MovieService {
     constructor (private http: Http) {}
 
 
-    // Get ALL the movies
+    // Get ALL the movies from API
     getAllMovies(): Observable<any> {
         return this.http.get(this.getAllMoviesUrl).map(res => res.json().search_result);
     }
 
-    // Get get newly reviwed movies
+    // Get get newly reviwed movies from API
     getNewlyReviewedMovies(): Observable<any> {
         return this.http.get(this.newlyReviewMoviesUrl).map(res => res.json().movies);
     }

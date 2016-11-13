@@ -12,6 +12,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var db_service_1 = require('./../db.service');
 var router_1 = require('@angular/router');
+/**
+ * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
+ * how the component should be processed, instantiated and used at runtime.
+ */
 var FacebookComponent = (function () {
     /**
      * Constructor code from developers.facebook.com
@@ -55,6 +59,7 @@ var FacebookComponent = (function () {
                         console.log("NAME: " + self.name);
                         console.log("EMAIL: " + self.email);
                         console.log("IMGURL: " + self.imgurl);
+                        //Add the user to the database, and navigate to the profile page
                         self._databaseService.insertUser(self.id, self.name, self.email, self.imgurl);
                         self.router.navigate(['/profile']);
                     });
@@ -80,6 +85,7 @@ var FacebookComponent = (function () {
         //When the user logs out, navigate to the home page to not stay on a possible closed page
         this.router.navigate(['/home']);
     };
+    // Fire when component is created
     FacebookComponent.prototype.ngOnInit = function () {
         var _self = this;
         FB.getLoginStatus(function (response) {
@@ -100,10 +106,15 @@ var FacebookComponent = (function () {
     };
     FacebookComponent = __decorate([
         core_1.Component({
+            //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
             moduleId: module.id,
+            // Selector "movie" lets other components use the template into their own template
             selector: "facebook-component",
+            // Providers tell the component which service to use.
             providers: [db_service_1.DatabaseService],
+            // Template shows how the page is to be rendered
             template: "\n                <div class=\"facebook-item\">\n                    <div class=\"logged-in\" *ngIf=\"isUser\">\n                        <button class=\"btn btn-facebook\" (click)=\"facebookLogout()\">\n                            <div id=\"btn-image-container\"><img  src=\"https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png\"/></div>\n                            <span>Logout</span>\n                        </button>\n                        <span><img class=\"navbar-facebook-img\" src=\"{{imgurl}}\"/> {{name}}</span>\n                    </div>\n                    <div class=\"not-logged-in\" *ngIf=\"isUser==false\">\n                        <button class=\"btn btn-facebook\" (click)=\"facebookLogin()\">\n                            <div id=\"btn-image-container\"><img  src=\"https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png\"/></div>\n                            <span> Login </span>\n                    </button> \n                    </div>\n                </div>   \n                \n            ",
+            // stylrUlrs tells the component where it can find the CSS-code that it is going to use
             styleUrls: ['navbar.component.css']
         }), 
         __metadata('design:paramtypes', [db_service_1.DatabaseService, core_1.NgZone, router_1.Router])

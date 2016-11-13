@@ -19,12 +19,12 @@ import { AuthGuard }    from  './common/auth.guard';
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home',  component: FrontPageComponent },
-    { path: 'movie/:id', component: MoviePageComponent }, //movie/:id+
+    { path: 'movie/:id', component: MoviePageComponent },
     /**
      * By adding canActivate here, the application only let the user get to the route
      * if the canActivate function in AuthGuard returns true
      */
-    { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]}, //profile/:id+
+    { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard]},
     { path: 'search/:query',  component: MovieSearchPageComponent },
     { path: 'search',  component: MovieSearchPageComponent },
 ];

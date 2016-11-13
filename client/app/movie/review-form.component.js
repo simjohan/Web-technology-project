@@ -12,11 +12,14 @@ var core_1 = require('@angular/core');
 var movie_review_1 = require('./movie-review');
 var review_service_1 = require("./review.service");
 var router_1 = require("@angular/router");
+/**
+* @Component allows you to mark a class as an Angular component and provide additional metadata that determines
+* how the component should be processed, instantiated and used at runtime.
+*/
 var ReviewFormComponent = (function () {
-    function ReviewFormComponent(reviewService, route, _ngZone) {
+    function ReviewFormComponent(reviewService, route) {
         this.reviewService = reviewService;
         this.route = route;
-        this._ngZone = _ngZone;
         this.userId = 0;
         this.movieId = 0;
         this.isUser = false;
@@ -39,6 +42,7 @@ var ReviewFormComponent = (function () {
             _self.reviewService.sendReview(callback.id, _self.movieId, _self.model.review, _self.model.title, _self.model.rating);
         });
     };
+    //Remove the text in the form, so it is possible to make a new review
     ReviewFormComponent.prototype.newReview = function () {
         var _this = this;
         this.submitted = false;
@@ -46,6 +50,7 @@ var ReviewFormComponent = (function () {
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
     };
+    //When the page loads, get the login-status and movieid
     ReviewFormComponent.prototype.ngOnInit = function () {
         var _this = this;
         // get URL parameters
@@ -65,11 +70,14 @@ var ReviewFormComponent = (function () {
     };
     ReviewFormComponent = __decorate([
         core_1.Component({
+            //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
             moduleId: module.id,
+            // Selector "movie-review" lets other components use the template into their own template
             selector: 'review-form',
+            //TemplateUrl tells the component where it can find the HTML-code it is going to show
             templateUrl: 'review-form.component.html'
         }), 
-        __metadata('design:paramtypes', [review_service_1.ReviewService, router_1.ActivatedRoute, core_1.NgZone])
+        __metadata('design:paramtypes', [review_service_1.ReviewService, router_1.ActivatedRoute])
     ], ReviewFormComponent);
     return ReviewFormComponent;
 }());

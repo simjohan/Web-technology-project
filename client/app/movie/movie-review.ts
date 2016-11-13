@@ -1,4 +1,6 @@
-
+/**
+ * Model for a movie review, used in review-form.component
+ */
 export class MovieReview {
 
     constructor(

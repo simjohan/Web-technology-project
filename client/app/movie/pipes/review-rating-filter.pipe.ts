@@ -13,7 +13,7 @@ export class ReviewRatingFilterPipe implements PipeTransform {
         let review = value;
         let reviews = []; // Empty array to hold the new reviews
         for (var i in review){
-            let rating = +review[i].rating // Convert to number
+            let rating = +review[i].rating; // Convert to number
             if (rating >= minRating){
                 // Push the review that meet the requirement into the reviews array
                 reviews.push(review[i]);

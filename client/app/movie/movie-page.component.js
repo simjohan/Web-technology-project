@@ -21,7 +21,6 @@ var MoviePageComponent = (function () {
         this.route = route;
         //Add a reviewTitle to the movie-review that is added in the movie-page.component.html
         this.reviewTitle = "ReviewTitle";
-        // Variables for days!
         this.sliderValue = 0;
         this.nameSearched = "";
         this.toggle = false;
@@ -52,7 +51,7 @@ var MoviePageComponent = (function () {
          // Execute function whenever reviews array is updated
         );
     };
-    // The height of the document
+    // The height of the document, this is needed in the function loadReviews
     MoviePageComponent.prototype.getDocumentHeight = function () {
         var body = document.body;
         var html = document.documentElement;

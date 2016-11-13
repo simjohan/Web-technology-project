@@ -13,8 +13,9 @@ var http_1 = require('@angular/http');
 var ReviewService = (function () {
     function ReviewService(http) {
         this.http = http;
-        this.reviewsUrl = '/api/specific-movie-reviews/'; // URL to web API
-        this.userReviewsUrl = '/api/reviews/specific-user-reviews/'; // URL to web API
+        // URLs to web API
+        this.reviewsUrl = '/api/specific-movie-reviews/';
+        this.userReviewsUrl = '/api/reviews/specific-user-reviews/';
         this.userMovieReviewsUrl = '/api/reviews/specific-user-movie-reviews/';
         this.paginatedReviews = '/api/get/reviews/';
     }
@@ -37,7 +38,7 @@ var ReviewService = (function () {
     };
     // Count the ratings and summarize them into an array
     // The array contains the number of each rating at their specific index
-    // If theres 2 ratings of 0, the value of reviewsRatings[0] will be 2
+    // If there's 2 ratings of 0, the value of reviewsRatings[0] will be 2
     ReviewService.prototype.summarizeRatings = function (reviews) {
         var reviewRatings = [0, 0, 0, 0, 0];
         for (var _i = 0, reviews_1 = reviews; _i < reviews_1.length; _i++) {
@@ -48,6 +49,7 @@ var ReviewService = (function () {
         }
         return Promise.resolve(reviewRatings);
     };
+    // Save the review to the database, via the API
     ReviewService.prototype.sendReview = function (userId, movieId, title, rating, review) {
         var body = JSON.stringify([userId, movieId, title, rating, review]);
         var headers = new http_1.Headers();

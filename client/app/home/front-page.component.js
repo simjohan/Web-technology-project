@@ -25,14 +25,23 @@ var FrontPageComponent = (function () {
         this.newlyVisited = "Newly Visisted";
         this.recentlyVisitedMovies = [];
     }
+    /**
+     * Runs the getMovies and gerRecentlyVisitedMovies when the page is loaded
+     */
     FrontPageComponent.prototype.ngOnInit = function () {
         this.getMovies();
         this.getRecentlyVisitedMovies();
     };
+    /**
+     * Uses the movieService to get the newly reviewed movies, and store it in the data variable
+     */
     FrontPageComponent.prototype.getMovies = function () {
         var _this = this;
         this.movieService.getNewlyReviewedMovies().subscribe(function (data) { return _this.data = data; }, function (error) { return console.log(error); });
     };
+    /**
+     * Uses the frontPageService to get the recently visited movies, and store it in the recentlyVisitedMovies variable
+     */
     FrontPageComponent.prototype.getRecentlyVisitedMovies = function () {
         var _this = this;
         this.frontPageService.recentlyVisitedMovies().subscribe(function (data) { return _this.recentlyVisitedMovies = data; }, function (error) { return console.log(error); });
@@ -45,8 +54,9 @@ var FrontPageComponent = (function () {
             selector: "front-page",
             //TemplateUrl tells the component where it can find the HTML-code it is going to show
             templateUrl: 'front-page.component.html',
-            // stylrUlrs tells the component where it can find the CSS-code that it is going to use
+            // styleUlrs tells the component where it can find the CSS-code that it is going to use
             styleUrls: ['front-page.component.css'],
+            // The providers are the services that lets us use their functions
             providers: [movie_service_1.MovieService, front_page_service_1.FrontPageService]
         }), 
         __metadata('design:paramtypes', [movie_service_1.MovieService, front_page_service_1.FrontPageService])

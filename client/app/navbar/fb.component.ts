@@ -4,10 +4,18 @@ import forEach = require("core-js/fn/array/for-each");
 import { DatabaseService } from './../db.service';
 import { Router } from '@angular/router';
 
+/**
+ * @Component allows you to mark a class as an Angular component and provide additional metadata that determines
+ * how the component should be processed, instantiated and used at runtime.
+ */
 @Component ({
+    //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
     moduleId: module.id,
+    // Selector "movie" lets other components use the template into their own template
     selector: "facebook-component",
+    // Providers tell the component which service to use.
     providers: [DatabaseService],
+    // Template shows how the page is to be rendered
     template: `
                 <div class="facebook-item">
                     <div class="logged-in" *ngIf="isUser">
@@ -26,6 +34,7 @@ import { Router } from '@angular/router';
                 </div>   
                 
             `,
+    // stylrUlrs tells the component where it can find the CSS-code that it is going to use
     styleUrls: ['navbar.component.css']
 })
 
@@ -76,6 +85,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
                         console.log("EMAIL: " + self.email);
                         console.log("IMGURL: " + self.imgurl);
 
+                        //Add the user to the database, and navigate to the profile page
                         self._databaseService.insertUser(self.id, self.name, self.email, self.imgurl);
                         self.router.navigate(['/profile']);
 
@@ -86,7 +96,6 @@ export class FacebookComponent implements OnInit, OnDestroy{
                 console.log('User cancelled login or did not fully authorize.');
             }
         }, {scope: 'public_profile, email'});
-
     }
 
     /**
@@ -105,6 +114,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
         this.router.navigate(['/home']);
     }
 
+    // Fire when component is created
     ngOnInit() {
         let _self = this;
         FB.getLoginStatus(function(response) {
