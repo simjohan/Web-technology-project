@@ -13,7 +13,7 @@ git clone -b webpack https://bitbucket.org/trondaal/it2810-10-oppgave-3.git
 3. Run npm install in the root directory. This will install the necessary dependencies required for webpack
 
 
-4. Run npm start to build the production pack for the project. This will build the dist/ folder and run the project from there. This will run the server with forever js, which 
+4. Run npm start to build the production pack for the project. This will build the dist/ folder and run the project from there. This will run the server with forever js, which runs the node server “forever”. 
 
 
 5. Access the website through http://localhost:80/ 
