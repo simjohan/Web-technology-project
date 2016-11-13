@@ -1,5 +1,5 @@
 import {Component, HostListener} from '@angular/core';
-import { ReviewService } from './review.service';
+import { ReviewService } from '../movie-review/review.service';
 import { ActivatedRoute } from '@angular/router';
 /**
  * @Component allows you to mark a class as an Angular component and provide additional metadata that determines

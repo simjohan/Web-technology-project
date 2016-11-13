@@ -1,7 +1,6 @@
 import {Component, HostListener, NgZone} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
-import {ReviewService} from "../movie/review.service";
+import {ReviewService} from "../movie-review/review.service";
 
 
 /**

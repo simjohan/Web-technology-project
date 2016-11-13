@@ -12,7 +12,7 @@ import {Component, Input} from '@angular/core';
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
     templateUrl: 'profile-user-reviews.component.html',
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
-    styleUrls: ['../movie/reviews.component.css'],
+    styleUrls: ['../movie-review/reviews.component.css'],
 })
 
 /**

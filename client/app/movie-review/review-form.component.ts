@@ -1,4 +1,4 @@
-import {Component, OnInit, NgZone} from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 
 import { MovieReview } from './movie-review';
 import {ReviewService} from "./review.service";
