@@ -1,19 +1,24 @@
 ### Getting started
 -----------
-1. Clone the repository
-
-2. To get a complete installation of all necessary node modules, run:
-
-    `npm install`
+Run project: How to pack and run with webpack 
+1. Clone the project > 
+git clone -b webpack https://bitbucket.org/trondaal/it2810-10-oppgave-3.git
 
 
-3. Run the application by entering your project folder and run:
+2. cd it2810-10-oppgave-3
 
-    `npm start`
+3. Run npm install in the root directory. This will install the necessary dependencies required for webpack
 
-This will pack the project with Webpack and run it afterwards!
 
-The application can be viewed at localhost:80.
+4. Run npm start to build the production pack for the project. This will build the dist/ folder and run the project from there. This will run the server with forever js, which 
+
+
+5. Access the website through http://localhost:80/ 
+
+
+6. Because forever.js causes the server to run “forever”, it is required to kill the processes to stop it. This can be done as follows:
+Windows: From the task manager by stopping all node processes. 
+Linux: From the terminal run “sudo ps -aux | grep node” to find the id of the node processes and then “sudo kill -9 <id>” to kill it.
 
 
 ### Folder structure
