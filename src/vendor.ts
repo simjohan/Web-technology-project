@@ -14,7 +14,7 @@ import 'jquery';
 
 //ng2-charts
 import 'ng2-charts';
-import 'chart.js/dist/chart.bundle.js'
+import 'chart.js/dist/Chart.bundle.js'
 
 
 //in-mem-api

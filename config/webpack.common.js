@@ -7,7 +7,7 @@ module.exports = {
     entry: {
         'polyfills': './src/polyfills.ts',
         'vendor': './src/vendor.ts',
-        'app': './src/app/main.ts'
+        'app': './src/app/main.ts',
     },
 
     resolve: {
@@ -37,6 +37,10 @@ module.exports = {
                 test: /\.css$/,
                 include: helpers.root('src', 'app'),
                 loader: 'raw'
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             }
         ]
     },

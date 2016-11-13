@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
     /*styleURLs tells the component where it can find the css-file(s) it is supposed to use
       (in addition to the one defined in the index.html-file)
       */
-    styleUrls: ['navbar.component.css']
+    styleUrls: ['navbar.component.css', 'styles.css']
 })
 
 export class NavbarComponent {

@@ -355,7 +355,7 @@ module.exports = function(app,io){
         Sends the index file for all other URLs not specified previously in the express routing
     */
     app.get('*', function (req, res) {
-        res.sendFile(__dirname + '/client/index.html');
+        res.sendFile(__dirname + '/dist/index.html');
     });
 
 
