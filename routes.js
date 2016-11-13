@@ -319,9 +319,23 @@ module.exports = function(app,io){
             mm='0'+mm
         }
 
-        //var dbDate = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
-        var dbTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        var finalDate = yyyy + "-" + mm + "-" + dd + " " + dbTime;
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+
+        if(hours<10){
+            hours='0'+hours
+        }
+        if(minutes<10){
+            minutes='0'+minutes
+        }
+        if(seconds<10){
+            seconds='0'+seconds
+        }
+
+        var dbDate = yyyy + "-" + mm + "-" + dd;
+        var dbTime = hours + ':' + minutes + ':' + seconds;
+        var finalDate = dbDate + " " + dbTime;
 
         dbHandler.addReview(userId, movieId, review, title, rating, finalDate);
         res.send();
