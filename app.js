@@ -23,8 +23,9 @@ var db = new sqlite3.Database(file);
 
 var io = require('socket.io')(server,{log:false});
 
-server.listen(80,function(){
-    console.log("Server connected. Listening on port: 3000");
+var port = 80;
+server.listen(port,function(){
+    console.log("Server connected. Listening on port: " + port);
 });
 
 
