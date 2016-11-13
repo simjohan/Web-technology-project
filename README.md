@@ -17,6 +17,7 @@ The application can be viewed at localhost:80.
 
 
 ### Folder structure
+``` ruby
 | client/
 |   | app/
 |   |   | common/
@@ -52,20 +53,7 @@ The application can be viewed at localhost:80.
 | tsconfig.json
 | typings.json
 | webpack.config.js
-
-
-[me@home]$ tree Python-2.7.3 --charset ascii | head -n 11  # ASCII only
-Python-2.7.3
-|-- configure
-|-- configure.in
-|-- Demo
-|   |-- cgi
-|   |   |-- cgi0.sh
-|   |   |-- cgi1.py
-|   |   |-- cgi2.py
-|   |   |-- cgi3.py
-|   |   |-- README
-|   |   `-- wiki.py
+```
 
 # client/
 This is where
