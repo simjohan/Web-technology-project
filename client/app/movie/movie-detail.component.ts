@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "movie-detail" lets other components use the template into their own template
     selector: "movie-detail",
     // stylrUlrs tells the component where it can find the CSS-code that it is going to use
@@ -25,7 +25,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieDetailComponent implements OnInit{
 
     private movie: Object;
-    private userId;
+    private userId: any;
     constructor (private movieService: MovieService, private route: ActivatedRoute) {}
 
     // On start of lifecycle
@@ -36,7 +36,7 @@ export class MovieDetailComponent implements OnInit{
     }
 
     // Get a specific movie from the REST API based on id.
-    getMovie(userId):void {
+    getMovie(userId: any):void {
         this.movieService.getMovie(userId).subscribe(data => this.movie = data, error => console.log(error));
     }
 

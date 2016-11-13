@@ -12,7 +12,7 @@ export class ProfileService {
     constructor (private http: Http) {}
 
     // Get a specific user based on id variable from API
-    getUser(id): Observable<any> {
+    getUser(id: any): Observable<any> {
         return this.http.get(this.specificUserUrl + id).map(res => res.json().user_by_id);
     }
  }

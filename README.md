@@ -1,13 +1,59 @@
-Getting started
+### Getting started
 -----------
+1. Clone the repository
 
-# Angular-2-rc1-framework
+2. To get a complete installation of all necessary node modules, run:
 
-* install node package manager   (http://blog.npmjs.org/post/85484771375/how-to-install-npm)
+    `npm install`
 
-* run the ```npm install``` command in root dir so that package.json can download the necessary dependencies for the server side
-* run the ```npm install``` command in /client dir so that package.json can download the necessary dependencies for the client side
 
-* in root dir run ```node app.js``` or ```npm start``` and voila! you have a ui framework that is made with angular 2 rc1
+3. Run the application by entering your project folder and run:
 
-This will launch the application at localhost:3000.
+    `npm start`
+
+This will pack the project with Webpack and run it afterwards!
+
+The application can be viewed at localhost:80.
+
+
+### Folder structure
+``` ruby
+| client/
+|   | app/
+|   |   | common/
+|   |   | home/
+|   |   | movie-review/
+|   |   | movie-search/
+|   |   | navbar/
+|   |   | profile/
+| config/
+|   | helpers.js
+|   | webpack.common.js
+|   | webpack.prod.js
+|   | webpack.test.js
+| dist/ (after build)
+|   | app.[hash].css
+|   | app.[hash].css.map
+|   | app.[hash].js
+|   | app.[hash].js.map
+|   | index.html
+|   | polyfills.[hash].js
+|   | polyfills.[hash].js.map
+|   | vendor.[hash].js
+|   | vendor.[hash].js.map
+| node_modules/
+| app.js
+| database.db
+| dbHandler.js
+| dbInit.js
+| package.json
+| README.md
+| routes.js
+| systemjs.config.js
+| tsconfig.json
+| typings.json
+| webpack.config.js
+```
+
+# client/
+This is where

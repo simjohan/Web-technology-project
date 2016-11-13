@@ -1,6 +1,4 @@
-/// <reference path="../../typings/globals/fbsdk.d.ts" />
 import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
-import forEach = require("core-js/fn/array/for-each");
 import { DatabaseService } from './../db.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +8,7 @@ import { Router } from '@angular/router';
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "movie" lets other components use the template into their own template
     selector: "facebook-component",
     // Providers tell the component which service to use.
@@ -23,11 +21,11 @@ import { Router } from '@angular/router';
 
 export class FacebookComponent implements OnInit, OnDestroy{
 
-    id="";
-    name="";
-    email="";
-    imgurl="";
-    isUser=false;
+    id: string = "";
+    name: string = "";
+    email: string = "";
+    imgurl: string = "";
+    isUser: boolean = false;
 
     /**
      * Constructor code from developers.facebook.com
@@ -48,25 +46,15 @@ export class FacebookComponent implements OnInit, OnDestroy{
      */
     facebookLogin(){
         var self = this;
-        FB.login(function(response) {
+        FB.login(function(response: any) {
             if (response.authResponse) {
-                FB.api('/me?fields=name,email,picture', function(me) {
+                FB.api('/me?fields=name,email,picture', function(me: any) {
                     self._ngZone.run(() => {
                         self.id = me.id;
                         self.name = me.name;
                         self.email = me.email;
                         self.imgurl = me.picture.data.url;
                         self.isUser = true;
-
-                        localStorage.setItem('id', me.id);
-                        localStorage.setItem('name', me.name);
-                        localStorage.setItem('email', me.email);
-                        localStorage.setItem('imgurl', me.picture.data.url);
-
-                        console.log("ID: " + self.id);
-                        console.log("NAME: " + self.name);
-                        console.log("EMAIL: " + self.email);
-                        console.log("IMGURL: " + self.imgurl);
 
                         //Add the user to the database, and navigate to the profile page
                         self._databaseService.insertUser(self.id, self.name, self.email, self.imgurl);
@@ -86,7 +74,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
      */
     facebookLogout(){
         let self = this;
-        FB.logout(function (response) {
+        FB.logout(function (response: any) {
             // User is logged out; update props
             self.isUser = false;
             //let idTest = localStorage.getItem('id');
@@ -100,7 +88,7 @@ export class FacebookComponent implements OnInit, OnDestroy{
     // Fire when component is created
     ngOnInit() {
         let _self = this;
-        FB.getLoginStatus(function(response) {
+        FB.getLoginStatus(function(response: any) {
             if (response.status === 'connected') {
                 _self.isUser = true;
 

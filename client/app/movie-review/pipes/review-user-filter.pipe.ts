@@ -7,10 +7,10 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 export class ReviewUserFilterPipe implements PipeTransform {
     // Filters reviews based on name
-    transform(value, args?) {
+    transform(value: any, args?: any) {
         let nameSearched = args;
         let review = value;
-        let reviews = []; // Hold the filtered reviews
+        let reviews: any[] = []; // Hold the filtered reviews
         if ((nameSearched).length == 0) return review; // If no term was entered, return review as is
         for (var i in review){
             let username = review[i].username;

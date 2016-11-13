@@ -23,7 +23,7 @@ var db = new sqlite3.Database(file);
 
 var io = require('socket.io')(server,{log:false});
 
-server.listen(3000,function(){
+server.listen(80,function(){
     console.log("Server connected. Listening on port: 3000");
 });
 
@@ -45,7 +45,8 @@ db.close();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );
 
-app.use( express.static(__dirname + '/client' ) );
+
+app.use( express.static(__dirname + '/dist' ) );
 
 //Routes
 var Routes = require('./routes.js');

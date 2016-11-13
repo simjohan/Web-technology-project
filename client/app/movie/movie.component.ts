@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "movie" lets other components use the template into their own template
     selector: "movie-cmp",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
@@ -20,6 +20,6 @@ import { Component, Input, OnInit } from '@angular/core';
  */
 export class MovieComponent{
     //@Input() lets other components send in a titleValue, which this component inputs here. This value can be used in the template.
-    @Input() movieObject;
+    @Input() movieObject: Object;
 
 }

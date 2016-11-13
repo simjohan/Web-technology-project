@@ -11,7 +11,7 @@ export class DatabaseService {
     constructor(private http: Http){ }
 
 
-    insertUser(id, name, email, imgurl){
+    insertUser(id: any, name: string, email: string, imgurl: string){
         let body = JSON.stringify([id, name, email, imgurl]);
         let headers = new Headers();
         let addUserUrl = '/api/users/add/' + id;
@@ -22,7 +22,7 @@ export class DatabaseService {
          //   .catch(this.handleError);
     }
 
-    insertMovie(id, title, viewCount){
+    insertMovie(id: any, title: string, viewCount: number){
         let body = JSON.stringify([id, title, viewCount]);
         let headers = new Headers();
         let addMovieUrl = '/api/movies/add/' + id;
@@ -31,7 +31,7 @@ export class DatabaseService {
         return this.http.post(addMovieUrl, body, options).subscribe();
     }
 
-    removeUser(id){
+    removeUser(id: any){
         let body = JSON.stringify([id]);
         let headers = new Headers();
         let removeUserUrl = '/api/users/remove/' + id;

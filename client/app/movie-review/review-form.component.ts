@@ -12,7 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 
 @Component({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "movie-review" lets other components use the template into their own template
     selector: 'review-form',
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
@@ -24,16 +24,16 @@ export class ReviewFormComponent implements OnInit {
 
     constructor(private reviewService : ReviewService, private route : ActivatedRoute){ }
 
-    userId = 0;
-    movieId = 0;
-    isUser = false;
+    userId: number = 0;
+    movieId: number = 0;
+    isUser: boolean = false;
 
-    ratings = [0, 1, 2, 3, 4, 5];
+    ratings: any = [0, 1, 2, 3, 4, 5];
 
 
-    model = new MovieReview(this.userId, this.movieId, '', '', this.ratings[0]);
-    submitted = false;
-    active = true;
+    model: any = new MovieReview(this.userId, this.movieId, '', '', this.ratings[0]);
+    submitted: boolean = false;
+    active: boolean = true;
 
     // Submitting the review form. Send data to server
     onSubmit() {
@@ -41,12 +41,12 @@ export class ReviewFormComponent implements OnInit {
         // _self will now reference the component object.
         let _self = this;
         // Call FB API for user id.
-        FB.api('/me', function (response) {
+        FB.api('/me', function (response: any) {
             console.log("USER ID: " + response.id);
             _self.userId = response.id;
 
         //Callback function for FB API. We now have access to the data.
-        }, function (callback) {
+        }, function (callback: any) {
             _self.reviewService.sendReview(callback.id, _self.movieId, _self.model.review, _self.model.title, _self.model.rating);
         });
     }
@@ -64,7 +64,7 @@ export class ReviewFormComponent implements OnInit {
         // get URL parameters
         let _self = this;
         this.route.params.subscribe(params => {this.movieId = params['id'];});
-        FB.getLoginStatus(function(response) {
+        FB.getLoginStatus(function(response: any) {
             if (response.status === 'connected') {
                 _self.isUser = true;
             } else if (response.status === 'not_authorized') {

@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
  */
 @Component ({
     //moduleId makes it possible to use "templateUrl" - Angular 2 would look for the files at root level if we do not add this.
-    moduleId: module.id,
+    moduleId: "module.id",
     // Selector "movie" lets other components use the template into their own template
     selector: "movie",
     //TemplateUrl tells the component where it can find the HTML-code it is going to show
@@ -26,16 +26,16 @@ export class MoviePageComponent{
     reviewTitle = "ReviewTitle";
 
     sliderValue:number = 0;
-    nameSearched:String = "";
-    toggle = false;
-    format = "";
-    ratingToggle = false;
-    nameToggle = false;
+    nameSearched: string = "";
+    toggle: boolean = false;
+    format: string = "";
+    ratingToggle: boolean = false;
+    nameToggle: boolean = false;
 
-    offset = 0;
+    offset: number = 0;
 
-    private reviews = [];
-    private movieId;
+    private reviews: any[] = [];
+    private movieId: any;
 
     constructor (private reviewService: ReviewService, private route: ActivatedRoute) {}
 
@@ -46,8 +46,7 @@ export class MoviePageComponent{
     }
 
     // Get 2 reviews for a specific movie id
-    getReviews(movieId):void {
-        console.log("getReviews");
+    getReviews(movieId: any):void {
         // Subscribe and update the reviews array whenever possible
         this.reviewService.getPaginatedReviews(movieId, 2, this.offset).subscribe(
             data => this.reviews = this.reviews.concat(data),
@@ -58,7 +57,6 @@ export class MoviePageComponent{
 
     // The height of the document, this is needed in the function loadReviews
     getDocumentHeight() {
-        console.log("GetDocumentHeight");
         const body = document.body;
         const html = document.documentElement;
 
@@ -70,9 +68,7 @@ export class MoviePageComponent{
     // Loads reviews if a scroll event takes place at the bottom of the page
     @HostListener('window:scroll', ['$event'])
     loadReviews() {
-        console.log("Load reviews");
         if ((window.pageYOffset+1 || document.documentElement.scrollTop+1 || document.body.scrollTop+1) >= this.getDocumentHeight() - window.innerHeight) {
-            console.log("Scroll event");
             console.debug("Scroll Event");
             this.offset += 2;
             this.getReviews(this.movieId);
@@ -81,7 +77,7 @@ export class MoviePageComponent{
     }
 
     // Summarizes the ratings to be presented in the doughnut chart
-    summarizeRatings(reviews){
+    summarizeRatings(reviews: any){
         this.reviewService.summarizeRatings(reviews).then(
             data => this.doughnutChartData = data,
             error => console.log(error)
